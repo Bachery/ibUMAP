@@ -1,0 +1,22 @@
+# MacOS
+.DS_Store
+
+# Compiled
+__pycache__/
+
+# Datasets
+datasets/cache/**/*
+
+datasets/raw/**/*
+!datasets/raw/**/
+!datasets/raw/**/README.md
+
+datasets/raw_cache/**/*
+!datasets/raw_cache/**/
+!datasets/raw_cache/**/README.md
+
+datasets/processed/**/*
+!datasets/processed/**/
+!datasets/processed/**/metadata.json
+!datasets/processed/**/checksums.txt
+
