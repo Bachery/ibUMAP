@@ -5,8 +5,6 @@
 __pycache__/
 
 # Datasets
-datasets/cache/**/*
-
 datasets/raw/**/*
 !datasets/raw/**/
 !datasets/raw/**/README.md
@@ -19,6 +17,12 @@ datasets/processed/**/*
 !datasets/processed/**/
 !datasets/processed/**/metadata.json
 !datasets/processed/**/checksums.txt
+
+datasets/cache/**/*
+!datasets/cache/**/
+
+# Keep placeholder directories
+!datasets/**/.gitkeep
 
 
 # Build artifacts
