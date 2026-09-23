@@ -884,7 +884,7 @@ extern "C" __global__ void UMAP_AttrForce_sampling_cu(
 	}
 }
 
-__inline__ __device__ float umapfft_warp_sum(float value)
+__inline__ __device__ float ibumap_warp_sum(float value)
 {
 	for (int offset = 16; offset > 0; offset >>= 1)
 	{
@@ -928,8 +928,8 @@ extern "C" __global__ void UMAP_AttrForce_warp_per_row_cu(
 			temp0 += alpha * clip(grad_coeff * mv0);
 			temp1 += alpha * clip(grad_coeff * mv1);
 		}
-		temp0 = umapfft_warp_sum(temp0);
-		temp1 = umapfft_warp_sum(temp1);
+		temp0 = ibumap_warp_sum(temp0);
+		temp1 = ibumap_warp_sum(temp1);
 		if (lane == 0)
 		{
 			attr_force[2 * i] = temp0;
@@ -977,8 +977,8 @@ extern "C" __global__ void UMAP_AttrForce_sampling_warp_per_row_cu(
 				temp1 += alpha * clip(grad_coeff * mv1);
 			}
 		}
-		temp0 = umapfft_warp_sum(temp0);
-		temp1 = umapfft_warp_sum(temp1);
+		temp0 = ibumap_warp_sum(temp0);
+		temp1 = ibumap_warp_sum(temp1);
 		if (lane == 0)
 		{
 			attr_force[2 * i] = temp0;
