@@ -1,0 +1,348 @@
+{
+  "colorable_columns": [
+    "batch",
+    "cell_subtype",
+    "cell_type",
+    "embryo_time_bin",
+    "lineage",
+    "plot_cell_type",
+    "raw_embryo_time_bin",
+    "sample",
+    "sample_batch",
+    "sample_description",
+    "time_point"
+  ],
+  "dataset_id": "c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron",
+  "default_color_by": "cell_type",
+  "display_name": "C. elegans embryogenesis Body wall muscle vs Ciliated non amphid neuron",
+  "family": "c_elegans_embryogenesis",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    21988,
+    32
+  ],
+  "feature_source": "normalized_log_expression_pca_svd",
+  "filterable_columns": [
+    "batch",
+    "cell_subtype",
+    "cell_type",
+    "embryo_time_bin",
+    "lineage",
+    "plot_cell_type",
+    "raw_embryo_time_bin",
+    "sample",
+    "sample_batch",
+    "sample_description",
+    "time_point"
+  ],
+  "generated_at": "2026-06-04T08:19:57+00:00",
+  "generated_by": "scripts/datasets/c_elegans_embryogenesis/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_type",
+    "plot_cell_type",
+    "lineage",
+    "embryo_time_bin",
+    "time_point"
+  ],
+  "label_field": "cell_type",
+  "n_cells": 21988,
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "barcode": {
+      "description": "Observation column barcode from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "AAACCTGAGACAATAC-300.1.1",
+        "AAACCTGAGTTGAGTA-300.1.1",
+        "AAACCTGCATCACCCT-300.1.1"
+      ],
+      "n_unique": 21988,
+      "role": "metadata"
+    },
+    "batch": {
+      "description": "Observation column batch from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "cell_subtype": {
+      "description": "Observation column cell_subtype from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "BWM_head_row_1",
+        "BWM_anterior",
+        "OLQ_parent"
+      ],
+      "n_unique": 24,
+      "role": "biological_label"
+    },
+    "cell_type": {
+      "description": "Observation column cell_type from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Body_wall_muscle",
+        "Ciliated_non_amphid_neuron"
+      ],
+      "n_unique": 2,
+      "role": "biological_label"
+    },
+    "embryo_time": {
+      "description": "Observation column embryo_time from the Packer 2019 H5AD cell metadata.",
+      "dtype": "float64",
+      "example_values": [
+        "380.0",
+        "280.0",
+        "320.0"
+      ],
+      "n_unique": 99,
+      "role": "developmental_time"
+    },
+    "embryo_time_bin": {
+      "description": "Observation column embryo_time_bin from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "330-390",
+        "270-330",
+        "390-450"
+      ],
+      "n_unique": 10,
+      "role": "developmental_time"
+    },
+    "lineage": {
+      "description": "Observation column lineage from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "MSxpappp",
+        "Dxap",
+        "ABalapxpapa/ABpxpaaappa"
+      ],
+      "n_unique": 146,
+      "role": "biological_label"
+    },
+    "n_umi": {
+      "description": "Observation column n_umi from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "1630",
+        "4251",
+        "1400"
+      ],
+      "n_unique": 4219,
+      "role": "continuous_metadata"
+    },
+    "original_cell_index": {
+      "description": "Observation column original_cell_index from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "0",
+        "3",
+        "7"
+      ],
+      "n_unique": 21988,
+      "role": "original_index"
+    },
+    "original_obs_index": {
+      "description": "Observation column original_obs_index from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes+AAACCTGAGACAATAC-300.1.1",
+        "Waterston_300_minutes+AAACCTGAGTTGAGTA-300.1.1",
+        "Waterston_300_minutes+AAACCTGCATCACCCT-300.1.1"
+      ],
+      "n_unique": 21988,
+      "role": "metadata"
+    },
+    "passed_qc": {
+      "description": "Observation column passed_qc from the Packer 2019 H5AD cell metadata.",
+      "dtype": "bool",
+      "example_values": [
+        "True"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "plot_cell_type": {
+      "description": "Observation column plot_cell_type from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "BWM_head_row_1",
+        "BWM_anterior",
+        "OLQ_parent"
+      ],
+      "n_unique": 25,
+      "role": "biological_label"
+    },
+    "raw_embryo_time": {
+      "description": "Observation column raw_embryo_time from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "360",
+        "260",
+        "380"
+      ],
+      "n_unique": 41,
+      "role": "developmental_time"
+    },
+    "raw_embryo_time_bin": {
+      "description": "Observation column raw_embryo_time_bin from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "330-390",
+        "210-270",
+        "270-330"
+      ],
+      "n_unique": 11,
+      "role": "developmental_time"
+    },
+    "sample": {
+      "description": "Observation column sample from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_batch": {
+      "description": "Observation column sample_batch from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_description": {
+      "description": "Observation column sample_description from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "GSM3618670 UW synchronized 300 min post bleach",
+        "GSM3618671 UW synchronized 400 min post bleach",
+        "GSM3618672 UW synchronized 500 min post bleach batch 1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_id": {
+      "description": "Observation column sample_id from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "0",
+        "1",
+        "2"
+      ],
+      "n_unique": 21988,
+      "role": "identifier"
+    },
+    "size_factor": {
+      "description": "Observation column size_factor from the Packer 2019 H5AD cell metadata.",
+      "dtype": "float64",
+      "example_values": [
+        "1.02319485110107",
+        "2.65905115905774",
+        "0.8712849406921971"
+      ],
+      "n_unique": 4225,
+      "role": "continuous_metadata"
+    },
+    "study": {
+      "description": "Observation column study from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "packer2019"
+      ],
+      "n_unique": 1,
+      "role": "batch_or_source"
+    },
+    "time_point": {
+      "description": "Observation column time_point from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "300_minutes",
+        "400_minutes",
+        "500_minutes"
+      ],
+      "n_unique": 4,
+      "role": "developmental_time"
+    }
+  },
+  "original_index_column": "original_cell_index",
+  "pca_components": 32,
+  "preprocessing": {
+    "log1p": true,
+    "n_input_features": 20222,
+    "n_output_features": 32,
+    "representation": "truncated_svd",
+    "requested_components": 32,
+    "singular_values": [
+      2679.432373046875,
+      1104.6336669921875,
+      666.5508422851562,
+      491.03802490234375,
+      412.0024719238281,
+      344.5805358886719,
+      292.0954895019531,
+      267.33880615234375,
+      243.9327392578125,
+      238.78456115722656,
+      215.35281372070312,
+      213.34007263183594,
+      200.54161071777344,
+      182.56568908691406,
+      177.57737731933594,
+      172.77261352539062,
+      170.43185424804688,
+      164.28038024902344,
+      162.84432983398438,
+      158.56503295898438,
+      154.53440856933594,
+      150.91781616210938,
+      143.33340454101562,
+      141.1084442138672,
+      135.0379180908203,
+      133.4163360595703,
+      132.84722900390625,
+      129.72601318359375,
+      126.7280044555664,
+      124.13019561767578,
+      121.04927062988281,
+      120.23871612548828
+    ],
+    "size_factor_normalization": true
+  },
+  "primary_array": "features.npy",
+  "pseudotime_file": "pseudotime.npy",
+  "pseudotime_source": "obs/embryo_time",
+  "raw_path": "datasets/raw/c_elegans_embryogenesis/packer2019.h5ad",
+  "raw_role": "primary_source",
+  "searchable_columns": [
+    "original_cell_index",
+    "original_obs_index",
+    "barcode"
+  ],
+  "selected_labels": [
+    "Body_wall_muscle",
+    "Ciliated_non_amphid_neuron"
+  ],
+  "skipped_obs_columns": [],
+  "source_indices_file": "source_indices.npy",
+  "source_name": "Packer 2019 C. elegans embryogenesis",
+  "source_type": "h5ad",
+  "source_url": "https://data.caltech.edu/records/b1kj4-nh475",
+  "subset_filter": "passed_qc == True and cell_type in [Body_wall_muscle, Ciliated_non_amphid_neuron].",
+  "subset_id": "pair_body_wall_muscle__ciliated_non_amphid_neuron",
+  "subset_kind": "cell_type_pair",
+  "summary_file": "subset_summary.json",
+  "version": 1
+}

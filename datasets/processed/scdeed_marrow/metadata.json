@@ -1,0 +1,1202 @@
+{
+  "colorable_columns": [
+    "cell_ontology_class",
+    "free_annotation",
+    "cluster_ids",
+    "res_0_5",
+    "subtissue",
+    "tissue",
+    "subsetA_cluster_ids",
+    "subsetB_cluster_ids"
+  ],
+  "dataset_id": "scdeed_marrow",
+  "default_color_by": "cell_ontology_class",
+  "display_name": "scDEED marrow",
+  "family": "scdeed",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    4821,
+    50
+  ],
+  "feature_source": "obsm/X_pca",
+  "feature_source_path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed.h5ad",
+  "filterable_columns": [
+    "cell_ontology_class",
+    "free_annotation",
+    "cluster_ids",
+    "res_0_5",
+    "subtissue",
+    "tissue",
+    "subsetA_cluster_ids",
+    "subsetB_cluster_ids"
+  ],
+  "generated_at": "2026-05-19T20:45:45+00:00",
+  "generated_by": "scripts/datasets/scdeed/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_ontology_class",
+    "free_annotation",
+    "cluster_ids",
+    "res_0_5",
+    "subtissue",
+    "tissue",
+    "subsetA_cluster_ids",
+    "subsetB_cluster_ids"
+  ],
+  "metric": "euclidean",
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "FACS_selection": {
+      "description": "Observation column FACS_selection from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "cell_id": {
+      "description": "Observation column cell_id from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "cell_ontology_class": {
+      "description": "Observation column cell_ontology_class from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "biological_label"
+    },
+    "cell_ontology_id": {
+      "description": "Observation column cell_ontology_id from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "cluster_ids": {
+      "description": "Observation column cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "biological_label"
+    },
+    "free_annotation": {
+      "description": "Observation column free_annotation from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "biological_label"
+    },
+    "mouse_id": {
+      "description": "Observation column mouse_id from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "mouse_sex": {
+      "description": "Observation column mouse_sex from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "nCount_RNA": {
+      "description": "Observation column nCount_RNA from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "metadata"
+    },
+    "nFeature_RNA": {
+      "description": "Observation column nFeature_RNA from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "metadata"
+    },
+    "nReads": {
+      "description": "Observation column nReads from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "metadata"
+    },
+    "n_counts": {
+      "description": "Observation column n_counts from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "n_genes": {
+      "description": "Observation column n_genes from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "metadata"
+    },
+    "n_reads": {
+      "description": "Observation column n_reads from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "orig_ident": {
+      "description": "Observation column orig_ident from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "perc_ERCC": {
+      "description": "Observation column perc_ERCC from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "perc_Rn45s": {
+      "description": "Observation column perc_Rn45s from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "perc_ribo": {
+      "description": "Observation column perc_ribo from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "percent_ercc": {
+      "description": "Observation column percent_ercc from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "percent_ribo": {
+      "description": "Observation column percent_ribo from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "plate_barcode": {
+      "description": "Observation column plate_barcode from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "previous_cell_ontology_class": {
+      "description": "Observation column previous_cell_ontology_class from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "previous_free_annotation": {
+      "description": "Observation column previous_free_annotation from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "res_0_5": {
+      "description": "Observation column res_0_5 from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "biological_label"
+    },
+    "sample_id": {
+      "description": "Observation column sample_id from the downloaded scDEED raw data.",
+      "dtype": "int64",
+      "role": "identifier"
+    },
+    "subsetA": {
+      "description": "Observation column subsetA from the downloaded scDEED raw data.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "subsetA_cluster_ids": {
+      "description": "Observation column subsetA_cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "biological_label"
+    },
+    "subsetB": {
+      "description": "Observation column subsetB from the downloaded scDEED raw data.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "subsetB_cluster_ids": {
+      "description": "Observation column subsetB_cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "biological_label"
+    },
+    "subsetC": {
+      "description": "Observation column subsetC from the downloaded scDEED raw data.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "subsetC_cluster_ids": {
+      "description": "Observation column subsetC_cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "subsetD": {
+      "description": "Observation column subsetD from the downloaded scDEED raw data.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "subsetD_cluster_ids": {
+      "description": "Observation column subsetD_cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "subsetE": {
+      "description": "Observation column subsetE from the downloaded scDEED raw data.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "subsetE_cluster_ids": {
+      "description": "Observation column subsetE_cluster_ids from the downloaded scDEED raw data.",
+      "dtype": "float64",
+      "role": "metadata"
+    },
+    "subtissue": {
+      "description": "Observation column subtissue from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "biological_label"
+    },
+    "tissue": {
+      "description": "Observation column tissue from the downloaded scDEED raw data.",
+      "dtype": "string",
+      "role": "biological_label"
+    }
+  },
+  "preprocessing": "Prepared from downloaded and extracted scDEED Zenodo raw data. Features were read from obsm/X_pca and converted to float32; observation metadata was read from the H5AD obs group.",
+  "primary_array": "features.npy",
+  "raw_path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed.h5ad",
+  "raw_paths": [
+    "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed.h5ad"
+  ],
+  "raw_role": "primary_source",
+  "reference_embeddings": {
+    "tsne": {
+      "dtype": "float32",
+      "file": "reference_embeddings/tsne.npy",
+      "role": "reference_embedding",
+      "shape": [
+        4821,
+        2
+      ],
+      "source": "obsm/X_tsne"
+    }
+  },
+  "reference_metrics": {},
+  "searchable_columns": [
+    "cell_ontology_class",
+    "free_annotation",
+    "subtissue",
+    "tissue"
+  ],
+  "skipped_or_unrecognized_sources": [
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Across_Techniques.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Alveolar.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/CART.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Hydra.zip",
+      "reason": "File is not a zip file",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Marrow.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Samusik.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Simulated_Data.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "zip",
+      "path": "datasets/raw/scdeed/downloads/Velocity.zip",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/downloads/functions.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/.Rhistory",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/PBMC_Clustering.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/S15.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/Seurat.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/algorithms.rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/functions.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/loadings_n5_m0.5_Dropseq.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/loadings_n7_m0.2_SeqWell.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/loadings_n80_m0.5_inDrops.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/tSNEloadings_perplexity_Dropseq290.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/tSNEloadings_perplexity_SeqWell140.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Across_Techniques/Across Techniques-Done/tSNEloadings_perplexity_inDrops320.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/ClassfiedCells.RData",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/Fig6.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/Fig7.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/Seurat_v3.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/Supp_Alveolar.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/Whole_lung_seurat.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/data_processing_Alveolar.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/loadings_mindist0.6.Rds",
+      "reason": "Invalid file, or file has unsupported features",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/loadings_n6_m0.7.Rds",
+      "reason": "Invalid file, or file has unsupported features",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/loadings_nneighbors5.Rds",
+      "reason": "Invalid file, or file has unsupported features",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Alveolar/Alveolar-Done/nneighbors6_mindist0.7_ClassifiedCells.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/CART_STEAM.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/CART_STEAM_dataproc.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/CART_STEAM_grey.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/ClassfiedCells_perplexity30.RData",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "txt",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/DEgenes.txt",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/Fig4.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/Fig5.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/ROGUE.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/Supplementary_CART.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/data_processing_CART.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/perplexity750_ClassifiedCells.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/raw.expMatrix.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/seuratObj_v3.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/seuratObj_v3_DEgenes.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/tSNEloadings_perplexity170.Rds",
+      "reason": "Invalid file, or file has unsupported features",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/CART/CART-Done/tSNEloadings_perplexity750.Rds",
+      "reason": "Invalid file, or file has unsupported features",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow preprocessing.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/MarrowEMBEDR.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_counts",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed/obsm.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed/var.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed/varm.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/Marrow_processed.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/facs_Marrow_seurat_tiss.Robj",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Marrow/Marrow-Done/processed_Marrow_Seurat.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/ClassfiedCells.RData",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/Fig8.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/Fig9.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/Supplementary_Samusik.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/data_processing_samusik01.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/functions.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/loadings_mindist0.05.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/loadings_n160_m0.7.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/loadings_nneighbors160.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/nneighbors15_mindist0.2_ClassifiedCells.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/nneighbors160_mindist0.7_ClassifiedCells.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/population_names_Samusik_and_gating.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/populations_manual.RData",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/samusik01_seurat.RData",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rda",
+      "path": "datasets/raw/scdeed/extracted/Samusik/Samusik-Done/xp.RData",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/EMBEDR_Simulated_Data.ipynb",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/EMBEDR_plotdata.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/KN_Results.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/S11.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/Simulation.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/SimulationPlotData.Rds",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_1.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_10.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_11.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_12.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_13.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_14.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_15.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_16.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_17.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_18.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_19.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_2.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_20.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_3.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_4.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_5.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_6.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_7.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_8.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_data_9.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "csv",
+      "path": "datasets/raw/scdeed/extracted/Simulated_Data/Simulated Data-Done/simulated_parameter_means.csv",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Velocity/Velocity-Done/Figure11.R",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "unknown",
+      "path": "datasets/raw/scdeed/extracted/Velocity/Velocity-Done/Velocity.Rmd",
+      "reason": "not paired into a prepared dataset",
+      "status": "unrecognized"
+    },
+    {
+      "candidate_roles": [
+        "unknown"
+      ],
+      "file_type": "rds",
+      "path": "datasets/raw/scdeed/extracted/Velocity/Velocity-Done/data_annotated.Rds",
+      "reason": "The file contains an unrecognized object",
+      "status": "inspect_failed"
+    },
+    {
+      "dataset_id": "samusik",
+      "reason": "candidate was not selected for this processed dataset",
+      "status": "not_selected"
+    }
+  ],
+  "source_feature_dtype": "float32",
+  "source_publication": "Statistical method scDEED for detecting dubious 2D single-cell embeddings and optimizing t-SNE and UMAP hyperparameters",
+  "source_type": "zenodo_record",
+  "source_url": "https://zenodo.org/records/7216361",
+  "version": 1,
+  "zenodo_record_id": "7216361"
+}

@@ -1,0 +1,46 @@
+{
+  "colorable_columns": [
+    "target"
+  ],
+  "dataset_id": "diabetes",
+  "default_color_by": "target",
+  "display_name": "Diabetes",
+  "download_url": null,
+  "feature_dtype": "float32",
+  "feature_shape": [
+    442,
+    10
+  ],
+  "filterable_columns": [],
+  "generated_at": "2026-05-18T20:26:34+00:00",
+  "generated_by": "scripts/datasets/classic_benchmarks/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "classic_benchmark",
+  "label_columns": [],
+  "metric": "euclidean",
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "sample_id": {
+      "description": "Stable row identifier matching the row index of features.npy.",
+      "dtype": "int64",
+      "role": "identifier"
+    },
+    "target": {
+      "description": "Continuous regression target from the scikit-learn dataset.",
+      "dtype": "float32",
+      "role": "continuous_target"
+    }
+  },
+  "preprocessing": "Loaded from scikit-learn, converted data matrix to float32 features.npy, and stored the continuous regression target in obs.csv.gz.",
+  "primary_array": "features.npy",
+  "raw_path": null,
+  "raw_role": "not_persisted",
+  "searchable_columns": [],
+  "source": "scikit-learn",
+  "source_library": "scikit-learn",
+  "source_loader": "sklearn.datasets.load_diabetes",
+  "source_type": "python_library",
+  "target_file": null,
+  "task_type": "regression",
+  "version": 1
+}

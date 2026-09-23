@@ -1,0 +1,74 @@
+{
+  "colorable_columns": [],
+  "dataset_id": "gist_960_euclidean",
+  "default_color_by": null,
+  "display_name": "GIST 960 Euclidean",
+  "distance_shape": [
+    1000,
+    100
+  ],
+  "download_url": "http://ann-benchmarks.com/gist-960-euclidean.hdf5",
+  "extra_arrays": {
+    "distances.npy": {
+      "dtype": "float32",
+      "file": "distances.npy",
+      "shape": [
+        1000,
+        100
+      ],
+      "source_key": "distances"
+    },
+    "neighbors.npy": {
+      "dtype": "int32",
+      "file": "neighbors.npy",
+      "shape": [
+        1000,
+        100
+      ],
+      "source_key": "neighbors"
+    },
+    "queries.npy": {
+      "dtype": "float32",
+      "file": "queries.npy",
+      "shape": [
+        1000,
+        960
+      ],
+      "source_key": "test"
+    }
+  },
+  "feature_dtype": "float32",
+  "feature_shape": [
+    1000000,
+    960
+  ],
+  "filterable_columns": [],
+  "generated_at": "2026-05-18T13:55:17+00:00",
+  "generated_by": "scripts/datasets/ann_benchmarks/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "ann_benchmark",
+  "label_columns": [],
+  "metric": "euclidean",
+  "neighbor_shape": [
+    1000,
+    100
+  ],
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "sample_id": {
+      "description": "Stable row identifier matching the row index of features.npy.",
+      "dtype": "int64",
+      "role": "identifier"
+    }
+  },
+  "preprocessing": "Converted ANN Benchmarks HDF5 arrays to standardized NumPy files: features.npy from train/base, queries.npy from test/query, neighbors.npy from neighbors, distances.npy from distances, plus a gzip-compressed observation table with one sample_id per feature row.",
+  "primary_array": "features.npy",
+  "query_shape": [
+    1000,
+    960
+  ],
+  "raw_path": "datasets/raw/gist_960_euclidean/gist-960-euclidean.hdf5",
+  "searchable_columns": [],
+  "source": "ann-benchmarks",
+  "version": 1
+}

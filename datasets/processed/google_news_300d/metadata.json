@@ -1,0 +1,39 @@
+{
+  "colorable_columns": [],
+  "dataset_id": "google_news_300d",
+  "default_color_by": null,
+  "display_name": "Google News Word2Vec 300D",
+  "download_url": "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    3000000,
+    300
+  ],
+  "filterable_columns": [],
+  "generated_at": "2026-05-18T13:55:11+00:00",
+  "generated_by": "scripts/datasets/google_news/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "word_embedding",
+  "label_columns": [],
+  "metric": "cosine",
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "sample_id": {
+      "description": "Stable row identifier matching the row index of features.npy.",
+      "dtype": "int64",
+      "role": "identifier"
+    },
+    "token": {
+      "description": "Word or phrase token from the original GoogleNews word2vec vocabulary.",
+      "dtype": "string",
+      "role": "semantic_identifier"
+    }
+  },
+  "preprocessing": "Converted GoogleNews word2vec binary gzip archive to a float32 NumPy memmap-compatible .npy feature matrix and gzip-compressed token observation table.",
+  "primary_array": "features.npy",
+  "raw_path": "datasets/raw/google_news/GoogleNews-vectors-negative300.bin.gz",
+  "searchable_columns": [
+    "token"
+  ],
+  "version": 1
+}

@@ -1,0 +1,750 @@
+{
+  "collection_api": "https://api.cellxgene.cziscience.com/curation/v1/collections/e5f58829-1a66-40b5-a624-9046778e74f5",
+  "collection_id": "e5f58829-1a66-40b5-a624-9046778e74f5",
+  "colorable_columns": [
+    "10X_run",
+    "_scvi_batch",
+    "ambient_removal",
+    "anatomical_position",
+    "assay",
+    "assay_ontology_term_id",
+    "broad_cell_class",
+    "cdna_plate",
+    "cdna_well",
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "compartment",
+    "development_stage",
+    "development_stage_ontology_term_id",
+    "donor_assay",
+    "donor_id",
+    "donor_method",
+    "donor_tissue",
+    "donor_tissue_assay",
+    "ethnicity_original",
+    "free_annotation",
+    "library_plate",
+    "manually_annotated",
+    "method",
+    "notes",
+    "published_2022",
+    "scvi_leiden_donorassay_full",
+    "scvi_leiden_res05_tissue",
+    "self_reported_ethnicity",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex",
+    "sex_ontology_term_id",
+    "tissue",
+    "tissue_ontology_term_id"
+  ],
+  "dataset_id": "tabula_sapiens_v2_eye",
+  "default_color_by": "cell_type",
+  "display_name": "Tabula Sapiens v2 Eye",
+  "family": "tabula_sapiens_v2",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    34273,
+    50
+  ],
+  "feature_source": "obsm/X_scvi",
+  "filterable_columns": [
+    "10X_run",
+    "_scvi_batch",
+    "ambient_removal",
+    "anatomical_position",
+    "assay",
+    "assay_ontology_term_id",
+    "broad_cell_class",
+    "cdna_plate",
+    "cdna_well",
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "compartment",
+    "development_stage",
+    "development_stage_ontology_term_id",
+    "disease",
+    "disease_ontology_term_id",
+    "donor_assay",
+    "donor_id",
+    "donor_method",
+    "donor_tissue",
+    "donor_tissue_assay",
+    "ethnicity_original",
+    "free_annotation",
+    "is_primary_data",
+    "library_plate",
+    "manually_annotated",
+    "method",
+    "notes",
+    "observation_joinid",
+    "published_2022",
+    "scvi_leiden_donorassay_full",
+    "scvi_leiden_res05_tissue",
+    "self_reported_ethnicity",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex",
+    "sex_ontology_term_id",
+    "suspension_type",
+    "tissue",
+    "tissue_in_publication",
+    "tissue_ontology_term_id",
+    "tissue_type"
+  ],
+  "generated_at": "2026-05-19T12:17:31+00:00",
+  "generated_by": "scripts/datasets/tabula_sapiens_v2/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "free_annotation",
+    "tissue",
+    "assay",
+    "method"
+  ],
+  "metric": "euclidean",
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "10X_run": {
+      "description": "Column 10X_run from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "nan",
+        "TSP15_Eye_NeuroretinaEtc_10X_3_1",
+        "TSP15_Eye_ScleraEtc_10X_2_1"
+      ],
+      "n_unique": 14,
+      "role": "metadata"
+    },
+    "_scvi_batch": {
+      "description": "Column _scvi_batch from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "1",
+        "3",
+        "5"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "_scvi_labels": {
+      "description": "Column _scvi_labels from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "0"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "ambient_removal": {
+      "description": "Column ambient_removal from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "None",
+        "decontx"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "anatomical_position": {
+      "description": "Column anatomical_position from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "NoCornea",
+        "LacrimalGland",
+        "Whole"
+      ],
+      "n_unique": 14,
+      "role": "metadata"
+    },
+    "assay": {
+      "description": "Column assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Smart-seq2",
+        "10x 3' v3"
+      ],
+      "n_unique": 2,
+      "role": "batch_or_source"
+    },
+    "assay_ontology_term_id": {
+      "description": "Column assay_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "EFO:0008931",
+        "EFO:0009922"
+      ],
+      "n_unique": 2,
+      "role": "biological_label"
+    },
+    "broad_cell_class": {
+      "description": "Column broad_cell_class from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "fibroblast",
+        "glandular epithelial cell",
+        "fat cell"
+      ],
+      "n_unique": 19,
+      "role": "biological_label"
+    },
+    "cdna_plate": {
+      "description": "Column cdna_plate from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "B114702",
+        "B114666",
+        "B112804"
+      ],
+      "n_unique": 13,
+      "role": "metadata"
+    },
+    "cdna_well": {
+      "description": "Column cdna_well from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "B7",
+        "N2",
+        "N8"
+      ],
+      "n_unique": 289,
+      "role": "metadata"
+    },
+    "cell_type": {
+      "description": "Column cell_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "keratocyte",
+        "acinar cell",
+        "adipocyte"
+      ],
+      "n_unique": 39,
+      "role": "biological_label"
+    },
+    "cell_type_ontology_term_id": {
+      "description": "Column cell_type_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "CL:0002363",
+        "CL:0000622",
+        "CL:0000136"
+      ],
+      "n_unique": 39,
+      "role": "biological_label"
+    },
+    "compartment": {
+      "description": "Column compartment from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Stromal",
+        "Epithelium",
+        "Endothelium"
+      ],
+      "n_unique": 5,
+      "role": "metadata"
+    },
+    "development_stage": {
+      "description": "Column development_stage from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "57-year-old stage",
+        "40-year-old stage",
+        "46-year-old stage"
+      ],
+      "n_unique": 4,
+      "role": "biological_covariate"
+    },
+    "development_stage_ontology_term_id": {
+      "description": "Column development_stage_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "HsapDv:0000151",
+        "HsapDv:0000134",
+        "HsapDv:0000140"
+      ],
+      "n_unique": 4,
+      "role": "biological_label"
+    },
+    "disease": {
+      "description": "Column disease from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "normal"
+      ],
+      "n_unique": 1,
+      "role": "biological_covariate"
+    },
+    "disease_ontology_term_id": {
+      "description": "Column disease_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "PATO:0000461"
+      ],
+      "n_unique": 1,
+      "role": "biological_label"
+    },
+    "donor_assay": {
+      "description": "Column donor_assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3_SS2",
+        "TSP5_SS2",
+        "TSP15_SS2"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "donor_id": {
+      "description": "Column donor_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3",
+        "TSP5",
+        "TSP15"
+      ],
+      "n_unique": 4,
+      "role": "batch_or_source"
+    },
+    "donor_method": {
+      "description": "Column donor_method from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3_smartseq",
+        "TSP5_smartseq",
+        "TSP15_smartseq"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "donor_tissue": {
+      "description": "Column donor_tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3_Eye",
+        "TSP5_Eye",
+        "TSP15_Eye"
+      ],
+      "n_unique": 4,
+      "role": "batch_or_source"
+    },
+    "donor_tissue_assay": {
+      "description": "Column donor_tissue_assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3_Eye_SS2",
+        "TSP5_Eye_SS2",
+        "TSP15_Eye_SS2"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "ethnicity_original": {
+      "description": "Column ethnicity_original from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "White",
+        "Hispanic",
+        "Asian"
+      ],
+      "n_unique": 3,
+      "role": "metadata"
+    },
+    "free_annotation": {
+      "description": "Column free_annotation from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "keratocyte",
+        "lacrimal gland functional unit cell",
+        "conjunctival epithelial cell"
+      ],
+      "n_unique": 46,
+      "role": "biological_label"
+    },
+    "is_primary_data": {
+      "description": "Column is_primary_data from the H5AD obs table.",
+      "dtype": "bool",
+      "example_values": [
+        "False"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "library_plate": {
+      "description": "Column library_plate from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "B133904",
+        "B133915",
+        "B104881"
+      ],
+      "n_unique": 13,
+      "role": "metadata"
+    },
+    "manually_annotated": {
+      "description": "Column manually_annotated from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "False",
+        "True"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "method": {
+      "description": "Column method from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "smartseq",
+        "10X"
+      ],
+      "n_unique": 2,
+      "role": "batch_or_source"
+    },
+    "n_genes_by_counts": {
+      "description": "Column n_genes_by_counts from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "581",
+        "2878",
+        "2333"
+      ],
+      "n_unique": 7505,
+      "role": "continuous_metadata"
+    },
+    "notes": {
+      "description": "Column notes from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Neuronal",
+        "Immune",
+        "Epithelial"
+      ],
+      "n_unique": 7,
+      "role": "metadata"
+    },
+    "observation_joinid": {
+      "description": "Column observation_joinid from the H5AD obs table.",
+      "dtype": "string",
+      "example_values": [
+        "+L!6WMsNG#",
+        "4#Z`z7k(U&",
+        "`S3khXA{}("
+      ],
+      "n_unique": 34273,
+      "role": "metadata"
+    },
+    "original_obs_index": {
+      "description": "Column original_obs_index from the H5AD obs table.",
+      "dtype": "string",
+      "example_values": [
+        "TSP3_Eye_noCornea_SS2_B114702_B133904_Neuron_B7",
+        "TSP3_Eye_lacrimalgland_SS2_B114666_B133915_Neuron_N2",
+        "TSP3_Eye_lacrimalgland_SS2_B114666_B133915_Neuron_N8"
+      ],
+      "n_unique": 34273,
+      "role": "original_identifier"
+    },
+    "pct_counts_ercc": {
+      "description": "Column pct_counts_ercc from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "28.201301015861702",
+        "28.186888467553317",
+        "2.310739734177044"
+      ],
+      "n_unique": 540,
+      "role": "continuous_metadata"
+    },
+    "pct_counts_mt": {
+      "description": "Column pct_counts_mt from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "3.1400374264836923",
+        "50.26329628963284",
+        "91.82993280060575"
+      ],
+      "n_unique": 33997,
+      "role": "continuous_metadata"
+    },
+    "published_2022": {
+      "description": "Column published_2022 from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "False",
+        "True"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "replicate": {
+      "description": "Column replicate from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "1",
+        "2"
+      ],
+      "n_unique": 2,
+      "role": "continuous_metadata"
+    },
+    "sample_id": {
+      "description": "Column sample_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP3_Eye_NoCornea_SS2_B114702_B133904_Neuronal",
+        "TSP3_Eye_LacrimalGland_SS2_B114666_B133915_Neuronal",
+        "TSP5_Eye_Whole_SS2_B112804_B104881_Immune"
+      ],
+      "n_unique": 25,
+      "role": "identifier"
+    },
+    "sample_number": {
+      "description": "Column sample_number from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "1",
+        "3",
+        "2"
+      ],
+      "n_unique": 3,
+      "role": "continuous_metadata"
+    },
+    "scvi_leiden_donorassay_full": {
+      "description": "Column scvi_leiden_donorassay_full from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "0",
+        "12",
+        "20"
+      ],
+      "n_unique": 46,
+      "role": "batch_or_source"
+    },
+    "scvi_leiden_res05_tissue": {
+      "description": "Column scvi_leiden_res05_tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "16",
+        "8",
+        "12"
+      ],
+      "n_unique": 32,
+      "role": "tissue_or_organ"
+    },
+    "self_reported_ethnicity": {
+      "description": "Column self_reported_ethnicity from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "unknown",
+        "Hispanic or Latin",
+        "Asian"
+      ],
+      "n_unique": 3,
+      "role": "metadata"
+    },
+    "self_reported_ethnicity_ontology_term_id": {
+      "description": "Column self_reported_ethnicity_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "unknown",
+        "HANCESTRO:0612",
+        "HANCESTRO:0847"
+      ],
+      "n_unique": 3,
+      "role": "biological_label"
+    },
+    "sex": {
+      "description": "Column sex from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "female",
+        "male"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "sex_ontology_term_id": {
+      "description": "Column sex_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "PATO:0000383",
+        "PATO:0000384"
+      ],
+      "n_unique": 2,
+      "role": "biological_label"
+    },
+    "suspension_type": {
+      "description": "Column suspension_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "cell"
+      ],
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "tissue": {
+      "description": "Column tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "eye",
+        "lacrimal gland",
+        "chorioretinal region"
+      ],
+      "n_unique": 11,
+      "role": "tissue_or_organ"
+    },
+    "tissue_in_publication": {
+      "description": "Column tissue_in_publication from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Eye"
+      ],
+      "n_unique": 1,
+      "role": "tissue_or_organ"
+    },
+    "tissue_ontology_term_id": {
+      "description": "Column tissue_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "UBERON:0000970",
+        "UBERON:0001817",
+        "UBERON:0019207"
+      ],
+      "n_unique": 11,
+      "role": "biological_label"
+    },
+    "tissue_type": {
+      "description": "Column tissue_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "tissue"
+      ],
+      "n_unique": 1,
+      "role": "tissue_or_organ"
+    },
+    "total_counts": {
+      "description": "Column total_counts from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "89776.0",
+        "289028.0",
+        "443754.0"
+      ],
+      "n_unique": 17650,
+      "role": "continuous_metadata"
+    },
+    "total_counts_ercc": {
+      "description": "Column total_counts_ercc from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "25318.0",
+        "81468.0",
+        "10254.0"
+      ],
+      "n_unique": 532,
+      "role": "continuous_metadata"
+    },
+    "total_counts_mt": {
+      "description": "Column total_counts_mt from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "2819.0",
+        "145275.0",
+        "407499.0"
+      ],
+      "n_unique": 5074,
+      "role": "continuous_metadata"
+    }
+  },
+  "original_index_column": "original_obs_index",
+  "preprocessing": "Read Tabula Sapiens v2 H5AD with h5py, saved obsm/X_scvi as float32 features.npy, exported obs metadata to obs.csv.gz, and saved obsm/X_umap as reference_embedding.npy when available.",
+  "primary_array": "features.npy",
+  "raw_h5ad_keys_summary": {
+    "obs": {
+      "exists": true,
+      "keys": [
+        "10X_run",
+        "_index",
+        "_scvi_batch",
+        "_scvi_labels",
+        "ambient_removal",
+        "anatomical_position",
+        "assay",
+        "assay_ontology_term_id",
+        "broad_cell_class",
+        "cdna_plate",
+        "cdna_well",
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "compartment",
+        "development_stage",
+        "development_stage_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_assay",
+        "donor_id",
+        "donor_method",
+        "donor_tissue",
+        "donor_tissue_assay",
+        "ethnicity_original",
+        "free_annotation",
+        "is_primary_data",
+        "library_plate",
+        "manually_annotated",
+        "method",
+        "n_genes_by_counts",
+        "notes",
+        "observation_joinid",
+        "pct_counts_ercc",
+        "pct_counts_mt",
+        "published_2022",
+        "replicate",
+        "sample_id",
+        "sample_number",
+        "scvi_leiden_donorassay_full",
+        "scvi_leiden_res05_tissue",
+        "self_reported_ethnicity",
+        "self_reported_ethnicity_ontology_term_id",
+        "sex",
+        "sex_ontology_term_id",
+        "suspension_type",
+        "tissue",
+        "tissue_in_publication",
+        "tissue_ontology_term_id",
+        "tissue_type",
+        "total_counts",
+        "total_counts_ercc",
+        "total_counts_mt"
+      ]
+    },
+    "obsm/X_scvi": {
+      "dtype": "float32",
+      "exists": true,
+      "shape": [
+        34273,
+        50
+      ]
+    },
+    "obsm/X_umap": {
+      "dtype": "float32",
+      "exists": true,
+      "shape": [
+        34273,
+        2
+      ]
+    }
+  },
+  "raw_path": "datasets/raw/tabula_sapiens_v2/h5ad/TS2_Eye.h5ad",
+  "raw_role": "primary_source",
+  "reference_embedding_file": "reference_embedding.npy",
+  "reference_embedding_shape": [
+    34273,
+    2
+  ],
+  "reference_embedding_source": "obsm/X_umap",
+  "searchable_columns": [
+    "original_obs_index"
+  ],
+  "skipped_obs_columns": [],
+  "source_type": "cellxgene_collection",
+  "version": 1
+}

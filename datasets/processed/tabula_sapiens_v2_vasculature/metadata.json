@@ -1,0 +1,749 @@
+{
+  "collection_api": "https://api.cellxgene.cziscience.com/curation/v1/collections/e5f58829-1a66-40b5-a624-9046778e74f5",
+  "collection_id": "e5f58829-1a66-40b5-a624-9046778e74f5",
+  "colorable_columns": [
+    "10X_run",
+    "_scvi_batch",
+    "ambient_removal",
+    "anatomical_position",
+    "assay",
+    "assay_ontology_term_id",
+    "broad_cell_class",
+    "cdna_plate",
+    "cdna_well",
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "compartment",
+    "development_stage",
+    "development_stage_ontology_term_id",
+    "donor_assay",
+    "donor_id",
+    "donor_method",
+    "donor_tissue",
+    "donor_tissue_assay",
+    "ethnicity_original",
+    "free_annotation",
+    "library_plate",
+    "manually_annotated",
+    "method",
+    "notes",
+    "published_2022",
+    "scvi_leiden_donorassay_full",
+    "scvi_leiden_res05_tissue",
+    "self_reported_ethnicity",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex",
+    "sex_ontology_term_id",
+    "tissue",
+    "tissue_ontology_term_id"
+  ],
+  "dataset_id": "tabula_sapiens_v2_vasculature",
+  "default_color_by": "cell_type",
+  "display_name": "Tabula Sapiens v2 Vasculature",
+  "family": "tabula_sapiens_v2",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    42650,
+    50
+  ],
+  "feature_source": "obsm/X_scvi",
+  "filterable_columns": [
+    "10X_run",
+    "_scvi_batch",
+    "ambient_removal",
+    "anatomical_position",
+    "assay",
+    "assay_ontology_term_id",
+    "broad_cell_class",
+    "cdna_plate",
+    "cdna_well",
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "compartment",
+    "development_stage",
+    "development_stage_ontology_term_id",
+    "disease",
+    "disease_ontology_term_id",
+    "donor_assay",
+    "donor_id",
+    "donor_method",
+    "donor_tissue",
+    "donor_tissue_assay",
+    "ethnicity_original",
+    "free_annotation",
+    "is_primary_data",
+    "library_plate",
+    "manually_annotated",
+    "method",
+    "notes",
+    "observation_joinid",
+    "published_2022",
+    "scvi_leiden_donorassay_full",
+    "scvi_leiden_res05_tissue",
+    "self_reported_ethnicity",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex",
+    "sex_ontology_term_id",
+    "suspension_type",
+    "tissue",
+    "tissue_in_publication",
+    "tissue_ontology_term_id",
+    "tissue_type"
+  ],
+  "generated_at": "2026-05-19T12:18:25+00:00",
+  "generated_by": "scripts/datasets/tabula_sapiens_v2/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_type",
+    "cell_type_ontology_term_id",
+    "free_annotation",
+    "tissue",
+    "assay",
+    "method"
+  ],
+  "metric": "euclidean",
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "10X_run": {
+      "description": "Column 10X_run from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "nan",
+        "TSP14_Vasculature_CoronaryArteries_10X_1_1",
+        "TSP21_Vasculature_Aorta_10X_2_1"
+      ],
+      "n_unique": 17,
+      "role": "metadata"
+    },
+    "_scvi_batch": {
+      "description": "Column _scvi_batch from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "3",
+        "1",
+        "2"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "_scvi_labels": {
+      "description": "Column _scvi_labels from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "0"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "ambient_removal": {
+      "description": "Column ambient_removal from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "None",
+        "decontx"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "anatomical_position": {
+      "description": "Column anatomical_position from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "NA",
+        "InfVenaCava",
+        "Aorta"
+      ],
+      "n_unique": 8,
+      "role": "metadata"
+    },
+    "assay": {
+      "description": "Column assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Smart-seq2",
+        "10x 3' v3"
+      ],
+      "n_unique": 2,
+      "role": "batch_or_source"
+    },
+    "assay_ontology_term_id": {
+      "description": "Column assay_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "EFO:0008931",
+        "EFO:0009922"
+      ],
+      "n_unique": 2,
+      "role": "biological_label"
+    },
+    "broad_cell_class": {
+      "description": "Column broad_cell_class from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "fibroblast",
+        "contractile cell",
+        "t cell"
+      ],
+      "n_unique": 10,
+      "role": "biological_label"
+    },
+    "cdna_plate": {
+      "description": "Column cdna_plate from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "B133792",
+        "B134014",
+        "B114577"
+      ],
+      "n_unique": 9,
+      "role": "metadata"
+    },
+    "cdna_well": {
+      "description": "Column cdna_well from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "C22",
+        "N18",
+        "F14"
+      ],
+      "n_unique": 369,
+      "role": "metadata"
+    },
+    "cell_type": {
+      "description": "Column cell_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "fibroblast",
+        "pericyte",
+        "CD4-positive, alpha-beta T cell"
+      ],
+      "n_unique": 25,
+      "role": "biological_label"
+    },
+    "cell_type_ontology_term_id": {
+      "description": "Column cell_type_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "CL:0000057",
+        "CL:0000669",
+        "CL:0000624"
+      ],
+      "n_unique": 25,
+      "role": "biological_label"
+    },
+    "compartment": {
+      "description": "Column compartment from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Stromal",
+        "Immune",
+        "Endothelium"
+      ],
+      "n_unique": 3,
+      "role": "metadata"
+    },
+    "development_stage": {
+      "description": "Column development_stage from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "59-year-old stage",
+        "61-year-old stage",
+        "45-year-old stage"
+      ],
+      "n_unique": 5,
+      "role": "biological_covariate"
+    },
+    "development_stage_ontology_term_id": {
+      "description": "Column development_stage_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "HsapDv:0000153",
+        "HsapDv:0000155",
+        "HsapDv:0000139"
+      ],
+      "n_unique": 5,
+      "role": "biological_label"
+    },
+    "disease": {
+      "description": "Column disease from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "normal"
+      ],
+      "n_unique": 1,
+      "role": "biological_covariate"
+    },
+    "disease_ontology_term_id": {
+      "description": "Column disease_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "PATO:0000461"
+      ],
+      "n_unique": 1,
+      "role": "biological_label"
+    },
+    "donor_assay": {
+      "description": "Column donor_assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14_SS2",
+        "TSP2_SS2",
+        "TSP14_10X_3Prime_v3.1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "donor_id": {
+      "description": "Column donor_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14",
+        "TSP2",
+        "TSP21"
+      ],
+      "n_unique": 5,
+      "role": "batch_or_source"
+    },
+    "donor_method": {
+      "description": "Column donor_method from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14_smartseq",
+        "TSP2_smartseq",
+        "TSP14_10X"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "donor_tissue": {
+      "description": "Column donor_tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14_Vasculature",
+        "TSP2_Vasculature",
+        "TSP21_Vasculature"
+      ],
+      "n_unique": 5,
+      "role": "batch_or_source"
+    },
+    "donor_tissue_assay": {
+      "description": "Column donor_tissue_assay from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14_Vasculature_SS2",
+        "TSP2_Vasculature_SS2",
+        "TSP14_Vasculature_10X_3Prime_v3.1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "ethnicity_original": {
+      "description": "Column ethnicity_original from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "White",
+        "Black",
+        "Asian"
+      ],
+      "n_unique": 4,
+      "role": "metadata"
+    },
+    "free_annotation": {
+      "description": "Column free_annotation from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "fibroblast",
+        "pericyte",
+        "t cell"
+      ],
+      "n_unique": 26,
+      "role": "biological_label"
+    },
+    "is_primary_data": {
+      "description": "Column is_primary_data from the H5AD obs table.",
+      "dtype": "bool",
+      "example_values": [
+        "False"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "library_plate": {
+      "description": "Column library_plate from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "B002629",
+        "D102103",
+        "B133059"
+      ],
+      "n_unique": 9,
+      "role": "metadata"
+    },
+    "manually_annotated": {
+      "description": "Column manually_annotated from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "False",
+        "True"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "method": {
+      "description": "Column method from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "smartseq",
+        "10X"
+      ],
+      "n_unique": 2,
+      "role": "batch_or_source"
+    },
+    "n_genes_by_counts": {
+      "description": "Column n_genes_by_counts from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "1516",
+        "2338",
+        "1190"
+      ],
+      "n_unique": 8293,
+      "role": "continuous_metadata"
+    },
+    "notes": {
+      "description": "Column notes from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Stromal",
+        "Immune",
+        "Endothelial"
+      ],
+      "n_unique": 4,
+      "role": "metadata"
+    },
+    "observation_joinid": {
+      "description": "Column observation_joinid from the H5AD obs table.",
+      "dtype": "string",
+      "example_values": [
+        "lLJ&|LY8l>",
+        "n98oy5D=Mm",
+        "6|`&llui<5"
+      ],
+      "n_unique": 42650,
+      "role": "metadata"
+    },
+    "original_obs_index": {
+      "description": "Column original_obs_index from the H5AD obs table.",
+      "dtype": "string",
+      "example_values": [
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Stromal_C22",
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Stromal_N18",
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Stromal_F14"
+      ],
+      "n_unique": 42650,
+      "role": "original_identifier"
+    },
+    "pct_counts_ercc": {
+      "description": "Column pct_counts_ercc from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "0.0",
+        "0.029472116718445997",
+        "0.24893474160984647"
+      ],
+      "n_unique": 1841,
+      "role": "continuous_metadata"
+    },
+    "pct_counts_mt": {
+      "description": "Column pct_counts_mt from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "4.617712658116516",
+        "4.036535083637287",
+        "5.531640645561349"
+      ],
+      "n_unique": 42324,
+      "role": "continuous_metadata"
+    },
+    "published_2022": {
+      "description": "Column published_2022 from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "False",
+        "True"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "replicate": {
+      "description": "Column replicate from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "1",
+        "2"
+      ],
+      "n_unique": 2,
+      "role": "continuous_metadata"
+    },
+    "sample_id": {
+      "description": "Column sample_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Stromal",
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Immune",
+        "TSP14_Vasculature_NA_SS2_B133792_B002629_Endothelial"
+      ],
+      "n_unique": 34,
+      "role": "identifier"
+    },
+    "sample_number": {
+      "description": "Column sample_number from the H5AD obs table.",
+      "dtype": "int64",
+      "example_values": [
+        "1",
+        "2"
+      ],
+      "n_unique": 2,
+      "role": "continuous_metadata"
+    },
+    "scvi_leiden_donorassay_full": {
+      "description": "Column scvi_leiden_donorassay_full from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "7",
+        "0",
+        "10"
+      ],
+      "n_unique": 36,
+      "role": "batch_or_source"
+    },
+    "scvi_leiden_res05_tissue": {
+      "description": "Column scvi_leiden_res05_tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "11",
+        "0",
+        "21"
+      ],
+      "n_unique": 34,
+      "role": "tissue_or_organ"
+    },
+    "self_reported_ethnicity": {
+      "description": "Column self_reported_ethnicity from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "unknown",
+        "Asian",
+        "Hispanic or Latin"
+      ],
+      "n_unique": 3,
+      "role": "metadata"
+    },
+    "self_reported_ethnicity_ontology_term_id": {
+      "description": "Column self_reported_ethnicity_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "unknown",
+        "HANCESTRO:0847",
+        "HANCESTRO:0612"
+      ],
+      "n_unique": 3,
+      "role": "biological_label"
+    },
+    "sex": {
+      "description": "Column sex from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "male",
+        "female"
+      ],
+      "n_unique": 2,
+      "role": "metadata"
+    },
+    "sex_ontology_term_id": {
+      "description": "Column sex_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "PATO:0000384",
+        "PATO:0000383"
+      ],
+      "n_unique": 2,
+      "role": "biological_label"
+    },
+    "suspension_type": {
+      "description": "Column suspension_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "cell"
+      ],
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "tissue": {
+      "description": "Column tissue from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "vasculature",
+        "inferior vena cava",
+        "aorta"
+      ],
+      "n_unique": 7,
+      "role": "tissue_or_organ"
+    },
+    "tissue_in_publication": {
+      "description": "Column tissue_in_publication from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "Vasculature"
+      ],
+      "n_unique": 1,
+      "role": "tissue_or_organ"
+    },
+    "tissue_ontology_term_id": {
+      "description": "Column tissue_ontology_term_id from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "UBERON:0002049",
+        "UBERON:0001072",
+        "UBERON:0000947"
+      ],
+      "n_unique": 7,
+      "role": "biological_label"
+    },
+    "tissue_type": {
+      "description": "Column tissue_type from the H5AD obs table.",
+      "dtype": "category",
+      "example_values": [
+        "tissue"
+      ],
+      "n_unique": 1,
+      "role": "tissue_or_organ"
+    },
+    "total_counts": {
+      "description": "Column total_counts from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "443423.0",
+        "2707644.0",
+        "778919.0"
+      ],
+      "n_unique": 25843,
+      "role": "continuous_metadata"
+    },
+    "total_counts_ercc": {
+      "description": "Column total_counts_ercc from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "0.0",
+        "798.0",
+        "1939.0"
+      ],
+      "n_unique": 1468,
+      "role": "continuous_metadata"
+    },
+    "total_counts_mt": {
+      "description": "Column total_counts_mt from the H5AD obs table.",
+      "dtype": "float64",
+      "example_values": [
+        "20476.0",
+        "109295.0",
+        "43087.0"
+      ],
+      "n_unique": 5792,
+      "role": "continuous_metadata"
+    }
+  },
+  "original_index_column": "original_obs_index",
+  "preprocessing": "Read Tabula Sapiens v2 H5AD with h5py, saved obsm/X_scvi as float32 features.npy, exported obs metadata to obs.csv.gz, and saved obsm/X_umap as reference_embedding.npy when available.",
+  "primary_array": "features.npy",
+  "raw_h5ad_keys_summary": {
+    "obs": {
+      "exists": true,
+      "keys": [
+        "10X_run",
+        "_index",
+        "_scvi_batch",
+        "_scvi_labels",
+        "ambient_removal",
+        "anatomical_position",
+        "assay",
+        "assay_ontology_term_id",
+        "broad_cell_class",
+        "cdna_plate",
+        "cdna_well",
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "compartment",
+        "development_stage",
+        "development_stage_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_assay",
+        "donor_id",
+        "donor_method",
+        "donor_tissue",
+        "donor_tissue_assay",
+        "ethnicity_original",
+        "free_annotation",
+        "is_primary_data",
+        "library_plate",
+        "manually_annotated",
+        "method",
+        "n_genes_by_counts",
+        "notes",
+        "observation_joinid",
+        "pct_counts_ercc",
+        "pct_counts_mt",
+        "published_2022",
+        "replicate",
+        "sample_id",
+        "sample_number",
+        "scvi_leiden_donorassay_full",
+        "scvi_leiden_res05_tissue",
+        "self_reported_ethnicity",
+        "self_reported_ethnicity_ontology_term_id",
+        "sex",
+        "sex_ontology_term_id",
+        "suspension_type",
+        "tissue",
+        "tissue_in_publication",
+        "tissue_ontology_term_id",
+        "tissue_type",
+        "total_counts",
+        "total_counts_ercc",
+        "total_counts_mt"
+      ]
+    },
+    "obsm/X_scvi": {
+      "dtype": "float32",
+      "exists": true,
+      "shape": [
+        42650,
+        50
+      ]
+    },
+    "obsm/X_umap": {
+      "dtype": "float32",
+      "exists": true,
+      "shape": [
+        42650,
+        2
+      ]
+    }
+  },
+  "raw_path": "datasets/raw/tabula_sapiens_v2/h5ad/TS2_Vasculature.h5ad",
+  "raw_role": "primary_source",
+  "reference_embedding_file": "reference_embedding.npy",
+  "reference_embedding_shape": [
+    42650,
+    2
+  ],
+  "reference_embedding_source": "obsm/X_umap",
+  "searchable_columns": [
+    "original_obs_index"
+  ],
+  "skipped_obs_columns": [],
+  "source_type": "cellxgene_collection",
+  "version": 1
+}

@@ -1,0 +1,383 @@
+{
+  "colorable_columns": [
+    "batch",
+    "cell_subtype",
+    "cell_type",
+    "embryo_time_bin",
+    "lineage",
+    "plot_cell_type",
+    "raw_embryo_time_bin",
+    "sample",
+    "sample_batch",
+    "sample_description",
+    "time_point"
+  ],
+  "dataset_id": "c_elegans_embryogenesis_stage_late_annotated",
+  "default_color_by": "cell_type",
+  "display_name": "C. elegans embryogenesis late annotated stage",
+  "family": "c_elegans_embryogenesis",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    17436,
+    32
+  ],
+  "feature_source": "normalized_log_expression_pca_svd",
+  "filterable_columns": [
+    "batch",
+    "cell_subtype",
+    "cell_type",
+    "embryo_time_bin",
+    "lineage",
+    "plot_cell_type",
+    "raw_embryo_time_bin",
+    "sample",
+    "sample_batch",
+    "sample_description",
+    "time_point"
+  ],
+  "generated_at": "2026-06-04T08:19:18+00:00",
+  "generated_by": "scripts/datasets/c_elegans_embryogenesis/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_type",
+    "plot_cell_type",
+    "lineage",
+    "embryo_time_bin",
+    "time_point"
+  ],
+  "label_field": "cell_type",
+  "n_cells": 17436,
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "barcode": {
+      "description": "Observation column barcode from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "AAATGCCGTCGGATCC-300.1.1",
+        "AACCATGAGTTGAGAT-300.1.1",
+        "AACTGGTGTCCTCTTG-300.1.1"
+      ],
+      "n_unique": 17436,
+      "role": "metadata"
+    },
+    "batch": {
+      "description": "Observation column batch from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "cell_subtype": {
+      "description": "Observation column cell_subtype from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "hyp7_C_lineage",
+        "ASE",
+        "BWM_anterior"
+      ],
+      "n_unique": 65,
+      "role": "biological_label"
+    },
+    "cell_type": {
+      "description": "Observation column cell_type from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Hypodermis",
+        "Ciliated_amphid_neuron",
+        "Body_wall_muscle"
+      ],
+      "n_unique": 28,
+      "role": "biological_label"
+    },
+    "embryo_time": {
+      "description": "Observation column embryo_time from the Packer 2019 H5AD cell metadata.",
+      "dtype": "float64",
+      "example_values": [
+        "450.0",
+        "670.0",
+        "530.0"
+      ],
+      "n_unique": 54,
+      "role": "developmental_time"
+    },
+    "embryo_time_bin": {
+      "description": "Observation column embryo_time_bin from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "450-510",
+        "> 650",
+        "510-580"
+      ],
+      "n_unique": 5,
+      "role": "developmental_time"
+    },
+    "lineage": {
+      "description": "Observation column lineage from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "nan",
+        "Z2/Z3:pseudotime_bin_3",
+        "ABarpapaappp/ABplaaaaappp"
+      ],
+      "n_unique": 89,
+      "role": "biological_label"
+    },
+    "n_umi": {
+      "description": "Observation column n_umi from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "7388",
+        "2527",
+        "2111"
+      ],
+      "n_unique": 4988,
+      "role": "continuous_metadata"
+    },
+    "original_cell_index": {
+      "description": "Observation column original_cell_index from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "67",
+        "84",
+        "148"
+      ],
+      "n_unique": 17436,
+      "role": "original_index"
+    },
+    "original_obs_index": {
+      "description": "Observation column original_obs_index from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes+AAATGCCGTCGGATCC-300.1.1",
+        "Waterston_300_minutes+AACCATGAGTTGAGAT-300.1.1",
+        "Waterston_300_minutes+AACTGGTGTCCTCTTG-300.1.1"
+      ],
+      "n_unique": 17436,
+      "role": "metadata"
+    },
+    "passed_qc": {
+      "description": "Observation column passed_qc from the Packer 2019 H5AD cell metadata.",
+      "dtype": "bool",
+      "example_values": [
+        "True"
+      ],
+      "n_unique": 1,
+      "role": "continuous_metadata"
+    },
+    "plot_cell_type": {
+      "description": "Observation column plot_cell_type from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "hyp7_C_lineage",
+        "ASE",
+        "BWM_anterior"
+      ],
+      "n_unique": 85,
+      "role": "biological_label"
+    },
+    "raw_embryo_time": {
+      "description": "Observation column raw_embryo_time from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "450",
+        "330",
+        "490"
+      ],
+      "n_unique": 43,
+      "role": "developmental_time"
+    },
+    "raw_embryo_time_bin": {
+      "description": "Observation column raw_embryo_time_bin from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "450-510",
+        "330-390",
+        "390-450"
+      ],
+      "n_unique": 12,
+      "role": "developmental_time"
+    },
+    "sample": {
+      "description": "Observation column sample from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_batch": {
+      "description": "Observation column sample_batch from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "Waterston_300_minutes",
+        "Waterston_400_minutes",
+        "Waterston_500_minutes_batch_1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_description": {
+      "description": "Observation column sample_description from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "GSM3618670 UW synchronized 300 min post bleach",
+        "GSM3618671 UW synchronized 400 min post bleach",
+        "GSM3618672 UW synchronized 500 min post bleach batch 1"
+      ],
+      "n_unique": 7,
+      "role": "batch_or_source"
+    },
+    "sample_id": {
+      "description": "Observation column sample_id from the Packer 2019 H5AD cell metadata.",
+      "dtype": "int64",
+      "example_values": [
+        "0",
+        "1",
+        "2"
+      ],
+      "n_unique": 17436,
+      "role": "identifier"
+    },
+    "size_factor": {
+      "description": "Observation column size_factor from the Packer 2019 H5AD cell metadata.",
+      "dtype": "float64",
+      "example_values": [
+        "4.64015726339821",
+        "1.58312724814533",
+        "1.31948194908862"
+      ],
+      "n_unique": 4999,
+      "role": "continuous_metadata"
+    },
+    "study": {
+      "description": "Observation column study from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "packer2019"
+      ],
+      "n_unique": 1,
+      "role": "batch_or_source"
+    },
+    "time_point": {
+      "description": "Observation column time_point from the Packer 2019 H5AD cell metadata.",
+      "dtype": "string",
+      "example_values": [
+        "300_minutes",
+        "400_minutes",
+        "500_minutes"
+      ],
+      "n_unique": 4,
+      "role": "developmental_time"
+    }
+  },
+  "original_index_column": "original_cell_index",
+  "pca_components": 32,
+  "preprocessing": {
+    "log1p": true,
+    "n_input_features": 20222,
+    "n_output_features": 32,
+    "representation": "truncated_svd",
+    "requested_components": 32,
+    "singular_values": [
+      1826.557373046875,
+      860.26025390625,
+      730.1148071289062,
+      603.4013671875,
+      465.95611572265625,
+      394.7922668457031,
+      318.1162414550781,
+      305.0938415527344,
+      283.2518005371094,
+      277.1664733886719,
+      255.99395751953125,
+      252.86404418945312,
+      237.29202270507812,
+      234.29234313964844,
+      227.94772338867188,
+      224.32687377929688,
+      210.40536499023438,
+      203.90081787109375,
+      196.4898223876953,
+      191.10414123535156,
+      181.51010131835938,
+      179.99371337890625,
+      176.7693328857422,
+      173.71022033691406,
+      171.08578491210938,
+      163.6199188232422,
+      157.58340454101562,
+      153.8314971923828,
+      153.2597198486328,
+      146.69239807128906,
+      146.1353759765625,
+      142.61338806152344
+    ],
+    "size_factor_normalization": true
+  },
+  "primary_array": "features.npy",
+  "pseudotime_file": "pseudotime.npy",
+  "pseudotime_source": "obs/embryo_time",
+  "raw_path": "datasets/raw/c_elegans_embryogenesis/packer2019.h5ad",
+  "raw_role": "primary_source",
+  "searchable_columns": [
+    "original_cell_index",
+    "original_obs_index",
+    "barcode"
+  ],
+  "selected_labels": [
+    "Body_wall_muscle",
+    "Hypodermis",
+    "Ciliated_amphid_neuron",
+    "Ciliated_non_amphid_neuron",
+    "Seam_cell",
+    "Pharyngeal_muscle",
+    "Glia",
+    "Intestine",
+    "Pharyngeal_neuron",
+    "Pharyngeal_marginal_cell",
+    "Coelomocyte",
+    "Pharyngeal_gland",
+    "GLR",
+    "Intestinal_and_rectal_muscle",
+    "Germline",
+    "Pharyngeal_intestinal_valve",
+    "Arcade_cell",
+    "Z1_Z4",
+    "Rectal_cell",
+    "M_cell",
+    "ABarpaaa_lineage",
+    "Rectal_gland",
+    "Excretory_cell",
+    "Excretory_gland",
+    "hmc",
+    "hmc_homolog",
+    "T",
+    "hmc_and_homolog",
+    "Parent_of_exc_gland_AVK",
+    "hyp1V_and_ant_arc_V",
+    "Excretory_duct_and_pore",
+    "Parent_of_hyp1V_and_ant_arc_V",
+    "G2_and_W_blasts",
+    "Excretory_cell_parent",
+    "Parent_of_exc_duct_pore_DB_1_3",
+    "XXX"
+  ],
+  "skipped_obs_columns": [],
+  "source_indices_file": "source_indices.npy",
+  "source_name": "Packer 2019 C. elegans embryogenesis",
+  "source_type": "h5ad",
+  "source_url": "https://data.caltech.edu/records/b1kj4-nh475",
+  "subset_filter": "passed_qc == True, informative cell_type, embryo_time >= 430.",
+  "subset_id": "stage_late_annotated",
+  "subset_kind": "stage_window",
+  "summary_file": "subset_summary.json",
+  "version": 1
+}
