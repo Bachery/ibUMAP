@@ -140,10 +140,10 @@ def umap_original_optimization_vertex(
 	rng_state,
 	epochs_per_sample,
 	epochs_per_negative_sample,
-	drfft_params,
+	fft_params,
 ):
 	t1 = time()
-	initial_alpha = drfft_params['umap_initial_alpha']
+	initial_alpha = fft_params['umap_initial_alpha']
 	alpha = initial_alpha
 	epoch_of_next_sample = epochs_per_sample.copy()
 	epoch_of_next_negative_sample = epochs_per_negative_sample.copy()
@@ -159,19 +159,19 @@ def umap_original_optimization_vertex(
 			n_vertices,
 			n_components,
 			rng_state,
-			drfft_params['umap_a'],
-			drfft_params['umap_b'],
-			drfft_params['umap_gamma'],
+			fft_params['umap_a'],
+			fft_params['umap_b'],
+			fft_params['umap_gamma'],
 			alpha,
 			epoch_itr,
 			epochs_per_sample,
 			epoch_of_next_sample,
 			epochs_per_negative_sample,
 			epoch_of_next_negative_sample,
-			drfft_params['umap_epsilon'],
-			drfft_params['attr_gauss'],
-			drfft_params['repl_gauss'],
-			drfft_params['gauss_sigma'],
+			fft_params['umap_epsilon'],
+			fft_params['attr_gauss'],
+			fft_params['repl_gauss'],
+			fft_params['gauss_sigma'],
 		)
 		alpha = initial_alpha * (1.0 - (float(epoch_itr) / float(n_epochs)))
 	time_costs['optimization_time'] = time() - t1
@@ -1125,11 +1125,11 @@ def _local_density_pressure_force(
 	return force
 
 
-def _resolve_local_exact_epoch_bounds(drfft_params, n_epochs):
-	start_epoch = drfft_params.get("local_exact_start_epoch")
-	end_epoch = drfft_params.get("local_exact_end_epoch")
-	start_frac = drfft_params.get("local_exact_start_frac")
-	end_frac = drfft_params.get("local_exact_end_frac")
+def _resolve_local_exact_epoch_bounds(fft_params, n_epochs):
+	start_epoch = fft_params.get("local_exact_start_epoch")
+	end_epoch = fft_params.get("local_exact_end_epoch")
+	start_frac = fft_params.get("local_exact_start_frac")
+	end_frac = fft_params.get("local_exact_end_frac")
 	if start_frac is not None:
 		start_epoch = int(np.floor(float(start_frac) * int(n_epochs)))
 	if end_frac is not None:
@@ -1149,13 +1149,13 @@ def _local_enabled_for_epoch(enabled, every, epoch_itr, start_epoch=0, end_epoch
 	)
 
 
-def _local_exact_density_threshold(drfft_params, grid_context):
-	if not bool(drfft_params.get("local_exact_density_filter", False)):
+def _local_exact_density_threshold(fft_params, grid_context):
+	if not bool(fft_params.get("local_exact_density_filter", False)):
 		return 0.0
-	min_count = drfft_params.get("local_exact_min_cell_count")
+	min_count = fft_params.get("local_exact_min_cell_count")
 	if min_count is not None:
 		return float(min_count)
-	quantile = drfft_params.get("local_exact_min_cell_count_quantile")
+	quantile = fft_params.get("local_exact_min_cell_count_quantile")
 	if quantile is None:
 		return 1.0
 	occupied = grid_context.density[grid_context.density > 0]
@@ -1213,24 +1213,24 @@ def _local_force_diagnostics(prefix, enabled, weight, norms, n_vertices, extra=N
 	return row
 
 
-def _noise_scale_for_epoch(drfft_params, epoch_itr, n_epochs):
-	noise_mode = drfft_params.get('noise_mode', 'none')
-	base_scale = float(drfft_params.get('noise_scale', 0.0) or 0.0)
+def _noise_scale_for_epoch(fft_params, epoch_itr, n_epochs):
+	noise_mode = fft_params.get('noise_mode', 'none')
+	base_scale = float(fft_params.get('noise_scale', 0.0) or 0.0)
 	if noise_mode == 'none' or base_scale <= 0.0:
 		return 0.0
 
-	active_until = drfft_params.get('noise_until_epoch')
+	active_until = fft_params.get('noise_until_epoch')
 	active_until = n_epochs if active_until is None else int(active_until)
 
-	if drfft_params.get('hybrid_mode', 'none') == 'early_noisy_late_deterministic':
-		switch_epoch = drfft_params.get('hybrid_switch_epoch')
+	if fft_params.get('hybrid_mode', 'none') == 'early_noisy_late_deterministic':
+		switch_epoch = fft_params.get('hybrid_switch_epoch')
 		switch_epoch = n_epochs // 2 if switch_epoch is None else int(switch_epoch)
 		active_until = min(active_until, switch_epoch)
 
 	if active_until <= 0 or epoch_itr >= active_until:
 		return 0.0
 
-	decay = drfft_params.get('noise_decay', 'linear')
+	decay = fft_params.get('noise_decay', 'linear')
 	if decay == 'constant':
 		return base_scale
 	progress = float(epoch_itr) / float(max(active_until, 1))
@@ -1257,11 +1257,11 @@ def _make_sampling_rng(is_gpu, seed):
 	return np.random.RandomState(int(seed))
 
 
-def _resolve_noise_seed(drfft_params):
-	explicit_seed = drfft_params.get('noise_seed')
+def _resolve_noise_seed(fft_params):
+	explicit_seed = fft_params.get('noise_seed')
 	if explicit_seed is not None:
 		return explicit_seed
-	return drfft_params.get('noise_random_state')
+	return fft_params.get('noise_random_state')
 
 
 def _add_gaussian_noise_inplace(target, rng, scale, is_gpu, hard_constraint, known_mask):
@@ -1303,9 +1303,9 @@ def _clip_enabled_for_epoch(clip_norm, epoch_range, epoch_itr):
 	return int(start) <= int(epoch_itr) < int(end)
 
 
-def _resolve_repulsion_clip_norm(drfft_params, alpha, epoch_itr=0, n_epochs=None):
-	clip_norm = drfft_params.get("repulsion_clip_norm")
-	epoch_range = drfft_params.get("repulsion_clip_epoch_range")
+def _resolve_repulsion_clip_norm(fft_params, alpha, epoch_itr=0, n_epochs=None):
+	clip_norm = fft_params.get("repulsion_clip_norm")
+	epoch_range = fft_params.get("repulsion_clip_epoch_range")
 	if n_epochs is not None:
 		epoch_range = _validate_clip_epoch_range_for_epochs(
 			epoch_range, n_epochs, "repulsion_clip_epoch_range"
@@ -1315,14 +1315,14 @@ def _resolve_repulsion_clip_norm(drfft_params, alpha, epoch_itr=0, n_epochs=None
 	clip_norm = float(clip_norm)
 	if clip_norm <= 0.0:
 		return None
-	if drfft_params.get("repulsion_clip_with_alpha", False):
+	if fft_params.get("repulsion_clip_with_alpha", False):
 		clip_norm *= _scalar_float(alpha)
 	return clip_norm
 
 
-def _resolve_total_update_clip_norm(drfft_params, alpha, epoch_itr=0, n_epochs=None):
-	clip_norm = drfft_params.get("total_update_clip_norm")
-	epoch_range = drfft_params.get("total_update_clip_epoch_range")
+def _resolve_total_update_clip_norm(fft_params, alpha, epoch_itr=0, n_epochs=None):
+	clip_norm = fft_params.get("total_update_clip_norm")
+	epoch_range = fft_params.get("total_update_clip_epoch_range")
 	if n_epochs is not None:
 		epoch_range = _validate_clip_epoch_range_for_epochs(
 			epoch_range, n_epochs, "total_update_clip_epoch_range"
@@ -1332,7 +1332,7 @@ def _resolve_total_update_clip_norm(drfft_params, alpha, epoch_itr=0, n_epochs=N
 	clip_norm = float(clip_norm)
 	if clip_norm <= 0.0:
 		return None
-	if drfft_params.get("total_update_clip_with_alpha", False):
+	if fft_params.get("total_update_clip_with_alpha", False):
 		clip_norm *= _scalar_float(alpha)
 	return clip_norm
 
@@ -2107,7 +2107,7 @@ def umap_true_loss_optimization(
 	attraction_mode,
 	repulsion_mode,
 	device,
-	drfft_params,
+	fft_params,
 ):
 	if device not in ("cpu", "cuda"):
 		raise ValueError(f"Unsupported device for ibumap optimization: {device}")
@@ -2118,35 +2118,35 @@ def umap_true_loss_optimization(
 	if degrees is None:
 		raise ValueError("degrees must be provided for ibumap optimization")
 
-	memory_recorder = drfft_params.get("memory_recorder")
+	memory_recorder = fft_params.get("memory_recorder")
 	if memory_recorder is not None:
 		memory_recorder.record("optimizer_prepare", "begin")
 
 	is_gpu = device == "cuda"
-	numeric_dtype = np.dtype(drfft_params.get("numeric_dtype", np.float32))
+	numeric_dtype = np.dtype(fft_params.get("numeric_dtype", np.float32))
 	if numeric_dtype not in (np.dtype(np.float32), np.dtype(np.float64)):
 		raise ValueError("numeric_dtype must be float32 or float64")
 	resolved_fft_stages = resolve_fft_schedule(
 		n_epochs=int(n_epochs),
-		n_interpolation_points=drfft_params['n_interpolation_points'],
-		combine_stages=drfft_params.get('tfdp_combine', False),
-		interpolation_schedule=drfft_params.get('interpolation_schedule'),
+		n_interpolation_points=fft_params['n_interpolation_points'],
+		combine_stages=fft_params.get('tfdp_combine', False),
+		interpolation_schedule=fft_params.get('interpolation_schedule'),
 	)
 	validate_fft_schedule_execution(
 		resolved_fft_stages,
 		device=device,
-		p2m_mode=drfft_params.get('p2m_mode', 'auto'),
+		p2m_mode=fft_params.get('p2m_mode', 'auto'),
 	)
 	n_vertices_int = int(n_vertices)
 	edge_count_int = int(edgetgt.shape[0])
 	attraction_schedule_mode = _resolve_attraction_schedule_mode(
-		drfft_params.get("attraction_schedule_mode", "row_scan")
+		fft_params.get("attraction_schedule_mode", "row_scan")
 	)
 	attraction_warp_min_degree = int(
-		drfft_params.get("attraction_warp_min_degree", 8)
+		fft_params.get("attraction_warp_min_degree", 8)
 	)
 	attraction_kernel_mode = _resolve_attraction_kernel_mode(
-		drfft_params.get("attraction_kernel_mode", "auto"),
+		fft_params.get("attraction_kernel_mode", "auto"),
 		is_gpu=is_gpu,
 		average_degree=(edge_count_int / float(max(n_vertices_int, 1))),
 		warp_min_degree=attraction_warp_min_degree,
@@ -2170,29 +2170,29 @@ def umap_true_loss_optimization(
 			"ibUMAP optimizer input embedding contains "
 			f"{nonfinite_count} non-finite value(s)"
 		)
-	kernel_subsample_mode = drfft_params.get("ibfft_kernel_subsample_mode")
+	kernel_subsample_mode = fft_params.get("ibfft_kernel_subsample_mode")
 	kernel_subsample_radius_cells = int(
-		drfft_params.get("ibfft_kernel_subsample_radius_cells", 2)
+		fft_params.get("ibfft_kernel_subsample_radius_cells", 2)
 	)
-	kernel_subsample_points = int(drfft_params.get("ibfft_kernel_subsample_points", 4))
+	kernel_subsample_points = int(fft_params.get("ibfft_kernel_subsample_points", 4))
 	if is_gpu and kernel_subsample_mode is not None:
 		raise NotImplementedError(
 			"ibFFT kernel sub-sampling currently supports CPU only"
 		)
-	local_exact_enabled = bool(drfft_params.get("local_exact_repulsion", False))
-	local_density_enabled = bool(drfft_params.get("local_density_pressure", False))
+	local_exact_enabled = bool(fft_params.get("local_exact_repulsion", False))
+	local_density_enabled = bool(fft_params.get("local_density_pressure", False))
 	if is_gpu and (local_exact_enabled or local_density_enabled):
 		raise NotImplementedError(
 			"local_exact_repulsion and local_density_pressure currently support CPU only"
 		)
-	local_exact_every = int(drfft_params.get("local_exact_every", 1))
-	local_density_every = int(drfft_params.get("local_density_pressure_every", 1))
+	local_exact_every = int(fft_params.get("local_exact_every", 1))
+	local_density_every = int(fft_params.get("local_density_pressure_every", 1))
 	local_exact_start_epoch, local_exact_end_epoch = _resolve_local_exact_epoch_bounds(
-		drfft_params, n_epochs
+		fft_params, n_epochs
 	)
 
 	t1 = time()
-	initial_alpha = drfft_params['umap_initial_alpha']
+	initial_alpha = fft_params['umap_initial_alpha']
 	alpha = initial_alpha
 	epoch_of_next_sample = epochs_per_sample.copy()
 
@@ -2206,16 +2206,16 @@ def umap_true_loss_optimization(
 		probabilities = degrees / degrees.max()
 
 	### Constraints
-	whether_known_points		= drfft_params['whether_known_points']
-	known_points_positions		= drfft_params['known_points_positions']
-	known_points_reverse_index	= drfft_params['known_points_reverse_index']
-	constraint_weight			= drfft_params['constraint_weight']
-	soft_constraint				= drfft_params['soft_constraint']
+	whether_known_points		= fft_params['whether_known_points']
+	known_points_positions		= fft_params['known_points_positions']
+	known_points_reverse_index	= fft_params['known_points_reverse_index']
+	constraint_weight			= fft_params['constraint_weight']
+	soft_constraint				= fft_params['soft_constraint']
 	hard_constraint				= (True in whether_known_points) and (not soft_constraint)
-	noise_mode = drfft_params.get('noise_mode', 'none')
+	noise_mode = fft_params.get('noise_mode', 'none')
 	noise_rng = None
 	sampling_rng = _make_sampling_rng(
-		is_gpu, drfft_params.get("sampling_random_state")
+		is_gpu, fft_params.get("sampling_random_state")
 	)
 	if attraction_schedule_mode in ("active_edge_calendar", "active_edge_periodic"):
 		if is_gpu:
@@ -2242,7 +2242,7 @@ def umap_true_loss_optimization(
 			neg_effects = np.asarray(neg_effects, dtype=numeric_dtype)
 		if probabilities is not None:
 			probabilities = np.asarray(probabilities, dtype=numeric_dtype)
-		cpu_workspace = drfft_params.get('optimizer_workspace')
+		cpu_workspace = fft_params.get('optimizer_workspace')
 		if cpu_workspace is None:
 			attr_force = np.zeros((n_vertices, n_components), dtype=numeric_dtype)
 			_ibfft_ws = {}
@@ -2285,7 +2285,7 @@ def umap_true_loss_optimization(
 				edgesrc,
 				epochs_per_sample,
 				n_epochs,
-				drfft_params.get("attraction_calendar_memory_limit_bytes"),
+				fft_params.get("attraction_calendar_memory_limit_bytes"),
 			)
 			init_t0 = perf_counter()
 			attr_force.fill(0.0)
@@ -2334,7 +2334,7 @@ def umap_true_loss_optimization(
 				edgesrc,
 				epochs_per_sample,
 				n_epochs,
-				drfft_params.get("attraction_calendar_memory_limit_bytes"),
+				fft_params.get("attraction_calendar_memory_limit_bytes"),
 			)
 			attraction_periodic_row_epoch_marks = np.zeros(n_vertices_int, dtype=np.int32)
 			attraction_calendar_build_time = perf_counter() - calendar_t0
@@ -2381,7 +2381,7 @@ def umap_true_loss_optimization(
 	else:
 		# GPU attraction kernels do not consume constraint arrays. Transfer the
 		# mask only for hard-constraint post-kernel zeroing.
-		gpu_workspace = drfft_params.get('optimizer_workspace')
+		gpu_workspace = fft_params.get('optimizer_workspace')
 		whether_known_points = (
 			cupy.asarray(whether_known_points, dtype=cupy.bool_)
 			if hard_constraint
@@ -2438,19 +2438,19 @@ def umap_true_loss_optimization(
 	# Experimental synchronous ibUMAP safeguard: high-degree points can collect
 	# very large source-row attraction totals. Compute the static scale once and
 	# apply it only after each epoch's edge-level attraction has accumulated.
-	damping_enabled = bool(drfft_params.get("attraction_degree_damping", False))
-	damping_mode = drfft_params.get(
+	damping_enabled = bool(fft_params.get("attraction_degree_damping", False))
+	damping_mode = fft_params.get(
 		"attraction_degree_damping_mode", "weighted_degree"
 	)
-	damping_ref_type = drfft_params.get("attraction_degree_damping_ref", "p99")
-	damping_ref_value = drfft_params.get("attraction_degree_damping_ref_value")
-	damping_power = float(drfft_params.get("attraction_degree_damping_power", 0.5))
-	damping_min_scale = drfft_params.get("attraction_degree_damping_min_scale")
+	damping_ref_type = fft_params.get("attraction_degree_damping_ref", "p99")
+	damping_ref_value = fft_params.get("attraction_degree_damping_ref_value")
+	damping_power = float(fft_params.get("attraction_degree_damping_power", 0.5))
+	damping_min_scale = fft_params.get("attraction_degree_damping_min_scale")
 	damping_diagnostics_requested = bool(
-		drfft_params.get("diagnostics_path")
+		fft_params.get("diagnostics_path")
 		or (
-			drfft_params.get("diagnostics_topk_path")
-			and int(drfft_params.get("diagnostics_topk") or 0) > 0
+			fft_params.get("diagnostics_topk_path")
+			and int(fft_params.get("diagnostics_topk") or 0) > 0
 		)
 	)
 	if damping_enabled or damping_diagnostics_requested:
@@ -2475,7 +2475,7 @@ def umap_true_loss_optimization(
 		damping_degree_values = degrees
 		damping_degree_ref = np.nan
 		attraction_degree_damping_scale = None
-	if drfft_params.get("diagnostics_path"):
+	if fft_params.get("diagnostics_path"):
 		attraction_degree_damping_metadata = _attraction_degree_damping_metadata(
 			damping_enabled,
 			damping_mode,
@@ -2489,9 +2489,9 @@ def umap_true_loss_optimization(
 	else:
 		attraction_degree_damping_metadata = None
 
-	if noise_mode != 'none' and float(drfft_params.get('noise_scale', 0.0) or 0.0) > 0.0:
-		noise_rng = _make_noise_rng(is_gpu, _resolve_noise_seed(drfft_params))
-	if drfft_params.get("diagnostics_timing_path") and local_exact_enabled:
+	if noise_mode != 'none' and float(fft_params.get('noise_scale', 0.0) or 0.0) > 0.0:
+		noise_rng = _make_noise_rng(is_gpu, _resolve_noise_seed(fft_params))
+	if fft_params.get("diagnostics_timing_path") and local_exact_enabled:
 		_dummy_embedding = np.zeros((1, 2), dtype=numeric_dtype)
 		_dummy_int = np.zeros(1, dtype=np.int64)
 		_dummy_cell = np.zeros(1, dtype=np.int32)
@@ -2594,9 +2594,9 @@ def umap_true_loss_optimization(
 		end_event.record()
 		event_pairs.append((start_event, end_event))
 
-	diagnostic_path = drfft_params.get("diagnostics_path")
+	diagnostic_path = fft_params.get("diagnostics_path")
 	if diagnostic_path:
-		diagnostic_thresholds = drfft_params.get("diagnostics_thresholds") or (
+		diagnostic_thresholds = fft_params.get("diagnostics_thresholds") or (
 			1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0
 		)
 		diagnostic_thresholds = tuple(float(value) for value in diagnostic_thresholds)
@@ -2606,31 +2606,31 @@ def umap_true_loss_optimization(
 	else:
 		diagnostic_thresholds = None
 		diagnostic_file = diagnostic_writer = None
-	runtime_diagnostic_path = drfft_params.get("diagnostics_timing_path")
+	runtime_diagnostic_path = fft_params.get("diagnostics_timing_path")
 	if runtime_diagnostic_path:
 		runtime_diagnostic_file, runtime_diagnostic_writer = (
 			_open_runtime_diagnostic_writer(runtime_diagnostic_path)
 		)
 	else:
 		runtime_diagnostic_file = runtime_diagnostic_writer = None
-	diagnostic_topk = int(drfft_params.get("diagnostics_topk") or 0)
-	topk_path = drfft_params.get("diagnostics_topk_path")
+	diagnostic_topk = int(fft_params.get("diagnostics_topk") or 0)
+	topk_path = fft_params.get("diagnostics_topk_path")
 	if topk_path and diagnostic_topk > 0:
 		topk_file, topk_writer = _open_topk_writer(topk_path, diagnostic_topk)
-		diagnostic_labels = drfft_params.get("diagnostics_labels")
-		diagnostic_point_ids = drfft_params.get("diagnostics_point_ids")
+		diagnostic_labels = fft_params.get("diagnostics_labels")
+		diagnostic_point_ids = fft_params.get("diagnostics_point_ids")
 	else:
 		topk_file = topk_writer = None
 		diagnostic_labels = diagnostic_point_ids = None
 	degree_percentiles = _degree_percentiles(degrees) if topk_writer is not None else None
 	previous_diagnostic_radii = None
-	drfft_params["repulsion_clip_epoch_range"] = _validate_clip_epoch_range_for_epochs(
-		drfft_params.get("repulsion_clip_epoch_range"),
+	fft_params["repulsion_clip_epoch_range"] = _validate_clip_epoch_range_for_epochs(
+		fft_params.get("repulsion_clip_epoch_range"),
 		n_epochs,
 		"repulsion_clip_epoch_range",
 	)
-	drfft_params["total_update_clip_epoch_range"] = _validate_clip_epoch_range_for_epochs(
-		drfft_params.get("total_update_clip_epoch_range"),
+	fft_params["total_update_clip_epoch_range"] = _validate_clip_epoch_range_for_epochs(
+		fft_params.get("total_update_clip_epoch_range"),
 		n_epochs,
 		"total_update_clip_epoch_range",
 	)
@@ -2645,10 +2645,10 @@ def umap_true_loss_optimization(
 		and topk_writer is None
 		and memory_recorder is None
 		and kernel_subsample_mode is None
-		and drfft_params.get("total_update_clip_norm") is None
+		and fft_params.get("total_update_clip_norm") is None
 		and not (
 			noise_mode != 'none'
-			and float(drfft_params.get('noise_scale', 0.0) or 0.0) > 0.0
+			and float(fft_params.get('noise_scale', 0.0) or 0.0) > 0.0
 		)
 	)
 
@@ -2697,16 +2697,16 @@ def umap_true_loss_optimization(
 			local_density_enabled, local_density_every, epoch_itr
 		)
 		repulsion_clip_norm = _resolve_repulsion_clip_norm(
-			drfft_params,
+			fft_params,
 			alpha,
 			epoch_itr,
 		)
 		total_update_clip_norm = _resolve_total_update_clip_norm(
-			drfft_params,
+			fft_params,
 			alpha,
 			epoch_itr,
 		)
-		noise_scale = _noise_scale_for_epoch(drfft_params, epoch_itr, n_epochs)
+		noise_scale = _noise_scale_for_epoch(fft_params, epoch_itr, n_epochs)
 		fused_m2p_update_this_epoch = (
 			fused_m2p_update_base
 			and total_update_clip_norm is None
@@ -2724,18 +2724,18 @@ def umap_true_loss_optimization(
 			local_exact_diagnostics = _local_force_diagnostics(
 				"local_exact",
 				local_exact_enabled,
-				drfft_params.get("local_exact_weight", 0.1),
+				fft_params.get("local_exact_weight", 0.1),
 				None,
 				n_vertices,
 				extra={
-					"local_exact_k": int(drfft_params.get("local_exact_k", 8)),
+					"local_exact_k": int(fft_params.get("local_exact_k", 8)),
 					"local_exact_radius": np.nan,
 				},
 			)
 			local_density_diagnostics = _local_force_diagnostics(
 				"local_density_pressure",
 				local_density_enabled,
-				drfft_params.get("local_density_pressure_weight", 0.05),
+				fft_params.get("local_density_pressure_weight", 0.05),
 				None,
 				n_vertices,
 			)
@@ -2774,8 +2774,8 @@ def umap_true_loss_optimization(
 						edgetgt,
 						row_start,
 						row_end,
-						drfft_params['umap_a'],
-						drfft_params['umap_b'],
+						fft_params['umap_a'],
+						fft_params['umap_b'],
 						alpha,
 					)
 					attraction_calendar_execute_kernel_time += (
@@ -2799,8 +2799,8 @@ def umap_true_loss_optimization(
 						attraction_periodic_row_epoch_marks,
 						edgetgt,
 						epoch_itr,
-						drfft_params['umap_a'],
-						drfft_params['umap_b'],
+						fft_params['umap_a'],
+						fft_params['umap_b'],
 						alpha,
 					)
 					attraction_calendar_execute_kernel_time += (
@@ -2812,7 +2812,7 @@ def umap_true_loss_optimization(
 				else:
 					UMAP_AttrForce_sampling(
 						attr_force, embedding, edgesrc, edgetgt, n_vertices,
-						drfft_params['umap_a'], drfft_params['umap_b'], alpha,
+						fft_params['umap_a'], fft_params['umap_b'], alpha,
 						epoch_itr, epochs_per_sample, epoch_of_next_sample,
 						whether_known_points, known_points_positions,
 						known_points_reverse_index, soft_constraint, constraint_weight,
@@ -2823,7 +2823,7 @@ def umap_true_loss_optimization(
 					UMAP_AttrForce_sampling_warp_per_row_cu(
 						attraction_warp_grid_dim, attraction_warp_block_dim, (
 							attr_force, embedding, edgesrc, edgetgt, n_vertices,
-							cupy.float32(drfft_params['umap_a']), cupy.float32(drfft_params['umap_b']), alpha,
+							cupy.float32(fft_params['umap_a']), cupy.float32(fft_params['umap_b']), alpha,
 							epoch_itr, epochs_per_sample, epoch_of_next_sample,
 						)
 					)
@@ -2831,7 +2831,7 @@ def umap_true_loss_optimization(
 				else:
 					UMAP_AttrForce_sampling_cu(optimizer_grid_dim, optimizer_block_dim, (
 						attr_force, embedding, edgesrc, edgetgt, n_vertices,
-						cupy.float32(drfft_params['umap_a']), cupy.float32(drfft_params['umap_b']), alpha,
+						cupy.float32(fft_params['umap_a']), cupy.float32(fft_params['umap_b']), alpha,
 						epoch_itr, epochs_per_sample, epoch_of_next_sample,
 					))
 					attraction_thread_per_row_epochs += 1
@@ -2839,8 +2839,8 @@ def umap_true_loss_optimization(
 			if not is_gpu:
 				UMAP_AttrForce(
 					attr_force, embedding, edgesrc, edgetgt, pos_effects,
-					n_vertices, n_components, drfft_params['umap_a'],
-					drfft_params['umap_b'], alpha,
+					n_vertices, n_components, fft_params['umap_a'],
+					fft_params['umap_b'], alpha,
 					whether_known_points, known_points_positions,
 					known_points_reverse_index, soft_constraint, constraint_weight,
 				)
@@ -2850,16 +2850,16 @@ def umap_true_loss_optimization(
 					UMAP_AttrForce_warp_per_row_cu(
 						attraction_warp_grid_dim, attraction_warp_block_dim, (
 							attr_force, embedding, edgesrc, edgetgt, pos_effects,
-							n_vertices, cupy.float32(drfft_params['umap_a']),
-							cupy.float32(drfft_params['umap_b']), alpha,
+							n_vertices, cupy.float32(fft_params['umap_a']),
+							cupy.float32(fft_params['umap_b']), alpha,
 						)
 					)
 					attraction_warp_per_row_epochs += 1
 				else:
 					UMAP_AttrForce_cu(optimizer_grid_dim, optimizer_block_dim, (
 						attr_force, embedding, edgesrc, edgetgt, pos_effects,
-						n_vertices, cupy.float32(drfft_params['umap_a']),
-						cupy.float32(drfft_params['umap_b']), alpha,
+						n_vertices, cupy.float32(fft_params['umap_a']),
+						cupy.float32(fft_params['umap_b']), alpha,
 					))
 					attraction_thread_per_row_epochs += 1
 		if hard_constraint:
@@ -2918,31 +2918,31 @@ def umap_true_loss_optimization(
 				# H-2 FIX: pass shared workspace dict for buffer reuse
 				ibfft_result = ibFFT_repulsive_sampling(
 					embedding, n_interpolation_points,
-					drfft_params['intervals_per_integer'],
-					drfft_params['min_num_intervals'],
-					drfft_params['tfdp_gamma'],
-					drfft_params['tfdp_paraFactor'],
+					fft_params['intervals_per_integer'],
+					fft_params['min_num_intervals'],
+					fft_params['tfdp_gamma'],
+					fft_params['tfdp_paraFactor'],
 					None,
-					drfft_params['n_boxes_per_dim'],
+					fft_params['n_boxes_per_dim'],
 					kernel_method='UMAP_kernel',
-					umap_a=drfft_params['umap_a'],
-					umap_b=drfft_params['umap_b'],
-					umap_gamma=drfft_params['umap_gamma'],
-					umap_epsilon=drfft_params['umap_epsilon'],
-					ibfft_kernel_clip=drfft_params['ibfft_kernel_clip'],
+					umap_a=fft_params['umap_a'],
+					umap_b=fft_params['umap_b'],
+					umap_gamma=fft_params['umap_gamma'],
+					umap_epsilon=fft_params['umap_epsilon'],
+					ibfft_kernel_clip=fft_params['ibfft_kernel_clip'],
 					ibfft_kernel_subsample_mode=kernel_subsample_mode,
 					ibfft_kernel_subsample_radius_cells=kernel_subsample_radius_cells,
 					ibfft_kernel_subsample_points=kernel_subsample_points,
 					random_state=sampling_rng,
-					deterministic=bool(drfft_params.get('deterministic', False)),
-					p2m_mode=drfft_params.get('p2m_mode', 'auto'),
+					deterministic=bool(fft_params.get('deterministic', False)),
+					p2m_mode=fft_params.get('p2m_mode', 'auto'),
 					_workspace=_ibfft_ws,
-					workspace_policy=drfft_params.get('workspace_policy', 'auto'),
-					workspace_limit_bytes=drfft_params.get('workspace_limit_bytes'),
+					workspace_policy=fft_params.get('workspace_policy', 'auto'),
+					workspace_limit_bytes=fft_params.get('workspace_limit_bytes'),
 					fft_kernel_cache=getattr(cpu_workspace, 'fft_kernel_cache', None),
-					fft_kernel_cache_policy=drfft_params.get('fft_kernel_cache_policy', 'auto'),
-					fft_kernel_cache_limit_bytes=drfft_params.get('fft_kernel_cache_limit_bytes'),
-					fft_kernel_cache_max_entries=drfft_params.get('fft_kernel_cache_max_entries'),
+					fft_kernel_cache_policy=fft_params.get('fft_kernel_cache_policy', 'auto'),
+					fft_kernel_cache_limit_bytes=fft_params.get('fft_kernel_cache_limit_bytes'),
+					fft_kernel_cache_max_entries=fft_params.get('fft_kernel_cache_max_entries'),
 					p2m_diagnostics=p2m_epoch_diagnostics,
 					timing_diagnostics=ibfft_epoch_timing,
 					return_grid_context=need_grid_context,
@@ -2973,27 +2973,27 @@ def umap_true_loss_optimization(
 					}
 				repl_force = ibFFT_repulsive_sampling_GPU(
 					embedding, n_interpolation_points,
-					drfft_params['intervals_per_integer'],
-					drfft_params['min_num_intervals'],
-					drfft_params['tfdp_gamma'],
-					drfft_params['tfdp_paraFactor'],
+					fft_params['intervals_per_integer'],
+					fft_params['min_num_intervals'],
+					fft_params['tfdp_gamma'],
+					fft_params['tfdp_paraFactor'],
 					None,
-					drfft_params['n_boxes_per_dim'],
+					fft_params['n_boxes_per_dim'],
 					kernel_method='UMAP_kernel',
-					umap_a=cupy.float32(drfft_params['umap_a']),
-					umap_b=cupy.float32(drfft_params['umap_b']),
-					umap_gamma=cupy.float32(drfft_params['umap_gamma']),
-					umap_epsilon=cupy.float32(drfft_params['umap_epsilon']),
-					ibfft_kernel_clip=cupy.float32(drfft_params['ibfft_kernel_clip']),
+					umap_a=cupy.float32(fft_params['umap_a']),
+					umap_b=cupy.float32(fft_params['umap_b']),
+					umap_gamma=cupy.float32(fft_params['umap_gamma']),
+					umap_epsilon=cupy.float32(fft_params['umap_epsilon']),
+					ibfft_kernel_clip=cupy.float32(fft_params['ibfft_kernel_clip']),
 					random_state=sampling_rng,
-					deterministic=bool(drfft_params.get('deterministic', False)),
-					p2m_mode=drfft_params.get('p2m_mode', 'auto'),
+					deterministic=bool(fft_params.get('deterministic', False)),
+					p2m_mode=fft_params.get('p2m_mode', 'auto'),
 					workspace=gpu_workspace,
-					workspace_policy=drfft_params.get('workspace_policy', 'auto'),
-					workspace_limit_bytes=drfft_params.get('workspace_limit_bytes'),
-					fft_kernel_cache_policy=drfft_params.get('fft_kernel_cache_policy', 'auto'),
-					fft_kernel_cache_limit_bytes=drfft_params.get('fft_kernel_cache_limit_bytes'),
-					fft_kernel_cache_max_entries=drfft_params.get('fft_kernel_cache_max_entries'),
+					workspace_policy=fft_params.get('workspace_policy', 'auto'),
+					workspace_limit_bytes=fft_params.get('workspace_limit_bytes'),
+					fft_kernel_cache_policy=fft_params.get('fft_kernel_cache_policy', 'auto'),
+					fft_kernel_cache_limit_bytes=fft_params.get('fft_kernel_cache_limit_bytes'),
+					fft_kernel_cache_max_entries=fft_params.get('fft_kernel_cache_max_entries'),
 					p2m_diagnostics=p2m_epoch_diagnostics,
 					p2m_event_pairs=cuda_p2m_events,
 					timing_event_pairs=cuda_ibfft_timing_events,
@@ -3013,31 +3013,31 @@ def umap_true_loss_optimization(
 				# handles shape mismatch by reallocating only on the first epoch.
 				ibfft_result = ibFFT_repulsive_sampling(
 					embedding, n_interpolation_points,
-					drfft_params['intervals_per_integer'],
-					drfft_params['min_num_intervals'],
-					drfft_params['tfdp_gamma'],
-					drfft_params['tfdp_paraFactor'],
+					fft_params['intervals_per_integer'],
+					fft_params['min_num_intervals'],
+					fft_params['tfdp_gamma'],
+					fft_params['tfdp_paraFactor'],
 					probabilities,
-					drfft_params['n_boxes_per_dim'],
+					fft_params['n_boxes_per_dim'],
 					kernel_method='UMAP_kernel',
-					umap_a=drfft_params['umap_a'],
-					umap_b=drfft_params['umap_b'],
-					umap_gamma=drfft_params['umap_gamma'],
-					umap_epsilon=drfft_params['umap_epsilon'],
-					ibfft_kernel_clip=drfft_params['ibfft_kernel_clip'],
+					umap_a=fft_params['umap_a'],
+					umap_b=fft_params['umap_b'],
+					umap_gamma=fft_params['umap_gamma'],
+					umap_epsilon=fft_params['umap_epsilon'],
+					ibfft_kernel_clip=fft_params['ibfft_kernel_clip'],
 					ibfft_kernel_subsample_mode=kernel_subsample_mode,
 					ibfft_kernel_subsample_radius_cells=kernel_subsample_radius_cells,
 					ibfft_kernel_subsample_points=kernel_subsample_points,
 					random_state=sampling_rng,
-					deterministic=bool(drfft_params.get('deterministic', False)),
-					p2m_mode=drfft_params.get('p2m_mode', 'auto'),
+					deterministic=bool(fft_params.get('deterministic', False)),
+					p2m_mode=fft_params.get('p2m_mode', 'auto'),
 					_workspace=_ibfft_ws,
-					workspace_policy=drfft_params.get('workspace_policy', 'auto'),
-					workspace_limit_bytes=drfft_params.get('workspace_limit_bytes'),
+					workspace_policy=fft_params.get('workspace_policy', 'auto'),
+					workspace_limit_bytes=fft_params.get('workspace_limit_bytes'),
 					fft_kernel_cache=getattr(cpu_workspace, 'fft_kernel_cache', None),
-					fft_kernel_cache_policy=drfft_params.get('fft_kernel_cache_policy', 'auto'),
-					fft_kernel_cache_limit_bytes=drfft_params.get('fft_kernel_cache_limit_bytes'),
-					fft_kernel_cache_max_entries=drfft_params.get('fft_kernel_cache_max_entries'),
+					fft_kernel_cache_policy=fft_params.get('fft_kernel_cache_policy', 'auto'),
+					fft_kernel_cache_limit_bytes=fft_params.get('fft_kernel_cache_limit_bytes'),
+					fft_kernel_cache_max_entries=fft_params.get('fft_kernel_cache_max_entries'),
 					p2m_diagnostics=p2m_epoch_diagnostics,
 					timing_diagnostics=ibfft_epoch_timing,
 					return_grid_context=need_grid_context,
@@ -3052,27 +3052,27 @@ def umap_true_loss_optimization(
 			else:
 				repl_force = ibFFT_repulsive_sampling_GPU(
 					embedding, n_interpolation_points,
-					drfft_params['intervals_per_integer'],
-					drfft_params['min_num_intervals'],
-					drfft_params['tfdp_gamma'],
-					drfft_params['tfdp_paraFactor'],
+					fft_params['intervals_per_integer'],
+					fft_params['min_num_intervals'],
+					fft_params['tfdp_gamma'],
+					fft_params['tfdp_paraFactor'],
 					probabilities,
-					drfft_params['n_boxes_per_dim'],
+					fft_params['n_boxes_per_dim'],
 					kernel_method='UMAP_kernel',
-					umap_a=cupy.float32(drfft_params['umap_a']),
-					umap_b=cupy.float32(drfft_params['umap_b']),
-					umap_gamma=cupy.float32(drfft_params['umap_gamma']),
-					umap_epsilon=cupy.float32(drfft_params['umap_epsilon']),
-					ibfft_kernel_clip=cupy.float32(drfft_params['ibfft_kernel_clip']),
+					umap_a=cupy.float32(fft_params['umap_a']),
+					umap_b=cupy.float32(fft_params['umap_b']),
+					umap_gamma=cupy.float32(fft_params['umap_gamma']),
+					umap_epsilon=cupy.float32(fft_params['umap_epsilon']),
+					ibfft_kernel_clip=cupy.float32(fft_params['ibfft_kernel_clip']),
 					random_state=sampling_rng,
-					deterministic=bool(drfft_params.get('deterministic', False)),
-					p2m_mode=drfft_params.get('p2m_mode', 'auto'),
+					deterministic=bool(fft_params.get('deterministic', False)),
+					p2m_mode=fft_params.get('p2m_mode', 'auto'),
 					workspace=gpu_workspace,
-					workspace_policy=drfft_params.get('workspace_policy', 'auto'),
-					workspace_limit_bytes=drfft_params.get('workspace_limit_bytes'),
-					fft_kernel_cache_policy=drfft_params.get('fft_kernel_cache_policy', 'auto'),
-					fft_kernel_cache_limit_bytes=drfft_params.get('fft_kernel_cache_limit_bytes'),
-					fft_kernel_cache_max_entries=drfft_params.get('fft_kernel_cache_max_entries'),
+					workspace_policy=fft_params.get('workspace_policy', 'auto'),
+					workspace_limit_bytes=fft_params.get('workspace_limit_bytes'),
+					fft_kernel_cache_policy=fft_params.get('fft_kernel_cache_policy', 'auto'),
+					fft_kernel_cache_limit_bytes=fft_params.get('fft_kernel_cache_limit_bytes'),
+					fft_kernel_cache_max_entries=fft_params.get('fft_kernel_cache_max_entries'),
 					p2m_diagnostics=p2m_epoch_diagnostics,
 					p2m_event_pairs=cuda_p2m_events,
 					timing_event_pairs=cuda_ibfft_timing_events,
@@ -3170,11 +3170,11 @@ def umap_true_loss_optimization(
 				embedding,
 				local_edge_sources,
 				local_edge_targets,
-				drfft_params.get("local_exact_radius_factor", 0.5),
+				fft_params.get("local_exact_radius_factor", 0.5),
 				grid_context.cell_size,
 			)
 			local_density_threshold = _local_exact_density_threshold(
-				drfft_params, grid_context
+				fft_params, grid_context
 			)
 			local_prep_time = perf_counter() - local_prep_start_time
 			local_kernel_start_time = perf_counter()
@@ -3187,20 +3187,20 @@ def umap_true_loss_optimization(
 				grid_context.cell_end,
 				grid_context.n_cells_x,
 				grid_context.n_cells_y,
-				int(drfft_params.get("local_exact_k", 8)),
+				int(fft_params.get("local_exact_k", 8)),
 				local_radius,
-				float(drfft_params['umap_a']),
-				float(drfft_params['umap_b']),
-				float(drfft_params['umap_gamma']),
-				float(drfft_params['umap_epsilon']),
+				float(fft_params['umap_a']),
+				float(fft_params['umap_b']),
+				float(fft_params['umap_gamma']),
+				float(fft_params['umap_epsilon']),
 				_scalar_float(alpha),
-				float(drfft_params.get("local_exact_clip", 4.0)),
-				bool(drfft_params.get("local_exact_symmetric", True)),
+				float(fft_params.get("local_exact_clip", 4.0)),
+				bool(fft_params.get("local_exact_symmetric", True)),
 				grid_context.density,
 				grid_context.flat_cell_id,
-				bool(drfft_params.get("local_exact_density_filter", False)),
+				bool(fft_params.get("local_exact_density_filter", False)),
 				float(local_density_threshold),
-				bool(drfft_params.get("local_exact_density_include_neighbor_cells", False)),
+				bool(fft_params.get("local_exact_density_include_neighbor_cells", False)),
 			)
 			if runtime_diagnostic_writer is not None:
 				(
@@ -3213,7 +3213,7 @@ def umap_true_loss_optimization(
 					local_timing_sample_count,
 				) = _local_exact_repulsion_force_profiled(
 					*local_kernel_args,
-					int(drfft_params.get("local_exact_timing_sample_size", 2048)),
+					int(fft_params.get("local_exact_timing_sample_size", 2048)),
 				)
 			else:
 				local_exact_force = _local_exact_repulsion_force(*local_kernel_args)
@@ -3226,7 +3226,7 @@ def umap_true_loss_optimization(
 					)
 			local_outer_accum_start_time = perf_counter()
 			repl_force += (
-				float(drfft_params.get("local_exact_weight", 0.1)) * local_exact_force
+				float(fft_params.get("local_exact_weight", 0.1)) * local_exact_force
 			)
 			local_outer_accum_time = perf_counter() - local_outer_accum_start_time
 			local_exact_total_time = perf_counter() - local_exact_start_time
@@ -3239,11 +3239,11 @@ def umap_true_loss_optimization(
 				local_exact_diagnostics = _local_force_diagnostics(
 					"local_exact",
 					local_exact_enabled,
-					drfft_params.get("local_exact_weight", 0.1),
+					fft_params.get("local_exact_weight", 0.1),
 					local_exact_norms,
 					n_vertices,
 					extra={
-						"local_exact_k": int(drfft_params.get("local_exact_k", 8)),
+						"local_exact_k": int(fft_params.get("local_exact_k", 8)),
 						"local_exact_radius": float(local_radius),
 					},
 				)
@@ -3251,12 +3251,12 @@ def umap_true_loss_optimization(
 			local_density_force = _local_density_pressure_force(
 				embedding,
 				grid_context,
-				int(drfft_params.get("local_density_pressure_min_count", 4)),
-				float(drfft_params.get("local_density_pressure_clip", 4.0)),
-				float(drfft_params.get("local_density_pressure_power", 1.0)),
+				int(fft_params.get("local_density_pressure_min_count", 4)),
+				float(fft_params.get("local_density_pressure_clip", 4.0)),
+				float(fft_params.get("local_density_pressure_power", 1.0)),
 			)
 			repl_force += (
-				float(drfft_params.get("local_density_pressure_weight", 0.05))
+				float(fft_params.get("local_density_pressure_weight", 0.05))
 				* local_density_force
 			)
 			local_density_norms = None
@@ -3266,7 +3266,7 @@ def umap_true_loss_optimization(
 				local_density_diagnostics = _local_force_diagnostics(
 					"local_density_pressure",
 					local_density_enabled,
-					drfft_params.get("local_density_pressure_weight", 0.05),
+					fft_params.get("local_density_pressure_weight", 0.05),
 					local_density_norms,
 					n_vertices,
 				)
@@ -3449,8 +3449,8 @@ def umap_true_loss_optimization(
 				total_update_clip_norm,
 				local_exact_diagnostics,
 				local_density_diagnostics,
-				drfft_params['ibfft_kernel_clip'],
-				drfft_params['umap_epsilon'],
+				fft_params['ibfft_kernel_clip'],
+				fft_params['umap_epsilon'],
 				kernel_subsample_mode,
 				kernel_subsample_radius_cells,
 				kernel_subsample_points,

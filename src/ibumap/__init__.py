@@ -1,4 +1,4 @@
-from .api import UMAPFFT
+from .api import IBUMAP
 from .fft_schedule import FFTStage
 from .jit_warmup import get_jit_warmup_status, warmup_jit
 from .config import (
@@ -27,12 +27,12 @@ from .config import (
     P2MMode,
     SpectralScalePolicy,
     WorkspacePolicy,
-    UMAPFFTConfig,
-    UMAPFFTConfigBundle,
+    EffectiveConfig,
+    ConfigBundle,
 )
 
 __all__ = [
-    "UMAPFFT",
+    "IBUMAP",
     "PreparedInputs",
     "RuntimeConfig",
     "GraphConfig",
@@ -62,13 +62,13 @@ __all__ = [
     "P2MMode",
     "SpectralScalePolicy",
     "WorkspacePolicy",
-    "UMAPFFTConfig",
-    "UMAPFFTConfigBundle",
+    "EffectiveConfig",
+    "ConfigBundle",
 ]
 
 
 def __getattr__(name: str):
-    # Keep the historical lightweight ``import umap_fft`` behavior: graph and
+    # Keep the historical lightweight ``import ibumap`` behavior: graph and
     # initializer dependencies are imported only when preparation is used.
     if name == "PreparedInputs":
         from .prepared import PreparedInputs

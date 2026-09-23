@@ -11,19 +11,19 @@ _CUML_AUTO_NN_DESCENT_THRESHOLD = 50_000
 
 
 def _optional_graph_ext():
-    if os.environ.get("UMAP_FFT_DISABLE_CUML_GRAPH_EXT") == "1":
-        if os.environ.get("UMAP_FFT_REQUIRE_CUML_GRAPH_EXT") == "1":
+    if os.environ.get("IBUMAP_DISABLE_CUML_GRAPH_EXT") == "1":
+        if os.environ.get("IBUMAP_REQUIRE_CUML_GRAPH_EXT") == "1":
             raise RuntimeError(
-                "Both UMAP_FFT_DISABLE_CUML_GRAPH_EXT=1 and "
-                "UMAP_FFT_REQUIRE_CUML_GRAPH_EXT=1 are set"
+                "Both IBUMAP_DISABLE_CUML_GRAPH_EXT=1 and "
+                "IBUMAP_REQUIRE_CUML_GRAPH_EXT=1 are set"
             )
         return None
     try:
-        from umap_fft.graph import _cuml_graph_ext
+        from ibumap.graph import _cuml_graph_ext
     except (ImportError, OSError) as exc:
-        if os.environ.get("UMAP_FFT_REQUIRE_CUML_GRAPH_EXT") == "1":
+        if os.environ.get("IBUMAP_REQUIRE_CUML_GRAPH_EXT") == "1":
             raise RuntimeError(
-                "UMAP_FFT_REQUIRE_CUML_GRAPH_EXT=1 but the optional cuML "
+                "IBUMAP_REQUIRE_CUML_GRAPH_EXT=1 but the optional cuML "
                 "graph-only extension could not be imported"
             ) from exc
         return None

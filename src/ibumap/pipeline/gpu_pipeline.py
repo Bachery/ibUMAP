@@ -8,7 +8,7 @@ import numpy as np
 from scipy.sparse import issparse
 from sklearn.utils import check_random_state
 
-from ..config import UMAPFFTConfig
+from ..config import EffectiveConfig
 from ..graph import build_cpu_graph_from_knn, build_gpu_graph_cuml
 from ..init import initialize_embedding_gpu
 from ..kernels.gpu.cupy_sparse import deterministic_csr_row_sum_cupy
@@ -66,7 +66,7 @@ class GPUPipeline:
         cp.cuda.Stream.null.synchronize()
 
     def _legacy_params(self, n_vertices: int) -> Dict[str, Any]:
-        cfg: UMAPFFTConfig = self.model.runtime
+        cfg: EffectiveConfig = self.model.runtime
         constraint = cfg.constraint
         noise = cfg.noise
         attraction_schedule = self.model.config.ibumap.experimental.attraction_schedule

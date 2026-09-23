@@ -14,7 +14,7 @@ def _csr_row_sum_float32_kernel():
     return cp.RawKernel(
         r"""
         extern "C" __global__
-        void umap_fft_csr_row_sum_float32(
+        void ibumap_csr_row_sum_float32(
             const int n_rows,
             const int* indptr,
             const float* data,
@@ -35,7 +35,7 @@ def _csr_row_sum_float32_kernel():
             degree[row] = total;
         }
         """,
-        "umap_fft_csr_row_sum_float32",
+        "ibumap_csr_row_sum_float32",
     )
 
 
@@ -46,7 +46,7 @@ def _component_min_vertex_int32_kernel():
     return cp.RawKernel(
         r"""
         extern "C" __global__
-        void umap_fft_component_min_vertex_int32(
+        void ibumap_component_min_vertex_int32(
             const int n_vertices,
             const int* labels,
             int* component_min_vertex
@@ -58,7 +58,7 @@ def _component_min_vertex_int32_kernel():
             atomicMin(&component_min_vertex[labels[vertex]], vertex);
         }
         """,
-        "umap_fft_component_min_vertex_int32",
+        "ibumap_component_min_vertex_int32",
     )
 
 

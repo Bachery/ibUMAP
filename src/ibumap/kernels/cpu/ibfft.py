@@ -22,10 +22,10 @@ try:
 except ImportError:  # Pure-Python installs retain a deterministic fallback.
 	_native_p2m_atomic = None
 pyfftw.interfaces.cache.enable()
-_n_fft_threads = int(os.environ.get("DRFFT_FFT_THREADS", str(min(8, os.cpu_count() or 1))))
+_n_fft_threads = int(os.environ.get("IBUMAP_FFT_THREADS", str(min(8, os.cpu_count() or 1))))
 pyfftw.config.NUM_THREADS = _n_fft_threads
-_FFTW_PLANNER_EFFORT = os.environ.get("DRFFT_FFTW_PLANNER_EFFORT", "FFTW_ESTIMATE")
-_FFTW_ALIGNMENT = int(os.environ.get("DRFFT_FFTW_ALIGNMENT", "64"))
+_FFTW_PLANNER_EFFORT = os.environ.get("IBUMAP_FFTW_PLANNER_EFFORT", "FFTW_ESTIMATE")
+_FFTW_ALIGNMENT = int(os.environ.get("IBUMAP_FFTW_ALIGNMENT", "64"))
 _FFTW_PLAN_KEY_PREFIX = "ibfft.fftw.plan."
 _CPU_FUSED_BOUNDS_MIN_POINTS = 500_000
 _CPU_FUSED_BOUNDS_CHUNK_SIZE = 65_536

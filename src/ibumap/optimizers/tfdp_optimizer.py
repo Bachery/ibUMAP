@@ -38,11 +38,11 @@ def tfdp_optimization(
 	epochs_per_negative_sample,
 	negative_sample_rate,
 	tfdp_algo,
-	drfft_params,
+	fft_params,
 ):
 	if "GPU" in tfdp_algo and cupy is None:
 		raise RuntimeError("GPU optimization requested but cupy/CUDA kernels are unavailable")
-	numeric_dtype = np.dtype(drfft_params.get("numeric_dtype", np.float32))
+	numeric_dtype = np.dtype(fft_params.get("numeric_dtype", np.float32))
 	if numeric_dtype not in (np.dtype(np.float32), np.dtype(np.float64)):
 		raise ValueError("numeric_dtype must be float32 or float64")
 	if "GPU" in tfdp_algo and numeric_dtype == np.dtype(np.float64):
@@ -53,27 +53,27 @@ def tfdp_optimization(
 	t1 = time()
 	epoch_of_next_sample = epochs_per_sample.copy()
 	epoch_of_next_negative_sample = epochs_per_negative_sample.copy()
-	alpha		= drfft_params['tfdp_alpha']
-	beta		= drfft_params['tfdp_beta']
-	gamma		= drfft_params['tfdp_gamma']
-	paraFactor	= drfft_params['tfdp_paraFactor']	# repulsion strength
-	n_itrp_pts	= drfft_params['n_interpolation_points']
+	alpha		= fft_params['tfdp_alpha']
+	beta		= fft_params['tfdp_beta']
+	gamma		= fft_params['tfdp_gamma']
+	paraFactor	= fft_params['tfdp_paraFactor']	# repulsion strength
+	n_itrp_pts	= fft_params['n_interpolation_points']
 	resolved_fft_stages = resolve_fft_schedule(
 		n_epochs=int(n_epochs),
 		n_interpolation_points=n_itrp_pts,
-		combine_stages=drfft_params.get('tfdp_combine', False),
-		interpolation_schedule=drfft_params.get('interpolation_schedule'),
+		combine_stages=fft_params.get('tfdp_combine', False),
+		interpolation_schedule=fft_params.get('interpolation_schedule'),
 	)
-	p2m_mode = drfft_params.get('p2m_mode', 'auto')
+	p2m_mode = fft_params.get('p2m_mode', 'auto')
 	if 'ibFFT' in tfdp_algo:
 		validate_fft_schedule_execution(
 			resolved_fft_stages,
 			device=('cuda' if 'GPU' in tfdp_algo else 'cpu'),
 			p2m_mode=p2m_mode,
 		)
-	itv_int		= drfft_params['intervals_per_integer']
-	mn_itv		= drfft_params['min_num_intervals']
-	boxes_dim	= drfft_params['n_boxes_per_dim']
+	itv_int		= fft_params['intervals_per_integer']
+	mn_itv		= fft_params['min_num_intervals']
+	boxes_dim	= fft_params['n_boxes_per_dim']
 	
 	if alpha != 0: paraFactor /= alpha	# for keeping a same long range force
 	E = edgetgt.shape[0]
@@ -95,14 +95,14 @@ def tfdp_optimization(
 		neg_effects = degrees * 0.5 * negative_sample_rate / n_vertices
 
 	### Repulsion Kernel
-	kernel_method = 'UMAP_gauss' if drfft_params['repl_gauss'] else 'tFDP'
+	kernel_method = 'UMAP_gauss' if fft_params['repl_gauss'] else 'tFDP'
 
 	### Constraints
-	whether_known_points		= drfft_params['whether_known_points']
-	known_points_positions		= drfft_params['known_points_positions']
-	known_points_reverse_index	= drfft_params['known_points_reverse_index']
-	constraint_weight			= drfft_params['constraint_weight']
-	soft_constraint				= drfft_params['soft_constraint']
+	whether_known_points		= fft_params['whether_known_points']
+	known_points_positions		= fft_params['known_points_positions']
+	known_points_reverse_index	= fft_params['known_points_reverse_index']
+	constraint_weight			= fft_params['constraint_weight']
+	soft_constraint				= fft_params['soft_constraint']
 	hard_constraint				= (True in whether_known_points) and (not soft_constraint)
 
 	### Parameters for GPU
@@ -230,9 +230,9 @@ def tfdp_optimization(
 			repl_force = ibFFT_repulsive_sampling(
 				embedding, n_itrp_pts, itv_int, mn_itv, gamma, 
 				paraFactor, None, boxes_dim, kernel_method, 
-				drfft_params['umap_a'], drfft_params['umap_b'], 
-				drfft_params['umap_gamma'], drfft_params['umap_epsilon'],
-				drfft_params['gauss_sigma'],
+				fft_params['umap_a'], fft_params['umap_b'], 
+				fft_params['umap_gamma'], fft_params['umap_epsilon'],
+				fft_params['gauss_sigma'],
 				p2m_mode=p2m_mode,
 			)
 			repl_force[:, 0] *= neg_effects
@@ -241,9 +241,9 @@ def tfdp_optimization(
 			repl_force = ibFFT_repulsive_sampling_GPU(
 				embedding, n_itrp_pts, itv_int, mn_itv, gamma, 
 				paraFactor, None, boxes_dim, kernel_method, 
-				drfft_params['umap_a'], drfft_params['umap_b'], 
-				drfft_params['umap_gamma'], drfft_params['umap_epsilon'],
-				drfft_params['gauss_sigma'],
+				fft_params['umap_a'], fft_params['umap_b'], 
+				fft_params['umap_gamma'], fft_params['umap_epsilon'],
+				fft_params['gauss_sigma'],
 				p2m_mode=p2m_mode,
 			)
 			repl_force[:, 0] *= neg_effects
@@ -252,9 +252,9 @@ def tfdp_optimization(
 			repl_force = ibFFT_repulsive_sampling(
 				embedding, n_itrp_pts, itv_int, mn_itv, gamma, 
 				paraFactor, probabilities, boxes_dim, kernel_method, 
-				drfft_params['umap_a'], drfft_params['umap_b'], 
-				drfft_params['umap_gamma'], drfft_params['umap_epsilon'],
-				drfft_params['gauss_sigma'],
+				fft_params['umap_a'], fft_params['umap_b'], 
+				fft_params['umap_gamma'], fft_params['umap_epsilon'],
+				fft_params['gauss_sigma'],
 				p2m_mode=p2m_mode,
 			)
 			repl_force *= neg_effect
@@ -262,9 +262,9 @@ def tfdp_optimization(
 			repl_force = ibFFT_repulsive_sampling_GPU(
 				embedding, n_itrp_pts, itv_int, mn_itv, gamma, 
 				paraFactor, probabilities, boxes_dim, kernel_method, 
-				drfft_params['umap_a'], drfft_params['umap_b'], 
-				drfft_params['umap_gamma'], drfft_params['umap_epsilon'],
-				drfft_params['gauss_sigma'],
+				fft_params['umap_a'], fft_params['umap_b'], 
+				fft_params['umap_gamma'], fft_params['umap_epsilon'],
+				fft_params['gauss_sigma'],
 				p2m_mode=p2m_mode,
 			)
 			repl_force *= neg_effect

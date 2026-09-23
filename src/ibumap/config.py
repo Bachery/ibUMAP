@@ -11,7 +11,7 @@ import numpy as np
 
 from .fft_schedule import FFTStage, normalize_fft_schedule
 
-Algorithm = Literal["umap", "ibumap", "drfft_umap", "hybrid", "tfdp"]
+Algorithm = Literal["umap", "ibumap", "hybrid", "tfdp"]
 Device = Literal["cpu", "cuda", "metal"]
 AttractionMode = Literal["sampling", "true_loss"]
 RepulsionMode = Literal["sampling", "true_loss"]
@@ -179,19 +179,8 @@ class RuntimeConfig:
     verbose: bool = False
 
     def __post_init__(self) -> None:
-        if self.algorithm == "drfft_umap":
-            warnings.warn(
-                "algorithm='drfft_umap' is deprecated and will be replaced by "
-                "algorithm='ibumap'; use 'ibumap' instead",
-                FutureWarning,
-                stacklevel=3,
-            )
-            self.algorithm = "ibumap"
         if self.algorithm not in ("umap", "ibumap", "hybrid", "tfdp"):
-            raise ValueError(
-                "algorithm must be one of: umap, ibumap, hybrid, tfdp "
-                "(drfft_umap is a deprecated alias for ibumap)"
-            )
+            raise ValueError("algorithm must be one of: umap, ibumap, hybrid, tfdp")
         if self.device == "gpu":
             warnings.warn(
                 "device='gpu' is deprecated and will be replaced by "
@@ -410,7 +399,7 @@ class InitializationConfig:
 
         if self.spectral_scale_policy != "auto":
             return self.spectral_scale_policy
-        if algorithm in ("ibumap", "drfft_umap", "hybrid"):
+        if algorithm in ("ibumap", "hybrid"):
             return "fft_compact"
         return "legacy_box10"
 
@@ -950,7 +939,7 @@ class DiagnosticsConfig:
 
 
 @dataclass(slots=True)
-class UMAPFFTConfigBundle:
+class ConfigBundle:
     runtime: RuntimeConfig = field(default_factory=RuntimeConfig)
     graph: GraphConfig = field(default_factory=GraphConfig)
     umap: UMAPConfig = field(default_factory=UMAPConfig)
@@ -983,7 +972,7 @@ class UMAPFFTConfigBundle:
 
 
 @dataclass(slots=True)
-class UMAPFFTConfig:
+class EffectiveConfig:
     algorithm: Algorithm = "ibumap"
     device: Device = "cpu"
     attraction_mode: AttractionMode = "sampling"
@@ -1002,19 +991,8 @@ class UMAPFFTConfig:
     rng_lifecycle: RNGLifecycle = "independent"
 
     def __post_init__(self) -> None:
-        if self.algorithm == "drfft_umap":
-            warnings.warn(
-                "algorithm='drfft_umap' is deprecated and will be replaced by "
-                "algorithm='ibumap'; use 'ibumap' instead",
-                FutureWarning,
-                stacklevel=3,
-            )
-            self.algorithm = "ibumap"
         if self.algorithm not in ("umap", "ibumap", "hybrid", "tfdp"):
-            raise ValueError(
-                "algorithm must be one of: umap, ibumap, hybrid, tfdp "
-                "(drfft_umap is a deprecated alias for ibumap)"
-            )
+            raise ValueError("algorithm must be one of: umap, ibumap, hybrid, tfdp")
         if self.device == "gpu":
             warnings.warn(
                 "device='gpu' is deprecated and will be replaced by "

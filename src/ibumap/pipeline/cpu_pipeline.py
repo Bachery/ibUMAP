@@ -9,7 +9,7 @@ import numpy as np
 from scipy.sparse import isspmatrix_csr, issparse
 from sklearn.utils import check_random_state
 
-from ..config import UMAPFFTConfig
+from ..config import EffectiveConfig
 from ..graph import (
     build_cpu_graph,
     build_cpu_graph_from_knn,
@@ -115,7 +115,7 @@ class CPUPipeline:
         return self.model.numeric_dtype
 
     def _legacy_params(self, n_vertices: int) -> Dict[str, Any]:
-        cfg: UMAPFFTConfig = self.model.runtime
+        cfg: EffectiveConfig = self.model.runtime
         constraint = cfg.constraint
         noise = cfg.noise
         attraction_schedule = self.model.config.ibumap.experimental.attraction_schedule
@@ -615,7 +615,7 @@ class CPUPipeline:
             verbose=self.model.verbose,
             tqdm_kwds=self.model.tqdm_kwds,
             move_other=True,
-            drfft_params=refinement_legacy,
+            fft_params=refinement_legacy,
         )
         refinement_wall_time = time() - refinement_start
 
@@ -692,7 +692,7 @@ class CPUPipeline:
                         verbose=self.model.verbose,
                         tqdm_kwds=self.model.tqdm_kwds,
                         move_other=True,
-                        drfft_params=legacy,
+                        fft_params=legacy,
                     )
                 else:
                     # Diagnostic CPU mode accumulates sampled updates for one epoch.
@@ -709,7 +709,7 @@ class CPUPipeline:
                         verbose=self.model.verbose,
                         tqdm_kwds=self.model.tqdm_kwds,
                         move_other=True,
-                        drfft_params=legacy,
+                        fft_params=legacy,
                     )
             elif self.model.runtime.algorithm == "ibumap":
                 epochs_per_sample = make_epochs_per_sample(
@@ -983,7 +983,7 @@ class CPUPipeline:
                     verbose=self.model.verbose,
                     tqdm_kwds=self.model.tqdm_kwds,
                     move_other=True,
-                    drfft_params=legacy,
+                    fft_params=legacy,
                 )
             else:
                 embedding, opt_time = umap_optimize_layout_euclidean_synchronous(
@@ -999,7 +999,7 @@ class CPUPipeline:
                     verbose=self.model.verbose,
                     tqdm_kwds=self.model.tqdm_kwds,
                     move_other=True,
-                    drfft_params=legacy,
+                    fft_params=legacy,
                 )
         elif self.model.runtime.algorithm == "ibumap":
             embedding, opt_time = umap_true_loss_optimization(

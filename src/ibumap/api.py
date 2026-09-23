@@ -39,8 +39,8 @@ from .config import (
     TFDPConfig,
     UMAPConfig,
     UMAPSGDUpdateMode,
-    UMAPFFTConfig,
-    UMAPFFTConfigBundle,
+    EffectiveConfig,
+    ConfigBundle,
     _UnsetType as _ConfigUnsetType,
     resolve_numeric_dtype,
 )
@@ -205,7 +205,7 @@ def _merge_legacy_container(
     return deepcopy(legacy)
 
 
-def _resolve_degree_enabled(config: UMAPFFTConfigBundle) -> bool:
+def _resolve_degree_enabled(config: ConfigBundle) -> bool:
     enabled = config.umap.degree_damping.enabled
     return (
         config.runtime.algorithm in ("ibumap", "hybrid")
@@ -214,7 +214,7 @@ def _resolve_degree_enabled(config: UMAPFFTConfigBundle) -> bool:
     )
 
 
-def _validate_effective_config(config: UMAPFFTConfigBundle) -> None:
+def _validate_effective_config(config: ConfigBundle) -> None:
     algorithm = config.runtime.algorithm
     device = config.runtime.device
     numeric_dtype = resolve_numeric_dtype(config.legacy_numerics.dtype)
@@ -394,7 +394,7 @@ def _build_effective_config(
     tfdp: Optional[TFDPConfig],
     constraints: Optional[ConstraintConfig],
     diagnostics: Optional[DiagnosticsConfig],
-) -> tuple[UMAPFFTConfigBundle, list[str]]:
+) -> tuple[ConfigBundle, list[str]]:
     supplied = {
         name: name in provided and value is not None
         for name, value in {
@@ -732,7 +732,7 @@ def _build_effective_config(
         _merge_flat_field(diagnostics_cfg, field_name, flat_name, flat_values, provided, config_was_supplied=supplied["diagnostics"], canonical_name=f"diagnostics.{field_name}")
     diagnostics_cfg.__post_init__()
 
-    bundle = UMAPFFTConfigBundle(
+    bundle = ConfigBundle(
         runtime=runtime_cfg, graph=graph_cfg, umap=umap_cfg,
         initialization=init_cfg, fft=fft_cfg,
         ibumap=ibumap_cfg, cpu_umap=cpu_cfg, hybrid=hybrid_cfg, tfdp=tfdp_cfg,
@@ -789,7 +789,7 @@ class _NestedConfigAttribute:
             instance._refresh_runtime_view()
 
 
-class UMAPFFT:
+class IBUMAP:
     @_track_constructor_arguments
     def __init__(
         self,
@@ -948,9 +948,7 @@ class UMAPFFT:
             if "device" in provided
             else (runtime.device if runtime is not None else "cpu")
         )
-        self._deprecated_algorithm_aliases = (
-            ["drfft_umap"] if raw_algorithm == "drfft_umap" else []
-        )
+        self._deprecated_algorithm_aliases = []
         self._deprecated_device_aliases = ["gpu"] if raw_device == "gpu" else []
         constructor_locals = dict(locals())
         canonical_names = {
@@ -1166,7 +1164,7 @@ class UMAPFFT:
                 kernel_cache_max_entries=int(fft_kernel_cache_max_entries),
             )
 
-        self.runtime = UMAPFFTConfig(
+        self.runtime = EffectiveConfig(
             algorithm=algorithm,
             device=device,
             attraction_mode=attraction_mode,
@@ -1482,12 +1480,12 @@ class UMAPFFT:
         self._last_update_init_override = False
 
     @property
-    def runtime(self) -> UMAPFFTConfig:
+    def runtime(self) -> EffectiveConfig:
         self._refresh_runtime_view()
         return self._runtime_compat
 
     @runtime.setter
-    def runtime(self, value: UMAPFFTConfig) -> None:
+    def runtime(self, value: EffectiveConfig) -> None:
         if not hasattr(self, "config"):
             self._runtime_compat = deepcopy(value)
             return
@@ -1533,7 +1531,7 @@ class UMAPFFT:
 
     def _refresh_runtime_view(self) -> None:
         self._numeric_dtype = resolve_numeric_dtype(self.config.legacy_numerics.dtype)
-        self._runtime_compat = UMAPFFTConfig(
+        self._runtime_compat = EffectiveConfig(
             algorithm=self.config.runtime.algorithm,
             device=self.config.runtime.device,
             attraction_mode=self.config.ibumap.attraction_mode,
@@ -1961,7 +1959,7 @@ class UMAPFFT:
 
         ``fuzzy_graph`` in the returned :class:`PreparedInputs` is the raw
         fuzzy simplicial-set graph for persistence. ``optimizer_graph`` is the
-        thresholded, canonical CSR graph actually consumed by UMAPFFT's
+        thresholded, canonical CSR graph actually consumed by IBUMAP's
         optimizer. The method does not fit or mutate this estimator; passing a
         different ``device`` creates a transient configuration-equivalent
         preparation model instead.
@@ -1996,7 +1994,7 @@ class UMAPFFT:
 
         This skips nearest-neighbor search while keeping fuzzy-graph creation,
         graph preprocessing, CUDA transfers, and initialization under
-        UMAPFFT's ownership.
+        IBUMAP's ownership.
         """
         from .prepared import prepare_fixed_inputs_from_knn
 
@@ -2464,10 +2462,8 @@ class UMAPFFT:
             "noise": self.runtime.noise,
             "hybrid": self.runtime.hybrid,
         }
-        runtime = UMAPFFTConfig(**kwargs)
+        runtime = EffectiveConfig(**kwargs)
         self.runtime = runtime
-        if algorithm == "drfft_umap":
-            self._deprecated_algorithm_aliases.append("drfft_umap")
         if device == "gpu":
             self._deprecated_device_aliases.append("gpu")
 
@@ -2587,4 +2583,4 @@ _LEGACY_CONFIG_PATHS = {
 }
 
 for _legacy_name, _config_path in _LEGACY_CONFIG_PATHS.items():
-    setattr(UMAPFFT, _legacy_name, _NestedConfigAttribute(*_config_path))
+    setattr(IBUMAP, _legacy_name, _NestedConfigAttribute(*_config_path))

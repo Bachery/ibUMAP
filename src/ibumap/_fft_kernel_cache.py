@@ -9,10 +9,10 @@ from typing import Any, Optional
 
 DEFAULT_FFT_KERNEL_CACHE_MAX_ENTRIES = 4
 DEFAULT_CUDA_FFT_KERNEL_CACHE_MAX_ENTRIES = int(
-    os.environ.get("DRFFT_CUDA_FFT_KERNEL_CACHE_MAX_ENTRIES", "32")
+    os.environ.get("IBUMAP_CUDA_FFT_KERNEL_CACHE_MAX_ENTRIES", "32")
 )
 DEFAULT_FFT_KERNEL_CACHE_LIMIT_BYTES = int(
-    os.environ.get("DRFFT_FFT_KERNEL_CACHE_LIMIT_BYTES", str(1024 * 1024 * 1024))
+    os.environ.get("IBUMAP_FFT_KERNEL_CACHE_LIMIT_BYTES", str(1024 * 1024 * 1024))
 )
 VALID_FFT_KERNEL_CACHE_POLICIES = ("auto", "legacy", "byte_lru", "disabled")
 

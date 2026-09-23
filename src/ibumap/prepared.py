@@ -1,4 +1,4 @@
-"""Public fixed-input preparation support for :class:`~umap_fft.UMAPFFT`.
+"""Public fixed-input preparation support for :class:`~ibumap.IBUMAP`.
 
 The helpers in this module intentionally keep graph construction, graph
 preprocessing, initialization, and host/device transfer policy in the package.
@@ -28,11 +28,11 @@ from .utils import derive_random_seed, preprocess_graph, preprocess_graph_csr
 
 @dataclass(frozen=True)
 class PreparedInputs:
-    """Artifacts prepared by :meth:`UMAPFFT.prepare_fixed_inputs`.
+    """Artifacts prepared by :meth:`IBUMAP.prepare_fixed_inputs`.
 
     ``fuzzy_graph`` is the unmodified fuzzy simplicial-set graph, appropriate
     for durable fixed-input storage. ``optimizer_graph`` is the graph after the
-    exact thresholding/canonicalization consumed by UMAPFFT optimizers.  On
+    exact thresholding/canonicalization consumed by IBUMAP optimizers.  On
     CUDA, ``host_output=False`` returns CuPy/CuPyX objects; otherwise all
     returned arrays and graphs are host-resident NumPy/SciPy objects. Metal
     preparation deliberately keeps CPU graph/init artifacts on the host.
@@ -281,7 +281,7 @@ def _initialize_cuda(
     optimizer_graph: Any,
 ) -> tuple[Any, dict[str, float], dict[str, Any], Any]:
     if initialize_embedding_gpu is None:
-        raise RuntimeError("UMAPFFT CUDA initializer is unavailable")
+        raise RuntimeError("IBUMAP CUDA initializer is unavailable")
     try:
         import cupy as cp
         from cupyx.scipy import sparse as cupyx_sparse

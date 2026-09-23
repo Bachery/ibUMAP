@@ -31,7 +31,7 @@ def warmup_jit(*, raise_errors: bool = False) -> dict[str, Any]:
     """Synchronously warm CPU/optimizer and umap-learn JIT kernels once.
 
     Warmup is deliberately explicit and synchronous.  Starting a thread from
-    ``umap_fft.__init__`` and importing package descendants in that thread can
+    ``ibumap.__init__`` and importing package descendants in that thread can
     form a cycle between Python's parent-package and child-module locks when a
     caller immediately imports another submodule.  A process-wide lock makes
     concurrent explicit callers serialize safely, while the completed state

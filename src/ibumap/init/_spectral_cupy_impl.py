@@ -23,7 +23,7 @@ from ..kernels.gpu.cupy_sparse import (
 _CSR_NORMALIZE_FLOAT32_KERNEL = cp.RawKernel(
 	r"""
 	extern "C" __global__
-	void umap_fft_csr_normalize_float32(
+	void ibumap_csr_normalize_float32(
 		const int n_rows,
 		const int* indptr,
 		const int* indices,
@@ -45,7 +45,7 @@ _CSR_NORMALIZE_FLOAT32_KERNEL = cp.RawKernel(
 		}
 	}
 	""",
-	"umap_fft_csr_normalize_float32",
+	"ibumap_csr_normalize_float32",
 )
 
 

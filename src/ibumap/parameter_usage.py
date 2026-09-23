@@ -1,4 +1,4 @@
-"""Path-aware UMAPFFT parameter usage registry and reporting helpers."""
+"""Path-aware IBUMAP parameter usage registry and reporting helpers."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from .config import (
     NoiseConfig,
     NumericsConfig,
     TFDPConfig,
-    UMAPFFTConfigBundle,
+    ConfigBundle,
 )
 
 
@@ -40,12 +40,12 @@ PATH_LABELS = (
 )
 REGISTRY_VERSION = "2026-07-21"
 
-IBUMAP = {"ibumap_cpu", "ibumap_cuda", "ibumap_metal"}
+IBUMAP_PATHS = {"ibumap_cpu", "ibumap_cuda", "ibumap_metal"}
 HYBRID = {"hybrid_cpu"}
 CPU_UMAP = {"cpu_umap_async", "cpu_umap_sync"}
 TFDP = {"tfdp_cpu", "tfdp_cuda"}
 CUMl = {"cuml_umap_baseline"}
-IBUMAP_FAMILY = IBUMAP | HYBRID
+IBUMAP_FAMILY = IBUMAP_PATHS | HYBRID
 INTERNAL = IBUMAP_FAMILY | CPU_UMAP | TFDP
 FULL_PIPELINE = INTERNAL | CUMl
 
@@ -85,15 +85,15 @@ GROUPS: list[tuple[set[str], str, set[str], str, str]] = [
     (_names("tfdp_config"), "legacy", TFDP | {"fixed_knn", "optimization_only", "update_embedding"}, "legacy", "Legacy tFDP optimizer configuration."),
     (_names("constraint_config"), "experimental", INTERNAL | {"fixed_knn", "optimization_only", "update_embedding"}, "partial", "Hard constraints work broadly; soft pull forces are implemented on CPU UMAP/ibUMAP but not GPU kernels or the selected tFDP exact path."),
     (_names("numerics_config"), "public_core", IBUMAP_FAMILY | CPU_UMAP | TFDP | {"fixed_knn", "optimization_only", "update_embedding"}, "partial", "epsilon and CPU dtype are consumed; CPU UMAP and hybrid require float32, while CPU ibUMAP/tFDP also accept float64. NumericsConfig.deterministic is unused. CUDA kernels are float32-only."),
-    (_names("noise_config"), "experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "duplicated", "Alternative container for the seven flat noise/hybrid parameters."),
+    (_names("noise_config"), "experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "duplicated", "Alternative container for the seven flat noise/hybrid parameters."),
     (_names("ibfft_kernel_clip umap_epsilon"), "ibumap_stability", IBUMAP_FAMILY | {"fixed_knn", "optimization_only", "update_embedding"}, "supported", "ibFFT UMAP kernel stability controls. epsilon is also used by CPU UMAP and duplicates NumericsConfig.epsilon."),
     (_names("ibfft_kernel_subsample_mode ibfft_kernel_subsample_radius_cells ibfft_kernel_subsample_points"), "experimental", {"ibumap_cpu", "fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Near-origin kernel discretization experiment; CPU ibUMAP only."),
-    (_names("noise_mode noise_scale noise_decay noise_until_epoch noise_seed hybrid_mode hybrid_switch_epoch"), "experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Flat aliases for NoiseConfig; default-off and duplicated."),
-    (_names("attraction_kernel_mode attraction_schedule_mode attraction_calendar_memory_limit_bytes attraction_warp_min_degree"), "experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "ibUMAP attraction kernel/scheduler controls; kernel_mode=auto keeps CPU on row-thread and enables the CUDA warp-per-row fast path above warp_min_degree. CPU sampling experiments include active_edge_calendar and active_edge_periodic."),
+    (_names("noise_mode noise_scale noise_decay noise_until_epoch noise_seed hybrid_mode hybrid_switch_epoch"), "experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Flat aliases for NoiseConfig; default-off and duplicated."),
+    (_names("attraction_kernel_mode attraction_schedule_mode attraction_calendar_memory_limit_bytes attraction_warp_min_degree"), "experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "ibUMAP attraction kernel/scheduler controls; kernel_mode=auto keeps CPU on row-thread and enables the CUDA warp-per-row fast path above warp_min_degree. CPU sampling experiments include active_edge_calendar and active_edge_periodic."),
     (_names("attraction_degree_damping attraction_degree_damping_mode attraction_degree_damping_ref attraction_degree_damping_ref_value attraction_degree_damping_power attraction_degree_damping_min_scale"), "ibumap_stability", IBUMAP_FAMILY | {"fixed_knn", "optimization_only", "update_embedding"}, "supported", "ibUMAP degree damping; enabled by default for ibUMAP and hybrid."),
     (_names("repulsion_clip_norm repulsion_clip_with_alpha repulsion_clip_epoch_range"), "ibumap_stability", IBUMAP_FAMILY | {"cpu_umap_sync", "fixed_knn", "optimization_only", "update_embedding"}, "supported", "Enabled by default for ibUMAP/hybrid; CPU UMAP synchronous also consumes it."),
-    (_names("total_update_clip_norm total_update_clip_with_alpha total_update_clip_epoch_range"), "experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Default-off combined-update clipping."),
-    (_names("diagnostics_path diagnostics_timing_path diagnostics_thresholds diagnostics_topk_path diagnostics_topk diagnostics_labels diagnostics_point_ids"), "diagnostics", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "diagnostics", "Default-off force/update CSV diagnostics. Timing diagnostics require CPU local-exact mode."),
+    (_names("total_update_clip_norm total_update_clip_with_alpha total_update_clip_epoch_range"), "experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Default-off combined-update clipping."),
+    (_names("diagnostics_path diagnostics_timing_path diagnostics_thresholds diagnostics_topk_path diagnostics_topk diagnostics_labels diagnostics_point_ids"), "diagnostics", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "diagnostics", "Default-off force/update CSV diagnostics. Timing diagnostics require CPU local-exact mode."),
     (_names("diagnostics_memory_path diagnostics_memory_epoch_stride diagnostics_memory_sample_interval_ms"), "diagnostics", FULL_PIPELINE | {"fixed_knn", "optimization_only", "update_embedding"}, "diagnostics", "Default-off stage and optional periodic memory JSONL diagnostics. Records snapshots only when diagnostics_memory_path is set."),
     (_names("local_exact_repulsion local_exact_k local_exact_radius_factor local_exact_weight local_exact_every local_exact_clip local_exact_symmetric local_exact_start_epoch local_exact_end_epoch local_exact_start_frac local_exact_end_frac local_exact_density_filter local_exact_min_cell_count local_exact_min_cell_count_quantile local_exact_density_include_neighbor_cells local_exact_timing_sample_size"), "experimental", {"ibumap_cpu", "fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Default-off CPU-only exact near-field correction."),
     (_names("local_density_pressure local_density_pressure_weight local_density_pressure_every local_density_pressure_min_count local_density_pressure_clip local_density_pressure_power"), "experimental", {"ibumap_cpu", "fixed_knn", "optimization_only", "update_embedding"}, "experimental", "Default-off CPU-only density pressure correction."),
@@ -225,8 +225,8 @@ NESTED_GROUPS: dict[str, tuple[str, set[str], str, str]] = {
     "TFDPConfig": ("legacy", TFDP | {"fixed_knn", "optimization_only", "update_embedding"}, "legacy", "Legacy tFDP-only leaf setting."),
     "ConstraintConfig": ("experimental", INTERNAL | {"fixed_knn", "optimization_only", "update_embedding"}, "partial", "Constraint leaf setting; GPU soft constraints and tFDP soft pulls are not implemented."),
     "NumericsConfig": ("public_core", IBUMAP_FAMILY | CPU_UMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "partial", "Numerics leaf setting."),
-    "NoiseConfig": ("experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "duplicated", "Duplicates the flat noise/hybrid constructor parameters."),
-    "AttractionScheduleConfig": ("experimental", IBUMAP | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "ibUMAP attraction kernel/scheduler experiment leaf setting."),
+    "NoiseConfig": ("experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "duplicated", "Duplicates the flat noise/hybrid constructor parameters."),
+    "AttractionScheduleConfig": ("experimental", IBUMAP_PATHS | {"fixed_knn", "optimization_only", "update_embedding"}, "experimental", "ibUMAP attraction kernel/scheduler experiment leaf setting."),
     "HybridOptimizerConfig": ("hybrid", HYBRID | {"optimization_only"}, "supported", "Independent CPU UMAP refinement-stage setting."),
 }
 
@@ -355,7 +355,7 @@ def _canonical_metadata(name: str) -> tuple[str, set[str], str, str]:
     if root == "constraints":
         return "experimental", set(INTERNAL), "partial", "Canonical constraint field."
     if root == "diagnostics":
-        return "diagnostics", set(IBUMAP), "diagnostics", "Canonical diagnostics field."
+        return "diagnostics", set(IBUMAP_PATHS), "diagnostics", "Canonical diagnostics field."
     return "legacy", set(), "legacy", "Legacy compatibility field."
 
 
@@ -413,10 +413,10 @@ def _iter_config_leaves(value: Any, prefix: str = ""):
 
 def build_parameter_usage_registry() -> list[dict[str, Any]]:
     """Build the registry from signatures plus code-inspection metadata."""
-    from .api import UMAPFFT
+    from .api import IBUMAP
 
     records: list[dict[str, Any]] = []
-    for name, parameter in signature(UMAPFFT.__init__).parameters.items():
+    for name, parameter in signature(IBUMAP.__init__).parameters.items():
         if name == "self":
             continue
         category, used_by, status, notes = _metadata_for(name)
@@ -428,7 +428,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                 used_by,
                 status,
                 notes,
-                ["src/umap_fft/api.py:65"],
+                ["src/ibumap/api.py:65"],
                 canonical_name=FLAT_TO_CANONICAL.get(name, name),
                 legacy_names=(
                     (name,)
@@ -439,7 +439,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
             )
         )
 
-    defaults = UMAPFFTConfigBundle()
+    defaults = ConfigBundle()
     for name, default in _iter_config_leaves(defaults):
         category, used_by, status, notes = _canonical_metadata(name)
         records.append(
@@ -450,7 +450,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                 used_by,
                 status,
                 notes,
-                ["src/umap_fft/config.py"],
+                ["src/ibumap/config.py"],
                 legacy_names=CANONICAL_TO_FLAT.get(name, ()),
             )
         )
@@ -497,7 +497,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                     leaf_used_by,
                     leaf_status,
                     leaf_notes,
-                    [f"src/umap_fft/config.py:{config_type.__name__}"],
+                    [f"src/ibumap/config.py:{config_type.__name__}"],
                 )
             )
 
@@ -510,7 +510,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                 set(),
                 "unused",
                 "Accepted by fit/fit_transform but never read or forwarded.",
-                ["src/umap_fft/api.py:541"],
+                ["src/ibumap/api.py:541"],
             ),
             _record(
                 "update_embedding.init",
@@ -519,16 +519,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                 INTERNAL | CUMl | {"update_embedding"},
                 "supported",
                 "None continues from the current embedding; string/array values reinitialize. GPU UMAP still reruns cuML full fit.",
-                ["src/umap_fft/api.py:628"],
-            ),
-            _record(
-                "algorithm alias: drfft_umap",
-                None,
-                "deprecated",
-                IBUMAP,
-                "deprecated",
-                "Backward-compatible alias canonicalized to ibumap and accompanied by FutureWarning.",
-                ["src/umap_fft/config.py:158"],
+                ["src/ibumap/api.py:628"],
             ),
             _record(
                 "device alias: gpu",
@@ -537,7 +528,7 @@ def build_parameter_usage_registry() -> list[dict[str, Any]]:
                 {"ibumap_cuda", "cuml_umap_baseline", "tfdp_cuda"},
                 "deprecated",
                 "Backward-compatible alias canonicalized to cuda and accompanied by FutureWarning.",
-                ["src/umap_fft/config.py:171"],
+                ["src/ibumap/config.py:171"],
             ),
         ]
     )
@@ -778,11 +769,11 @@ def write_registry_docs(output_dir: Union[str, Path]) -> tuple[Path, Path]:
         encoding="utf-8",
     )
     lines = [
-        f"# UMAPFFT Parameter Usage Registry ({REGISTRY_VERSION})",
+        f"# IBUMAP Parameter Usage Registry ({REGISTRY_VERSION})",
         "",
-        "This file is generated from `umap_fft.parameter_usage`. `used_by` records actual code consumption; an accepted parameter that is absent from a path is intentionally listed under `ignored_by` in the JSON registry. Flat compatibility inputs are marked as aliases and point to their canonical dotted name.",
+        "This file is generated from `ibumap.parameter_usage`. `used_by` records actual code consumption; an accepted parameter that is absent from a path is intentionally listed under `ignored_by` in the JSON registry. Flat compatibility inputs are marked as aliases and point to their canonical dotted name.",
         "",
-        f"Total records: **{len(records)}** (UMAPFFT constructor parameters, config leaf fields, method-only parameters, and deprecated aliases).",
+        f"Total records: **{len(records)}** (IBUMAP constructor parameters, config leaf fields, method-only parameters, and deprecated aliases).",
         "",
         "| Name | Canonical name | Alias | Default | Category | Used by | Status | Default result/runtime effect | Notes |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
@@ -805,7 +796,6 @@ def write_registry_docs(output_dir: Union[str, Path]) -> tuple[Path, Path]:
             "- `NumericsConfig.dtype` accepts `float32` or `float64` for CPU ibUMAP and tFDP; CPU UMAP, hybrid, CUDA, and Metal paths require `float32`.",
             "- top-level `deterministic` is authoritative for same-device repeatability across pipelines; `NumericsConfig.deterministic` is currently unused.",
             "- the seven flat noise/hybrid parameters and `NoiseConfig` are compatibility representations of the same settings; equal duplicates are accepted and unequal duplicates raise `ValueError`.",
-            "- `algorithm='drfft_umap'` is a deprecated alias and is canonicalized to `algorithm='ibumap'`.",
             "- `device='gpu'` is a deprecated alias and is canonicalized to `device='cuda'`.",
             "",
         ]

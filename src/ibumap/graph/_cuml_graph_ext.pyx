@@ -2,7 +2,7 @@
 
 """Optional cuML graph-only wrappers for CUDA ibUMAP.
 
-This module is compiled only when ``UMAP_FFT_BUILD_CUML_GRAPH_EXT=1`` is set
+This module is compiled only when ``IBUMAP_BUILD_CUML_GRAPH_EXT=1`` is set
 during package build. It mirrors cuML.UMAP's large dense unseeded graph path by
 calling ML::UMAP::get_graph with UMAPParams.build_algo=NN_DESCENT.
 """

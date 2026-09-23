@@ -281,10 +281,10 @@ def umap_optimize_layout_euclidean(
     verbose=False,
     tqdm_kwds=None,
     move_other=True,
-    drfft_params=None,
+    fft_params=None,
 ):
     t1 = time()
-    initial_alpha = drfft_params["umap_initial_alpha"]
+    initial_alpha = fft_params["umap_initial_alpha"]
     alpha = initial_alpha
     epoch_of_next_sample = epochs_per_sample.copy()
     epoch_of_next_negative_sample = epochs_per_negative_sample.copy()
@@ -313,9 +313,9 @@ def umap_optimize_layout_euclidean(
             n_vertices,
             n_components,
             rng_state_per_sample,
-            drfft_params["umap_a"],
-            drfft_params["umap_b"],
-            drfft_params["umap_gamma"],
+            fft_params["umap_a"],
+            fft_params["umap_b"],
+            fft_params["umap_gamma"],
             alpha,
             epoch_itr,
             epochs_per_sample,
@@ -323,15 +323,15 @@ def umap_optimize_layout_euclidean(
             epoch_of_next_negative_sample,
             epoch_of_next_sample,
             move_other,
-            drfft_params["umap_epsilon"],
-            drfft_params["whether_known_points"],
-            drfft_params["known_points_positions"],
-            drfft_params["known_points_reverse_index"],
-            drfft_params["soft_constraint"],
-            drfft_params["constraint_weight"],
-            drfft_params["attr_gauss"],
-            drfft_params["repl_gauss"],
-            drfft_params["gauss_sigma"],
+            fft_params["umap_epsilon"],
+            fft_params["whether_known_points"],
+            fft_params["known_points_positions"],
+            fft_params["known_points_reverse_index"],
+            fft_params["soft_constraint"],
+            fft_params["constraint_weight"],
+            fft_params["attr_gauss"],
+            fft_params["repl_gauss"],
+            fft_params["gauss_sigma"],
         )
         alpha = initial_alpha * (1.0 - (float(epoch_itr) / float(n_epochs)))
 
@@ -353,20 +353,20 @@ def umap_optimize_layout_euclidean_synchronous(
     verbose=False,
     tqdm_kwds=None,
     move_other=True,
-    drfft_params=None,
+    fft_params=None,
 ):
     """Run diagnostic CPU UMAP with one force-buffer application per epoch."""
     t1 = time()
-    initial_alpha = drfft_params["umap_initial_alpha"]
+    initial_alpha = fft_params["umap_initial_alpha"]
     alpha = initial_alpha
     epoch_of_next_sample = epochs_per_sample.copy()
     epoch_of_next_negative_sample = epochs_per_negative_sample.copy()
     rng_state_per_sample = _make_rng_state_per_sample(embedding, rng_state)
     update_buffer = np.zeros_like(embedding)
     repulsion_buffer = np.zeros_like(embedding)
-    drfft_params["repulsion_clip_epoch_range"] = (
+    fft_params["repulsion_clip_epoch_range"] = (
         _validate_clip_epoch_range_for_epochs(
-            drfft_params.get("repulsion_clip_epoch_range"),
+            fft_params.get("repulsion_clip_epoch_range"),
             n_epochs,
             "repulsion_clip_epoch_range",
         )
@@ -398,9 +398,9 @@ def umap_optimize_layout_euclidean_synchronous(
             n_vertices,
             n_components,
             rng_state_per_sample,
-            drfft_params["umap_a"],
-            drfft_params["umap_b"],
-            drfft_params["umap_gamma"],
+            fft_params["umap_a"],
+            fft_params["umap_b"],
+            fft_params["umap_gamma"],
             alpha,
             epoch_itr,
             epochs_per_sample,
@@ -408,18 +408,18 @@ def umap_optimize_layout_euclidean_synchronous(
             epoch_of_next_negative_sample,
             epoch_of_next_sample,
             move_other,
-            drfft_params["umap_epsilon"],
-            drfft_params["whether_known_points"],
-            drfft_params["known_points_positions"],
-            drfft_params["known_points_reverse_index"],
-            drfft_params["soft_constraint"],
-            drfft_params["constraint_weight"],
-            drfft_params["attr_gauss"],
-            drfft_params["repl_gauss"],
-            drfft_params["gauss_sigma"],
+            fft_params["umap_epsilon"],
+            fft_params["whether_known_points"],
+            fft_params["known_points_positions"],
+            fft_params["known_points_reverse_index"],
+            fft_params["soft_constraint"],
+            fft_params["constraint_weight"],
+            fft_params["attr_gauss"],
+            fft_params["repl_gauss"],
+            fft_params["gauss_sigma"],
         )
         repulsion_clip_norm = _resolve_repulsion_clip_norm(
-            drfft_params,
+            fft_params,
             alpha,
             epoch_itr,
         )

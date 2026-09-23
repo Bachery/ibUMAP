@@ -535,7 +535,7 @@ _normalize_kernel = cp.ElementwiseKernel(
     "T vector, raw T lanczos_vectors",
     "vector = work / beta[index]; "
     "lanczos_vectors[i + (index + 1) * n] = vector;",
-    "umap_fft_eigsh_normalize",
+    "ibumap_eigsh_normalize",
 )
 
 

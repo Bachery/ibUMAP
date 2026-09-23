@@ -109,7 +109,7 @@ def ensure_metal_runtime() -> MetalRuntimeInfo:
     if importlib.util.find_spec("mlx") is None:
         raise MetalDeviceError(
             "device='metal' requires MLX; install the optional dependency with "
-            "pip install 'umap-fft[metal]'"
+            "pip install 'ibumap[metal]'"
         )
 
     try:
