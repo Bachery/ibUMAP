@@ -15,8 +15,9 @@ pip install -e .
 Optional backends:
 
 ```bash
-pip install -e ".[gpu]"     # CUDA (CuPy + cuML)
-pip install -e ".[metal]"   # Apple Silicon (MLX)
+pip install -e ".[cuda]"      # CUDA runtime (CuPy + cuML); see environments/README.md
+pip install -e ".[metal]"     # Apple Silicon (MLX)
+pip install -e ".[datasets]"  # dataset download / preparation scripts
 ```
 
 ## Quick start
