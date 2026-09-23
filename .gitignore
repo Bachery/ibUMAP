@@ -20,3 +20,11 @@ datasets/processed/**/*
 !datasets/processed/**/metadata.json
 !datasets/processed/**/checksums.txt
 
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.so
+*.pyd
+*.o

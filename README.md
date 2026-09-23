@@ -1,0 +1,49 @@
+# ibUMAP
+
+Reference implementation for the paper *ibUMAP: Coherent and Scalable Field
+Evaluation for UMAP Optimization*.
+
+> **Note:** this README is a placeholder. Installation, reproduction commands,
+> dataset preparation and hardware notes still need to be written.
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+Optional backends:
+
+```bash
+pip install -e ".[gpu]"     # CUDA (CuPy + cuML)
+pip install -e ".[metal]"   # Apple Silicon (MLX)
+```
+
+## Quick start
+
+```python
+from ibumap import IBUMAP
+
+model = IBUMAP(n_components=2, algorithm="ibumap", device="cpu")
+embedding = model.fit_transform(X)
+```
+
+## Layout
+
+```
+src/ibumap/
+├── api.py            # public IBUMAP estimator
+├── config.py         # configuration dataclasses
+├── graph/            # kNN graph construction (CPU / cuML)
+├── init/             # spectral initialization
+├── kernels/          # ibFFT field-evaluation kernels (CPU / CUDA / Metal)
+├── optimizers/       # ibUMAP, UMAP and tFDP optimizers
+├── pipeline/         # per-device orchestration
+└── evaluation/       # embedding-quality metrics
+```
+
+## License
+
+Intentionally unset for now. The license will be decided after the
+third-party code provenance audit (see the migration record kept with the
+research repository).

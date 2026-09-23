@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ibumap"
+version = "0.1.0"
+description = "ibUMAP: coherent and scalable field evaluation for UMAP optimization (CPU/CUDA/Metal)"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Anonymous" }]
+# license: intentionally unset until third-party code provenance is audited (see MIGRATION doc)
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "numpy>=1.23",
+  "scipy>=1.9",
+  "numba>=0.57",
+  "umap-learn>=0.5",
+  "pynndescent>=0.5",
+  "pyfftw>=0.13",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "cupy-cuda12x>=13.6,<14; platform_system == 'Linux'",
+  "cuml-cu12==26.6.*; platform_system == 'Linux'",
+]
+metal = [
+  "mlx>=0.32.0; platform_system == 'Darwin' and platform_machine == 'arm64'",
+]
+test = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+  "setuptools>=68",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"ibumap.kernels.gpu" = ["*.cu"]
+"ibumap.kernels.cpu" = ["*.cpp"]
+"ibumap.graph" = ["*.pyx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
