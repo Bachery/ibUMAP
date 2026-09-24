@@ -1,0 +1,131 @@
+fixed_inputs:
+  random_state: 42
+  n_neighbors: 15
+  metric: euclidean
+  metric_kwds: {}
+  n_components: 2
+  min_dist: 0.1
+  spread: 1.0
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  set_op_mix_ratio: 1.0
+  local_connectivity: 1.0
+  low_memory: true
+  n_jobs: -1
+  init: spectral
+
+common_umap_params:
+  n_components: 2
+  n_neighbors: 15
+  min_dist: 0.1
+  spread: 1.0
+  n_epochs: 200
+  metric: euclidean
+  metric_kwds: {}
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  set_op_mix_ratio: 1.0
+  local_connectivity: 1.0
+  low_memory: true
+  verbose: false
+  deterministic: true
+
+# Every entry resolves to a canonical FFTConfig. p2m_mode=auto is required
+# because CPU atomic/segmented and CUDA block_atomic do not support p>1.
+algorithms:
+  - name: cpu_p1
+    label: CPU fixed p=1
+    family: ibumap_optimization_only
+    device: cpu
+    variant: p1
+    enabled: true
+    fft:
+      n_interpolation_points: 1
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cpu_p2
+    label: CPU fixed p=2
+    family: ibumap_optimization_only
+    device: cpu
+    variant: p2
+    enabled: true
+    fft:
+      n_interpolation_points: 2
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cpu_p3
+    label: CPU fixed p=3
+    family: ibumap_optimization_only
+    device: cpu
+    variant: p3
+    enabled: true
+    fft:
+      n_interpolation_points: 3
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cpu_schedule
+    label: CPU schedule p1→p2→p3
+    family: ibumap_optimization_only
+    device: cpu
+    variant: schedule
+    enabled: true
+    fft:
+      n_interpolation_points: 1
+      p2m_mode: auto
+      combine_stages: false
+      interpolation_schedule:
+        - {start_fraction: 0.0, n_interpolation_points: 1}
+        - {start_fraction: 0.90, n_interpolation_points: 2}
+        - {start_fraction: 0.95, n_interpolation_points: 3}
+  - name: cuda_p1
+    label: CUDA fixed p=1
+    family: ibumap_optimization_only
+    device: cuda
+    variant: p1
+    enabled: true
+    fft:
+      n_interpolation_points: 1
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cuda_p2
+    label: CUDA fixed p=2
+    family: ibumap_optimization_only
+    device: cuda
+    variant: p2
+    enabled: true
+    fft:
+      n_interpolation_points: 2
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cuda_p3
+    label: CUDA fixed p=3
+    family: ibumap_optimization_only
+    device: cuda
+    variant: p3
+    enabled: true
+    fft:
+      n_interpolation_points: 3
+      p2m_mode: auto
+      combine_stages: false
+
+  - name: cuda_schedule
+    label: CUDA schedule p1→p2→p3
+    family: ibumap_optimization_only
+    device: cuda
+    variant: schedule
+    enabled: true
+    fft:
+      n_interpolation_points: 1
+      p2m_mode: auto
+      combine_stages: false
+      interpolation_schedule:
+        - {start_fraction: 0.0, n_interpolation_points: 1}
+        - {start_fraction: 0.90, n_interpolation_points: 2}
+        - {start_fraction: 0.95, n_interpolation_points: 3}

@@ -1,0 +1,35 @@
+# 30 datasets, stratified by family and size. size_bin boundaries are:
+# micro <2k, small 2k-10k, medium 10k-50k, large 50k-100k,
+# xlarge 100k-200k. 00_validate_experiment.py checks all metadata against
+# datasets/catalog.json and the processed feature arrays.
+datasets:
+  - {name: iris, path: iris, expected_rows: 150, family: classic_benchmark, size_bin: micro}
+  - {name: wine, path: wine, expected_rows: 178, family: classic_benchmark, size_bin: micro}
+  - {name: diabetes, path: diabetes, expected_rows: 442, family: classic_benchmark, size_bin: micro}
+  - {name: foresttype, path: foresttype, expected_rows: 523, family: tabular_ml, size_bin: micro}
+  - {name: breast_cancer, path: breast_cancer, expected_rows: 569, family: classic_benchmark, size_bin: micro}
+  - {name: secom, path: secom, expected_rows: 1567, family: tabular_ml, size_bin: micro}
+  - {name: digits, path: digits, expected_rows: 1797, family: classic_benchmark, size_bin: micro}
+  - {name: bank, path: bank, expected_rows: 2059, family: tabular_ml, size_bin: small}
+  - {name: tabula_sapiens_v2_neural, path: tabula_sapiens_v2_neural, expected_rows: 2685, family: tabula_sapiens_v2, size_bin: small}
+  - {name: hiva, path: hiva, expected_rows: 3076, family: tabular_ml, size_bin: small}
+  - {name: scdeed_velocity, path: scdeed_velocity, expected_rows: 3396, family: scdeed, size_bin: small}
+  - {name: c_elegans_embryogenesis_stage_early_annotated, path: c_elegans_embryogenesis_stage_early_annotated, expected_rows: 5442, family: c_elegans_embryogenesis, size_bin: small}
+  - {name: epileptic, path: epileptic, expected_rows: 5750, family: tabular_ml, size_bin: small}
+  - {name: tabula_sapiens_v2_kidney, path: tabula_sapiens_v2_kidney, expected_rows: 11376, family: tabula_sapiens_v2, size_bin: medium}
+  - {name: c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron, path: c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron, expected_rows: 13836, family: c_elegans_embryogenesis, size_bin: medium}
+  - {name: tabula_sapiens_v2_prostate, path: tabula_sapiens_v2_prostate, expected_rows: 21030, family: tabula_sapiens_v2, size_bin: medium}
+  - {name: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron, path: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron, expected_rows: 21988, family: c_elegans_embryogenesis, size_bin: medium}
+  - {name: c_elegans_embryogenesis_plot_cell_type_top_8_mixture, path: c_elegans_embryogenesis_plot_cell_type_top_8_mixture, expected_rows: 24095, family: c_elegans_embryogenesis, size_bin: medium}
+  - {name: tabula_sapiens_v2_heart, path: tabula_sapiens_v2_heart, expected_rows: 25832, family: tabula_sapiens_v2, size_bin: medium}
+  - {name: c_elegans_embryogenesis_stage_mid_annotated, path: c_elegans_embryogenesis_stage_mid_annotated, expected_rows: 31771, family: c_elegans_embryogenesis, size_bin: medium}
+  - {name: tabula_sapiens_v2_eye, path: tabula_sapiens_v2_eye, expected_rows: 34273, family: tabula_sapiens_v2, size_bin: medium}
+  - {name: c_elegans_embryogenesis_global_qc_annotated, path: c_elegans_embryogenesis_global_qc_annotated, expected_rows: 54649, family: c_elegans_embryogenesis, size_bin: large}
+  - {name: cifar10, path: cifar10, expected_rows: 60000, family: image_benchmark, size_bin: large}
+  - {name: scdeed_cart, path: scdeed_cart, expected_rows: 62167, family: scdeed, size_bin: large}
+  - {name: tabula_sapiens_v2_lung, path: tabula_sapiens_v2_lung, expected_rows: 65847, family: tabula_sapiens_v2, size_bin: large}
+  - {name: fashion_mnist, path: fashion_mnist, expected_rows: 70000, family: image_benchmark, size_bin: large}
+  - {name: mnist784, path: mnist784, expected_rows: 70000, family: image_benchmark, size_bin: large}
+  - {name: c_elegans_embryogenesis_qc_passed, path: c_elegans_embryogenesis_qc_passed, expected_rows: 86024, family: c_elegans_embryogenesis, size_bin: large}
+  - {name: scdeed_samusik, path: scdeed_samusik, expected_rows: 86864, family: scdeed, size_bin: large}
+  - {name: tabula_sapiens_v2_lymph_node, path: tabula_sapiens_v2_lymph_node, expected_rows: 129062, family: tabula_sapiens_v2, size_bin: xlarge}

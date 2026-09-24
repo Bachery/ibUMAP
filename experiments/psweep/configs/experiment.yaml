@@ -1,0 +1,51 @@
+experiment_id: psweep
+description: "Paired CPU/CUDA optimization-only comparison of fixed interpolation orders p=1/2/3 and the p1-to-p2-to-p3 FFT schedule (paper appendix, tab:mechanism-psweep)."
+status: ready
+
+# Expensive stages are dry-run unless --run is explicit.
+dry_run_default: true
+continue_on_error: true
+skip_existing: true
+
+# Repeat seeds are paired across all eight device/variant combinations.
+repeat_seeds: [42, 43, 44]
+fixed_input_seed: 42
+order_seed: 20260716
+shuffle_variants_within_dataset_repeat: true
+
+timing:
+  boundary: optimize_from_graph_call
+  synchronize_cuda: true
+  exclude_fixed_input_loading: true
+  exclude_warmup: true
+  exclude_serialization: true
+
+warmup:
+  enabled: true
+  max_rows: 512
+
+memory:
+  isolated_subprocess_per_task: true
+  sample_interval_ms: 20
+  epoch_stride: 10
+  primary_cpu_metric: rss_bytes
+  primary_cuda_metric: nvml_process_used_bytes
+  cuda_fallback_metric: cupy_pool_total_bytes
+
+stability:
+  reference_repeat: 1
+  max_points: 10000
+  pair_samples: 20000
+  n_neighbors: 15
+
+dataset_contract:
+  required_count: 30
+  maximum_rows: 200000
+  required_size_bins: [micro, small, medium, large, xlarge]
+  required_families:
+    - classic_benchmark
+    - tabular_ml
+    - image_benchmark
+    - tabula_sapiens_v2
+    - scdeed
+    - c_elegans_embryogenesis
