@@ -29,6 +29,19 @@ model = IBUMAP(n_components=2, algorithm="ibumap", device="cpu")
 embedding = model.fit_transform(X)
 ```
 
+## Paper figures and tables
+
+Every figure and table of the paper can be rebuilt from the frozen result
+summaries in `paper/data/`, without a GPU or rerunning experiments:
+
+```bash
+pip install -e ".[paper]"
+python scripts/paper/make_all.py
+```
+
+See [`paper/README.md`](paper/README.md) for the mapping from manuscript
+labels to builders and data files.
+
 ## Layout
 
 ```
