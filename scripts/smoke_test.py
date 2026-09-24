@@ -221,7 +221,13 @@ def cuda_checks() -> None:
         assert total == 523776.0, total
         name = cp.cuda.runtime.getDeviceProperties(0)["name"]
         name = name.decode() if isinstance(name, bytes) else name
-        return f"{count} device(s), {name}, CUDA runtime {cp.cuda.runtime.runtimeGetVersion()}"
+        # runtimeGetVersion(): CUDA runtime CuPy was built against;
+        # get_local_runtime_version(): libcudart actually loaded from the env.
+        built = cp.cuda.runtime.runtimeGetVersion()
+        local = getattr(cp.cuda, "get_local_runtime_version", lambda: None)()
+        driver = cp.cuda.runtime.driverGetVersion()
+        return (f"{count} device(s), {name}, CUDA runtime local={local} "
+                f"(CuPy built with {built}), driver API {driver}")
 
     @check("RMM / cuML resolve inside the active env")
     def _():
@@ -280,12 +286,13 @@ def cuda_checks() -> None:
     @check("ElementwiseKernel ibumap_eigsh_normalize (eigsh_csr_alg2)")
     def _():
         import cupyx.scipy.sparse as cps
+        import scipy.sparse as sp
         from ibumap.init._eigsh_cupy import eigsh_csr_alg2
 
         graph = _block_csr_graph(sizes=(80,))
         d = 1.0 / np.sqrt(np.asarray(graph.sum(axis=1)).ravel())
         lap = (np.eye(80) - d[:, None] * graph.toarray() * d[None, :]).astype(np.float32)
-        vals = eigsh_csr_alg2(cps.csr_matrix(lap), k=3, which="LA",
+        vals = eigsh_csr_alg2(cps.csr_matrix(sp.csr_matrix(lap)), k=3, which="LA",
                               return_eigenvectors=False)
         expected = np.linalg.eigvalsh(lap.astype(np.float64))[-3:]
         np.testing.assert_allclose(np.sort(_to_numpy(vals)), expected, atol=1e-3)
