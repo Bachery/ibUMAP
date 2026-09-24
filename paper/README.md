@@ -84,12 +84,16 @@ not part of the paper and were dropped.
 
 ## Using new results
 
-A full rerun of the experiments (see the top-level README) writes summaries with
-the same layout. Point the builders at them with
+A full rerun of the experiments under `experiments/` ends with an export step
+that writes one group in the layout above to `paper/rerun/<group>/` (ignored by
+git), e.g. `experiments/e2e_benchmark/scripts/07_export_paper_data.py`. Build
+the paper outputs from them with
 
 ```bash
-python scripts/paper/make_all.py --data-dir <new data> --build-dir <out>
+python scripts/paper/make_all.py --data-dir paper/rerun --build-dir paper/build_rerun
 ```
 
 Verification against the manuscript is skipped in that case, because timings
-and unseeded runs are not expected to reproduce bit for bit.
+and unseeded runs are not expected to reproduce bit for bit. Values that differ
+from the frozen data only in formatting (for example `sample_seed`, which the
+frozen local-metric rows leave empty) do not affect the builders.

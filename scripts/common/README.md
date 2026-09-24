@@ -27,6 +27,7 @@ falls back to `src/` without the compiled extensions.
 | `evaluation_cache.py` | the paper's five quality metrics with cached source/embedding states (see below) |
 | `gpu_runtime.py` | CuPy/PyTorch synchronization and memory cleanup, GPU and machine information, array conversion |
 | `run_metadata.py` | JSON read/write, package versions, git commit, timestamps |
+| `paper_data.py` | deterministic `.csv.gz`/JSON writers for exporting summaries in the `paper/data/<group>/` layout (default target `paper/rerun/`) |
 | `task_grid.py` | dataset/algorithm entry selection and task grids |
 | `embedding_diagnostics.py` | bounding-box and radial-tail summaries of embeddings, label sidecars |
 | `plotting.py` | headless Matplotlib, embedding overview grids and heatmaps for the non-paper diagnostic plots |
