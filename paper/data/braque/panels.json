@@ -1,0 +1,58 @@
+{
+  "description": "First two scheduled unseeded UMAP runs on the frozen BRAQUE input; run 2 rotated/reflected and translated for display only (no scaling); colors matched using all cells.",
+  "selection_rule": "First two scheduled unseeded UMAP repeats by default; no effect-size selection",
+  "full_cell_count": 56962,
+  "render_parameters": {
+    "panel_size": 3.0,
+    "legend_width": 1.65,
+    "point_size": 0.3,
+    "change_size": 0.35,
+    "noise_size": 0.65,
+    "dpi": 600,
+    "plot_seed": 20260921,
+    "left_repeat": 0,
+    "right_repeat": 1
+  },
+  "rotation": [
+    [
+      0.9970185330499686,
+      -0.07716245690029257
+    ],
+    [
+      0.07716245690029265,
+      0.9970185330499683
+    ]
+  ],
+  "translation": [
+    0.04275784748207023,
+    1.742723896924704
+  ],
+  "limits": {
+    "x": [
+      -9.740140686286061,
+      24.653540696846875
+    ],
+    "y": [
+      -10.476777005195618,
+      23.916904377937318
+    ]
+  },
+  "category_counts": {
+    "0": 45695,
+    "1": 9281,
+    "2": 915,
+    "3": 1071
+  },
+  "metrics_full_data": {
+    "ami_including_noise": 0.8103289975168839,
+    "ari_both_nonnoise": 0.6561730446425155,
+    "ari_including_noise": 0.6147510629805358,
+    "assignment_disagreement": 0.19779853235490327,
+    "both_nonnoise_count": 54519,
+    "cluster_to_cluster_disagreement": 0.16293318352585934,
+    "cluster_to_noise_count": 915,
+    "noise_status_disagreement": 0.03486534882904392,
+    "noise_to_cluster_count": 1071
+  },
+  "distance_spearman": 0.9348056993399907
+}

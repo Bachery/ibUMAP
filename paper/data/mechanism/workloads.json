@@ -1,0 +1,416 @@
+{
+  "description": "Mechanism experiment (paper Section 4 and appendix): fixed graph and initialization, eight variants A-H plus the sampled-norm-clip control, optimizer seeds 42, 137, 2026.",
+  "variants": [
+    "umap_learn",
+    "sync_sampled",
+    "sync_expected",
+    "sync_direct",
+    "sync_direct_capped",
+    "sync_fft",
+    "sync_fft_guarded",
+    "ibumap_production",
+    "sync_sampled_clip"
+  ],
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "local_metrics": [
+    "trustworthiness",
+    "continuity",
+    "neighborhood_preservation"
+  ],
+  "global_metrics": [
+    "rta",
+    "distance_spearman"
+  ],
+  "removed_metrics": [
+    "geodesic",
+    "persistent_homology"
+  ],
+  "global_configuration": {
+    "max_samples": 1000000,
+    "sample_seed": 42,
+    "rta_n_triplets": 1000000,
+    "rta_random_state": 42,
+    "distance_spearman_n_pairs": 1000000,
+    "distance_spearman_random_state": 42,
+    "source_metric": "euclidean",
+    "dtype": "float32"
+  },
+  "selection": {
+    "candidate_count": 60,
+    "retained_count": 59,
+    "suite": "50k_100k",
+    "decision": "Exclude the entire dataset after a reproducible implementation-control failure, before quality evaluation. Retain all raw results and diagnostics.",
+    "excluded_datasets": [
+      {
+        "name": "c_elegans_embryogenesis_global_qc_annotated",
+        "reason": "The asynchronous ibUMAP implementation control at optimizer seed 2026 reproducibly differs from umap_learn on the experiment machine. Both implementations individually reproduce their saved outputs in two diagnostic repetitions; the cause remains unresolved.",
+        "scope": "All algorithms and all optimizer seeds for this dataset.",
+        "evidence": {
+          "sha256": "8c42d2cd462eaa8074a3d00377a87853366d3dd291d5fa7fb248b4052cd07bf4",
+          "diagnostic_repetitions": 2,
+          "max_abs_coordinate_difference": 7.102718114852905
+        }
+      }
+    ]
+  },
+  "datasets": [
+    {
+      "name": "iris",
+      "n": 150,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "wine",
+      "n": 178,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "diabetes",
+      "n": 442,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "foresttype",
+      "n": 523,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "breast_cancer",
+      "n": 569,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "seismic",
+      "n": 646,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "secom",
+      "n": 1567,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "digits",
+      "n": 1797,
+      "family": "image",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "bank",
+      "n": 2059,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "tabula_sapiens_v2_neural",
+      "n": 2685,
+      "family": "tabula_sapiens",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "tabula_sapiens_v2_ear",
+      "n": 3055,
+      "family": "tabula_sapiens",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "hiva",
+      "n": 3076,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "scdeed_velocity",
+      "n": 3396,
+      "family": "scdeed",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "spambase",
+      "n": 4601,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "scdeed_marrow",
+      "n": 4821,
+      "family": "scdeed",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_stage_early_annotated",
+      "n": 5442,
+      "family": "c_elegans",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "epileptic",
+      "n": 5750,
+      "family": "tabular",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "tabula_sapiens_v2_germline",
+      "n": 7276,
+      "family": "tabula_sapiens",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "tabula_sapiens_v2_testis",
+      "n": 7513,
+      "family": "tabula_sapiens",
+      "size_suite": "le10k"
+    },
+    {
+      "name": "tabula_sapiens_v2_kidney",
+      "n": 11376,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron",
+      "n": 13836,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_pancreas",
+      "n": 14140,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_stage_late_annotated",
+      "n": 17436,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_skin",
+      "n": 17786,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_prostate",
+      "n": 21030,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron",
+      "n": 21988,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_uterus",
+      "n": 22029,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_liver",
+      "n": 22214,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_trachea",
+      "n": 22671,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_amphid_neuron",
+      "n": 23610,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_plot_cell_type_top_8_mixture",
+      "n": 24095,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_pair_body_wall_muscle__hypodermis",
+      "n": 25266,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_heart",
+      "n": 25832,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_bone_marrow",
+      "n": 27112,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_large_intestine",
+      "n": 30084,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_mammary",
+      "n": 30936,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_stage_mid_annotated",
+      "n": 31771,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_stomach",
+      "n": 33064,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_eye",
+      "n": 34273,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_cell_type_top_4_mixture",
+      "n": 35824,
+      "family": "c_elegans",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_tongue",
+      "n": 38754,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_salivary_gland",
+      "n": 39821,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_small_intestine",
+      "n": 42036,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_vasculature",
+      "n": 42650,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_thymus",
+      "n": 42729,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_muscle",
+      "n": 46772,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "tabula_sapiens_v2_ovary",
+      "n": 48951,
+      "family": "tabula_sapiens",
+      "size_suite": "10k_50k"
+    },
+    {
+      "name": "cifar10",
+      "n": 60000,
+      "family": "image",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "scdeed_cart",
+      "n": 62167,
+      "family": "scdeed",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_lung",
+      "n": 65847,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_bladder",
+      "n": 66385,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "fashion_mnist",
+      "n": 70000,
+      "family": "image",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "mnist784",
+      "n": 70000,
+      "family": "image",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_spleen",
+      "n": 70448,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_endothelium",
+      "n": 73195,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_blood",
+      "n": 85233,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "c_elegans_embryogenesis_qc_passed",
+      "n": 86024,
+      "family": "c_elegans",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "scdeed_samusik",
+      "n": 86864,
+      "family": "scdeed",
+      "size_suite": "50k_100k"
+    },
+    {
+      "name": "tabula_sapiens_v2_fat",
+      "n": 94415,
+      "family": "tabula_sapiens",
+      "size_suite": "50k_100k"
+    }
+  ]
+}

@@ -1,0 +1,3837 @@
+[
+  {
+    "dataset": "bank",
+    "family": "tabular",
+    "n": 2059,
+    "nnz": 36168,
+    "graph_sha256": "55fd7a3d8216e75d9461f6d08cf339ac40e40558414510303853495a01399b4d",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005033926572650671,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7669210351692104,
+    "first_activation_draws_share_m": 0.10948905109489052,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9825877475269071,
+      "median": 0.9864502910448261,
+      "p95": 0.9900993524347933,
+      "min": 0.9767829063093002,
+      "max": 0.9932775916763251
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1751976135410757,
+      "max": 1.0990093887889165,
+      "cv": 0.06705184874064529,
+      "argmin_epoch": 1,
+      "argmax_epoch": 19,
+      "epoch1": 0.1751976135410757,
+      "min_t_ge_2": 0.789917872591449,
+      "max_t_ge_2": 1.0990093887889165,
+      "min_t_ge_10": 0.9224703405287764,
+      "max_t_ge_10": 1.0990093887889165
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5049998253199456,
+      "median": 0.5068679126957438,
+      "p95": 0.5088604058633199,
+      "min": 0.5033839524721029,
+      "max": 0.5118844696916451
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5049998253199456,
+      "median": 0.5068679126957438,
+      "p95": 0.5088604058633199,
+      "min": 0.5033839524721028,
+      "max": 0.511884469691645
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0099996506398912,
+      "median": 1.0137358253914877,
+      "p95": 1.0177208117266399,
+      "min": 1.0067679049442055,
+      "max": 1.02376893938329
+    }
+  },
+  {
+    "dataset": "breast_cancer",
+    "family": "tabular",
+    "n": 569,
+    "nnz": 9956,
+    "graph_sha256": "91a1e9eb218571c5055774bf65bee918c745c9da3699c5bde9037fdad18504bd",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005245054140686989,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7511048613901166,
+    "first_activation_draws_share_m": 0.14122137404580154,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9827044406403082,
+      "median": 0.9862091809122575,
+      "p95": 0.9888396290184861,
+      "min": 0.980356120870196,
+      "max": 0.9906515627776931
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1653486060210395,
+      "max": 1.045948039230233,
+      "cv": 0.06580024454188046,
+      "argmin_epoch": 1,
+      "argmax_epoch": 75,
+      "epoch1": 0.1653486060210395,
+      "min_t_ge_2": 0.7950905826668844,
+      "max_t_ge_2": 1.045948039230233,
+      "min_t_ge_10": 0.9658720714571866,
+      "max_t_ge_10": 1.045948039230233
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056431656417154,
+      "median": 0.5069918326429418,
+      "p95": 0.5087999804089687,
+      "min": 0.5047183276005212,
+      "max": 0.5100187466123879
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056431656417154,
+      "median": 0.5069918326429419,
+      "p95": 0.5087999804089687,
+      "min": 0.5047183276005213,
+      "max": 0.5100187466123879
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0112863312834308,
+      "median": 1.0139836652858838,
+      "p95": 1.0175999608179374,
+      "min": 1.0094366552010425,
+      "max": 1.0200374932247758
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_cell_type_top_4_mixture",
+    "family": "c_elegans",
+    "n": 35824,
+    "nnz": 722008,
+    "graph_sha256": "55a4d58c95e07e79c0f58b117a96ed0d38715d4c5959d5c181e8660b1c937100",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000939127057791,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7968382096299702,
+    "first_activation_draws_share_m": 0.12635250056787017,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9820468190505335,
+      "median": 0.9852593337587832,
+      "p95": 0.9882256400648558,
+      "min": 0.9772923104334558,
+      "max": 0.9920327522793152
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17742821173447282,
+      "max": 1.0151888945659069,
+      "cv": 0.06709974097452769,
+      "argmin_epoch": 1,
+      "argmax_epoch": 181,
+      "epoch1": 0.17742821173447282,
+      "min_t_ge_2": 0.6719337068154729,
+      "max_t_ge_2": 1.0151888945659069,
+      "min_t_ge_10": 0.9789209200483853,
+      "max_t_ge_10": 1.0151888945659069
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059573236403638,
+      "median": 0.5074806021806368,
+      "p95": 0.5091406950265502,
+      "min": 0.5040156172779473,
+      "max": 0.5116176548838662
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059573236403639,
+      "median": 0.5074806021806368,
+      "p95": 0.5091406950265501,
+      "min": 0.5040156172779473,
+      "max": 0.5116176548838662
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0119146472807279,
+      "median": 1.0149612043612737,
+      "p95": 1.0182813900531003,
+      "min": 1.0080312345558946,
+      "max": 1.0232353097677325
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_amphid_neuron",
+    "family": "c_elegans",
+    "n": 23610,
+    "nnz": 474170,
+    "graph_sha256": "0669b6b205f9b9ca5e9c768455d2e273614f1c6c5950904322b1522877df97c2",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005020052660256624,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7952497848863694,
+    "first_activation_draws_share_m": 0.12797152064247272,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9821123324823875,
+      "median": 0.9852803112983033,
+      "p95": 0.9882717555007394,
+      "min": 0.9771776266579039,
+      "max": 0.9923188726798368
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17800313476173174,
+      "max": 1.0164588435789874,
+      "cv": 0.06691585131690189,
+      "argmin_epoch": 1,
+      "argmax_epoch": 149,
+      "epoch1": 0.17800313476173174,
+      "min_t_ge_2": 0.6766902726417735,
+      "max_t_ge_2": 1.0164588435789874,
+      "min_t_ge_10": 0.9798080381985952,
+      "max_t_ge_10": 1.0164588435789874
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.50593371430175,
+      "median": 0.507469797443949,
+      "p95": 0.5091067319521422,
+      "min": 0.5038702918646603,
+      "max": 0.5116776994885526
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.50593371430175,
+      "median": 0.507469797443949,
+      "p95": 0.5091067319521422,
+      "min": 0.5038702918646603,
+      "max": 0.5116776994885527
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0118674286035,
+      "median": 1.014939594887898,
+      "p95": 1.0182134639042844,
+      "min": 1.0077405837293205,
+      "max": 1.0233553989771054
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron",
+    "family": "c_elegans",
+    "n": 21988,
+    "nnz": 442254,
+    "graph_sha256": "76f8cf85d6b633613809654e61fe9357edea5696d4d0d7ee7ead94b9ce0f4d95",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005005658138543367,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7953636873428483,
+    "first_activation_draws_share_m": 0.12767044735080768,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9821189600844178,
+      "median": 0.9852489816353411,
+      "p95": 0.988236186255837,
+      "min": 0.9780111645088616,
+      "max": 0.9924996095928525
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17719821397220797,
+      "max": 1.0165045656474294,
+      "cv": 0.06699613563739942,
+      "argmin_epoch": 1,
+      "argmax_epoch": 44,
+      "epoch1": 0.17719821397220797,
+      "min_t_ge_2": 0.6768322148811347,
+      "max_t_ge_2": 1.0165045656474294,
+      "min_t_ge_10": 0.9816466427353517,
+      "max_t_ge_10": 1.0165045656474294
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059519241999648,
+      "median": 0.507485934337226,
+      "p95": 0.5091032963634295,
+      "min": 0.5037785356964646,
+      "max": 0.5112416076058706
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059519241999648,
+      "median": 0.5074859343372259,
+      "p95": 0.5091032963634295,
+      "min": 0.5037785356964646,
+      "max": 0.5112416076058706
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0119038483999296,
+      "median": 1.0149718686744518,
+      "p95": 1.018206592726859,
+      "min": 1.0075570713929292,
+      "max": 1.0224832152117411
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_pair_body_wall_muscle__hypodermis",
+    "family": "c_elegans",
+    "n": 25266,
+    "nnz": 506406,
+    "graph_sha256": "f31af13b895f00e55433550eb0da4812598d241dbff48f588e3a2850eb3ef62a",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005002031568437815,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7955813760609161,
+    "first_activation_draws_share_m": 0.1267925482126848,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.982165479040505,
+      "median": 0.9852813080893754,
+      "p95": 0.9882580909958929,
+      "min": 0.9776668964182953,
+      "max": 0.9914260807873955
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17642075377364652,
+      "max": 1.0156145699883112,
+      "cv": 0.06704905125534233,
+      "argmin_epoch": 1,
+      "argmax_epoch": 169,
+      "epoch1": 0.17642075377364652,
+      "min_t_ge_2": 0.675411940069987,
+      "max_t_ge_2": 1.0156145699883112,
+      "min_t_ge_10": 0.9777843694415799,
+      "max_t_ge_10": 1.0156145699883112
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059407097757721,
+      "median": 0.5074692840459785,
+      "p95": 0.5090791833663875,
+      "min": 0.5043240335203786,
+      "max": 0.5114216322878081
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.505940709775772,
+      "median": 0.5074692840459785,
+      "p95": 0.5090791833663875,
+      "min": 0.5043240335203787,
+      "max": 0.5114216322878082
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011881419551544,
+      "median": 1.014938568091957,
+      "p95": 1.018158366732775,
+      "min": 1.0086480670407574,
+      "max": 1.0228432645756165
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron",
+    "family": "c_elegans",
+    "n": 13836,
+    "nnz": 271012,
+    "graph_sha256": "0a9be16d9927c6d64db5dcea6ef8c717dd9f29e1d89af555e8c311af86fead3f",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005009067710489035,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7889714618864527,
+    "first_activation_draws_share_m": 0.12869087769274482,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9822466759664232,
+      "median": 0.9854425595505354,
+      "p95": 0.9884349288026731,
+      "min": 0.9776511987594004,
+      "max": 0.991459261578062
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17514887685242655,
+      "max": 1.016528434870339,
+      "cv": 0.06645745341862558,
+      "argmin_epoch": 1,
+      "argmax_epoch": 78,
+      "epoch1": 0.17514887685242655,
+      "min_t_ge_2": 0.6948444727854246,
+      "max_t_ge_2": 1.016528434870339,
+      "min_t_ge_10": 0.9795275277277566,
+      "max_t_ge_10": 1.016528434870339
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5058501935030891,
+      "median": 0.5073862450471514,
+      "p95": 0.5090371005931668,
+      "min": 0.5043071554994323,
+      "max": 0.5114298439305139
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5058501935030891,
+      "median": 0.5073862450471514,
+      "p95": 0.5090371005931666,
+      "min": 0.5043071554994323,
+      "max": 0.5114298439305139
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0117003870061783,
+      "median": 1.0147724900943027,
+      "p95": 1.0180742011863333,
+      "min": 1.0086143109988646,
+      "max": 1.0228596878610279
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_plot_cell_type_top_8_mixture",
+    "family": "c_elegans",
+    "n": 24095,
+    "nnz": 481894,
+    "graph_sha256": "f05b97630fada28f36c612e0dfd9c1b1e961dc9c0b64cd847abfac4aae6c0bfe",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000333301723003,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7943031932996323,
+    "first_activation_draws_share_m": 0.1277900905612139,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9821489065325323,
+      "median": 0.985317362305378,
+      "p95": 0.9882684321427114,
+      "min": 0.9772219700078187,
+      "max": 0.9916159011941919
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17710141704187674,
+      "max": 1.0144624896050973,
+      "cv": 0.06692426879538013,
+      "argmin_epoch": 1,
+      "argmax_epoch": 163,
+      "epoch1": 0.17710141704187674,
+      "min_t_ge_2": 0.6768855980715481,
+      "max_t_ge_2": 1.0144624896050973,
+      "min_t_ge_10": 0.9843890553960891,
+      "max_t_ge_10": 1.0144624896050973
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059354156602347,
+      "median": 0.5074507149961656,
+      "p95": 0.5090877734268544,
+      "min": 0.5042274931229477,
+      "max": 0.5116544811165057
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059354156602347,
+      "median": 0.5074507149961656,
+      "p95": 0.5090877734268544,
+      "min": 0.5042274931229478,
+      "max": 0.5116544811165057
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0118708313204694,
+      "median": 1.0149014299923311,
+      "p95": 1.0181755468537088,
+      "min": 1.0084549862458956,
+      "max": 1.0233089622330114
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_qc_passed",
+    "family": "c_elegans",
+    "n": 86024,
+    "nnz": 1759534,
+    "graph_sha256": "58eb5d4c262cf130c0578a10e88a52d375d7c8ccc1538c99aa236a297f9240e9",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005002813879400492,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8010618793058569,
+    "first_activation_draws_share_m": 0.12479298354894114,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9819919794003332,
+      "median": 0.9851301503116834,
+      "p95": 0.98812029643758,
+      "min": 0.9762816920141947,
+      "max": 0.9923010463553602
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17727113562619273,
+      "max": 1.0130775379305816,
+      "cv": 0.06751936790244235,
+      "argmin_epoch": 1,
+      "argmax_epoch": 151,
+      "epoch1": 0.17727113562619273,
+      "min_t_ge_2": 0.6640636668702825,
+      "max_t_ge_2": 1.0130775379305816,
+      "min_t_ge_10": 0.9782895944591826,
+      "max_t_ge_10": 1.0130775379305816
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.506011263813358,
+      "median": 0.5075471498276724,
+      "p95": 0.5091691281484112,
+      "min": 0.5038793437097127,
+      "max": 0.5121472666033875
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.506011263813358,
+      "median": 0.5075471498276724,
+      "p95": 0.5091691281484112,
+      "min": 0.5038793437097127,
+      "max": 0.5121472666033875
+    },
+    "rho_H_over_ref": {
+      "p5": 1.012022527626716,
+      "median": 1.0150942996553447,
+      "p95": 1.0183382562968224,
+      "min": 1.0077586874194253,
+      "max": 1.024294533206775
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_stage_early_annotated",
+    "family": "c_elegans",
+    "n": 5442,
+    "nnz": 108544,
+    "graph_sha256": "9a1b95ecb6e05528b134677a31619abfddc236afeeae4b5158510d094f2ee6fa",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005040190648287535,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7940742924528302,
+    "first_activation_draws_share_m": 0.12711895636792453,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9820516099456388,
+      "median": 0.9853231139545771,
+      "p95": 0.9883624750917941,
+      "min": 0.9786159080608646,
+      "max": 0.9915714532972972
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17730888065748418,
+      "max": 1.023900233913304,
+      "cv": 0.06689118693643853,
+      "argmin_epoch": 1,
+      "argmax_epoch": 76,
+      "epoch1": 0.17730888065748418,
+      "min_t_ge_2": 0.6861017882007194,
+      "max_t_ge_2": 1.023900233913304,
+      "min_t_ge_10": 0.9704917313997962,
+      "max_t_ge_10": 1.023900233913304
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5058872757733668,
+      "median": 0.5074477528424852,
+      "p95": 0.5091382112074061,
+      "min": 0.5042500954795921,
+      "max": 0.5109256817526644
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5058872757733669,
+      "median": 0.5074477528424852,
+      "p95": 0.509138211207406,
+      "min": 0.5042500954795921,
+      "max": 0.5109256817526644
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0117745515467338,
+      "median": 1.0148955056849704,
+      "p95": 1.018276422414812,
+      "min": 1.0085001909591842,
+      "max": 1.0218513635053288
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_stage_late_annotated",
+    "family": "c_elegans",
+    "n": 17436,
+    "nnz": 341530,
+    "graph_sha256": "26e0ade20d2e2df5ec1a16488cd1689b6ec69d7ed10fdaf70ae123a5b8771c1b",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005019949749112129,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7892342017884436,
+    "first_activation_draws_share_m": 0.12792583873555746,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9821927833761821,
+      "median": 0.9854328703130653,
+      "p95": 0.9883842578207337,
+      "min": 0.9773471580280745,
+      "max": 0.9919234704772318
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17735229155102628,
+      "max": 1.015739677457682,
+      "cv": 0.06613108249207539,
+      "argmin_epoch": 1,
+      "argmax_epoch": 135,
+      "epoch1": 0.17735229155102628,
+      "min_t_ge_2": 0.6980938901940531,
+      "max_t_ge_2": 1.015739677457682,
+      "min_t_ge_10": 0.9830716141209196,
+      "max_t_ge_10": 1.015739677457682
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5058761266619524,
+      "median": 0.5073912339063359,
+      "p95": 0.5090650312877522,
+      "min": 0.5040711454881103,
+      "max": 0.5115889434914972
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5058761266619524,
+      "median": 0.5073912339063359,
+      "p95": 0.5090650312877522,
+      "min": 0.5040711454881103,
+      "max": 0.5115889434914972
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0117522533239047,
+      "median": 1.0147824678126718,
+      "p95": 1.0181300625755043,
+      "min": 1.0081422909762205,
+      "max": 1.0231778869829944
+    }
+  },
+  {
+    "dataset": "c_elegans_embryogenesis_stage_mid_annotated",
+    "family": "c_elegans",
+    "n": 31771,
+    "nnz": 641894,
+    "graph_sha256": "88c194de97408b4d653c1b0dcf59a80d928b783b855f73c1b9b730f66701b098",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005024741869419813,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7988540128245873,
+    "first_activation_draws_share_m": 0.12595576826008115,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9820566990791433,
+      "median": 0.9852157434735316,
+      "p95": 0.9881909230399317,
+      "min": 0.9773261454432507,
+      "max": 0.9922859966864007
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17795904211203745,
+      "max": 1.0157653156579611,
+      "cv": 0.06722751221610243,
+      "argmin_epoch": 1,
+      "argmax_epoch": 175,
+      "epoch1": 0.17795904211203745,
+      "min_t_ge_2": 0.669295136205286,
+      "max_t_ge_2": 1.0157653156579611,
+      "min_t_ge_10": 0.9769846435231173,
+      "max_t_ge_10": 1.0157653156579611
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059750988826284,
+      "median": 0.5075030553583848,
+      "p95": 0.5091355727921221,
+      "min": 0.5038869858787483,
+      "max": 0.511599942691836
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059750988826284,
+      "median": 0.5075030553583849,
+      "p95": 0.5091355727921221,
+      "min": 0.5038869858787481,
+      "max": 0.511599942691836
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0119501977652567,
+      "median": 1.0150061107167698,
+      "p95": 1.0182711455842441,
+      "min": 1.0077739717574963,
+      "max": 1.023199885383672
+    }
+  },
+  {
+    "dataset": "cifar10",
+    "family": "image",
+    "n": 60000,
+    "nnz": 1616948,
+    "graph_sha256": "9d8fd436ab94f08bc60c9f6c2dde718445ca4ea0cfe5b7e2f224a1077814fa10",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000245291739702,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.860216756177749,
+    "first_activation_draws_share_m": 0.09982856421915083,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9807733015167891,
+      "median": 0.9836459601778247,
+      "p95": 0.9864584967799068,
+      "min": 0.9750131656235728,
+      "max": 0.991461774157511
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1991146690169898,
+      "max": 1.0176129177363344,
+      "cv": 0.07361665144818745,
+      "argmin_epoch": 1,
+      "argmax_epoch": 24,
+      "epoch1": 0.1991146690169898,
+      "min_t_ge_2": 0.5234607229600189,
+      "max_t_ge_2": 1.0176129177363344,
+      "min_t_ge_10": 0.9835072697053621,
+      "max_t_ge_10": 1.0176129177363344
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5068636963766583,
+      "median": 0.5083129705627107,
+      "p95": 0.5098018056025182,
+      "min": 0.5043058774755811,
+      "max": 0.5128135881941895
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5068636963766583,
+      "median": 0.5083129705627109,
+      "p95": 0.5098018056025182,
+      "min": 0.5043058774755811,
+      "max": 0.5128135881941895
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0137273927533166,
+      "median": 1.0166259411254217,
+      "p95": 1.0196036112050364,
+      "min": 1.0086117549511622,
+      "max": 1.025627176388379
+    }
+  },
+  {
+    "dataset": "diabetes",
+    "family": "tabular",
+    "n": 442,
+    "nnz": 8560,
+    "graph_sha256": "e8026a68d7232a5929c33cc495ae6beed2d3daf9e0f1a4ec5d6107b1f13f3873",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005039231851696968,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7922897196261682,
+    "first_activation_draws_share_m": 0.12009345794392523,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9822994336827029,
+      "median": 0.9854088343925433,
+      "p95": 0.988235928996142,
+      "min": 0.9791527455731999,
+      "max": 0.9897163323773898
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1762798404347239,
+      "max": 1.0643256595427675,
+      "cv": 0.06772266271433829,
+      "argmin_epoch": 1,
+      "argmax_epoch": 166,
+      "epoch1": 0.1762798404347239,
+      "min_t_ge_2": 0.7172566622278438,
+      "max_t_ge_2": 1.0643256595427675,
+      "min_t_ge_10": 0.9709840391158563,
+      "max_t_ge_10": 1.0643256595427675
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059520559248462,
+      "median": 0.5074036102727993,
+      "p95": 0.5090097613482574,
+      "min": 0.5051952601397958,
+      "max": 0.5106455578667637
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059520559248462,
+      "median": 0.5074036102727993,
+      "p95": 0.5090097613482574,
+      "min": 0.5051952601397958,
+      "max": 0.5106455578667637
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0119041118496923,
+      "median": 1.0148072205455987,
+      "p95": 1.0180195226965147,
+      "min": 1.0103905202795915,
+      "max": 1.0212911157335274
+    }
+  },
+  {
+    "dataset": "digits",
+    "family": "image",
+    "n": 1797,
+    "nnz": 34176,
+    "graph_sha256": "b4ca72b237709f511daafa93faf26ffa49f792b80d8a2c491d534492f371b814",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005231289193034172,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.785814606741573,
+    "first_activation_draws_share_m": 0.13073501872659177,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9824954111560461,
+      "median": 0.9855943292006996,
+      "p95": 0.9884456878889925,
+      "min": 0.9791722807184852,
+      "max": 0.9913623776481093
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17805628980582733,
+      "max": 1.0291510533676573,
+      "cv": 0.06625690499379779,
+      "argmin_epoch": 1,
+      "argmax_epoch": 137,
+      "epoch1": 0.17805628980582733,
+      "min_t_ge_2": 0.7012128425043948,
+      "max_t_ge_2": 1.0291510533676573,
+      "min_t_ge_10": 0.9822414444870861,
+      "max_t_ge_10": 1.0291510533676573
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.505844687398044,
+      "median": 0.5073081136794807,
+      "p95": 0.5089082294176628,
+      "min": 0.5043564404634673,
+      "max": 0.5106353701445838
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5058446873980439,
+      "median": 0.5073081136794807,
+      "p95": 0.5089082294176629,
+      "min": 0.5043564404634673,
+      "max": 0.5106353701445838
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0116893747960878,
+      "median": 1.0146162273589614,
+      "p95": 1.0178164588353258,
+      "min": 1.0087128809269346,
+      "max": 1.0212707402891676
+    }
+  },
+  {
+    "dataset": "epileptic",
+    "family": "tabular",
+    "n": 5750,
+    "nnz": 152304,
+    "graph_sha256": "87d0a0c94db4be3daabcf35c59b454da1ee975efeb55427f5a62187b1fb14129",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0051913633942604065,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8620390797352663,
+    "first_activation_draws_share_m": 0.09818520853030781,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9806841678414312,
+      "median": 0.9835934753493043,
+      "p95": 0.9864503272257087,
+      "min": 0.9765058070765423,
+      "max": 0.9915473422032195
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.19143683703538852,
+      "max": 1.027522576830024,
+      "cv": 0.07553066479828427,
+      "argmin_epoch": 1,
+      "argmax_epoch": 165,
+      "epoch1": 0.19143683703538852,
+      "min_t_ge_2": 0.5070902910336209,
+      "max_t_ge_2": 1.027522576830024,
+      "min_t_ge_10": 0.9814397804716041,
+      "max_t_ge_10": 1.027522576830024
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.506867894104976,
+      "median": 0.5083400942879059,
+      "p95": 0.5098481411245614,
+      "min": 0.5042623571447424,
+      "max": 0.5120297251451041
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.506867894104976,
+      "median": 0.5083400942879059,
+      "p95": 0.5098481411245614,
+      "min": 0.5042623571447423,
+      "max": 0.5120297251451041
+    },
+    "rho_H_over_ref": {
+      "p5": 1.013735788209952,
+      "median": 1.0166801885758119,
+      "p95": 1.019696282249123,
+      "min": 1.0085247142894846,
+      "max": 1.0240594502902083
+    }
+  },
+  {
+    "dataset": "fashion_mnist",
+    "family": "image",
+    "n": 70000,
+    "nnz": 1588322,
+    "graph_sha256": "6e13b0a897159a24817187415139a08b3eeda74d8696b59ad586907ef4daad00",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050026895478367805,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8270427976367364,
+    "first_activation_draws_share_m": 0.11418033736444728,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9814253268171199,
+      "median": 0.9844513269523966,
+      "p95": 0.9875344673227787,
+      "min": 0.9764602317323162,
+      "max": 0.9924898237741112
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.18289566914986402,
+      "max": 1.0142922771092797,
+      "cv": 0.07031088158353474,
+      "argmin_epoch": 1,
+      "argmax_epoch": 111,
+      "epoch1": 0.18289566914986402,
+      "min_t_ge_2": 0.5970132626894548,
+      "max_t_ge_2": 1.0142922771092797,
+      "min_t_ge_10": 0.9853878576328527,
+      "max_t_ge_10": 1.0142922771092797
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5063114418229009,
+      "median": 0.5078971263595828,
+      "p95": 0.5094631107814999,
+      "min": 0.5037835028863722,
+      "max": 0.5120536236411402
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.506311441822901,
+      "median": 0.5078971263595828,
+      "p95": 0.5094631107814999,
+      "min": 0.5037835028863722,
+      "max": 0.5120536236411402
+    },
+    "rho_H_over_ref": {
+      "p5": 1.012622883645802,
+      "median": 1.0157942527191657,
+      "p95": 1.0189262215629997,
+      "min": 1.0075670057727444,
+      "max": 1.0241072472822803
+    }
+  },
+  {
+    "dataset": "foresttype",
+    "family": "tabular",
+    "n": 523,
+    "nnz": 10018,
+    "graph_sha256": "3a9e74d6f70f41b434dd061053236179fa0ebc58f8ee999c3ad73944d9bb58df",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005031764507293701,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7871830704731483,
+    "first_activation_draws_share_m": 0.12956677979636655,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9822856962741606,
+      "median": 0.9855371496293437,
+      "p95": 0.9881845354306911,
+      "min": 0.9790397393984398,
+      "max": 0.9915483260894081
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1716385681171669,
+      "max": 1.062876765208318,
+      "cv": 0.06783207550065713,
+      "argmin_epoch": 1,
+      "argmax_epoch": 195,
+      "epoch1": 0.1716385681171669,
+      "min_t_ge_2": 0.725641503857419,
+      "max_t_ge_2": 1.062876765208318,
+      "min_t_ge_10": 0.9658368563662129,
+      "max_t_ge_10": 1.062876765208318
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059783695084558,
+      "median": 0.5073375470301124,
+      "p95": 0.5090168796239692,
+      "min": 0.504261856779046,
+      "max": 0.5107044993977665
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059783695084558,
+      "median": 0.5073375470301125,
+      "p95": 0.5090168796239692,
+      "min": 0.504261856779046,
+      "max": 0.5107044993977665
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0119567390169115,
+      "median": 1.014675094060225,
+      "p95": 1.0180337592479385,
+      "min": 1.008523713558092,
+      "max": 1.021408998795533
+    }
+  },
+  {
+    "dataset": "hiva",
+    "family": "tabular",
+    "n": 3076,
+    "nnz": 70900,
+    "graph_sha256": "82d403a004ba43501a49815efe3b788acbcd85a6620689696c5093d488e9037a",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005242971237748861,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8494217207334274,
+    "first_activation_draws_share_m": 0.10338504936530324,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.980781201774269,
+      "median": 0.9842695914151779,
+      "p95": 0.9877890180831302,
+      "min": 0.9771825796810149,
+      "max": 0.994
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.18677532263325206,
+      "max": 1.0641930882732367,
+      "cv": 0.07453562011171533,
+      "argmin_epoch": 1,
+      "argmax_epoch": 6,
+      "epoch1": 0.18677532263325206,
+      "min_t_ge_2": 0.5404859336283402,
+      "max_t_ge_2": 1.0641930882732367,
+      "min_t_ge_10": 0.976230436327701,
+      "max_t_ge_10": 1.0341036612971537
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5061809666574549,
+      "median": 0.5079909044875341,
+      "p95": 0.509797699117077,
+      "min": 0.5030181086519115,
+      "max": 0.5116751059594378
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5061809666574549,
+      "median": 0.5079909044875341,
+      "p95": 0.509797699117077,
+      "min": 0.5030181086519115,
+      "max": 0.5116751059594377
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0123619333149099,
+      "median": 1.0159818089750683,
+      "p95": 1.019595398234154,
+      "min": 1.006036217303823,
+      "max": 1.0233502119188753
+    }
+  },
+  {
+    "dataset": "iris",
+    "family": "tabular",
+    "n": 150,
+    "nnz": 2676,
+    "graph_sha256": "5dc59b66ecb15ca586b9501f754a0575b3ed928262e8c73d6c8435536e6c3687",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.010680519044399261,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7653213751868461,
+    "first_activation_draws_share_m": 0.13452914798206278,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9830868770689247,
+      "median": 0.9859745456381823,
+      "p95": 0.9886085091641486,
+      "min": 0.9812878288431609,
+      "max": 0.9906208809831608
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.18315408935133665,
+      "max": 1.0887982282833064,
+      "cv": 0.07370153625426043,
+      "argmin_epoch": 1,
+      "argmax_epoch": 57,
+      "epoch1": 0.18315408935133665,
+      "min_t_ge_2": 0.7524286988015247,
+      "max_t_ge_2": 1.0887982282833064,
+      "min_t_ge_10": 0.9074052359449635,
+      "max_t_ge_10": 1.0887982282833064
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057613782075022,
+      "median": 0.507112483104877,
+      "p95": 0.5086020489935877,
+      "min": 0.5047339598815698,
+      "max": 0.5095344967128038
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057613782075022,
+      "median": 0.507112483104877,
+      "p95": 0.5086020489935877,
+      "min": 0.5047339598815698,
+      "max": 0.5095344967128038
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0115227564150044,
+      "median": 1.014224966209754,
+      "p95": 1.0172040979871755,
+      "min": 1.0094679197631395,
+      "max": 1.0190689934256076
+    }
+  },
+  {
+    "dataset": "mnist784",
+    "family": "image",
+    "n": 70000,
+    "nnz": 1449578,
+    "graph_sha256": "d95e7698871578cd154db8430d529eafe7e18771b7d068637ead59fd2f2c864c",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005007393658161163,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8061502546279369,
+    "first_activation_draws_share_m": 0.12377497816587861,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9819972669190175,
+      "median": 0.9850336442220731,
+      "p95": 0.987955845215393,
+      "min": 0.9767085354535708,
+      "max": 0.9923289012053081
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1766286286896234,
+      "max": 1.014104607557992,
+      "cv": 0.06845816301169015,
+      "argmin_epoch": 1,
+      "argmax_epoch": 87,
+      "epoch1": 0.1766286286896234,
+      "min_t_ge_2": 0.6407253575309024,
+      "max_t_ge_2": 1.014104607557992,
+      "min_t_ge_10": 0.9752201569035324,
+      "max_t_ge_10": 1.014104607557992
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.506095492446822,
+      "median": 0.5075968754294411,
+      "p95": 0.5091663865508853,
+      "min": 0.5038651997263076,
+      "max": 0.5119234468119053
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.506095492446822,
+      "median": 0.5075968754294411,
+      "p95": 0.5091663865508852,
+      "min": 0.5038651997263076,
+      "max": 0.5119234468119054
+    },
+    "rho_H_over_ref": {
+      "p5": 1.012190984893644,
+      "median": 1.0151937508588822,
+      "p95": 1.0183327731017704,
+      "min": 1.0077303994526152,
+      "max": 1.0238468936238108
+    }
+  },
+  {
+    "dataset": "scdeed_cart",
+    "family": "scdeed",
+    "n": 62167,
+    "nnz": 1637466,
+    "graph_sha256": "562454d3a351fbb361a602b2bf9602ef3e71e99f62bdd0bf12875885274ef189",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005009342450648546,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8544180729131042,
+    "first_activation_draws_share_m": 0.10231603169795096,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.980846254180073,
+      "median": 0.9836478810486599,
+      "p95": 0.9867200554734574,
+      "min": 0.9744175344496839,
+      "max": 0.9920704673873588
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1995722677476996,
+      "max": 1.0146341002629469,
+      "cv": 0.07259837000982328,
+      "argmin_epoch": 1,
+      "argmax_epoch": 130,
+      "epoch1": 0.1995722677476996,
+      "min_t_ge_2": 0.5401361597181511,
+      "max_t_ge_2": 1.0146341002629469,
+      "min_t_ge_10": 0.9762219095093978,
+      "max_t_ge_10": 1.0146341002629469
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5067293374918779,
+      "median": 0.5083119779274609,
+      "p95": 0.50976388793777,
+      "min": 0.5039964563371813,
+      "max": 0.5131270552129197
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5067293374918779,
+      "median": 0.5083119779274609,
+      "p95": 0.50976388793777,
+      "min": 0.5039964563371813,
+      "max": 0.5131270552129197
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0134586749837557,
+      "median": 1.0166239558549217,
+      "p95": 1.01952777587554,
+      "min": 1.0079929126743625,
+      "max": 1.0262541104258394
+    }
+  },
+  {
+    "dataset": "scdeed_marrow",
+    "family": "scdeed",
+    "n": 4821,
+    "nnz": 105626,
+    "graph_sha256": "f4249e30083f8d4bcbb41228a5739631b35cf46e7ffdfd33db6e7dc6d9630705",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005036001093685627,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8126597618010717,
+    "first_activation_draws_share_m": 0.11726279514513473,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9814727880719044,
+      "median": 0.9846834328698003,
+      "p95": 0.9879618475273185,
+      "min": 0.9775996347778864,
+      "max": 0.9915695596512059
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.18454851318276955,
+      "max": 1.026123681169858,
+      "cv": 0.06785702303139773,
+      "argmin_epoch": 1,
+      "argmax_epoch": 197,
+      "epoch1": 0.18454851318276955,
+      "min_t_ge_2": 0.6540377659277917,
+      "max_t_ge_2": 1.026123681169858,
+      "min_t_ge_10": 0.9751034710470822,
+      "max_t_ge_10": 1.026123681169858
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5060924176894132,
+      "median": 0.5077774067374935,
+      "p95": 0.5094384745829236,
+      "min": 0.5042510584692412,
+      "max": 0.5114568195533353
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5060924176894132,
+      "median": 0.5077774067374936,
+      "p95": 0.5094384745829236,
+      "min": 0.5042510584692412,
+      "max": 0.5114568195533354
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0121848353788263,
+      "median": 1.0155548134749872,
+      "p95": 1.0188769491658471,
+      "min": 1.0085021169384825,
+      "max": 1.0229136391066709
+    }
+  },
+  {
+    "dataset": "scdeed_samusik",
+    "family": "scdeed",
+    "n": 86864,
+    "nnz": 2018948,
+    "graph_sha256": "bc4def213556983c012e2af0a43046dd6da841900bd2a190b474382b464b46d7",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005009020213037729,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.830772918912065,
+    "first_activation_draws_share_m": 0.11167818423888924,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9814560768783868,
+      "median": 0.9844057697967581,
+      "p95": 0.9873383859167193,
+      "min": 0.9767713027898265,
+      "max": 0.9927058272669329
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.18517025463560358,
+      "max": 1.013643141377475,
+      "cv": 0.07042366051484071,
+      "argmin_epoch": 1,
+      "argmax_epoch": 124,
+      "epoch1": 0.18517025463560358,
+      "min_t_ge_2": 0.5962397828294069,
+      "max_t_ge_2": 1.013643141377475,
+      "min_t_ge_10": 0.9731377322313228,
+      "max_t_ge_10": 1.013643141377475
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5064119932253647,
+      "median": 0.5079206312486682,
+      "p95": 0.5094471487611556,
+      "min": 0.5036738843133162,
+      "max": 0.5118905506047466
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5064119932253648,
+      "median": 0.507920631248668,
+      "p95": 0.5094471487611556,
+      "min": 0.5036738843133162,
+      "max": 0.5118905506047466
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0128239864507296,
+      "median": 1.015841262497336,
+      "p95": 1.0188942975223112,
+      "min": 1.0073477686266323,
+      "max": 1.0237811012094933
+    }
+  },
+  {
+    "dataset": "scdeed_velocity",
+    "family": "scdeed",
+    "n": 3396,
+    "nnz": 87710,
+    "graph_sha256": "6b885011c5b18c18c178c8b9978295de5eaa2395e713ac8043982a543b0c89d4",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005109400022774935,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8429369513168395,
+    "first_activation_draws_share_m": 0.10507353779500626,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9799482424035801,
+      "median": 0.9835849232078328,
+      "p95": 0.987392488182481,
+      "min": 0.975091152228818,
+      "max": 0.9919904158658377
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.19967852898798086,
+      "max": 1.0285064288216426,
+      "cv": 0.0702353931157537,
+      "argmin_epoch": 1,
+      "argmax_epoch": 88,
+      "epoch1": 0.19967852898798086,
+      "min_t_ge_2": 0.5949060596383878,
+      "max_t_ge_2": 1.0285064288216426,
+      "min_t_ge_10": 0.9814933484999416,
+      "max_t_ge_10": 1.0285064288216426
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5063842453598453,
+      "median": 0.508344514238509,
+      "p95": 0.5102310289147209,
+      "min": 0.5040371277817091,
+      "max": 0.5127725739866712
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5063842453598453,
+      "median": 0.508344514238509,
+      "p95": 0.510231028914721,
+      "min": 0.5040371277817091,
+      "max": 0.5127725739866711
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0127684907196906,
+      "median": 1.016689028477018,
+      "p95": 1.020462057829442,
+      "min": 1.0080742555634181,
+      "max": 1.0255451479733422
+    }
+  },
+  {
+    "dataset": "secom",
+    "family": "tabular",
+    "n": 1567,
+    "nnz": 34704,
+    "graph_sha256": "199ca1f407123b11e0c2015cebdcdfccb9a4a40b2a9f4a807983ebe43d33c6f6",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0052820718847215176,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8268787459658828,
+    "first_activation_draws_share_m": 0.1136468418626095,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9817438962027655,
+      "median": 0.9845627664516186,
+      "p95": 0.9876009547640138,
+      "min": 0.9784778784960946,
+      "max": 0.9898681221421203
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1790818525832592,
+      "max": 1.0449099528272994,
+      "cv": 0.07112194481910282,
+      "argmin_epoch": 1,
+      "argmax_epoch": 6,
+      "epoch1": 0.1790818525832592,
+      "min_t_ge_2": 0.6052176773689536,
+      "max_t_ge_2": 1.0449099528272994,
+      "min_t_ge_10": 0.9705963002604124,
+      "max_t_ge_10": 1.0334800042209462
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5062773558544119,
+      "median": 0.5078396391141305,
+      "p95": 0.5092977936466972,
+      "min": 0.5051177917700561,
+      "max": 0.5109977557882988
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5062773558544119,
+      "median": 0.5078396391141305,
+      "p95": 0.5092977936466972,
+      "min": 0.5051177917700562,
+      "max": 0.5109977557882988
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0125547117088238,
+      "median": 1.015679278228261,
+      "p95": 1.0185955872933945,
+      "min": 1.0102355835401124,
+      "max": 1.0219955115765975
+    }
+  },
+  {
+    "dataset": "seismic",
+    "family": "tabular",
+    "n": 646,
+    "nnz": 12234,
+    "graph_sha256": "7bb0efa1f124bafe1c6913954b4795e73cc4f26d8a5d9b3d6251229156d71465",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005120126064866781,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7892757887853523,
+    "first_activation_draws_share_m": 0.11574301128003923,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9820418241118584,
+      "median": 0.9854112142347458,
+      "p95": 0.9891566303957667,
+      "min": 0.979160138245315,
+      "max": 0.9936135012439651
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1775877827435571,
+      "max": 1.0527395577269274,
+      "cv": 0.0666111755933396,
+      "argmin_epoch": 1,
+      "argmax_epoch": 29,
+      "epoch1": 0.1775877827435571,
+      "min_t_ge_2": 0.7586353668353798,
+      "max_t_ge_2": 1.0527395577269274,
+      "min_t_ge_10": 0.960467564619388,
+      "max_t_ge_10": 1.0527395577269274
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5054811189499756,
+      "median": 0.5074023846869775,
+      "p95": 0.5091432846588034,
+      "min": 0.5032137741425813,
+      "max": 0.510641702485985
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5054811189499756,
+      "median": 0.5074023846869775,
+      "p95": 0.5091432846588035,
+      "min": 0.5032137741425813,
+      "max": 0.510641702485985
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0109622378999512,
+      "median": 1.014804769373955,
+      "p95": 1.018286569317607,
+      "min": 1.0064275482851626,
+      "max": 1.02128340497197
+    }
+  },
+  {
+    "dataset": "spambase",
+    "family": "tabular",
+    "n": 4601,
+    "nnz": 97488,
+    "graph_sha256": "92e2379f90341180bdc9c2f65584e8bb88f392346f771964468066a6e6654f8a",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005001077428460121,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.8417618940155509,
+    "first_activation_draws_share_m": 0.09543934513673759,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9809558299970116,
+      "median": 0.9846729161859653,
+      "p95": 0.9919282401268951,
+      "min": 0.9754102921098493,
+      "max": 0.9940000000000001
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.26118527269945974,
+      "max": 1.0270487898323435,
+      "cv": 0.06291087238383995,
+      "argmin_epoch": 1,
+      "argmax_epoch": 10,
+      "epoch1": 0.26118527269945974,
+      "min_t_ge_2": 0.6840728798825604,
+      "max_t_ge_2": 1.0270487898323435,
+      "min_t_ge_10": 0.9789403591955899,
+      "max_t_ge_10": 1.0270487898323435
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.005,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5040687216809516,
+      "median": 0.5077828299946558,
+      "p95": 0.5097069457261121,
+      "min": 0.5030181086519114,
+      "max": 0.5126048023529474
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5040687216809516,
+      "median": 0.5077828299946557,
+      "p95": 0.5097069457261121,
+      "min": 0.5030181086519114,
+      "max": 0.5126048023529474
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0081374433619033,
+      "median": 1.0155656599893115,
+      "p95": 1.0194138914522242,
+      "min": 1.0060362173038229,
+      "max": 1.0252096047058947
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_bladder",
+    "family": "tabula_sapiens",
+    "n": 66385,
+    "nnz": 1162374,
+    "graph_sha256": "9309903d5b7e418a15f4e2ad759ae199599999f471750b0afe0346ac4a53eace",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050084395334124565,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7585639684437829,
+    "first_activation_draws_share_m": 0.14639056410609358,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832927646535388,
+      "median": 0.9862520935818392,
+      "p95": 0.9887569772962617,
+      "min": 0.9784487439310656,
+      "max": 0.9919482170193901
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17005118785979362,
+      "max": 1.0124684552818757,
+      "cv": 0.06485353496022546,
+      "argmin_epoch": 1,
+      "argmax_epoch": 84,
+      "epoch1": 0.17005118785979362,
+      "min_t_ge_2": 0.731448069173124,
+      "max_t_ge_2": 1.0124684552818757,
+      "min_t_ge_10": 0.9831054303226422,
+      "max_t_ge_10": 1.0124684552818757
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056854328019428,
+      "median": 0.506969772995985,
+      "p95": 0.5084955549084924,
+      "min": 0.504058570216903,
+      "max": 0.5110129714012146
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056854328019428,
+      "median": 0.5069697729959851,
+      "p95": 0.5084955549084924,
+      "min": 0.504058570216903,
+      "max": 0.5110129714012147
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0113708656038856,
+      "median": 1.0139395459919702,
+      "p95": 1.0169911098169848,
+      "min": 1.008117140433806,
+      "max": 1.0220259428024294
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_blood",
+    "family": "tabula_sapiens",
+    "n": 85233,
+    "nnz": 1486448,
+    "graph_sha256": "2abf0c5bd61e8a49bef376ca5269386ad38ecc68fbf46ac882b02d524f003a73",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005001049023121595,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7556474084957691,
+    "first_activation_draws_share_m": 0.14880445414999927,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832835298181196,
+      "median": 0.9863206595010894,
+      "p95": 0.9888551232654883,
+      "min": 0.9766481440935975,
+      "max": 0.99232702335014
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17031625498114253,
+      "max": 1.0125545608094748,
+      "cv": 0.06470365119995365,
+      "argmin_epoch": 1,
+      "argmax_epoch": 166,
+      "epoch1": 0.17031625498114253,
+      "min_t_ge_2": 0.730875766479714,
+      "max_t_ge_2": 1.0125545608094748,
+      "min_t_ge_10": 0.9868711006093073,
+      "max_t_ge_10": 1.0125545608094748
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.505635242449729,
+      "median": 0.5069345300471705,
+      "p95": 0.5085003306142031,
+      "min": 0.5038661532283761,
+      "max": 0.5119551017670109
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.505635242449729,
+      "median": 0.5069345300471705,
+      "p95": 0.5085003306142032,
+      "min": 0.5038661532283761,
+      "max": 0.511955101767011
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011270484899458,
+      "median": 1.013869060094341,
+      "p95": 1.0170006612284064,
+      "min": 1.0077323064567523,
+      "max": 1.023910203534022
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_bone_marrow",
+    "family": "tabula_sapiens",
+    "n": 27112,
+    "nnz": 476860,
+    "graph_sha256": "c77374c75ac24fce0d8b8afc0660fa74b93ffc4ff096d116b4402c3e561e41f5",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005004247650504112,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7599662792697197,
+    "first_activation_draws_share_m": 0.1434263449496496,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9831356703980909,
+      "median": 0.9862281455798658,
+      "p95": 0.9887670940140854,
+      "min": 0.9781827518048352,
+      "max": 0.9927712141713187
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16993366779773258,
+      "max": 1.0138708759325628,
+      "cv": 0.0647091989707134,
+      "argmin_epoch": 1,
+      "argmax_epoch": 188,
+      "epoch1": 0.16993366779773258,
+      "min_t_ge_2": 0.7411666088846435,
+      "max_t_ge_2": 1.0138708759325628,
+      "min_t_ge_10": 0.9828178538383143,
+      "max_t_ge_10": 1.0138708759325628
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056802588061919,
+      "median": 0.5069820834468483,
+      "p95": 0.5085768068994405,
+      "min": 0.5036407108332182,
+      "max": 0.5111519284892879
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056802588061919,
+      "median": 0.5069820834468483,
+      "p95": 0.5085768068994405,
+      "min": 0.503640710833218,
+      "max": 0.5111519284892879
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0113605176123839,
+      "median": 1.0139641668936965,
+      "p95": 1.017153613798881,
+      "min": 1.007281421666436,
+      "max": 1.0223038569785758
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_ear",
+    "family": "tabula_sapiens",
+    "n": 3055,
+    "nnz": 62564,
+    "graph_sha256": "bb5cde0e1ef3174506480bffabaaf8748bd2bd750d9d22dba0414f7a4bb1503d",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050040497444570065,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7990473450337265,
+    "first_activation_draws_share_m": 0.12352546274096096,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9819568907300493,
+      "median": 0.9851781852443009,
+      "p95": 0.988255791616106,
+      "min": 0.9787134897795758,
+      "max": 0.990344169125928
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1804583855532948,
+      "max": 1.0248323802661823,
+      "cv": 0.06697229198573286,
+      "argmin_epoch": 1,
+      "argmax_epoch": 173,
+      "epoch1": 0.1804583855532948,
+      "min_t_ge_2": 0.686594074577716,
+      "max_t_ge_2": 1.0248323802661823,
+      "min_t_ge_10": 0.9790109750714167,
+      "max_t_ge_10": 1.0248323802661823
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5059418869511544,
+      "median": 0.5075224030422596,
+      "p95": 0.509187322499466,
+      "min": 0.5048749874917697,
+      "max": 0.5108747403825088
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5059418869511544,
+      "median": 0.5075224030422596,
+      "p95": 0.5091873224994659,
+      "min": 0.5048749874917698,
+      "max": 0.5108747403825088
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0118837739023088,
+      "median": 1.0150448060845192,
+      "p95": 1.0183746449989317,
+      "min": 1.0097499749835397,
+      "max": 1.0217494807650176
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_endothelium",
+    "family": "tabula_sapiens",
+    "n": 73195,
+    "nnz": 1314144,
+    "graph_sha256": "6ccbab01869f0d5d69a64263f2fe09d308b6f1ebedd820b3d2d9ca0108823417",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000290460884571,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.766297449571276,
+    "first_activation_draws_share_m": 0.1436263632572679,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9830626661753772,
+      "median": 0.9860740163982417,
+      "p95": 0.9886573473593733,
+      "min": 0.9776776063816256,
+      "max": 0.9921985295825554
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17052130576344837,
+      "max": 1.011898220657894,
+      "cv": 0.06543853624543218,
+      "argmin_epoch": 1,
+      "argmax_epoch": 115,
+      "epoch1": 0.17052130576344837,
+      "min_t_ge_2": 0.713078239072783,
+      "max_t_ge_2": 1.011898220657894,
+      "min_t_ge_10": 0.9829275229559086,
+      "max_t_ge_10": 1.011898220657894
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057363922247314,
+      "median": 0.5070613277351251,
+      "p95": 0.5086145748421704,
+      "min": 0.5039314059559868,
+      "max": 0.5114160299226804
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057363922247314,
+      "median": 0.5070613277351252,
+      "p95": 0.5086145748421705,
+      "min": 0.5039314059559868,
+      "max": 0.5114160299226804
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114727844494629,
+      "median": 1.0141226554702505,
+      "p95": 1.017229149684341,
+      "min": 1.0078628119119737,
+      "max": 1.0228320598453609
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_eye",
+    "family": "tabula_sapiens",
+    "n": 34273,
+    "nnz": 605178,
+    "graph_sha256": "cc8f2bd4c7ba1a1a5be2e448add2670aa46321133807eb3e72647b10fb3cdd8b",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050009461119771,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7624443959733762,
+    "first_activation_draws_share_m": 0.14051542371424983,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9831246244171548,
+      "median": 0.9861921265803242,
+      "p95": 0.988726526073036,
+      "min": 0.9780324212317598,
+      "max": 0.9915931342516954
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16951013120875172,
+      "max": 1.0137754818143605,
+      "cv": 0.06479535453691362,
+      "argmin_epoch": 1,
+      "argmax_epoch": 126,
+      "epoch1": 0.16951013120875172,
+      "min_t_ge_2": 0.743822224696581,
+      "max_t_ge_2": 1.0137754818143605,
+      "min_t_ge_10": 0.9845197884318035,
+      "max_t_ge_10": 1.0137754818143605
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057010071187985,
+      "median": 0.5070006001100188,
+      "p95": 0.5085825210577409,
+      "min": 0.5042390701679519,
+      "max": 0.5112304961938652
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057010071187985,
+      "median": 0.5070006001100188,
+      "p95": 0.5085825210577409,
+      "min": 0.5042390701679519,
+      "max": 0.5112304961938652
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011402014237597,
+      "median": 1.0140012002200376,
+      "p95": 1.0171650421154819,
+      "min": 1.0084781403359038,
+      "max": 1.0224609923877304
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_fat",
+    "family": "tabula_sapiens",
+    "n": 94415,
+    "nnz": 1699206,
+    "graph_sha256": "a14a1dd21f55691e2f6edbb34a693280842b864fc489d359154478e1eb573e78",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000886507332325,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7668913630205593,
+    "first_activation_draws_share_m": 0.14216958512978597,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9830173206363233,
+      "median": 0.9860461876374456,
+      "p95": 0.9886403250205287,
+      "min": 0.9778420408212779,
+      "max": 0.9918399090153918
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17105651610172445,
+      "max": 1.0124576671231351,
+      "cv": 0.06531423628833678,
+      "argmin_epoch": 1,
+      "argmax_epoch": 195,
+      "epoch1": 0.17105651610172445,
+      "min_t_ge_2": 0.7178734802283688,
+      "max_t_ge_2": 1.0124576671231351,
+      "min_t_ge_10": 0.9839633274572578,
+      "max_t_ge_10": 1.0124576671231351
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057450999579847,
+      "median": 0.5070756383106088,
+      "p95": 0.5086380366892843,
+      "min": 0.5041136129482372,
+      "max": 0.5113300299300446
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057450999579847,
+      "median": 0.5070756383106086,
+      "p95": 0.5086380366892844,
+      "min": 0.5041136129482373,
+      "max": 0.5113300299300446
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114901999159693,
+      "median": 1.0141512766212173,
+      "p95": 1.0172760733785688,
+      "min": 1.0082272258964746,
+      "max": 1.0226600598600892
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_germline",
+    "family": "tabula_sapiens",
+    "n": 7276,
+    "nnz": 121196,
+    "graph_sha256": "3823341fb7cdf6028b402b76df32d7fd3730c9f1b086714495cce715aca4f09d",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.00500148069113493,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7462289995709146,
+    "first_activation_draws_share_m": 0.13187774367099053,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832155599009349,
+      "median": 0.9865578715496548,
+      "p95": 0.9893074818681147,
+      "min": 0.9793772174959325,
+      "max": 0.9918528993306542
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17444472774747907,
+      "max": 1.0206025572295474,
+      "cv": 0.06229859541405326,
+      "argmin_epoch": 1,
+      "argmax_epoch": 57,
+      "epoch1": 0.17444472774747907,
+      "min_t_ge_2": 0.8184570680333068,
+      "max_t_ge_2": 1.0206025572295474,
+      "min_t_ge_10": 0.9830266845324415,
+      "max_t_ge_10": 1.0206025572295474
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5054040418817562,
+      "median": 0.5068126406154188,
+      "p95": 0.5085354833673587,
+      "min": 0.5041070105631812,
+      "max": 0.510528518601237
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5054040418817562,
+      "median": 0.5068126406154188,
+      "p95": 0.5085354833673585,
+      "min": 0.5041070105631812,
+      "max": 0.510528518601237
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0108080837635125,
+      "median": 1.0136252812308375,
+      "p95": 1.017070966734717,
+      "min": 1.0082140211263624,
+      "max": 1.021057037202474
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_heart",
+    "family": "tabula_sapiens",
+    "n": 25832,
+    "nnz": 447612,
+    "graph_sha256": "4bc07f50aa2dea6a6d32ddec2cc4e0d7d554c55384ed8fc5a350125cfbb3f9c6",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050016138702631,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7555864361642709,
+    "first_activation_draws_share_m": 0.14584385235097252,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833367356878798,
+      "median": 0.9863270379596654,
+      "p95": 0.9888073905548206,
+      "min": 0.9783126299151627,
+      "max": 0.9913722450723625
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16915161398486864,
+      "max": 1.0153648374693471,
+      "cv": 0.06453901017053912,
+      "argmin_epoch": 1,
+      "argmax_epoch": 50,
+      "epoch1": 0.16915161398486864,
+      "min_t_ge_2": 0.7469018199826604,
+      "max_t_ge_2": 1.0153648374693471,
+      "min_t_ge_10": 0.9868789484642817,
+      "max_t_ge_10": 1.0153648374693471
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.505659650985793,
+      "median": 0.5069312517624067,
+      "p95": 0.5084728169442745,
+      "min": 0.5043514204530749,
+      "max": 0.5110840693566012
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.505659650985793,
+      "median": 0.5069312517624067,
+      "p95": 0.5084728169442745,
+      "min": 0.5043514204530749,
+      "max": 0.5110840693566012
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011319301971586,
+      "median": 1.0138625035248134,
+      "p95": 1.016945633888549,
+      "min": 1.0087028409061498,
+      "max": 1.0221681387132024
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_kidney",
+    "family": "tabula_sapiens",
+    "n": 11376,
+    "nnz": 189246,
+    "graph_sha256": "3e96e55a2450eebfcabb83608ef6b2529d625aa34429936351ad581186f49e30",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.0050133210606873035,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7466445435522394,
+    "first_activation_draws_share_m": 0.1380757117795016,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.983526517027657,
+      "median": 0.9865380264333814,
+      "p95": 0.9889871495338385,
+      "min": 0.9780141022287681,
+      "max": 0.9919111768655441
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16965458791970092,
+      "max": 1.0180237990959724,
+      "cv": 0.0631439485931948,
+      "argmin_epoch": 1,
+      "argmax_epoch": 44,
+      "epoch1": 0.16965458791970092,
+      "min_t_ge_2": 0.8156970444716334,
+      "max_t_ge_2": 1.0180237990959724,
+      "min_t_ge_10": 0.9857006168607392,
+      "max_t_ge_10": 1.0180237990959724
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5055677419425879,
+      "median": 0.5068228356160225,
+      "p95": 0.5083747019969607,
+      "min": 0.5040773928770602,
+      "max": 0.5112400719586399
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5055677419425879,
+      "median": 0.5068228356160225,
+      "p95": 0.5083747019969607,
+      "min": 0.5040773928770601,
+      "max": 0.5112400719586399
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0111354838851758,
+      "median": 1.013645671232045,
+      "p95": 1.0167494039939213,
+      "min": 1.0081547857541202,
+      "max": 1.0224801439172797
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_large_intestine",
+    "family": "tabula_sapiens",
+    "n": 30084,
+    "nnz": 526604,
+    "graph_sha256": "3fb2921d4695340a154974d0f37de3e97df59f517dddfb88da1233d3c3854a87",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.00500668678432703,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7591123332206595,
+    "first_activation_draws_share_m": 0.14428193257044325,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9831706859118903,
+      "median": 0.9862458101364404,
+      "p95": 0.9887525792519496,
+      "min": 0.9780380918983776,
+      "max": 0.9915776924596188
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1695294553612441,
+      "max": 1.0144175673227747,
+      "cv": 0.06474883119412575,
+      "argmin_epoch": 1,
+      "argmax_epoch": 127,
+      "epoch1": 0.1695294553612441,
+      "min_t_ge_2": 0.7392284588424745,
+      "max_t_ge_2": 1.0144175673227747,
+      "min_t_ge_10": 0.9863505819835597,
+      "max_t_ge_10": 1.0144175673227747
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056876821280103,
+      "median": 0.5069730029381121,
+      "p95": 0.5085586939934672,
+      "min": 0.5042469226589242,
+      "max": 0.5112275320785278
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056876821280103,
+      "median": 0.5069730029381121,
+      "p95": 0.5085586939934672,
+      "min": 0.5042469226589242,
+      "max": 0.5112275320785278
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0113753642560206,
+      "median": 1.0139460058762242,
+      "p95": 1.0171173879869344,
+      "min": 1.0084938453178485,
+      "max": 1.0224550641570556
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_liver",
+    "family": "tabula_sapiens",
+    "n": 22214,
+    "nnz": 386586,
+    "graph_sha256": "19e0ddc1c2085a894cd19043217bb523e6043c1c949371710b2fbb614ce86605",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000273697078228,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7582724582496948,
+    "first_activation_draws_share_m": 0.13985576226641558,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.983159313211199,
+      "median": 0.9862559148763759,
+      "p95": 0.9888159503313565,
+      "min": 0.9774880146033782,
+      "max": 0.9924392734000406
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16923892307063654,
+      "max": 1.0176156331008235,
+      "cv": 0.06437556300145005,
+      "argmin_epoch": 1,
+      "argmax_epoch": 139,
+      "epoch1": 0.16923892307063654,
+      "min_t_ge_2": 0.7628711492752012,
+      "max_t_ge_2": 1.0176156331008235,
+      "min_t_ge_10": 0.9846883066556977,
+      "max_t_ge_10": 1.0176156331008235
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056552736967945,
+      "median": 0.5069678087179579,
+      "p95": 0.5085645767489242,
+      "min": 0.5038091633425876,
+      "max": 0.5115152232356303
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056552736967945,
+      "median": 0.506967808717958,
+      "p95": 0.5085645767489242,
+      "min": 0.5038091633425876,
+      "max": 0.5115152232356303
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011310547393589,
+      "median": 1.013935617435916,
+      "p95": 1.0171291534978484,
+      "min": 1.0076183266851753,
+      "max": 1.0230304464712605
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_lung",
+    "family": "tabula_sapiens",
+    "n": 65847,
+    "nnz": 1170228,
+    "graph_sha256": "38d7695086fd3759d13e166ebd4627f991b81365f4682a0521496ef1b64a7026",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000774748623371,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.762857772772097,
+    "first_activation_draws_share_m": 0.142900602105918,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.983060081646897,
+      "median": 0.9861567672934008,
+      "p95": 0.9887195908311973,
+      "min": 0.978101350959384,
+      "max": 0.992845678121382
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17018439815945996,
+      "max": 1.0126222374553033,
+      "cv": 0.06495293334997046,
+      "argmin_epoch": 1,
+      "argmax_epoch": 161,
+      "epoch1": 0.17018439815945996,
+      "min_t_ge_2": 0.7314810611086121,
+      "max_t_ge_2": 1.0126222374553033,
+      "min_t_ge_10": 0.9811262915079274,
+      "max_t_ge_10": 1.0126222374553033
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057045542909296,
+      "median": 0.5070187789435311,
+      "p95": 0.5086159120227546,
+      "min": 0.5036029375139927,
+      "max": 0.5111944682517494
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057045542909296,
+      "median": 0.5070187789435312,
+      "p95": 0.5086159120227545,
+      "min": 0.5036029375139927,
+      "max": 0.5111944682517494
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114091085818593,
+      "median": 1.0140375578870624,
+      "p95": 1.017231824045509,
+      "min": 1.0072058750279853,
+      "max": 1.0223889365034988
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_mammary",
+    "family": "tabula_sapiens",
+    "n": 30936,
+    "nnz": 531550,
+    "graph_sha256": "e3d6761eab7e0c197557e1c6b8bd199125fc66ad3bd34411404d8f851b9ffc36",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000907927751541,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.752923558538898,
+    "first_activation_draws_share_m": 0.14652785093990336,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833830642764475,
+      "median": 0.9863791327677107,
+      "p95": 0.9888414049974743,
+      "min": 0.9789325516337076,
+      "max": 0.9923664647241738
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16949232053922877,
+      "max": 1.0137685305609212,
+      "cv": 0.06427337321996955,
+      "argmin_epoch": 1,
+      "argmax_epoch": 140,
+      "epoch1": 0.16949232053922877,
+      "min_t_ge_2": 0.7540897799262823,
+      "max_t_ge_2": 1.0137685305609212,
+      "min_t_ge_10": 0.9861971392122884,
+      "max_t_ge_10": 1.0137685305609212
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056422571638735,
+      "median": 0.5069044786025048,
+      "p95": 0.5084488620595806,
+      "min": 0.5038461271854586,
+      "max": 0.510760418749552
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056422571638735,
+      "median": 0.506904478602505,
+      "p95": 0.5084488620595805,
+      "min": 0.5038461271854586,
+      "max": 0.5107604187495521
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011284514327747,
+      "median": 1.01380895720501,
+      "p95": 1.016897724119161,
+      "min": 1.0076922543709173,
+      "max": 1.0215208374991043
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_muscle",
+    "family": "tabula_sapiens",
+    "n": 46772,
+    "nnz": 829594,
+    "graph_sha256": "f0ec6aaa6f8d20282fddcce73dca6c1ca0a237a4f18d3fae4406f51e807f5982",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005005968268960714,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7624266503372759,
+    "first_activation_draws_share_m": 0.143461573696823,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9831386225377654,
+      "median": 0.9861709324828856,
+      "p95": 0.9887116538366214,
+      "min": 0.978643433534546,
+      "max": 0.9913260509721056
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17051155756400882,
+      "max": 1.012662311303899,
+      "cv": 0.06501373833192024,
+      "argmin_epoch": 1,
+      "argmax_epoch": 48,
+      "epoch1": 0.17051155756400882,
+      "min_t_ge_2": 0.7279614433022068,
+      "max_t_ge_2": 1.012662311303899,
+      "min_t_ge_10": 0.9839024655629907,
+      "max_t_ge_10": 1.012662311303899
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057086138914111,
+      "median": 0.5070114962131186,
+      "p95": 0.5085752797599954,
+      "min": 0.5043749223675644,
+      "max": 0.510911311379427
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057086138914111,
+      "median": 0.5070114962131187,
+      "p95": 0.5085752797599953,
+      "min": 0.5043749223675644,
+      "max": 0.510911311379427
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114172277828222,
+      "median": 1.0140229924262374,
+      "p95": 1.0171505595199906,
+      "min": 1.0087498447351289,
+      "max": 1.021822622758854
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_neural",
+    "family": "tabula_sapiens",
+    "n": 2685,
+    "nnz": 48892,
+    "graph_sha256": "7318839a7b0d5fed909fc9b3e1152aefcc05807de571d62c318bfcd49868d756",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005018590483814478,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7683685157911962,
+    "first_activation_draws_share_m": 0.13099329078710523,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9824700444764718,
+      "median": 0.9858870524525054,
+      "p95": 0.9889175127755399,
+      "min": 0.9768822197320124,
+      "max": 0.991921477059025
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17654285583299925,
+      "max": 1.0254577674642726,
+      "cv": 0.06417457666575441,
+      "argmin_epoch": 1,
+      "argmax_epoch": 21,
+      "epoch1": 0.17654285583299925,
+      "min_t_ge_2": 0.7804669462237842,
+      "max_t_ge_2": 1.0254577674642726,
+      "min_t_ge_10": 0.986150534582269,
+      "max_t_ge_10": 1.0254577674642726
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056033425906662,
+      "median": 0.5071574870125269,
+      "p95": 0.5089213689672857,
+      "min": 0.5040721584963194,
+      "max": 0.5118324296425056
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056033425906663,
+      "median": 0.5071574870125269,
+      "p95": 0.5089213689672857,
+      "min": 0.5040721584963193,
+      "max": 0.5118324296425056
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0112066851813326,
+      "median": 1.0143149740250539,
+      "p95": 1.0178427379345714,
+      "min": 1.0081443169926385,
+      "max": 1.0236648592850113
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_ovary",
+    "family": "tabula_sapiens",
+    "n": 48951,
+    "nnz": 830730,
+    "graph_sha256": "dbda6218e4b3372b2ec6c77f89a2bab0a0102235788ac161bbf1589060f965a7",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005001540295779705,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7476002802381543,
+    "first_activation_draws_share_m": 0.15397690202017042,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9836462302998334,
+      "median": 0.9865327527212789,
+      "p95": 0.9889317155565427,
+      "min": 0.978160981783667,
+      "max": 0.9920657241039315
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16927412027321964,
+      "max": 1.013266740220847,
+      "cv": 0.06455265731370129,
+      "argmin_epoch": 1,
+      "argmax_epoch": 182,
+      "epoch1": 0.16927412027321964,
+      "min_t_ge_2": 0.7304395783104264,
+      "max_t_ge_2": 1.013266740220847,
+      "min_t_ge_10": 0.9844093565431752,
+      "max_t_ge_10": 1.013266740220847
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5055960812407058,
+      "median": 0.5068255449408915,
+      "p95": 0.5083128309733788,
+      "min": 0.5039988660545828,
+      "max": 0.5111633047233748
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5055960812407057,
+      "median": 0.5068255449408916,
+      "p95": 0.5083128309733788,
+      "min": 0.5039988660545828,
+      "max": 0.5111633047233748
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0111921624814113,
+      "median": 1.0136510898817832,
+      "p95": 1.0166256619467575,
+      "min": 1.0079977321091655,
+      "max": 1.0223266094467496
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_pancreas",
+    "family": "tabula_sapiens",
+    "n": 14140,
+    "nnz": 236668,
+    "graph_sha256": "115a68b38883177f5354af0da1b97fc64354e6fa7bd6ab061a9116be459d6f48",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005007921252399683,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7493661900415779,
+    "first_activation_draws_share_m": 0.13200993814014805,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9831365793418402,
+      "median": 0.9865708330002898,
+      "p95": 0.9892350620554546,
+      "min": 0.9784029751243802,
+      "max": 0.992050728802308
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17335745516739282,
+      "max": 1.0171538147690886,
+      "cv": 0.06264804426737457,
+      "argmin_epoch": 1,
+      "argmax_epoch": 50,
+      "epoch1": 0.17335745516739282,
+      "min_t_ge_2": 0.8061879396774206,
+      "max_t_ge_2": 1.0171538147690886,
+      "min_t_ge_10": 0.987563920490489,
+      "max_t_ge_10": 1.0171538147690886
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5054410414457936,
+      "median": 0.5068059821710478,
+      "p95": 0.5085763367026058,
+      "min": 0.5040064842285278,
+      "max": 0.5110368761260534
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5054410414457935,
+      "median": 0.5068059821710479,
+      "p95": 0.5085763367026058,
+      "min": 0.5040064842285278,
+      "max": 0.5110368761260534
+    },
+    "rho_H_over_ref": {
+      "p5": 1.010882082891587,
+      "median": 1.0136119643420958,
+      "p95": 1.0171526734052116,
+      "min": 1.0080129684570556,
+      "max": 1.0220737522521068
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_prostate",
+    "family": "tabula_sapiens",
+    "n": 21030,
+    "nnz": 365192,
+    "graph_sha256": "aec73defeab1bff4371a07d00e33aca2bee519d8f19a47139bf09785d291eb95",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005007198080420494,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7571442654194552,
+    "first_activation_draws_share_m": 0.13915024590074154,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832339633219551,
+      "median": 0.9862455574563541,
+      "p95": 0.9888112933749134,
+      "min": 0.9761982318535413,
+      "max": 0.9916412978392031
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16927030710967275,
+      "max": 1.017440375435715,
+      "cv": 0.06416440675670237,
+      "argmin_epoch": 1,
+      "argmax_epoch": 72,
+      "epoch1": 0.16927030710967275,
+      "min_t_ge_2": 0.7733198972784694,
+      "max_t_ge_2": 1.017440375435715,
+      "min_t_ge_10": 0.9869496425299713,
+      "max_t_ge_10": 1.017440375435715
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.505657655156354,
+      "median": 0.5069731328266631,
+      "p95": 0.5085259649808261,
+      "min": 0.5042145794951313,
+      "max": 0.5121910526826429
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.505657655156354,
+      "median": 0.5069731328266631,
+      "p95": 0.5085259649808261,
+      "min": 0.5042145794951313,
+      "max": 0.5121910526826429
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011315310312708,
+      "median": 1.0139462656533262,
+      "p95": 1.0170519299616523,
+      "min": 1.0084291589902625,
+      "max": 1.0243821053652857
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_salivary_gland",
+    "family": "tabula_sapiens",
+    "n": 39821,
+    "nnz": 706374,
+    "graph_sha256": "e98c7eefd0052360d8acbaa4489bbf11484971c1c8d5eaac5b1f3ee5b19fabdc",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.00500242505222559,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7649265669816155,
+    "first_activation_draws_share_m": 0.13958077915164832,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.983037981530044,
+      "median": 0.986113756897232,
+      "p95": 0.9887195507045068,
+      "min": 0.9776036342202433,
+      "max": 0.9917150537697955
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17029151841834295,
+      "max": 1.0144451773706005,
+      "cv": 0.06484306608283724,
+      "argmin_epoch": 1,
+      "argmax_epoch": 184,
+      "epoch1": 0.17029151841834295,
+      "min_t_ge_2": 0.7432962612179029,
+      "max_t_ge_2": 1.0144451773706005,
+      "min_t_ge_10": 0.9852678514113565,
+      "max_t_ge_10": 1.0144451773706005
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057045748146961,
+      "median": 0.5070408931046965,
+      "p95": 0.5086273464447201,
+      "min": 0.5041770799982873,
+      "max": 0.511454727149015
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057045748146961,
+      "median": 0.5070408931046964,
+      "p95": 0.5086273464447201,
+      "min": 0.5041770799982873,
+      "max": 0.5114547271490151
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114091496293922,
+      "median": 1.0140817862093927,
+      "p95": 1.0172546928894401,
+      "min": 1.0083541599965746,
+      "max": 1.0229094542980302
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_skin",
+    "family": "tabula_sapiens",
+    "n": 17786,
+    "nnz": 310852,
+    "graph_sha256": "040fe58ea5557519650108c8c6e63ee1b2d7c6e859a05dc3787d0dcbea0a99dc",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005018238443881273,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7597812449734599,
+    "first_activation_draws_share_m": 0.14120636963165514,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9830583502134541,
+      "median": 0.9862509221647142,
+      "p95": 0.9888245783438749,
+      "min": 0.9784452491078698,
+      "max": 0.9913655610116927
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16947830965495103,
+      "max": 1.0161497588889488,
+      "cv": 0.06460224392612389,
+      "argmin_epoch": 1,
+      "argmax_epoch": 157,
+      "epoch1": 0.16947830965495103,
+      "min_t_ge_2": 0.7535836461527398,
+      "max_t_ge_2": 1.0161497588889488,
+      "min_t_ge_10": 0.9835615267788339,
+      "max_t_ge_10": 1.0161497588889488
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056508615890405,
+      "median": 0.5069703751481026,
+      "p95": 0.508616807833876,
+      "min": 0.5043548209297768,
+      "max": 0.5110147966438507
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056508615890405,
+      "median": 0.5069703751481026,
+      "p95": 0.508616807833876,
+      "min": 0.5043548209297767,
+      "max": 0.5110147966438509
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011301723178081,
+      "median": 1.0139407502962052,
+      "p95": 1.017233615667752,
+      "min": 1.0087096418595534,
+      "max": 1.0220295932877017
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_small_intestine",
+    "family": "tabula_sapiens",
+    "n": 42036,
+    "nnz": 727480,
+    "graph_sha256": "d037c1384bde2dd8d08ea82776770b5acc4e0f6eb54a9fa1af3097ceefc8fe09",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005007317289710045,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7548311004929386,
+    "first_activation_draws_share_m": 0.1492561933484908,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833902917910039,
+      "median": 0.9863509213411366,
+      "p95": 0.9888338496509077,
+      "min": 0.9768385464141699,
+      "max": 0.9918821292525397
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17011406988471386,
+      "max": 1.0142597604061603,
+      "cv": 0.06465760327105598,
+      "argmin_epoch": 1,
+      "argmax_epoch": 86,
+      "epoch1": 0.17011406988471386,
+      "min_t_ge_2": 0.73643127862249,
+      "max_t_ge_2": 1.0142597604061603,
+      "min_t_ge_10": 0.986093270120768,
+      "max_t_ge_10": 1.0142597604061603
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056461206061263,
+      "median": 0.5069189769906164,
+      "p95": 0.508445125169364,
+      "min": 0.5040921549587639,
+      "max": 0.5118553130764815
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056461206061265,
+      "median": 0.5069189769906164,
+      "p95": 0.5084451251693641,
+      "min": 0.504092154958764,
+      "max": 0.5118553130764815
+    },
+    "rho_H_over_ref": {
+      "p5": 1.011292241212253,
+      "median": 1.0138379539812328,
+      "p95": 1.0168902503387283,
+      "min": 1.008184309917528,
+      "max": 1.023710626152963
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_spleen",
+    "family": "tabula_sapiens",
+    "n": 70448,
+    "nnz": 1255768,
+    "graph_sha256": "20249de128a2092d6c570c7af763e82172dbfd19500d177c538868d76c8f5a8f",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000083241611719,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7632425992906277,
+    "first_activation_draws_share_m": 0.14369329122330896,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9830841060082007,
+      "median": 0.9861199737994535,
+      "p95": 0.9886989075299132,
+      "min": 0.9783165466899293,
+      "max": 0.9918423285137007
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1709834855607613,
+      "max": 1.0137101192987747,
+      "cv": 0.06497851069739084,
+      "argmin_epoch": 1,
+      "argmax_epoch": 94,
+      "epoch1": 0.1709834855607613,
+      "min_t_ge_2": 0.7290609230840609,
+      "max_t_ge_2": 1.0137101192987747,
+      "min_t_ge_10": 0.9853135653885584,
+      "max_t_ge_10": 1.0137101192987747
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057151334870604,
+      "median": 0.5070376965122549,
+      "p95": 0.5086034825954445,
+      "min": 0.5041123832144389,
+      "max": 0.5110820231874005
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057151334870604,
+      "median": 0.5070376965122549,
+      "p95": 0.5086034825954445,
+      "min": 0.5041123832144389,
+      "max": 0.5110820231874004
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114302669741209,
+      "median": 1.0140753930245099,
+      "p95": 1.017206965190889,
+      "min": 1.0082247664288777,
+      "max": 1.0221640463748007
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_stomach",
+    "family": "tabula_sapiens",
+    "n": 33064,
+    "nnz": 579884,
+    "graph_sha256": "13ccf0fd47b175f2e8b2b9ed6e88497581b9809a5559c351aa07126ac190de9c",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005012474954128265,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7581507961964675,
+    "first_activation_draws_share_m": 0.1446708123376825,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832207875598657,
+      "median": 0.9862139520033883,
+      "p95": 0.988728798565667,
+      "min": 0.9783797280003118,
+      "max": 0.9913281964672455
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1698172713490936,
+      "max": 1.0138873422815693,
+      "cv": 0.06464465529298866,
+      "argmin_epoch": 1,
+      "argmax_epoch": 97,
+      "epoch1": 0.1698172713490936,
+      "min_t_ge_2": 0.743899290094854,
+      "max_t_ge_2": 1.0138873422815693,
+      "min_t_ge_10": 0.9864376146197805,
+      "max_t_ge_10": 1.0138873422815693
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056998448162348,
+      "median": 0.5069893799254519,
+      "p95": 0.5085327795407651,
+      "min": 0.5043738307674783,
+      "max": 0.5110490187914448
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056998448162349,
+      "median": 0.5069893799254519,
+      "p95": 0.508532779540765,
+      "min": 0.5043738307674783,
+      "max": 0.5110490187914447
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0113996896324697,
+      "median": 1.0139787598509038,
+      "p95": 1.01706555908153,
+      "min": 1.0087476615349567,
+      "max": 1.0220980375828894
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_testis",
+    "family": "tabula_sapiens",
+    "n": 7513,
+    "nnz": 123938,
+    "graph_sha256": "b0039838968fd4f86cba80c242c5a1a88da2fa246203474b2c13ecef4f1ed6d6",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000311881303787,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7398370047607521,
+    "first_activation_draws_share_m": 0.1355442588558057,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833367109615411,
+      "median": 0.9866681660751179,
+      "p95": 0.9893634471695936,
+      "min": 0.9793973269953059,
+      "max": 0.9924790279917449
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1734713230376734,
+      "max": 1.0167206063583127,
+      "cv": 0.06224202415843388,
+      "argmin_epoch": 1,
+      "argmax_epoch": 79,
+      "epoch1": 0.1734713230376734,
+      "min_t_ge_2": 0.8203649840730332,
+      "max_t_ge_2": 1.0167206063583127,
+      "min_t_ge_10": 0.9854200307840929,
+      "max_t_ge_10": 1.0167206063583127
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5053754527018635,
+      "median": 0.5067559866545178,
+      "p95": 0.5084728297301556,
+      "min": 0.5037889828379918,
+      "max": 0.5105180361620452
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5053754527018635,
+      "median": 0.5067559866545178,
+      "p95": 0.5084728297301556,
+      "min": 0.5037889828379919,
+      "max": 0.5105180361620452
+    },
+    "rho_H_over_ref": {
+      "p5": 1.010750905403727,
+      "median": 1.0135119733090356,
+      "p95": 1.0169456594603112,
+      "min": 1.0075779656759838,
+      "max": 1.0210360723240903
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_thymus",
+    "family": "tabula_sapiens",
+    "n": 42729,
+    "nnz": 732058,
+    "graph_sha256": "ad5442b3eab1a7cafd56af369fcb843008a8a4f09e5ad4f08389458c92331c8f",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005001373123377562,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7547339921261779,
+    "first_activation_draws_share_m": 0.14240088737592993,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833160896767188,
+      "median": 0.9864159991932413,
+      "p95": 0.988883952625399,
+      "min": 0.9781342266237257,
+      "max": 0.9923116660549192
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16935248374845374,
+      "max": 1.013937271005999,
+      "cv": 0.0642344297998755,
+      "argmin_epoch": 1,
+      "argmax_epoch": 98,
+      "epoch1": 0.16935248374845374,
+      "min_t_ge_2": 0.7592030933366801,
+      "max_t_ge_2": 1.013937271005999,
+      "min_t_ge_10": 0.9870861006784943,
+      "max_t_ge_10": 1.013937271005999
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056205014476627,
+      "median": 0.5068855334959432,
+      "p95": 0.5084834929980483,
+      "min": 0.5038739512030767,
+      "max": 0.5111772867062169
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056205014476627,
+      "median": 0.5068855334959432,
+      "p95": 0.5084834929980482,
+      "min": 0.5038739512030767,
+      "max": 0.5111772867062169
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0112410028953254,
+      "median": 1.0137710669918865,
+      "p95": 1.0169669859960964,
+      "min": 1.0077479024061533,
+      "max": 1.0223545734124337
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_tongue",
+    "family": "tabula_sapiens",
+    "n": 38754,
+    "nnz": 680434,
+    "graph_sha256": "2b64d7a181b68be1b6099211462968680c41680703a900f3f527350f7ea5f8ea",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005000309552997351,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7596299965021913,
+    "first_activation_draws_share_m": 0.14431841228877204,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9832087181642901,
+      "median": 0.9862454804360479,
+      "p95": 0.9887786463204418,
+      "min": 0.9783899378387775,
+      "max": 0.9919963709279451
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.17067805141604933,
+      "max": 1.0148267531492925,
+      "cv": 0.06473392595273955,
+      "argmin_epoch": 1,
+      "argmax_epoch": 52,
+      "epoch1": 0.17067805141604933,
+      "min_t_ge_2": 0.7366241287423401,
+      "max_t_ge_2": 1.0148267531492925,
+      "min_t_ge_10": 0.98753646073118,
+      "max_t_ge_10": 1.0148267531492925
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056743507362967,
+      "median": 0.5069731724184285,
+      "p95": 0.5085390220436045,
+      "min": 0.5040341019920104,
+      "max": 0.511043685817619
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056743507362967,
+      "median": 0.5069731724184285,
+      "p95": 0.5085390220436045,
+      "min": 0.5040341019920104,
+      "max": 0.511043685817619
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0113487014725935,
+      "median": 1.013946344836857,
+      "p95": 1.017078044087209,
+      "min": 1.0080682039840207,
+      "max": 1.022087371635238
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_trachea",
+    "family": "tabula_sapiens",
+    "n": 22671,
+    "nnz": 389364,
+    "graph_sha256": "57b458dd1e15f7cbf3c50c767625e688ae77287302ff67a65b9c3df9139b8898",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005013237241655588,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7529599704131373,
+    "first_activation_draws_share_m": 0.14552010725237696,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833304912699503,
+      "median": 0.9863911506007931,
+      "p95": 0.9888627881586729,
+      "min": 0.9771268543069167,
+      "max": 0.9913507831286956
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.1700146709867183,
+      "max": 1.0156248596392714,
+      "cv": 0.06418302558912334,
+      "argmin_epoch": 1,
+      "argmax_epoch": 116,
+      "epoch1": 0.1700146709867183,
+      "min_t_ge_2": 0.7583683103593372,
+      "max_t_ge_2": 1.0156248596392714,
+      "min_t_ge_10": 0.9890974329967334,
+      "max_t_ge_10": 1.0156248596392714
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056313231599499,
+      "median": 0.5068983026616358,
+      "p95": 0.5084760458861022,
+      "min": 0.5043623392539256,
+      "max": 0.5117042867014987
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056313231599497,
+      "median": 0.5068983026616358,
+      "p95": 0.5084760458861023,
+      "min": 0.5043623392539256,
+      "max": 0.5117042867014987
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0112626463198995,
+      "median": 1.0137966053232716,
+      "p95": 1.0169520917722046,
+      "min": 1.0087246785078512,
+      "max": 1.0234085734029974
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_uterus",
+    "family": "tabula_sapiens",
+    "n": 22029,
+    "nnz": 382618,
+    "graph_sha256": "d14428883522ac4bfa9bc234d6f353f868851a8c5ee81666c65ed2721d6b7f4c",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005015939474105835,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7582798419302904,
+    "first_activation_draws_share_m": 0.14020845965667927,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.983221163100361,
+      "median": 0.9862384515572213,
+      "p95": 0.9887236686680204,
+      "min": 0.9782233117407576,
+      "max": 0.9920397545918465
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16787695757058574,
+      "max": 1.0153707562900345,
+      "cv": 0.06447532961553851,
+      "argmin_epoch": 1,
+      "argmax_epoch": 124,
+      "epoch1": 0.16787695757058574,
+      "min_t_ge_2": 0.7650191504027265,
+      "max_t_ge_2": 1.0153707562900345,
+      "min_t_ge_10": 0.9863350690165722,
+      "max_t_ge_10": 1.0153707562900345
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5057024685913424,
+      "median": 0.5069767855943205,
+      "p95": 0.5085325853070499,
+      "min": 0.5040120596837516,
+      "max": 0.5111307346685956
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5057024685913424,
+      "median": 0.5069767855943204,
+      "p95": 0.5085325853070499,
+      "min": 0.5040120596837515,
+      "max": 0.5111307346685956
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0114049371826848,
+      "median": 1.0139535711886407,
+      "p95": 1.0170651706140998,
+      "min": 1.008024119367503,
+      "max": 1.0222614693371912
+    }
+  },
+  {
+    "dataset": "tabula_sapiens_v2_vasculature",
+    "family": "tabula_sapiens",
+    "n": 42650,
+    "nnz": 732534,
+    "graph_sha256": "f0e73a3d813ec4807ff6306563819fba1218b6adb2c72b51c8828260b1369672",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.00500386580824852,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.7519460060120733,
+    "first_activation_draws_share_m": 0.14765073185115613,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9833612529420419,
+      "median": 0.9864152129103263,
+      "p95": 0.9888738202164347,
+      "min": 0.9774129572784734,
+      "max": 0.9923506974480137
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16992121733791343,
+      "max": 1.0140177258903578,
+      "cv": 0.06420574919481321,
+      "argmin_epoch": 1,
+      "argmax_epoch": 110,
+      "epoch1": 0.16992121733791343,
+      "min_t_ge_2": 0.7539819300025851,
+      "max_t_ge_2": 1.0140177258903578,
+      "min_t_ge_10": 0.9886583142088836,
+      "max_t_ge_10": 1.0140177258903578
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5056256822438361,
+      "median": 0.5068859375402339,
+      "p95": 0.5084601396527588,
+      "min": 0.5038541327031147,
+      "max": 0.5115545034232094
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5056256822438361,
+      "median": 0.5068859375402339,
+      "p95": 0.5084601396527588,
+      "min": 0.5038541327031147,
+      "max": 0.5115545034232093
+    },
+    "rho_H_over_ref": {
+      "p5": 1.0112513644876722,
+      "median": 1.0137718750804678,
+      "p95": 1.0169202793055176,
+      "min": 1.0077082654062295,
+      "max": 1.0231090068464186
+    }
+  },
+  {
+    "dataset": "wine",
+    "family": "tabular",
+    "n": 178,
+    "nnz": 2836,
+    "graph_sha256": "680e01c5e648ff9ce00cad9b9b848c6ad36f328bef3020e1fd087ccbe60ac867",
+    "symmetric_max_abs_diff": 0.0,
+    "v_max": 1.0,
+    "v_min_over_v_max": 0.005956282839179039,
+    "isolated_vertices": 0,
+    "first_active_epoch": 1,
+    "epoch0_scheduled_draws": 0.0,
+    "first_activation_draws_share_m_minus_1": 0.728490832157969,
+    "first_activation_draws_share_m": 0.13399153737658676,
+    "first_activation_draws_min": 4,
+    "first_activation_draws_max": 8,
+    "head_tail_activation_max_abs_diff": 0.0,
+    "cbar_over_m_d": {
+      "p5": 0.9835571639952714,
+      "median": 0.9869503250934322,
+      "p95": 0.989183757135095,
+      "min": 0.9820626172998648,
+      "max": 0.99050408015343
+    },
+    "epoch_total_over_mean_t_ge_1": {
+      "min": 0.16307908697459375,
+      "max": 1.0835350874946565,
+      "cv": 0.06903181494397587,
+      "argmin_epoch": 1,
+      "argmax_epoch": 120,
+      "epoch1": 0.16307908697459375,
+      "min_t_ge_2": 0.816179468944962,
+      "max_t_ge_2": 1.0835350874946565,
+      "min_t_ge_10": 0.9392728182479004,
+      "max_t_ge_10": 1.0835350874946565
+    },
+    "share_epochs_with_zero_draws": {
+      "p5": 0.005,
+      "median": 0.005,
+      "p95": 0.01,
+      "min": 0.005,
+      "max": 0.01
+    },
+    "E_over_cbar": {
+      "p5": 0.5054672572976046,
+      "median": 0.5066111103227215,
+      "p95": 0.5083588615474277,
+      "min": 0.5047934784100531,
+      "max": 0.5091325045797249
+    },
+    "rho_DG_over_ref": {
+      "p5": 0.5054672572976046,
+      "median": 0.5066111103227215,
+      "p95": 0.5083588615474277,
+      "min": 0.5047934784100532,
+      "max": 0.5091325045797249
+    },
+    "rho_H_over_ref": {
+      "p5": 1.010934514595209,
+      "median": 1.013222220645443,
+      "p95": 1.0167177230948554,
+      "min": 1.0095869568201064,
+      "max": 1.0182650091594498
+    }
+  }
+]
