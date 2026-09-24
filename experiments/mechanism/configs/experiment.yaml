@@ -1,0 +1,81 @@
+experiment_id: mechanism
+processed_root: ../../../datasets/processed
+fixed_inputs_root: ../results/01_fixed_inputs
+results_root: ../results
+# One fixed graph and spectral initialization per dataset (seed 42, see
+# fixed_inputs). These seeds vary the optimizer's sampling only.
+seeds: [42, 137, 2026]
+threads: 8
+n_epochs: 200
+snapshot_steps: [0, 10, 50, 100, 200]
+diagnostic_stride: 5
+log_stride: 10
+required_umap_version: '0.5.12'
+# Upper N bound of full dense trajectories; each suite replaces it by its own upper bound.
+max_full_direct_n: 6000
+direct_target_batch: 128
+# Parameters of IBUMAP.prepare_fixed_inputs (01_prepare_fixed_inputs.py): umap-learn kNN
+# and fuzzy graph, optimizer graph pruned for n_epochs, spectral initialization.
+fixed_inputs:
+  algorithm: umap
+  device: cpu
+  deterministic: true
+  rng_lifecycle: shared_rng
+  random_state: 42
+  n_neighbors: 15
+  metric: euclidean
+  metric_kwds: {}
+  n_components: 2
+  min_dist: 0.1
+  spread: 1.0
+  n_epochs: 200
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  set_op_mix_ratio: 1.0
+  local_connectivity: 1.0
+  low_memory: true
+  n_jobs: 1
+  init: spectral
+  verbose: false
+common_params:
+  n_components: 2
+  n_neighbors: 15
+  min_dist: 0.1
+  spread: 1.0
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  metric: euclidean
+  umap_epsilon: 0.001
+fft:
+  # Conservative estimate, not a measured peak; fail clearly before huge grids.
+  max_estimated_gib: 16.0
+  n_interpolation_points: 1
+  n_boxes_per_dim: 1.0
+  intervals_per_integer: 1.0
+  min_num_intervals: 100
+field:
+  # Same full source cloud for every target; no source subsampling.
+  seed: 42
+  random_targets: 256
+  stress_targets_per_group: 32
+  source_algorithms: [sync_sampled, sync_direct, sync_direct_capped, sync_fft, sync_fft_guarded]
+  snapshot_steps: [0, 50, 200]
+  kernel_caps: [null, 4.0]
+  # Default, more boxes, higher interpolation order, both refinements.
+  grids:
+    - {name: p1_b1, n_interpolation_points: 1, n_boxes_per_dim: 1.0}
+    - {name: p1_b2, n_interpolation_points: 1, n_boxes_per_dim: 2.0}
+    - {name: p3_b1, n_interpolation_points: 3, n_boxes_per_dim: 1.0}
+    - {name: p3_b2, n_interpolation_points: 3, n_boxes_per_dim: 2.0}
+  near_zero_relative_floor: 1.0e-8
+contrasts:
+  - [synchrony, umap_learn, sync_sampled]
+  - [sampled_norm_clip, sync_sampled, sync_sampled_clip]
+  - [sampling_to_event_expectation, sync_sampled, sync_expected]
+  - [event_to_degree_raw_formulation, sync_expected, sync_direct]
+  - [scalar_kernel_cap, sync_direct, sync_direct_capped]
+  - [fft_approximation, sync_direct_capped, sync_fft]
+  - [safeguard_bundle, sync_fft, sync_fft_guarded]
+  - [production_residual, sync_fft_guarded, ibumap_production]

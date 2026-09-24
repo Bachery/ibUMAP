@@ -1,0 +1,24 @@
+# Quality metrics reported in the paper (see scripts/common/README.md). All
+# datasets have at most 10^6 rows, so every row is scored.
+metrics: [trustworthiness, continuity, neighborhood_preservation, rta, distance_spearman]
+n_neighbors: 15
+source_metric: euclidean
+dtype: float32
+# kNN searches of the local metrics on the GPU when one is visible (as for the
+# paper); the global metrics always run on the CPU.
+device: auto
+gpu_batch_size: 128
+rank_low_memory: true
+rank_low_memory_batch_size: 256
+rta_n_triplets: 1000000
+rta_random_state: 42
+rta_distance_batch_size: 65536
+distance_spearman_n_pairs: 1000000
+distance_spearman_random_state: 42
+distance_spearman_distance_batch_size: 65536
+cache:
+  enabled: true
+  version: mechanism_v1
+  recompute: false
+  delete_embedding_after_score: true
+  delete_source_after_dataset: true

@@ -1,0 +1,17 @@
+algorithms:
+  - {name: umap_learn, mode: reference}
+  # ibUMAP's asynchronous CPU optimizer; must reproduce umap_learn exactly. Not scored.
+  - {name: ibumap_async, mode: async_control, evaluate: false}
+  - {name: sync_sampled, mode: sampled}
+  - {name: sync_sampled_clip, mode: sampled, norm_clip: 4.0}
+  # Exact expectation of the scheduled number of negative draws, with the
+  # reference per-pair component clip. This is NOT the degree/raw FFT field.
+  - {name: sync_expected, mode: event_expected}
+  - {name: sync_direct, mode: direct}
+  - {name: sync_direct_capped, mode: direct, kernel_cap: 4.0}
+  # Match the production kernel cap on BOTH sides of the FFT comparison.
+  # Raw-kernel interpolation is still examined by the frozen-field sweeps.
+  - {name: sync_fft, mode: fft, kernel_cap: 4.0}
+  - {name: sync_fft_guarded, mode: fft, kernel_cap: 4.0, norm_clip: 4.0, degree_damping: true}
+  # Separate production anchor: its head-only attraction and arithmetic differ.
+  - {name: ibumap_production, mode: production}
