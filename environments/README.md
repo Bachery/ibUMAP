@@ -33,6 +33,12 @@ direct dependency exactly, but conda may pick newer builds of transitive
 packages (for example the OpenMP, TBB and OpenBLAS runtimes). For timing
 comparisons with the paper, create the environment from the lock file.
 
+One entry in `cuda-linux-64.conda.lock`, `ca-certificates`, comes from
+Anaconda's `pkgs/main` channel rather than conda-forge; it was pulled in
+by an update of the experiment environment. It only provides the TLS root
+certificates and does not affect any computation. If your setup blocks that
+channel, replace the line with any conda-forge `ca-certificates` build.
+
 All environments install `pyFFTW` 0.15.1 from PyPI. Do not replace it with the
 conda-forge build, which reports `0.0.0` as its package version.
 
