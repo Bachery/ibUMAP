@@ -51,6 +51,9 @@ dependencies:
   - umap-learn=0.5.12
   - pynndescent=0.5.13
 
+  # Downstream case study (HDBSCAN clustering in the BRAQUE application)
+  - hdbscan=0.8.44
+
   # IO
   - h5py=3.16.0
 

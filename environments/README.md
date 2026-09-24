@@ -6,7 +6,7 @@ Run every command below from the repository root unless stated otherwise.
 
 | Environment | Platform | Used for | Specification |
 | --- | --- | --- | --- |
-| `ibumap-cuda` | Linux x86-64 + NVIDIA GPU | **All experiments in the paper**: ibUMAP on CPU and CUDA, umap-learn, cuML UMAP, tFDP, and dataset preparation | [`cuda-linux-64.yml`](./cuda-linux-64.yml) |
+| `ibumap-cuda` | Linux x86-64 + NVIDIA GPU | **All experiments in the paper**: ibUMAP on CPU and CUDA, umap-learn, cuML UMAP, tFDP, the HDBSCAN case study, and dataset preparation | [`cuda-linux-64.yml`](./cuda-linux-64.yml) |
 | `ibumap-torchdr` | Linux x86-64 + NVIDIA GPU | TorchDR UMAP baseline (FAISS backend) only | [`torchdr-linux-64.yml`](./torchdr-linux-64.yml) |
 | `ibumap-metal` | Apple Silicon macOS | ibUMAP on MLX/Metal | [`metal-osx-arm64.yml`](./metal-osx-arm64.yml) |
 
@@ -24,8 +24,14 @@ Each environment has three files:
 | File | Content |
 | --- | --- |
 | `<env>.yml` | Authoritative, portable specification: conda packages, pip packages and saved environment variables |
-| `<env>.conda.lock` | Exact conda package set on the target platform (`conda list --explicit`). Does **not** contain pip packages or environment variables |
-| `<env>.pip.txt` | Every Python distribution in the environment as `name==version` (`pip list --format=freeze`), for auditing |
+| `<env>.conda.lock` | Exact conda package set (`conda list --explicit`) **of the environment that produced the paper results** on the experiment machine. Does not contain pip packages or environment variables |
+| `<env>.pip.txt` | Every Python distribution in that same environment as `name==version` (`pip list --format=freeze`), for auditing |
+
+The Linux lock files were exported from the environments the experiments ran
+in, not from a new solve of the YAML files. A new solve reproduces every
+direct dependency exactly, but conda may pick newer builds of transitive
+packages (for example the OpenMP, TBB and OpenBLAS runtimes). For timing
+comparisons with the paper, create the environment from the lock file.
 
 All environments install `pyFFTW` 0.15.1 from PyPI. Do not replace it with the
 conda-forge build, which reports `0.0.0` as its package version.
@@ -74,9 +80,8 @@ existing environment.
 
 ### Exact conda package set from the lock file
 
-The YAML files pin all direct dependencies; a new solve can still pick
-different transitive packages. To recreate the exact conda package set, use
-the lock file and then add the parts a lock file cannot hold:
+To recreate the exact conda package set of the paper environment, use the
+lock file and then add the parts a lock file cannot hold:
 
 ```bash
 # ibumap-cuda
@@ -84,7 +89,8 @@ conda create -n ibumap-cuda --file environments/cuda-linux-64.conda.lock
 conda env config vars set -n ibumap-cuda \
   'LD_LIBRARY_PATH=$ORIGIN/../lib:$ORIGIN/../targets/x86_64-linux/lib'
 conda activate ibumap-cuda
-python -m pip install --no-deps pyfftw==0.15.1 pyreadr==0.5.6
+python -m pip install --no-deps pyfftw==0.15.1
+python -m pip install --no-deps pyreadr==0.5.6   # optional: scripts/datasets/scdeed/ only
 
 # ibumap-torchdr
 conda create -n ibumap-torchdr --file environments/torchdr-linux-64.conda.lock
@@ -159,8 +165,10 @@ used; run the smoke test as well.
 
 ## Refresh the snapshots
 
-Only after the environment was created from its YAML file, `ibumap` was
-installed as above, and the smoke test passed. Run on the target platform:
+Only after `ibumap` was installed as above and the smoke test passed. For
+the Linux environments, export from the environment the paper experiments
+ran in (see the note under [Overview](#overview)). Run on the target
+platform:
 
 ```bash
 env=cuda-linux-64            # or torchdr-linux-64, metal-osx-arm64
