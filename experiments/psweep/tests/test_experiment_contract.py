@@ -11,11 +11,12 @@ import numpy as np
 
 EXPERIMENT_ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS_ROOT = EXPERIMENT_ROOT / "scripts"
-if str(SCRIPTS_ROOT) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS_ROOT))
+# Other experiments also have a scripts/_common.py; import this experiment's copy.
+sys.modules.pop("_common", None)
+sys.path.insert(0, str(SCRIPTS_ROOT))
 
-import _common
-from ibumap.fft_schedule import resolve_fft_schedule
+import _common  # noqa: E402
+from ibumap.fft_schedule import resolve_fft_schedule  # noqa: E402
 
 
 def load_summary_module():
@@ -35,6 +36,10 @@ def load_plot_module():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+SUMMARY = load_summary_module()
+PLOTS = load_plot_module()
 
 
 def test_frozen_dataset_and_algorithm_contract() -> None:
@@ -132,7 +137,7 @@ def test_memory_diagnostics_prefers_rss_and_nvml(tmp_path: Path) -> None:
 
 
 def test_stability_alignment_removes_rotation_scale_and_translation(tmp_path: Path) -> None:
-    module = load_summary_module()
+    module = SUMMARY
     rng = np.random.default_rng(7)
     reference = rng.normal(size=(256, 2)).astype(np.float32)
     rotation = np.array([[0.0, -1.0], [1.0, 0.0]], dtype=np.float32)
@@ -156,7 +161,7 @@ def test_stability_alignment_removes_rotation_scale_and_translation(tmp_path: Pa
 
 
 def test_plot_functions_accept_complete_synthetic_matrix(tmp_path: Path) -> None:
-    module = load_plot_module()
+    module = PLOTS
     run_rows = []
     quality_rows = []
     stability_rows = []
