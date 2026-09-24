@@ -1,0 +1,37 @@
+experiment_id: e2e_benchmark
+description: "End-to-end benchmark of umap-learn, cuML UMAP, ibUMAP CPU/CUDA and TorchDR UMAP with seeded and unseeded profiles on 71 datasets (paper Section 5)."
+status: ready
+protocol_version: "20260806.1"
+
+dry_run_default: true
+continue_on_error: true
+skip_existing: true
+repeats: 5
+warmup_runs: 1
+order_seed: 20260723
+shuffle_within_repeat_blocks: true
+
+environment_requirements:
+  require_cuml_graph_extension_for_cuda_ibumap: true
+
+validation:
+  enforce_single_hardware_signature: true
+  enforce_runtime_signature_per_algorithm: true
+  enforce_single_evaluation_runtime_signature: true
+
+timing:
+  synchronize_cuda: true
+  record_call_wall_time: true
+  record_internal_subtimes: true
+  exclude_input_loading: true
+  exclude_serialization: true
+
+recording:
+  atomic_per_run_json: true
+  input_hashes: true
+  embedding_hashes: true
+  embedding_sanity: true
+  process_resource_usage: true
+  gpu_memory_snapshots: true
+  environment_and_git: true
+  effective_and_ignored_params: true

@@ -1,0 +1,215 @@
+# The 71 datasets of the end-to-end benchmark, in execution order. `path` is
+# relative to datasets/processed/ (see datasets/README.md for preparation).
+datasets:
+  - name: iris
+    path: iris
+
+  - name: wine
+    path: wine
+
+  - name: diabetes
+    path: diabetes
+
+  - name: foresttype
+    path: foresttype
+
+  - name: breast_cancer
+    path: breast_cancer
+
+  - name: seismic
+    path: seismic
+
+  - name: secom
+    path: secom
+
+  - name: digits
+    path: digits
+
+  - name: bank
+    path: bank
+
+  - name: tabula_sapiens_v2_neural
+    path: tabula_sapiens_v2_neural
+
+  - name: tabula_sapiens_v2_ear
+    path: tabula_sapiens_v2_ear
+
+  - name: hiva
+    path: hiva
+
+  - name: scdeed_velocity
+    path: scdeed_velocity
+
+  - name: spambase
+    path: spambase
+
+  - name: scdeed_marrow
+    path: scdeed_marrow
+
+  - name: c_elegans_embryogenesis_stage_early_annotated
+    path: c_elegans_embryogenesis_stage_early_annotated
+
+  - name: epileptic
+    path: epileptic
+
+  - name: tabula_sapiens_v2_germline
+    path: tabula_sapiens_v2_germline
+
+  - name: tabula_sapiens_v2_testis
+    path: tabula_sapiens_v2_testis
+
+  - name: tabula_sapiens_v2_kidney
+    path: tabula_sapiens_v2_kidney
+
+  - name: c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron
+    path: c_elegans_embryogenesis_pair_hypodermis__ciliated_amphid_neuron
+
+  - name: tabula_sapiens_v2_pancreas
+    path: tabula_sapiens_v2_pancreas
+
+  - name: c_elegans_embryogenesis_stage_late_annotated
+    path: c_elegans_embryogenesis_stage_late_annotated
+
+  - name: tabula_sapiens_v2_skin
+    path: tabula_sapiens_v2_skin
+
+  - name: tabula_sapiens_v2_prostate
+    path: tabula_sapiens_v2_prostate
+
+  - name: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron
+    path: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_non_amphid_neuron
+
+  - name: tabula_sapiens_v2_uterus
+    path: tabula_sapiens_v2_uterus
+
+  - name: tabula_sapiens_v2_liver
+    path: tabula_sapiens_v2_liver
+
+  - name: tabula_sapiens_v2_trachea
+    path: tabula_sapiens_v2_trachea
+
+  - name: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_amphid_neuron
+    path: c_elegans_embryogenesis_pair_body_wall_muscle__ciliated_amphid_neuron
+
+  - name: c_elegans_embryogenesis_plot_cell_type_top_8_mixture
+    path: c_elegans_embryogenesis_plot_cell_type_top_8_mixture
+
+  - name: c_elegans_embryogenesis_pair_body_wall_muscle__hypodermis
+    path: c_elegans_embryogenesis_pair_body_wall_muscle__hypodermis
+
+  - name: tabula_sapiens_v2_heart
+    path: tabula_sapiens_v2_heart
+
+  - name: tabula_sapiens_v2_bone_marrow
+    path: tabula_sapiens_v2_bone_marrow
+
+  - name: tabula_sapiens_v2_large_intestine
+    path: tabula_sapiens_v2_large_intestine
+
+  - name: tabula_sapiens_v2_mammary
+    path: tabula_sapiens_v2_mammary
+
+  - name: c_elegans_embryogenesis_stage_mid_annotated
+    path: c_elegans_embryogenesis_stage_mid_annotated
+
+  - name: tabula_sapiens_v2_stomach
+    path: tabula_sapiens_v2_stomach
+
+  - name: tabula_sapiens_v2_eye
+    path: tabula_sapiens_v2_eye
+
+  - name: c_elegans_embryogenesis_cell_type_top_4_mixture
+    path: c_elegans_embryogenesis_cell_type_top_4_mixture
+
+  - name: tabula_sapiens_v2_tongue
+    path: tabula_sapiens_v2_tongue
+
+  - name: tabula_sapiens_v2_salivary_gland
+    path: tabula_sapiens_v2_salivary_gland
+
+  - name: tabula_sapiens_v2_small_intestine
+    path: tabula_sapiens_v2_small_intestine
+
+  - name: tabula_sapiens_v2_vasculature
+    path: tabula_sapiens_v2_vasculature
+
+  - name: tabula_sapiens_v2_thymus
+    path: tabula_sapiens_v2_thymus
+
+  - name: tabula_sapiens_v2_muscle
+    path: tabula_sapiens_v2_muscle
+
+  - name: tabula_sapiens_v2_ovary
+    path: tabula_sapiens_v2_ovary
+
+  - name: c_elegans_embryogenesis_global_qc_annotated
+    path: c_elegans_embryogenesis_global_qc_annotated
+
+  - name: cifar10
+    path: cifar10
+
+  - name: scdeed_cart
+    path: scdeed_cart
+
+  - name: tabula_sapiens_v2_lung
+    path: tabula_sapiens_v2_lung
+
+  - name: tabula_sapiens_v2_bladder
+    path: tabula_sapiens_v2_bladder
+
+  - name: fashion_mnist
+    path: fashion_mnist
+
+  - name: mnist784
+    path: mnist784
+
+  - name: tabula_sapiens_v2_spleen
+    path: tabula_sapiens_v2_spleen
+
+  - name: tabula_sapiens_v2_endothelium
+    path: tabula_sapiens_v2_endothelium
+
+  - name: tabula_sapiens_v2_blood
+    path: tabula_sapiens_v2_blood
+
+  - name: c_elegans_embryogenesis_qc_passed
+    path: c_elegans_embryogenesis_qc_passed
+
+  - name: scdeed_samusik
+    path: scdeed_samusik
+
+  - name: tabula_sapiens_v2_fat
+    path: tabula_sapiens_v2_fat
+
+  - name: tabula_sapiens_v2_lymph_node
+    path: tabula_sapiens_v2_lymph_node
+
+  - name: tabula_sapiens_v2_epithelium
+    path: tabula_sapiens_v2_epithelium
+
+  - name: tabula_sapiens_v2_stromal
+    path: tabula_sapiens_v2_stromal
+
+  - name: tabula_sapiens_v2_immune
+    path: tabula_sapiens_v2_immune
+
+  - name: tabula_sapiens_v2_all_cells
+    path: tabula_sapiens_v2_all_cells
+
+  - name: whole_mouse_brain_merfish_animal4_sagittal
+    path: whole_mouse_brain_merfish_animal4_sagittal
+
+  - name: gist_960_euclidean
+    path: gist_960_euclidean
+
+  - name: whole_mouse_brain_merfish_animal2_coronal
+    path: whole_mouse_brain_merfish_animal2_coronal
+
+  - name: whole_mouse_brain_merfish_animal3_sagittal
+    path: whole_mouse_brain_merfish_animal3_sagittal
+
+  - name: google_news_300d
+    path: google_news_300d
+
+  - name: whole_mouse_brain_merfish_animal1_coronal
+    path: whole_mouse_brain_merfish_animal1_coronal

@@ -1,0 +1,147 @@
+# Ten variants: five implementations x {seeded, unseeded}. Every variant shares
+# common_umap_params; a variant's params override them. The umap-learn and cuML
+# baselines may only set random_state, so they run with their library defaults.
+common_umap_params:
+  n_components: 2
+  n_neighbors: 15
+  min_dist: 0.1
+  spread: 1.0
+  n_epochs: 200
+  metric: euclidean
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  set_op_mix_ratio: 1.0
+  local_connectivity: 1.0
+  low_memory: true
+  n_jobs: -1
+  verbose: false
+
+algorithms:
+  - name: umap_learn_seed_42
+    family: umap_learn
+    device: cpu
+    enabled: true
+    baseline: true
+    seed_mode: fixed
+    execution_profile: seeded
+    notes: "Standard seeded umap-learn baseline."
+    params:
+      random_state: 42
+
+  - name: umap_learn_seed_none
+    family: umap_learn
+    device: cpu
+    enabled: true
+    baseline: true
+    seed_mode: none
+    execution_profile: unseeded
+    notes: "Standard unseeded umap-learn baseline."
+    params:
+      random_state: null
+
+  - name: cuml_umap_seed_42
+    family: cuml_umap
+    device: cuda
+    enabled: true
+    baseline: true
+    seed_mode: fixed
+    execution_profile: seeded
+    notes: "Standard seeded cuML UMAP baseline using cuML's default graph and optimization policies."
+    params:
+      random_state: 42
+
+  - name: cuml_umap_seed_none
+    family: cuml_umap
+    device: cuda
+    enabled: true
+    baseline: true
+    seed_mode: none
+    execution_profile: unseeded
+    notes: "Standard unseeded cuML UMAP baseline using cuML's default graph and optimization policies."
+    params:
+      random_state: null
+
+  - name: ibumap_cpu_seed_42
+    family: ibumap
+    algorithm: ibumap
+    device: cpu
+    enabled: true
+    baseline: false
+    seed_mode: fixed
+    execution_profile: seeded
+    notes: "seeded ibUMAP CPU."
+    params:
+      random_state: 42
+      deterministic: true
+
+  - name: ibumap_cpu_seed_none
+    family: ibumap
+    algorithm: ibumap
+    device: cpu
+    enabled: true
+    baseline: false
+    seed_mode: none
+    execution_profile: unseeded
+    notes: "unseeded ibUMAP CPU."
+    params:
+      random_state: null
+      deterministic: false
+
+  - name: ibumap_cuda_seed_42
+    family: ibumap
+    algorithm: ibumap
+    device: cuda
+    enabled: true
+    baseline: false
+    seed_mode: fixed
+    execution_profile: seeded
+    notes: "seeded ibUMAP CUDA."
+    params:
+      random_state: 42
+      deterministic: true
+
+  - name: ibumap_cuda_seed_none
+    family: ibumap
+    algorithm: ibumap
+    device: cuda
+    enabled: true
+    baseline: false
+    seed_mode: none
+    execution_profile: unseeded
+    notes: "unseeded ibUMAP CUDA."
+    params:
+      random_state: null
+      deterministic: false
+
+  - name: torchdr_umap_seed_42
+    family: torchdr_umap
+    device: cuda
+    enabled: true
+    baseline: true
+    seed_mode: fixed
+    execution_profile: seeded
+    notes: "seeded TorchDR UMAP with deterministic PyTorch and cuBLAS settings."
+    params:
+      random_state: 42
+      deterministic: true
+      backend: faiss
+      device: cuda
+      distributed: false
+      compile: false
+
+  - name: torchdr_umap_seed_none
+    family: torchdr_umap
+    device: cuda
+    enabled: true
+    baseline: true
+    seed_mode: none
+    execution_profile: unseeded
+    notes: "unseeded TorchDR UMAP with PyTorch fast-mode settings."
+    params:
+      random_state: null
+      deterministic: false
+      backend: faiss
+      device: cuda
+      distributed: false
+      compile: false

@@ -1,0 +1,11 @@
+project_root: ../../..
+scripts_root: ../../../scripts
+processed_root: ../../../datasets/processed
+results_root: ../results
+embeddings_root: ../results/01_embeddings
+evaluation_root: ../results/02_evaluations
+summaries_root: ../results/03_summaries
+embedding_plots_root: ../results/04_embedding_plots
+time_plots_root: ../results/05_time_plots
+metric_plots_root: ../results/06_metrics_plots
+logs_root: ../logs

@@ -1,0 +1,4 @@
+results/
+logs/
+.mplconfig/
+.numba_cache/
