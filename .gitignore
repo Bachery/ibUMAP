@@ -26,6 +26,7 @@ datasets/cache/**/*
 
 
 # Build artifacts
+paper/build/
 # Cython output of _cuml_graph_ext.pyx; embeds absolute include paths
 src/ibumap/graph/_cuml_graph_ext.cpp
 build/
