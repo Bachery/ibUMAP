@@ -37,6 +37,7 @@ SpectralScalePolicy = Literal[
     "fft_compact",
     "raw",
     "legacy_box10",
+    "legacy_box10_unoriented",
 ]
 
 
@@ -363,10 +364,11 @@ class InitializationConfig:
             "fft_compact",
             "raw",
             "legacy_box10",
+            "legacy_box10_unoriented",
         ):
             raise ValueError(
                 "spectral_scale_policy must be one of: auto, fft_compact, "
-                "raw, legacy_box10"
+                "raw, legacy_box10, legacy_box10_unoriented"
             )
         self.spectral_max_span = float(self.spectral_max_span)
         if (

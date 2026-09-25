@@ -105,11 +105,20 @@ def initialize_embedding_cpu(
         # The estimator resolves "auto" with its algorithm context. Preserve
         # the historical direct-function behavior when that context is absent.
         spectral_scale_policy = "legacy_box10"
-    if spectral_scale_policy not in ("fft_compact", "raw", "legacy_box10"):
+    if spectral_scale_policy not in (
+        "fft_compact", "raw", "legacy_box10", "legacy_box10_unoriented"
+    ):
         raise ValueError(
             "spectral_scale_policy must be one of: fft_compact, raw, "
-            "legacy_box10"
+            "legacy_box10, legacy_box10_unoriented"
         )
+    # "legacy_box10_unoriented" is legacy_box10 without the deterministic axis
+    # reflection: the eigensolver's signs are kept. It reproduces spectral
+    # initializations saved by versions that did not orient the axes.
+    requested_scale_policy = spectral_scale_policy
+    orient_axes = spectral_scale_policy != "legacy_box10_unoriented"
+    if not orient_axes:
+        spectral_scale_policy = "legacy_box10"
     is_spectral = isinstance(init, str) and init == "spectral"
     if isinstance(init, str) and init == "random":
         _set_diagnostic(init_diagnostics, "init_method", "random")
@@ -123,7 +132,7 @@ def initialize_embedding_cpu(
         _set_diagnostic(
             init_diagnostics,
             "init_spectral_scale_policy",
-            spectral_scale_policy,
+            requested_scale_policy,
         )
         auto_defaults = spectral_auto_defaults_enabled(
             init=init,
@@ -216,10 +225,13 @@ def initialize_embedding_cpu(
 
     if is_spectral and spectral_scale_policy == "legacy_box10":
         t0 = perf_counter()
-        init_embedding, orientation = canonicalize_spectral_axes(
-            np,
-            init_embedding,
-        )
+        if orient_axes:
+            init_embedding, orientation = canonicalize_spectral_axes(
+                np,
+                init_embedding,
+            )
+        else:
+            orientation = {"reflected": [False] * int(init_embedding.shape[1])}
         for key, value in orientation.items():
             _set_diagnostic(
                 init_diagnostics,

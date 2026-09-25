@@ -103,11 +103,20 @@ def initialize_embedding_gpu(
     spectral_scale_policy = str(spectral_scale_policy)
     if spectral_scale_policy == "auto":
         spectral_scale_policy = "legacy_box10"
-    if spectral_scale_policy not in ("fft_compact", "raw", "legacy_box10"):
+    if spectral_scale_policy not in (
+        "fft_compact", "raw", "legacy_box10", "legacy_box10_unoriented"
+    ):
         raise ValueError(
             "spectral_scale_policy must be one of: fft_compact, raw, "
-            "legacy_box10"
+            "legacy_box10, legacy_box10_unoriented"
         )
+    # "legacy_box10_unoriented" is legacy_box10 without the deterministic axis
+    # reflection: the eigensolver's signs are kept. It reproduces spectral
+    # initializations saved by versions that did not orient the axes.
+    requested_scale_policy = spectral_scale_policy
+    orient_axes = spectral_scale_policy != "legacy_box10_unoriented"
+    if not orient_axes:
+        spectral_scale_policy = "legacy_box10"
     is_spectral = isinstance(init, str) and init == "spectral"
     if isinstance(random_state, np.random.RandomState):
         random_seed = int(random_state.randint(0, 2**31 - 1))
@@ -133,7 +142,7 @@ def initialize_embedding_gpu(
         _set_diagnostic(
             init_diagnostics,
             "init_spectral_scale_policy",
-            spectral_scale_policy,
+            requested_scale_policy,
         )
         auto_defaults = spectral_auto_defaults_enabled(
             init=init,
@@ -232,10 +241,13 @@ def initialize_embedding_gpu(
 
     if is_spectral and spectral_scale_policy == "legacy_box10":
         t0 = perf_counter()
-        init_embedding, orientation = canonicalize_spectral_axes(
-            cp,
-            init_embedding,
-        )
+        if orient_axes:
+            init_embedding, orientation = canonicalize_spectral_axes(
+                cp,
+                init_embedding,
+            )
+        else:
+            orientation = {"reflected": [False] * int(init_embedding.shape[1])}
         for key, value in orientation.items():
             _set_diagnostic(
                 init_diagnostics,
