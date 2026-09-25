@@ -63,7 +63,7 @@ def main() -> None:
 
     evaluation = dict(configs.get("evaluation") or {})
     record = {
-        "description": "End-to-end benchmark (paper Section 5 and Appendix B), exported from a published bundle.",
+        "description": "End-to-end benchmark (paper Section 5 and Appendix C), exported from a published bundle.",
         "protocol_version": completeness["protocol_version"],
         "summary_configuration_hash": completeness["summary_configuration_hash"],
         "benchmark_configuration_hash": completeness["benchmark_configuration_hash"],

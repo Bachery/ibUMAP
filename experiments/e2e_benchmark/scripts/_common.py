@@ -1,4 +1,4 @@
-"""Shared contract and adapters of the end-to-end benchmark (paper Section 5, Appendix B).
+"""Shared contract and adapters of the end-to-end benchmark (paper Section 5, Appendix C).
 
 Every run record carries hashes of the configuration, of the measured source
 code (controller, adapters, shared helpers and, for ibUMAP, ``src/ibumap``), of

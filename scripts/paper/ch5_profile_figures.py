@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Appendix B speed figures for both execution profiles (seeded and unseeded).
+"""Appendix C speed figures for both execution profiles (seeded and unseeded).
 
   figure_A_side_by_side.pdf                        fig:appendix-speedups
       dataset-level speedups, CPU / umap-learn (left) and GPU / cuML (right)

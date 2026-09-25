@@ -1,5 +1,5 @@
 {
-  "description": "Frozen end-to-end benchmark (paper Section 5 and Appendix B).",
+  "description": "Frozen end-to-end benchmark (paper Section 5 and Appendix C).",
   "protocol_version": "20260806.1",
   "summary_configuration_hash": "2eaa1e7b9575c2784d3b6036802d3f339400e82b23888c1adaab8cba05ae9316",
   "benchmark_configuration_hash": "20d6cc73414a0556b8132aa2ff5afda6405f2ee400eeaba64b2fc2f1b34ed02a",

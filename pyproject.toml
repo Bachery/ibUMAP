@@ -9,7 +9,7 @@ description = "ibUMAP: coherent and scalable field evaluation for UMAP optimizat
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Anonymous" }]
-# license: intentionally unset until third-party code provenance is audited (see MIGRATION doc)
+# license: intentionally unset until third-party code provenance is audited (see README, License)
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",

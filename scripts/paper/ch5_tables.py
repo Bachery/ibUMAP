@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section 5 / Appendix B tables from the frozen end-to-end benchmark.
+"""Section 5 / Appendix C tables from the frozen end-to-end benchmark.
 
 Writes to paper/build/tables/:
   ch5_quality_common_median_rows.tex   Table tab:e2e-fidelity-common (main text)

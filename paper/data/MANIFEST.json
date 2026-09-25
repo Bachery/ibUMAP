@@ -15,7 +15,7 @@
     "e2e_benchmark": {
       "description": "End-to-end benchmark on 71 datasets: runs, quality (5 metrics), stability, datasets.",
       "files": {
-        "e2e_benchmark/bundle.json": "52a0de877b5a5f360458aabe67b88ef07ce5e080473af4efa73348461ef2d866",
+        "e2e_benchmark/bundle.json": "8010f5db3d9643899b6c45f89da1b1c465a1794071306ac5e7a37e9f1f835b17",
         "e2e_benchmark/datasets.csv.gz": "004a48f8442ff65b3623df15fb3a9cb179cf275836aad86175de5d3917a2c7ce",
         "e2e_benchmark/quality.csv.gz": "d807b0b7771d21f580c43348af01b5fb16a447254a4a019162c7d7e2cf05eef4",
         "e2e_benchmark/runs.csv.gz": "2531c62235cbba836ffaabb3c8a36184e272deb0cbf8ec6e9f0a7fbee1ee5264",

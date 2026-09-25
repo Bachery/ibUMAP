@@ -53,7 +53,7 @@ raster difference per figure when poppler's `pdftoppm` is available.
 | Sec. 6 figure | `fig:braque-repeatability` | `figures/ch6_run1.pdf`, `ch6_run2.pdf`, `ch6_changes.pdf` | `ch6_panels.py` |
 | App. table | `tab:braque-reuse` | `tables/ch6_reuse_rows.tex` | `ch6_reuse_table.py` |
 
-The benchmark-environment table in Appendix B describes the experiment machine
+The benchmark-environment table in Appendix C describes the experiment machine
 and is written by hand. Each builder also writes the plotted values
 (`figures/data/*.csv`, `tables/*_plot_data.csv`) and a summary JSON with the
 statistics quoted in the text. Every builder runs on its own, e.g.

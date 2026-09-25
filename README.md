@@ -175,7 +175,7 @@ builder and data files.
    | --- | --- | --- |
    | [`experiments/mechanism/`](experiments/mechanism/README.md) | Section 4 and appendix | Optimizer variants on fixed graphs and initializations, 59 datasets in three size suites; calendar audit |
    | [`experiments/psweep/`](experiments/psweep/README.md) | Appendix `tab:mechanism-psweep` | ibFFT interpolation order and stage schedule, 30 datasets, CPU and CUDA |
-   | [`experiments/e2e_benchmark/`](experiments/e2e_benchmark/README.md) | Section 5 and Appendix B | End-to-end runtime, quality and run-to-run stability against umap-learn, cuML and TorchDR, 71 datasets |
+   | [`experiments/e2e_benchmark/`](experiments/e2e_benchmark/README.md) | Section 5 and Appendix C | End-to-end runtime, quality and run-to-run stability against umap-learn, cuML and TorchDR, 71 datasets |
    | [`experiments/braque/`](experiments/braque/README.md) | Section 6 and appendix | Rerun repeatability of a BRAQUE/HDBSCAN analysis and the cost of seeded runs |
 
 4. Each experiment ends with an export step that writes its summaries in the

@@ -1,8 +1,8 @@
-# End-to-end benchmark (paper Section 5, Appendix B)
+# End-to-end benchmark (paper Section 5, Appendix C)
 
 Measures the end-to-end time, quality and run-to-run stability of five UMAP
 implementations on 71 datasets. The paper's Section 5 figure and tables and the
-Appendix B tables and figures are built from the summaries this experiment
+Appendix C tables and figures are built from the summaries this experiment
 writes (`scripts/paper/ch5_*.py`, frozen copy in `paper/data/e2e_benchmark/`).
 
 ## Scope
