@@ -46,8 +46,16 @@ the other seeds (`independent_seed_replicate: false`).
 and fuzzy graph, the optimizer graph pruned for 200 epochs and the spectral
 initialization with `IBUMAP.prepare_fixed_inputs` (seed 42, `n_jobs=1`,
 parameters in `experiment.yaml`, section `fixed_inputs`). With the package
-versions of `environments/cuda-linux-64.*` these are the inputs used for the
-paper.
+versions of `environments/cuda-linux-64.*` these are, bit for bit, the inputs
+used for the paper.
+
+The initialization uses `spectral_scale_policy: legacy_box10_unoriented`: the
+spectral embedding scaled to [0, 10] per axis plus a jitter of scale 1e-4, with
+the axis signs returned by the eigensolver. ibUMAP's default `legacy_box10`
+additionally reflects each axis so that its mean lies below the midpoint (the
+dense side away from 10, where float32 is coarser). The two differ only by a
+per-axis reflection, which preserves all pairwise distances, but the optimizer
+trajectories are not bitwise equal; the paper's runs used the unoriented form.
 
 The 60 candidate datasets (`configs/datasets.yaml`) form three size suites:
 

@@ -37,6 +37,9 @@ fixed_inputs:
   low_memory: true
   n_jobs: 1
   init: spectral
+  # Keep the eigensolver's axis signs (no deterministic reflection), as in the
+  # initializations used for the paper; see README, "Inputs and suites".
+  spectral_scale_policy: legacy_box10_unoriented
   verbose: false
 common_params:
   n_components: 2
