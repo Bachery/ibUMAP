@@ -13,7 +13,7 @@ from statistics import median
 
 import _e2e
 import _style as style
-from _common import parse_args, write_csv, write_json
+from _common import expect_paper, parse_args, write_csv, write_json
 
 STEM = "figure_BE_runtime_stability_merged_h166"
 FIG_H = 1.66
@@ -31,19 +31,19 @@ GAP_AB, GAP_BC = 0.05, 0.44                              # inches
 W_SPEED, W_STAB = 1.45, 1.71                             # inches
 
 
-def build_rows(data):
+def build_rows(data, paths):
     runtime, _ = _e2e.runtime_rows(data)
     stable = _e2e.stability_delta_rows(data)
-    if dict(Counter(r["comparison"] for r in runtime)) != EXPECTED_COUNTS:
-        raise ValueError("Unexpected runtime coverage.")
+    counts = dict(Counter(r["comparison"] for r in runtime))
+    expect_paper(paths, counts == EXPECTED_COUNTS, f"runtime coverage {counts}, paper {EXPECTED_COUNTS}")
     for metric, _ in style.STABILITY_METRICS:
-        if dict(Counter(r["comparison"] for r in stable if r["metric"] == metric)) != EXPECTED_COUNTS:
-            raise ValueError(f"Unexpected stability coverage for {metric}.")
+        counts = dict(Counter(r["comparison"] for r in stable if r["metric"] == metric))
+        expect_paper(paths, counts == EXPECTED_COUNTS, f"{metric} stability coverage {counts}, paper {EXPECTED_COUNTS}")
     seeded = _e2e.cpu_seeded_rows(data, {r["dataset"] for r in runtime if r["comparison"] == "cpu_umap"})
     runtime = [dict(r, execution_profile="unseeded") for r in runtime] + seeded
     counts = Counter((r["comparison"], r["execution_profile"]) for r in runtime)
-    if dict(counts) != {(k, p): EXPECTED_COUNTS[k] for k, p in RUNTIME_SERIES}:
-        raise ValueError("Unexpected execution-profile coverage in runtime figure.")
+    expect_paper(paths, dict(counts) == {(k, p): EXPECTED_COUNTS[k] for k, p in RUNTIME_SERIES},
+                 f"execution-profile coverage {dict(counts)}")
     return runtime, stable
 
 
@@ -57,12 +57,12 @@ def axes_rects(fig_h):
     return rects
 
 
-def draw(runtime, stable, stem, formats, fig_h=FIG_H):
+def draw(runtime, stable, stem, formats, paths, fig_h=FIG_H):
     import matplotlib.pyplot as plt
     from matplotlib.ticker import FixedLocator, FuncFormatter
 
-    style.validate_in_bounds(runtime, "n_samples", style.X_LIMITS)
-    style.validate_in_bounds(runtime, "speedup", style.SPEEDUP_LIMITS)
+    style.X_LIMITS = style.fit_log_limits(paths, runtime, "n_samples", style.X_LIMITS, "X_LIMITS")
+    style.SPEEDUP_LIMITS = style.fit_log_limits(paths, runtime, "speedup", style.SPEEDUP_LIMITS, "SPEEDUP_LIMITS")
     fig = plt.figure(figsize=(FIG_W, fig_h))
     ax_cpu, ax_gpu, ax_stab = (fig.add_axes(r) for r in axes_rects(fig_h))
 
@@ -136,13 +136,13 @@ def draw(runtime, stable, stem, formats, fig_h=FIG_H):
 def main() -> None:
     args, paths = parse_args(__doc__.splitlines()[0], style.add_format_argument)
     data = _e2e.load(paths)
-    runtime, stable = build_rows(data)
+    runtime, stable = build_rows(data, paths)
     out = paths.figures / "data"
     out.mkdir(exist_ok=True)
     write_csv(out / "runtime_data.csv", runtime)
     write_csv(out / "stability_data.csv", stable)
     style.configure_matplotlib()
-    draw(runtime, stable, paths.figures / STEM, args.formats)
+    draw(runtime, stable, paths.figures / STEM, args.formats, paths)
     summary = {
         "medians": {f"{k}/{p}": median(r["speedup"] for r in runtime
                                        if r["comparison"] == k and r["execution_profile"] == p)

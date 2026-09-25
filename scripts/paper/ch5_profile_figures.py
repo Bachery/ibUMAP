@@ -48,15 +48,13 @@ COMPARISONS = {
 RC = {"lines.linewidth": LINE_WIDTH_PT, "savefig.bbox": None}
 
 
-def validate_limits(rows):
-    for row in rows:
-        if not style.X_LIMITS[0] < row["n_samples"] < style.X_LIMITS[1]:
-            raise ValueError(f"Expand X_LIMITS to include {row['dataset']}.")
-        if not Y_LIMITS[0] < row["speedup"] < Y_LIMITS[1]:
-            raise ValueError(f"Expand Y_LIMITS to include {row['dataset']}.")
-        if any(not RUNTIME_Y_LIMITS[0] < row[c] < RUNTIME_Y_LIMITS[1]
-               for c in ("baseline_median_e2e_s", "ibumap_median_e2e_s")):
-            raise ValueError(f"Expand RUNTIME_Y_LIMITS to include {row['dataset']}.")
+def fit_limits(rows, paths):
+    """Keep the paper's axis limits; widen them only for new results that fall outside."""
+    global Y_LIMITS, RUNTIME_Y_LIMITS
+    style.X_LIMITS = style.fit_log_limits(paths, rows, "n_samples", style.X_LIMITS, "X_LIMITS")
+    Y_LIMITS = style.fit_log_limits(paths, rows, "speedup", Y_LIMITS, "Y_LIMITS")
+    RUNTIME_Y_LIMITS = style.fit_log_limits(paths, rows, ("baseline_median_e2e_s", "ibumap_median_e2e_s"),
+                                            RUNTIME_Y_LIMITS, "RUNTIME_Y_LIMITS")
 
 
 def log_axes(ax, y_limits, y_ticks, y_format):
@@ -137,7 +135,7 @@ def main() -> None:
     args, paths = parse_args(__doc__.splitlines()[0], style.add_format_argument)
     data = _e2e.load(paths)
     rows = _e2e.profile_rows(data, COMPARISONS)
-    validate_limits(rows)
+    fit_limits(rows, paths)
     (paths.figures / "data").mkdir(exist_ok=True)
     write_csv(paths.figures / "data" / "figure_A_data.csv", rows)
     style.configure_matplotlib(rc_overrides=RC, hashsalt="ibumap-paper-figure-a")

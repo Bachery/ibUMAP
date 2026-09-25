@@ -14,7 +14,7 @@ from statistics import mean
 
 import _e2e
 import _style as style
-from _common import parse_args
+from _common import expect_paper, parse_args
 
 METRICS = (
     ("trustworthiness", "Trustworthiness"),
@@ -32,7 +32,8 @@ def main() -> None:
     rows = _e2e.quality_delta_rows(data, METRICS)
     for key, expected in EXPECTED.items():
         for metric, _ in METRICS:
-            assert sum(r["comparison"] == key and r["metric"] == metric for r in rows) == expected
+            found = sum(r["comparison"] == key and r["metric"] == metric for r in rows)
+            expect_paper(paths, found == expected, f"{key} {metric}: {found} datasets, paper {expected}")
     table_export = paths.tables / "ch5_fidelity_plot_data.csv"
     if table_export.exists():
         labels = {"CPU/UMAP": "cpu_umap", "GPU/cuML": "gpu_cuml", "GPU/TorchDR": "gpu_torchdr"}

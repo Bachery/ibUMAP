@@ -93,7 +93,14 @@ the paper outputs from them with
 python scripts/paper/make_all.py --data-dir paper/rerun --build-dir paper/build_rerun
 ```
 
-Verification against the manuscript is skipped in that case, because timings
-and unseeded runs are not expected to reproduce bit for bit. Values that differ
+Verification against the manuscript runs only for the frozen data (a data
+directory with `MANIFEST.json`), because timings and unseeded runs are not
+expected to reproduce bit for bit on other hardware or software. The same
+applies inside the builders: properties of the paper's results, such as dataset
+counts, the sign of a quality difference or the axis limits of a figure, are
+hard errors for the frozen data, but for new results the builders print
+`NOTE: differs from the paper: …` (or widen the axis limits) and continue.
+Integrity checks (complete, successful and consistent runs, matching hashes
+within the data) remain errors in both cases. Values that differ
 from the frozen data only in formatting (for example `sample_seed`, which the
 frozen local-metric rows leave empty) do not affect the builders.

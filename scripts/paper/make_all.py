@@ -7,7 +7,8 @@
 
 Needs only numpy, scipy, pandas, matplotlib and scikit-learn (pip install -e ".[paper]"),
 no GPU and no ibUMAP installation. Figure 1 (method overview) is a drawing, not data.
-Verification against the manuscript is skipped when --data-dir is given.
+Verification against the manuscript runs only for the frozen data (a data directory with
+MANIFEST.json); for new results the builders report where they differ from the paper and continue.
 """
 from __future__ import annotations
 
@@ -53,7 +54,8 @@ def main() -> int:
             print(f"FAILED: {script}")
             return result.returncode
         print(f"  ({time.perf_counter() - start:.1f}s)")
-    if args.no_verify or args.data_dir is not None:
+    data_dir = args.data_dir or DEFAULT_DATA
+    if args.no_verify or not (Path(data_dir) / "MANIFEST.json").exists():
         return 0
     return subprocess.run([sys.executable, str(HERE / "verify.py"), "--build-dir", str(args.build_dir)]).returncode
 

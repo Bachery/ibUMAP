@@ -22,7 +22,7 @@ from statistics import median
 
 import _e2e
 import _style as style
-from _common import parse_args, write_csv, write_json
+from _common import expect_paper, parse_args, write_csv, write_json
 
 PANEL_WIDTH_IN, PANEL_HEIGHT_IN = 2.70, 2.05
 AXES_LEFT_IN, AXES_RIGHT_IN = 0.40, 0.10
@@ -65,7 +65,7 @@ def run_components(row):
             "_wall": wall, "_overlap": max(0.0, preprocess + init + opt - wall)}
 
 
-def build_dataset_rows(runs):
+def build_dataset_rows(runs, paths):
     groups = defaultdict(list)
     for row in runs:
         if row["algorithm_id"].startswith("ibumap"):
@@ -73,8 +73,7 @@ def build_dataset_rows(runs):
     output = []
     for key, algorithm, _, expected in VARIANTS:
         datasets = sorted(d for a, d in groups if a == algorithm)
-        if len(datasets) != expected:
-            raise ValueError(f"{algorithm}: expected {expected} datasets, found {len(datasets)}")
+        expect_paper(paths, len(datasets) == expected, f"{algorithm}: {len(datasets)} datasets, paper {expected}")
         for dataset in datasets:
             part = groups[algorithm, dataset]
             if len(part) != 5 or {int(r["repeat"]) for r in part} != set(range(1, 6)):
@@ -171,7 +170,7 @@ def summarize(rows):
 def main() -> None:
     args, paths = parse_args(__doc__.splitlines()[0], style.add_format_argument)
     data = _e2e.load(paths)
-    rows = build_dataset_rows(data.runs)
+    rows = build_dataset_rows(data.runs, paths)
     all_n = [r["n_samples"] for r in rows]
     x_limits = (min(all_n), max(all_n))
     (paths.figures / "data").mkdir(exist_ok=True)

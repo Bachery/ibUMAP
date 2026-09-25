@@ -6,6 +6,9 @@ directory with the same layout, via ``--data-dir``) and writes to
 
     paper/build/figures/   PDF figures, named as in the manuscript
     paper/build/tables/    LaTeX table rows (``\\input`` by the manuscript), plot-data CSVs, evidence JSON
+
+Checks of properties specific to the paper's results go through
+:func:`expect_paper`: errors for the frozen data, notes for new results.
 """
 from __future__ import annotations
 
@@ -28,6 +31,8 @@ class Paths:
     def __init__(self, data: Path, build: Path) -> None:
         self.data = Path(data).resolve()
         self.build = Path(build).resolve()
+        # The frozen paper data carry MANIFEST.json; exports of a new run do not.
+        self.frozen = (self.data / "MANIFEST.json").exists()
         self.figures = self.build / "figures"
         self.tables = self.build / "tables"
         for directory in (self.figures, self.tables):
@@ -76,6 +81,21 @@ def check_group(paths: Paths, group: str) -> dict[str, str]:
         if actual != expected:
             sys.exit(f"{name}: SHA-256 {actual} does not match MANIFEST.json ({expected})")
     return files
+
+
+def expect_paper(paths: Paths, condition: bool, message: str) -> None:
+    """Check a property of the paper's results, such as a dataset count or the sign of a difference.
+
+    The frozen data must have it. New results (a data directory without
+    MANIFEST.json) may legitimately differ on other hardware or software; the
+    builders then report the difference and continue. Integrity checks (complete,
+    consistent, successful runs) stay hard errors in both cases.
+    """
+    if condition:
+        return
+    if paths.frozen:
+        raise AssertionError(f"The frozen data no longer match the paper: {message}")
+    print(f"NOTE: differs from the paper: {message}", file=sys.stderr)
 
 
 def write_rows(paths: Paths, name: str, rows: list[str], builder: str) -> Path:

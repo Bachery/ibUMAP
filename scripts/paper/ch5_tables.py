@@ -14,7 +14,7 @@ import collections
 import statistics as st
 
 import _e2e
-from _common import parse_args, write_csv, write_json, write_rows
+from _common import expect_paper, parse_args, write_csv, write_json, write_rows
 
 BUILDER = "ch5_tables.py"
 
@@ -23,14 +23,15 @@ def main() -> None:
     _, paths = parse_args(__doc__.splitlines()[0])
     data = _e2e.load(paths)
     runs, quality, stability, datasets = data.runs, data.quality, data.stability, data.datasets
-    assert data.bundle["strict_passed"] and data.bundle["successful_runs"] == 3400
+    assert data.bundle["strict_passed"]
+    expect_paper(paths, data.bundle["successful_runs"] == 3400, f"{data.bundle['successful_runs']} runs, paper 3400")
     metric_names = _e2e.QUALITY_METRICS
-    assert len(runs) == 3400
+    expect_paper(paths, len(runs) == 3400, f"{len(runs)} runs, paper 3400")
     assert len({(r["dataset"], r["run_id"]) for r in runs}) == len(runs)
     assert all(r["status"] == "ok" for r in runs + quality + stability)
     assert len({r["hardware_signature"] for r in runs}) == 1
     local_records = sum(r["source"] == "local" for r in quality)
-    assert local_records == 10200
+    expect_paper(paths, local_records == 10200, f"{local_records} local quality records, paper 10200")
 
     times = collections.defaultdict(list)
     hashes = collections.defaultdict(set)
@@ -138,9 +139,13 @@ def main() -> None:
     write("ch5_quality_rows.tex", quality_rows)
     write("ch5_quality_paired_median_rows.tex", paired_median_rows)
     write("ch5_collection_rows.tex", collection_rows)
-    assert all(r[m] < 0 for r in audit["collection_quality"]
-               if r["comparison"] == "CPU/UMAP" or (r["comparison"] == "GPU/cuML" and r["profile"] == "Unseeded")
-               for m in ["trustworthiness", "neighborhood_preservation"])
+    # Stated in the paper: collection-balanced TW and NP differences are negative for CPU/UMAP and
+    # unseeded GPU/cuML.
+    for r in audit["collection_quality"]:
+        if r["comparison"] == "CPU/UMAP" or (r["comparison"] == "GPU/cuML" and r["profile"] == "Unseeded"):
+            for m in ["trustworthiness", "neighborhood_preservation"]:
+                expect_paper(paths, r[m] < 0, f"collection-balanced {m} difference {r['comparison']} "
+                                               f"{r['profile']} is {r[m]:+.6f}, negative in the paper")
 
     algorithms = [("umap-learn", "umap_learn"), ("ibUMAP CPU", "ibumap_cpu"), ("cuML", "cuml_umap"),
                   ("ibUMAP CUDA", "ibumap_cuda"), ("TorchDR", "torchdr_umap")]
@@ -149,8 +154,10 @@ def main() -> None:
     available = {a: {d for d, algo in times if algo == a + "_seed_none"} for _, a in algorithms}
     common = set.intersection(*available.values())
     full_gpu = available["cuml_umap"] & available["ibumap_cuda"]
-    assert len(common) == 66 and len(full_gpu) == 71
-    assert common == available["umap_learn"] == available["ibumap_cpu"] == available["torchdr_umap"]
+    expect_paper(paths, len(common) == 66 and len(full_gpu) == 71,
+                 f"{len(common)} common and {len(full_gpu)} full-GPU datasets, paper 66 and 71")
+    expect_paper(paths, common == available["umap_learn"] == available["ibumap_cpu"] == available["torchdr_umap"],
+                 "umap-learn, ibUMAP CPU and TorchDR cover different datasets")
     assert all({d for d, algo in times if algo == a + "_seed_42"} == available[a] for _, a in algorithms)
     audit["global_paired"] = []
     for label, candidate, baseline in comp:
@@ -162,9 +169,9 @@ def main() -> None:
                                            "wins": sum(v > 0 for v in delta)})
     cpu_methods = [("umap-learn", "umap_learn"), ("ibUMAP", "ibumap_cpu")]
     gpu_methods = [("cuML", "cuml_umap"), ("TorchDR", "torchdr_umap"), ("ibUMAP", "ibumap_cuda")]
-    quality_scopes = [("CPU: common 66 datasets", common, cpu_methods),
-                      ("GPU: common 66 datasets", common, gpu_methods),
-                      ("GPU: full 71 datasets", full_gpu, [("cuML", "cuml_umap"), ("ibUMAP", "ibumap_cuda")])]
+    quality_scopes = [(f"CPU: common {len(common)} datasets", common, cpu_methods),
+                      (f"GPU: common {len(common)} datasets", common, gpu_methods),
+                      (f"GPU: full {len(full_gpu)} datasets", full_gpu, [("cuML", "cuml_umap"), ("ibUMAP", "ibumap_cuda")])]
 
     def quality_summary(ds, algorithm, seed, reducer):
         return [reducer(st.mean(scores[d, algorithm + "_seed_" + seed, metric]) for d in sorted(ds))

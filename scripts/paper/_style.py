@@ -6,6 +6,8 @@ text widths slightly but not the plotted values.
 """
 from __future__ import annotations
 
+import sys
+
 import hashlib
 from pathlib import Path
 
@@ -115,11 +117,25 @@ def comparison_for(key: str) -> dict:
     return next(item for item in COMPARISONS if item["key"] == key)
 
 
-def validate_in_bounds(rows: list[dict], column: str, limits: tuple[float, float]) -> None:
-    invalid = [row for row in rows if not limits[0] < row[column] < limits[1]]
-    if invalid:
-        first = invalid[0]
-        raise ValueError(f"Configured limits hide {first['dataset']} ({column}={first[column]}).")
+def fit_log_limits(paths, rows: list[dict], columns, limits: tuple[float, float], name: str,
+                   margin: float = 1.25) -> tuple[float, float]:
+    """Return ``limits`` if every value lies inside; otherwise widen them for new results.
+
+    For the frozen data the configured limits are part of the paper's layout, so a
+    value outside them is an error.
+    """
+    columns = [columns] if isinstance(columns, str) else list(columns)
+    values = [(row[c], row.get("dataset", "?"), c) for row in rows for c in columns]
+    outside = [v for v in values if not limits[0] < v[0] < limits[1]]
+    if not outside:
+        return limits
+    value, dataset, column = outside[0]
+    if paths.frozen:
+        raise ValueError(f"Configured {name} hide {dataset} ({column}={value}).")
+    low = min([limits[0]] + [v / margin for v, _, _ in values if v > 0])
+    high = max([limits[1]] + [v * margin for v, _, _ in values])
+    print(f"NOTE: {name} widened to ({low:.3g}, {high:.3g}) to include {len(outside)} values", file=sys.stderr)
+    return (low, high)
 
 
 def deterministic_jitter(key: str, width: float = 0.13) -> float:

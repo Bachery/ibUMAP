@@ -8,7 +8,7 @@ and ch6_reuse_summary.json (seeded cost ratios and fidelity values quoted in the
 """
 from __future__ import annotations
 
-from _common import check_group, parse_args, read_csv, write_json, write_rows
+from _common import check_group, expect_paper, parse_args, read_csv, write_json, write_rows
 
 PROFILES = (("umap_unseeded", "UMAP unseeded"), ("umap_seeded", "UMAP seeded"),
             ("ibumap_unseeded", "ibUMAP unseeded"), ("ibumap_seeded", "ibUMAP seeded"))
@@ -22,7 +22,8 @@ def main() -> None:
     lines = []
     for profile, label in PROFILES:
         r = summary[profile]
-        assert r["run_count"] == "5" and r["pair_count"] == "10"
+        expect_paper(paths, r["run_count"] == "5" and r["pair_count"] == "10",
+                     f"{profile}: {r['run_count']} runs / {r['pair_count']} pairs, paper 5 / 10")
         exact = r["all_embeddings_identical"] == "True" and r["all_labels_identical"] == "True"
         lines.append(" & ".join([
             label, f"{float(r['embedding_fit_median']):.3f}", f"{float(r['embedding_plus_hdbscan_median']):.3f}",
