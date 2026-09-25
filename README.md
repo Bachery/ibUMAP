@@ -1,18 +1,36 @@
-# ibUMAP
+# ibUMAP: Coherent and Scalable Field Evaluation for UMAP Optimization
 
-Reference implementation and reproduction package for the paper
-*ibUMAP: Coherent and Scalable Field Evaluation for UMAP Optimization*.
+Reference implementation and reproduction package for the paper.
 
-UMAP optimizes its layout with stochastic negative sampling, so the repulsive
-forces depend on the order of sampling events and embeddings can change between
-reruns. ibUMAP evaluates attraction and repulsion from one shared embedding
-snapshot and applies them synchronously. Its degree-weighted repulsive field
-follows the conditional expectation of negative sampling for a fixed embedding.
-The field is represented by three scalar moments and evaluated on CPUs and GPUs
-with an interpolation-based FFT scheme (ibFFT), so no all-pairs computation is
-needed.
+[![ibUMAP overview](paper/ch1_figure_1.png)](paper/ch1_figure_1.pdf)
 
-The repository contains:
+**From sampled in-place updates to coherent field evaluation.** (a) From
+shared initial coordinates, UMAP negative-sampling events update the head
+immediately, whereas ibUMAP evaluates a radial repulsive field at one snapshot
+and applies updates together. (b) Particle-to-mesh (P2M) deposition, FFT
+convolution with a shared capped scalar kernel, and mesh-to-particle (M2P)
+interpolation reconstruct the repulsion R<sub>i</sub> from three scalar moments.
+
+## Abstract
+
+UMAP achieves scalable layout optimization through stochastic negative sampling.
+However, this stochasticity can lead to unstable embeddings across reruns and
+downstream reuse, as the estimated repulsive forces depend on the ordering of
+sampling events. We present ibUMAP, a coherent field-based alternative that
+evaluates attraction and repulsion from a shared embedding snapshot and applies
+them synchronously. Its degree-weighted repulsive field is motivated by the
+conditional expectation of negative sampling for a fixed embedding and
+represented by three scalar moments, which are evaluated efficiently on CPUs and
+GPUs using an interpolation-based FFT scheme. This formulation avoids explicit
+all-pairs computations while inducing optimization dynamics that differ from
+those of standard online UMAP. Controlled experiments show that synchrony and
+kernel capping alter the local–global fidelity trade-off, whereas FFT evaluation
+produces small average changes in final quality. End-to-end benchmarks show
+median speedups of 3.29× unseeded and 5.79× seeded over umap-learn on CPU, and
+1.44× over cuML on million-scale datasets under unseeded GPU execution. These
+gains accompany greater run-to-run stability and measurable fidelity trade-offs.
+
+## Contents
 
 | Part | Location | Purpose |
 | --- | --- | --- |
@@ -238,7 +256,7 @@ src/ibumap/
   pipeline/           per-device orchestration
   evaluation/         embedding quality metrics
 experiments/          mechanism, psweep, e2e_benchmark, braque
-paper/                frozen data (data/) and paper output map
+paper/                frozen data (data/), paper output map, Figure 1 (ch1_figure_1.pdf/.png)
 scripts/paper/        figure and table builders, verification
 scripts/common/       helpers shared by the experiments
 scripts/datasets/     dataset download, preparation and validation

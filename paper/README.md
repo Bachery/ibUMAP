@@ -2,7 +2,7 @@
 
 This directory regenerates every figure and table of the paper from frozen result
 summaries, without rerunning any experiment. Figure 1 (method overview) is a
-drawing and is not generated.
+drawing and is not generated; a copy is in `paper/ch1_figure_1.pdf`.
 
 ```bash
 python -m pip install -e ".[paper]"      # numpy, scipy, pandas, matplotlib, scikit-learn
