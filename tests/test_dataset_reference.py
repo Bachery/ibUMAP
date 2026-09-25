@@ -81,3 +81,29 @@ def test_compare_uses_content_hashes_and_structural_metadata(tmp_path):
     _write_dataset(other, mtime=1, generated_at="2026-01-01", shape=(2, 3))
     errors = _compare(other, reference)["errors"]
     assert any("feature_shape" in message for message in errors)
+
+
+def _build_catalog(tmp_path, processed_root=None):
+    output = tmp_path / "catalog.json"
+    command = [sys.executable, str(DATASET_SCRIPTS / "build_catalog.py"), "--output", str(output)]
+    if processed_root is not None:
+        command += ["--processed-root", str(processed_root)]
+    subprocess.run(command, check=True, capture_output=True)
+    return json.loads(output.read_text())
+
+
+def test_catalog_is_built_from_the_reference_records(tmp_path):
+    tracked = json.loads((DATASETS / "catalog.json").read_text())
+    assert _build_catalog(tmp_path)["datasets"] == tracked["datasets"]
+    # A fresh checkout with one prepared paper dataset and one new dataset: the paper's
+    # 71 entries stay, described by their reference records, and the new one is added.
+    processed = tmp_path / "processed"
+    (processed / "iris").mkdir(parents=True)
+    (processed / "iris" / "metadata.json").write_text(json.dumps({"dataset_id": "iris", "feature_shape": [1, 1]}))
+    (processed / "toy").mkdir()
+    (processed / "toy" / "metadata.json").write_text(json.dumps({"dataset_id": "toy", "feature_shape": [3, 2]}))
+    entries = {e["dataset_id"]: e for e in _build_catalog(tmp_path, processed)["datasets"]}
+    assert len(entries) == len(tracked["datasets"]) + 1
+    assert entries["iris"]["feature_shape"] == [150, 4]
+    assert entries["toy"]["feature_shape"] == [3, 2]
+    assert entries["iris"]["processed_path"].endswith("processed/iris")

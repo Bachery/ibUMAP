@@ -1,3 +1,11 @@
+"""Build datasets/catalog.json.
+
+The catalog lists every dataset with a reference record in ``datasets/reference/``
+(the datasets of the paper), described by that record's metadata, plus any
+dataset prepared under ``datasets/processed/`` that has no reference record.
+``processed_path`` is the output directory of each dataset, whether or not it has
+been prepared yet. The file is left untouched when its content would not change.
+"""
 from __future__ import annotations
 
 import argparse
@@ -16,6 +24,7 @@ from common.metadata import read_metadata, utc_now_iso
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PROCESSED_ROOT = REPO_ROOT / "datasets/processed"
+DEFAULT_REFERENCE_ROOT = REPO_ROOT / "datasets/reference"
 DEFAULT_OUTPUT = REPO_ROOT / "datasets/catalog.json"
 
 
@@ -95,6 +104,7 @@ CATALOG_FIELDS = [
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build datasets/catalog.json from metadata files.")
     parser.add_argument("--processed-root", type=Path, default=DEFAULT_PROCESSED_ROOT)
+    parser.add_argument("--reference-root", type=Path, default=DEFAULT_REFERENCE_ROOT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
 
@@ -107,13 +117,16 @@ def _repo_relative(path: Path) -> str:
         return str(path)
 
 
-def build_catalog(processed_root: Path) -> dict[str, Any]:
+def build_catalog(processed_root: Path, reference_root: Path = DEFAULT_REFERENCE_ROOT) -> dict[str, Any]:
+    processed_root, reference_root = Path(processed_root), Path(reference_root)
+    sources = {path.parent.name: path for path in processed_root.glob("*/metadata.json")}
+    # Reference records take precedence: the catalog describes the paper's datasets
+    # even before (or regardless of whether) they have been prepared.
+    sources.update({path.parent.name: path for path in reference_root.glob("*/metadata.json")})
     entries: list[dict[str, Any]] = []
-    for metadata_path in sorted(Path(processed_root).glob("*/metadata.json")):
-        metadata = read_metadata(metadata_path)
-        dataset_dir = metadata_path.parent
-        entry = dict(metadata)
-        entry["processed_path"] = _repo_relative(dataset_dir)
+    for name, metadata_path in sources.items():
+        entry = dict(read_metadata(metadata_path))
+        entry["processed_path"] = _repo_relative(processed_root / name)
         entries.append({field: entry.get(field) for field in CATALOG_FIELDS})
 
     entries.sort(key=lambda item: str(item.get("dataset_id", "")))
@@ -125,7 +138,15 @@ def build_catalog(processed_root: Path) -> dict[str, Any]:
 
 def main() -> int:
     args = parse_args()
-    catalog = build_catalog(args.processed_root)
+    catalog = build_catalog(args.processed_root, args.reference_root)
+    if args.output.exists():
+        try:
+            existing = json.loads(args.output.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing = None
+        if isinstance(existing, dict) and existing.get("datasets") == catalog["datasets"]:
+            print(f"{args.output} is up to date ({len(catalog['datasets'])} dataset(s))")
+            return 0
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(catalog, indent=2, sort_keys=True, ensure_ascii=False) + "\n",

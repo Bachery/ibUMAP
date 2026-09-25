@@ -82,8 +82,12 @@ Notes:
 
 ## `build_catalog.py`
 
-Builds `datasets/catalog.json` from `metadata.json` files under
-`datasets/processed/`.
+Builds `datasets/catalog.json`. Every dataset with a reference record in
+`datasets/reference/` (the 71 datasets of the paper) is listed with that
+record's metadata, whether or not it has been prepared; datasets prepared under
+`datasets/processed/` without a reference record are added from their own
+`metadata.json`. `processed_path` is each dataset's output directory under
+`datasets/processed/`. The file is left untouched when nothing changes.
 
 Default usage:
 
@@ -91,10 +95,11 @@ Default usage:
 python scripts/datasets/build_catalog.py
 ```
 
-Use a custom processed root or output path:
+Use custom roots or output path:
 
 ```bash
 python scripts/datasets/build_catalog.py \
+  --reference-root datasets/reference \
   --processed-root datasets/processed \
   --output datasets/catalog.json
 ```

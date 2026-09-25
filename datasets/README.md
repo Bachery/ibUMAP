@@ -6,7 +6,7 @@
 | `processed/<id>/` | no | Prepared datasets: `features.npy`, `obs.csv.gz`, optional `target.npy` and extra arrays, `metadata.json`, `checksums.txt` |
 | `raw/`, `raw_cache/` | READMEs only | Downloaded source files |
 | `cache/` | no | Scratch space of the preparation scripts |
-| `catalog.json` | yes | All 71 datasets with their shapes and families |
+| `catalog.json` | yes | All 71 datasets with their shapes and families, built from `reference/` (plus datasets prepared without a reference record) by `scripts/datasets/build_catalog.py` |
 
 The download and preparation scripts are in `scripts/datasets/<family>/` (see
 [`scripts/datasets/README.md`](../scripts/datasets/README.md)). They write to
