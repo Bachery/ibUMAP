@@ -28,6 +28,8 @@ from ibumap.fft_schedule import resolve_fft_schedule, validate_fft_schedule_exec
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config-dir", type=Path, default=EXPERIMENT_ROOT / "configs")
+    parser.add_argument("--dataset", action="append", dest="datasets",
+                        help="Validate only these datasets (repeatable); default: all configured.")
     parser.add_argument("--strict", action="store_true")
     parser.add_argument("--write-json", action="store_true")
     return parser.parse_args()
@@ -53,7 +55,13 @@ def main() -> None:
             "maximum_rows", 200000
         )
     )
-    for entry in dataset_entries(configs):
+    entries = dataset_entries(configs)
+    if args.datasets:
+        unknown = sorted(set(args.datasets) - {str(entry["name"]) for entry in entries})
+        if unknown:
+            raise SystemExit(f"Unknown datasets: {', '.join(unknown)}")
+        entries = [entry for entry in entries if str(entry["name"]) in args.datasets]
+    for entry in entries:
         name = str(entry["name"])
         try:
             catalog_entry = catalog_by_id[name]
