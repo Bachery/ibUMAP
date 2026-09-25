@@ -5,6 +5,8 @@ from pathlib import Path
 import pytest
 import yaml
 
+# Other experiments also have a scripts/_common.py; import this experiment's copy.
+sys.modules.pop('_common', None)
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from _common import Context, ROOT, SIZE_SUITES, parser  # noqa: E402
 
