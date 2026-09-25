@@ -716,7 +716,7 @@ class GPUSpectralInitTest(unittest.TestCase):
             patch(
                 "ibumap.init.gpu_init.spectral_layout_cupy",
                 return_value=cp.asarray(
-                    [[-10.0, -10.0], [-10.0, -10.0], [-9.9, -9.8], [0.0, 0.0]],
+                    [[10.0, 10.0], [10.0, 10.0], [9.9, 9.8], [0.0, 0.0]],
                     dtype=cp.float32,
                 ),
             ),
@@ -759,8 +759,9 @@ class GPUSpectralInitTest(unittest.TestCase):
             "init_solver_setup_time",
             "init_eigensolver_time",
             "init_postprocess_time",
-            "init_jitter_time",
-            "init_normalize_time",
+            # algorithm="ibumap" resolves spectral_scale_policy="auto" to fft_compact
+            "init_spectral_cast_scale_time",
+            "init_spectral_compact_time",
         ):
             self.assertIn(key, costs)
             self.assertGreaterEqual(costs[key], 0.0)
@@ -833,7 +834,7 @@ class GPUSpectralInitTest(unittest.TestCase):
         self.assert_embedding_ok(embedding)
         costs = model.get_time_costs()
         self.assertIn("init_fallback_time", costs)
-        self.assertIn("init_normalize_time", costs)
+        self.assertIn("init_spectral_compact_time", costs)
         diagnostics = model.get_init_diagnostics()
         self.assertTrue(diagnostics["spectral_fallback"])
         self.assertEqual(diagnostics["spectral_exception_type"], "RuntimeError")
