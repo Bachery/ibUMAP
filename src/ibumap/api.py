@@ -2134,7 +2134,8 @@ class IBUMAP:
             init_embedding = fuzzy_graph
             fuzzy_graph = X
             X = None
-        elif X is not None:
+        elif X is not None and self.runtime.device == "cpu":
+            # The CUDA optimizer still requires X, so only CPU callers are warned.
             warnings.warn(
                 "optimize_from_graph(X, fuzzy_graph, init_embedding) is "
                 "deprecated for CPU optimization-only runs; pass "
