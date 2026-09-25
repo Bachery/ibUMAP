@@ -53,6 +53,7 @@ dependencies:
 
   # Downstream case study (HDBSCAN clustering in the BRAQUE application)
   - hdbscan=0.8.44
+  - openpyxl=3.1.5    # reads the BRAQUE antibody workbook (.xlsx), stage 02 only
 
   # IO
   - h5py=3.16.0

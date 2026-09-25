@@ -97,6 +97,7 @@ conda env config vars set -n ibumap-cuda \
 conda activate ibumap-cuda
 python -m pip install --no-deps pyfftw==0.15.1
 python -m pip install --no-deps pyreadr==0.5.6   # optional: scripts/datasets/scdeed/ only
+python -m pip install --no-deps openpyxl==3.1.5 et-xmlfile==2.0.0   # optional: experiments/braque stage 02 only
 
 # ibumap-torchdr
 conda create -n ibumap-torchdr --file environments/torchdr-linux-64.conda.lock

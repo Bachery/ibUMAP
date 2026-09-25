@@ -23,6 +23,10 @@ python scripts/03_prepare_braque_features.py --run
 python scripts/04_run_and_freeze_lns.py --run            # Lognormal Shrinkage, checkpointed per marker
 ```
 
+Stage 02 reads the antibody workbook with pandas, which needs `openpyxl`
+(included in `environments/cuda-linux-64.yml`; when the environment is created
+from the lock file, install it as shown in `environments/README.md`).
+
 01 verifies the official sizes and SHA-256 of the downloads. 02 removes the CSV
 export index and keeps raw marker intensities; the public CSVs contain no spatial
 coordinates, and none are invented. 03 selects markers with a documented proxy of
