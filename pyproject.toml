@@ -53,12 +53,27 @@ paper = [
   "scipy>=1.9",
   "pandas>=1.5",
   "matplotlib>=3.7",
+  "pillow>=9.0",
   "scikit-learn>=1.2",
 ]
+# Scripts under experiments/ and scripts/common/ (the baselines umap-learn and
+# cuML come with the core dependencies and the cuda extra; TorchDR has its own
+# environment, environments/torchdr-linux-64.yml).
+experiments = [
+  "pyyaml>=6.0",
+  "pandas>=1.5",
+  "matplotlib>=3.7",
+  "psutil>=5.9",
+  "threadpoolctl>=3.1",
+  "hdbscan>=0.8.33",    # experiments/braque
+  "openpyxl>=3.1",      # experiments/braque stage 02 (antibody workbook)
+]
+# The test suite also imports the experiment scripts.
 test = [
   "pytest>=7.0",
   "pytest-cov>=4.0",
   "setuptools>=68",
+  "ibumap[experiments]",
 ]
 
 [tool.setuptools]

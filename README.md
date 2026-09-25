@@ -57,8 +57,9 @@ is needed (on macOS, the Xcode Command Line Tools). Optional extras:
 | `.[cuda]` | CuPy and cuML (Linux) |
 | `.[metal]` | MLX (Apple Silicon macOS) |
 | `.[datasets]` | dependencies of the dataset scripts |
+| `.[experiments]` | dependencies of the experiment scripts (PyYAML, pandas, Matplotlib, psutil, HDBSCAN, openpyxl) |
 | `.[paper]` | dependencies of the figure and table builders |
-| `.[test]` | pytest |
+| `.[test]` | pytest and the `experiments` extra (the tests import the experiment scripts) |
 
 For GPU runs and for timings comparable to the paper, use the conda
 environments in `environments/`:
