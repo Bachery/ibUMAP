@@ -1,0 +1,84 @@
+# Safeguard failure cases (paper Appendix B, tab:safeguard-cases and fig:safeguard-cases).
+#
+# Production ibUMAP versus the same optimizer with exactly one update safeguard
+# switched off, on the fixed graphs and spectral initializations of the
+# mechanism experiment. Paths are relative to this experiment directory.
+
+experiment_id: safeguards
+
+fixed_inputs:
+  # Written by experiments/mechanism/scripts/01_prepare_fixed_inputs.py (see README).
+  root: ../mechanism/results/01_fixed_inputs
+  neighbors_dir: neighbors_15
+  graph_file: optimizer_graph_csr.npz
+  init_file: init_embedding.npy
+
+results_root: results
+
+datasets:
+  - cifar10       # failure case of the repulsion-norm clip
+  - scdeed_cart   # failure case of the attraction degree damping
+
+# The optimizer draws no random numbers under a fixed initialization; the three
+# seeds give bitwise-identical embeddings, and the figure uses plot_seed.
+seeds: [42, 137, 2026]
+plot_seed: 42
+# States after t completed updates, saved for plot_seed only (not used by the paper).
+snapshot_steps: [1, 16, 50, 100, 150, 175]
+
+# Numba and FFTW threads, capped at the machine's logical cores. The deterministic
+# CPU optimizer gives the same result for any thread count.
+threads: 8
+
+# Optimization-only parameters of the mechanism experiment's ibumap_production
+# (umap_epsilon is not forwarded there either).
+params:
+  n_components: 2
+  n_neighbors: 15
+  min_dist: 0.1
+  spread: 1.0
+  learning_rate: 1.0
+  repulsion_strength: 1.0
+  negative_sample_rate: 5
+  metric: euclidean
+  n_epochs: 200
+  verbose: false
+  deterministic: true
+  attraction_mode: sampling
+  repulsion_mode: true_loss
+  attraction_degree_damping: true
+  repulsion_clip_norm: 4.0
+  repulsion_clip_with_alpha: true
+  repulsion_clip_epoch_range: null
+  total_update_clip_norm: null
+
+# Each variant overrides exactly one production setting.
+variants:
+  full: {}
+  no_repulsion_clip:
+    repulsion_clip_norm: null
+  no_attraction_damping:
+    attraction_degree_damping: false
+
+metrics:
+  # Core = the ceil(core_fraction * n) points nearest the coordinate-wise median.
+  core_fraction: 0.99
+  # A point is "far" when its distance to the median exceeds this multiple of the
+  # core radius (the distance of the last core point).
+  far_radius_multiple: 2.0
+
+# Reference: the same statistics for the embeddings of the mechanism experiment.
+reference:
+  mechanism_root: ../mechanism   # results/<suite>/02_runs and configs/datasets.yaml
+  suites: [le10k, 10k_50k, 50k_100k]
+  algorithms: [ibumap_production, umap_learn]
+
+# Content digests (scripts/_common.py: csr_digest, array_digest) of the fixed
+# inputs used for the paper. 01_run_embeddings.py reports whether the inputs match.
+paper_fixed_input_digests:
+  cifar10:
+    optimizer_graph: 25652feb156d6026d36df194297ad3f75edd53950b43d102465f27d1bc8c0b90
+    init_embedding: cc76d9d5aa7fd4223508a22050162b4583e0f9a23b488e9151fb09c539a52466
+  scdeed_cart:
+    optimizer_graph: 32ca63e7c1c7d80fb77886eb8201bcc7ee5c233104885803226d78c7cc4e3150
+    init_embedding: 6733d8e2dc3c1feb29bfb5ee1c506cd036fd4bfb59a1d07534330c46207a8a51

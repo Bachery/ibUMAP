@@ -88,4 +88,4 @@ where = ["src"]
 "ibumap.graph" = ["*.pyx"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "scripts/common/tests", "experiments/braque/tests", "experiments/mechanism/tests", "experiments/psweep/tests"]
+testpaths = ["tests", "scripts/common/tests", "experiments/braque/tests", "experiments/mechanism/tests", "experiments/psweep/tests", "experiments/safeguards/tests"]

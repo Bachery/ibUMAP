@@ -36,7 +36,7 @@ gains accompany greater run-to-run stability and measurable fidelity trade-offs.
 | --- | --- | --- |
 | `ibumap` package | `src/ibumap/` | The estimator: CPU, CUDA and Apple Metal back ends, plus a umap-learn-compatible path, tFDP and evaluation metrics |
 | Paper outputs | `paper/`, `scripts/paper/` | Rebuild every figure and table of the paper from frozen result summaries |
-| Experiments | `experiments/` | The four experiments behind the paper, each with its protocol and commands |
+| Experiments | `experiments/` | The five experiments behind the paper, each with its protocol and commands |
 | Datasets | `datasets/`, `scripts/datasets/` | Download and preparation scripts, metadata and checksums for the 71 benchmark datasets |
 | Environments | `environments/` | Conda specifications and lock files of the paper environments |
 | Tests | `tests/`, `scripts/common/tests/`, `experiments/*/tests/` | Unit tests and experiment protocol tests |
@@ -175,6 +175,7 @@ builder and data files.
    | Experiment | Paper | Content |
    | --- | --- | --- |
    | [`experiments/mechanism/`](experiments/mechanism/README.md) | Section 4 and appendix | Optimizer variants on fixed graphs and initializations, 59 datasets in three size suites; calendar audit |
+   | [`experiments/safeguards/`](experiments/safeguards/README.md) | Appendix `tab:safeguard-cases`, `fig:safeguard-cases` | Production ibUMAP without the repulsion-norm clip or without attraction damping, CIFAR-10 and scDEED CART on the mechanism experiment's fixed inputs (CPU) |
    | [`experiments/psweep/`](experiments/psweep/README.md) | Appendix `tab:mechanism-psweep` | ibFFT interpolation order and stage schedule, 30 datasets, CPU and CUDA |
    | [`experiments/e2e_benchmark/`](experiments/e2e_benchmark/README.md) | Section 5 and Appendix C | End-to-end runtime, quality and run-to-run stability against umap-learn, cuML and TorchDR, 71 datasets |
    | [`experiments/braque/`](experiments/braque/README.md) | Section 6 and appendix | Rerun repeatability of a BRAQUE/HDBSCAN analysis and the cost of seeded runs |
@@ -193,7 +194,10 @@ builder and data files.
 All paper results were produced on one Linux machine: an Intel Core i7-11700K
 (8 cores, 16 threads), 32 GB RAM and an NVIDIA RTX A5000 (24 GB), with the
 package versions of `environments/cuda-linux-64.conda.lock` and
-`torchdr-linux-64.conda.lock`. Runtimes on other hardware will differ.
+`torchdr-linux-64.conda.lock`. Runtimes on other hardware will differ. The
+exception is the CPU-only safeguard case study, run with the same package
+versions on another Linux x86_64 machine; its complete variant reproduces the
+mechanism experiment's production embeddings bit for bit.
 
 The mechanism experiment rebuilds its fixed inputs with
 `spectral_scale_policy="legacy_box10_unoriented"`. With the paper's package
@@ -258,7 +262,7 @@ src/ibumap/
   optimizers/         ibUMAP, UMAP and tFDP optimizers
   pipeline/           per-device orchestration
   evaluation/         embedding quality metrics
-experiments/          mechanism, psweep, e2e_benchmark, braque
+experiments/          mechanism, safeguards, psweep, e2e_benchmark, braque
 paper/                frozen data (data/), paper output map, Figure 1 (ch1_figure_1.pdf/.png)
 scripts/paper/        figure and table builders, verification
 scripts/common/       helpers shared by the experiments
