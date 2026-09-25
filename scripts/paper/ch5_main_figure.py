@@ -61,8 +61,12 @@ def draw(runtime, stable, stem, formats, paths, fig_h=FIG_H):
     import matplotlib.pyplot as plt
     from matplotlib.ticker import FixedLocator, FuncFormatter
 
-    style.X_LIMITS = style.fit_log_limits(paths, runtime, "n_samples", style.X_LIMITS, "X_LIMITS")
-    style.SPEEDUP_LIMITS = style.fit_log_limits(paths, runtime, "speedup", style.SPEEDUP_LIMITS, "SPEEDUP_LIMITS")
+    limits = style.fit_log_limits(paths, runtime, "n_samples", style.X_LIMITS, "X_LIMITS")
+    if limits != style.X_LIMITS:
+        style.X_LIMITS, style.SAMPLE_TICKS = limits, style.extend_decade_ticks(style.SAMPLE_TICKS, limits)
+    limits = style.fit_log_limits(paths, runtime, "speedup", style.SPEEDUP_LIMITS, "SPEEDUP_LIMITS")
+    if limits != style.SPEEDUP_LIMITS:
+        style.SPEEDUP_LIMITS, style.SPEEDUP_TICKS = limits, style.extend_decade_ticks(style.SPEEDUP_TICKS, limits)
     fig = plt.figure(figsize=(FIG_W, fig_h))
     ax_cpu, ax_gpu, ax_stab = (fig.add_axes(r) for r in axes_rects(fig_h))
 

@@ -138,6 +138,15 @@ def fit_log_limits(paths, rows: list[dict], columns, limits: tuple[float, float]
     return (low, high)
 
 
+def extend_decade_ticks(ticks, limits: tuple[float, float]) -> tuple:
+    """Add the powers of ten inside ``limits`` that ``ticks`` lacks (for widened log axes)."""
+    import math
+
+    decades = [10.0 ** k for k in range(math.ceil(math.log10(limits[0])), math.floor(math.log10(limits[1])) + 1)]
+    kept = [t for t in ticks if limits[0] <= t <= limits[1]]
+    return tuple(sorted(set(kept) | {d for d in decades if not any(math.isclose(d, t) for t in kept)}))
+
+
 def deterministic_jitter(key: str, width: float = 0.13) -> float:
     """Stable vertical jitter derived from the dataset name."""
     fraction = int(hashlib.sha256(key.encode("utf-8")).hexdigest()[:8], 16) / 0xFFFFFFFF

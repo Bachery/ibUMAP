@@ -50,11 +50,17 @@ RC = {"lines.linewidth": LINE_WIDTH_PT, "savefig.bbox": None}
 
 def fit_limits(rows, paths):
     """Keep the paper's axis limits; widen them only for new results that fall outside."""
-    global Y_LIMITS, RUNTIME_Y_LIMITS
-    style.X_LIMITS = style.fit_log_limits(paths, rows, "n_samples", style.X_LIMITS, "X_LIMITS")
-    Y_LIMITS = style.fit_log_limits(paths, rows, "speedup", Y_LIMITS, "Y_LIMITS")
-    RUNTIME_Y_LIMITS = style.fit_log_limits(paths, rows, ("baseline_median_e2e_s", "ibumap_median_e2e_s"),
-                                            RUNTIME_Y_LIMITS, "RUNTIME_Y_LIMITS")
+    global Y_LIMITS, RUNTIME_Y_LIMITS, Y_MAJOR_TICKS, RUNTIME_Y_MAJOR_TICKS
+    limits = style.fit_log_limits(paths, rows, "n_samples", style.X_LIMITS, "X_LIMITS")
+    if limits != style.X_LIMITS:
+        style.X_LIMITS, style.SAMPLE_TICKS = limits, style.extend_decade_ticks(style.SAMPLE_TICKS, limits)
+    limits = style.fit_log_limits(paths, rows, "speedup", Y_LIMITS, "Y_LIMITS")
+    if limits != Y_LIMITS:
+        Y_LIMITS, Y_MAJOR_TICKS = limits, style.extend_decade_ticks(Y_MAJOR_TICKS, limits)
+    limits = style.fit_log_limits(paths, rows, ("baseline_median_e2e_s", "ibumap_median_e2e_s"),
+                                  RUNTIME_Y_LIMITS, "RUNTIME_Y_LIMITS")
+    if limits != RUNTIME_Y_LIMITS:
+        RUNTIME_Y_LIMITS, RUNTIME_Y_MAJOR_TICKS = limits, style.extend_decade_ticks(RUNTIME_Y_MAJOR_TICKS, limits)
 
 
 def log_axes(ax, y_limits, y_ticks, y_format):
