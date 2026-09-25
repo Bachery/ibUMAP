@@ -5,6 +5,10 @@ By default this script validates processed datasets only, so it can run on
 benchmark machines that do not keep large raw data files. Raw-source validation
 and end-to-end provenance validation are available only through explicit
 validation scopes.
+
+``--reference`` additionally compares a processed dataset with the record of
+the copy used in the paper, ``datasets/reference/<dataset_id>/`` (data-file
+content hashes and the structural fields of metadata.json).
 """
 
 from __future__ import annotations
@@ -24,11 +28,13 @@ from common.validation import (
     validate_processed_dataset,
     validate_raw_path,
 )
+from common.reference import compare_to_reference
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PROCESSED_ROOT = REPO_ROOT / "datasets/processed"
 DEFAULT_RAW_ROOT = REPO_ROOT / "datasets/raw"
+DEFAULT_REFERENCE_ROOT = REPO_ROOT / "datasets/reference"
 VALID_SCOPES = ("processed", "raw", "full")
 
 
@@ -46,6 +52,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Validate all processed datasets by default, or all raw children with --scope raw.",
     )
+    parser.add_argument(
+        "--reference",
+        action="store_true",
+        help="Also compare each processed dataset with its record in datasets/reference/.",
+    )
+    parser.add_argument("--reference-root", type=Path, default=DEFAULT_REFERENCE_ROOT)
     parser.add_argument(
         "--all-processed",
         action="store_true",
@@ -117,17 +129,26 @@ def main() -> int:
         print("FAIL provide a dataset directory or --all")
         return 2
 
+    if args.reference and args.scope == "raw":
+        print("FAIL --reference applies to processed datasets, not to --scope raw")
+        return 2
+
     results = []
     for dataset_dir in dataset_dirs:
         result = _validate_one(dataset_dir, args.scope)
         _print_result(result)
         results.append(result)
+        if args.reference:
+            reference = compare_to_reference(dataset_dir, args.reference_root / Path(dataset_dir).resolve().name)
+            _print_result(reference)
+            results.append(reference)
 
     if args.all:
         passed = sum(1 for result in results if result.ok)
         failed = sum(1 for result in results if not result.ok)
         warnings = sum(len(result.warnings) for result in results)
-        print(f"SUMMARY [{args.scope}] passed={passed} failed={failed} warnings={warnings}")
+        print(f"SUMMARY [{args.scope}{'+reference' if args.reference else ''}] "
+              f"passed={passed} failed={failed} warnings={warnings}")
 
     return 0 if all(result.ok for result in results) else 1
 

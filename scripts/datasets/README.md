@@ -44,6 +44,19 @@ Validate all processed datasets:
 python scripts/datasets/validate_dataset.py --all
 ```
 
+Compare a prepared dataset with the record of the copy used in the paper
+(`datasets/reference/<dataset_id>/`, see `datasets/README.md`):
+
+```bash
+python scripts/datasets/validate_dataset.py --reference datasets/processed/iris
+python scripts/datasets/validate_dataset.py --all --reference
+```
+
+The comparison checks the content hash of every recorded data file (for
+`*.gz`, of the decompressed content) and the structural fields of
+`metadata.json`; other metadata fields, such as `generated_at`, are reported
+but not compared.
+
 Validate raw files or raw directories explicitly:
 
 ```bash

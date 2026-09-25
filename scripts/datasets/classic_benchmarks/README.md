@@ -41,7 +41,7 @@ By default, the script refuses to overwrite an existing processed directory. Use
 Validate outputs with:
 
 ```bash
-python scripts/datasets/validate_dataset.py datasets/processed/iris
+python scripts/datasets/validate_dataset.py --reference datasets/processed/iris
 python scripts/datasets/validate_dataset.py --all
 python scripts/datasets/build_catalog.py
 ```

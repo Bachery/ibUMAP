@@ -1,0 +1,12 @@
+# SHA-256 of the data files of the processed dataset used in the paper.
+# For *.gz files the hash is of the decompressed content (gzip headers carry a
+# timestamp). metadata.json is compared field by field, not byte for byte.
+57c62f21ab451132e6068b39183d9acfb821972a945d5457f985eaa65bc79bc1  features.npy
+d5d52476b3ed1948f42ad3db350b3d6463c49575d9ecf39c18d97497c6d30706  obs.csv.gz
+5bcdd3aa2bbba3dedcb3bd593c54372aba0bcbdf0dd7dc4fb0dd823d252c9544  reference_embeddings/umap.npy
+bad24f071cfed205dc1724d8cf97785db80ae8461537c50f62182958396c343c  reference_embeddings/umap_mindist0_05.npy
+f17ca5c10f6e5cb4295ef351c3b4612ac4ae5843ce6bdf6ed3f3299488870b0e  reference_embeddings/umap_n160_m0_7.npy
+ab54451c5550557cac14c71c6c41dfbe1b8aded73d4a53aeb92ff20d2fa178d6  reference_embeddings/umap_nneighbors160.npy
+761a53fa42f50f60b5bdf1ce93581e0605877be68772c46f316de194dde4c48c  reference_metrics/dubious_joint_umap.csv.gz
+32a80a82f6e8cf6a332f43d936603c1f68e94e6c35cc8845799d3c2710a12ea4  reference_metrics/dubious_mindist_umap.csv.gz
+4787861f1adf4ea4908f77a010ad9cd2c46ddac52a954634a6d4fff45ef7851c  reference_metrics/dubious_nneighbors_umap.csv.gz

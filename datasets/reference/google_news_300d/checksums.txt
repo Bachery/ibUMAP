@@ -1,0 +1,5 @@
+# SHA-256 of the data files of the processed dataset used in the paper.
+# For *.gz files the hash is of the decompressed content (gzip headers carry a
+# timestamp). metadata.json is compared field by field, not byte for byte.
+f22370268ca0b4fb12567df754f079b4708a189d5f063de19fa19535e91d41de  features.npy
+3393c17165adde1c56fd640564b006af023d5d37fb5059e5bb863bb2b4230bf5  obs.csv.gz

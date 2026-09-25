@@ -217,18 +217,20 @@ The 71 benchmark datasets come from nine families:
 
 Each family directory has `download.py` (where the data can be fetched
 automatically), `prepare.py` and a README with the source and preprocessing.
-Processed datasets are written to `datasets/processed/<id>/`. The repository
-tracks only their `metadata.json` and `checksums.txt`, so a rebuilt dataset
-can be checked against the one used in the paper:
+Prepared datasets are written to `datasets/processed/<id>/`, which is not
+tracked. For each dataset, `datasets/reference/<id>/` records the copy used in
+the paper (its `metadata.json` and the SHA-256 of its data files), so a rebuilt
+dataset can be checked against it:
 
 ```bash
 python -m pip install -e ".[datasets]"
 python scripts/datasets/classic_benchmarks/prepare.py iris
-python scripts/datasets/validate_dataset.py datasets/processed/iris
+python scripts/datasets/validate_dataset.py --reference datasets/processed/iris
 ```
 
 `datasets/catalog.json` lists all datasets with their shapes and families
 (`scripts/datasets/build_catalog.py` rebuilds it). See
+[`datasets/README.md`](datasets/README.md) and
 [`scripts/datasets/README.md`](scripts/datasets/README.md).
 
 ## Tests

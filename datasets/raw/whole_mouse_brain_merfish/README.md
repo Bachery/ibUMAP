@@ -44,4 +44,4 @@ python scripts/datasets/whole_mouse_brain_merfish/prepare.py --all
 ```
 
 The H5AD files and derived array files are intentionally ignored by Git. The
-processed dataset metadata and checksums are tracked under `datasets/processed/`.
+reference records of the paper's processed datasets are tracked under `datasets/reference/`.
