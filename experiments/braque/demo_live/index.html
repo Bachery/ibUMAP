@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run ibUMAP or umap-learn and HDBSCAN live on a fixed BRAQUE cell subset.">
+  <title>BRAQUE live computation lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">BRAQUE · live pipeline</p>
+        <h1>Run the pipeline,<br><em>not a replay.</em></h1>
+        <p class="lede">Choose a dimensionality-reduction algorithm, control repeatability, and cluster the resulting coordinates with HDBSCAN.</p>
+      </div>
+      <div class="service-state" id="service-state" aria-live="polite">
+        <span class="state-light"></span>
+        <div><strong>Connecting</strong><small>Local compute backend</small></div>
+      </div>
+    </header>
+
+    <section class="run-workbench" aria-labelledby="controls-title">
+      <div class="workbench-heading">
+        <div>
+          <p class="eyebrow">Experiment controls</p>
+          <h2 id="controls-title">One input subset, one fresh run</h2>
+        </div>
+        <p id="input-scope">Loading prepared BRAQUE data…</p>
+      </div>
+
+      <form id="run-form" class="control-grid">
+        <label>
+          <span>Reduction algorithm</span>
+          <select id="algorithm-select" name="algorithm" required></select>
+        </label>
+        <label>
+          <span>Cells in live subset</span>
+          <select id="cell-count-select" name="cell_count" required></select>
+        </label>
+        <label class="switch-field">
+          <span>Execution mode</span>
+          <span class="switch-row">
+            <input id="deterministic-toggle" name="deterministic" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+            <span class="switch-copy"><strong>Deterministic</strong><small>Request a repeatable execution path</small></span>
+          </span>
+        </label>
+        <label>
+          <span>Random seed</span>
+          <input id="seed-input" name="seed" type="number" min="0" max="2147483647" step="1" value="42" disabled>
+        </label>
+        <div class="algorithm-note" id="algorithm-note"></div>
+        <button id="run-button" class="run-button" type="submit" disabled>
+          <span>Run reduction + HDBSCAN</span><span aria-hidden="true">→</span>
+        </button>
+      </form>
+    </section>
+
+    <section id="run-status" class="run-status idle" aria-live="polite">
+      <div class="status-copy">
+        <span class="status-spinner" aria-hidden="true"></span>
+        <div><strong id="status-title">Ready for a live run</strong><small id="status-detail">Nothing is precomputed when you press Run.</small></div>
+      </div>
+      <div class="live-clock"><span>Elapsed</span><strong id="live-elapsed">0.0 s</strong></div>
+    </section>
+
+    <section class="metric-grid" aria-label="Live run metrics">
+      <article class="primary-metric"><span>Reduction runtime</span><strong id="metric-reduction">—</strong><small>fit_transform only</small></article>
+      <article><span>HDBSCAN runtime</span><strong id="metric-hdbscan">—</strong><small>fixed clustering recipe</small></article>
+      <article><span>Clusters</span><strong id="metric-clusters">—</strong><small>excluding noise</small></article>
+      <article><span>Noise cells</span><strong id="metric-noise">—</strong><small id="metric-noise-count">—</small></article>
+      <article><span>Result fingerprint</span><strong id="metric-fingerprint">—</strong><small>embedding + labels</small></article>
+    </section>
+
+    <section class="result-grid">
+      <article class="plot-card">
+        <header>
+          <div><p class="eyebrow">Fresh result</p><h2 id="plot-title">Waiting for computation</h2></div>
+          <p id="plot-subtitle">Clusters will appear here after HDBSCAN finishes.</p>
+        </header>
+        <canvas id="embedding-canvas" aria-label="Live UMAP embedding colored by HDBSCAN cluster"></canvas>
+        <div class="plot-legend"><span><i class="cluster-dot"></i>HDBSCAN cluster</span><span><i class="noise-dot"></i>noise (−1)</span></div>
+      </article>
+
+      <aside class="result-sidebar">
+        <article class="cluster-card">
+          <p class="eyebrow">Cluster composition</p>
+          <h2>Largest groups</h2>
+          <div id="cluster-bars" class="cluster-bars"><p class="empty-copy">Run the pipeline to inspect cluster sizes.</p></div>
+        </article>
+        <article class="config-card">
+          <p class="eyebrow">Effective execution</p>
+          <h2>What actually ran</h2>
+          <dl id="effective-config"><div><dt>Algorithm</dt><dd>—</dd></div></dl>
+        </article>
+      </aside>
+    </section>
+
+    <section class="history-card">
+      <div>
+        <p class="eyebrow">This browser session</p>
+        <h2>Recent live runs</h2>
+      </div>
+      <div id="run-history" class="run-history"><p class="empty-copy">Fingerprints make exact reruns easy to spot.</p></div>
+    </section>
+
+    <footer>
+      <strong>Interpretation boundary</strong>
+      <p>This live interface demonstrates execution and downstream clustering on a fixed subset of the BRAQUE proxy feature matrix. It does not reproduce expert phenotype annotation, and an equal seed is meaningful only when deterministic mode and all other inputs remain fixed.</p>
+    </footer>
+  </main>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+  <div id="load-error" class="load-error" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
