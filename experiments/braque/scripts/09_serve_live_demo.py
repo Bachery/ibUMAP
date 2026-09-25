@@ -4,7 +4,9 @@
 The browser front end in ../demo_live/ requests a fresh embedding and clustering
 of a fixed subset of the frozen BRAQUE input (01-04 must have run). A single
 background job is allowed at a time so a local presentation cannot start several
-CPU-heavy runs.
+CPU-heavy runs. Each run can be compared with an earlier run of the same server:
+clusters are matched by maximum overlap and the share of cells whose matched
+cluster differs is reported, as in 06_evaluate_repeatability.py.
 """
 
 from __future__ import annotations
@@ -13,7 +15,9 @@ import argparse
 import hashlib
 import importlib.metadata
 import json
+import math
 import os
+import re
 import sys
 import threading
 import time
@@ -26,6 +30,8 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import urlparse
+
+from _common import label_metrics, match_labels
 
 
 CASE_ROOT = Path(__file__).resolve().parents[1]
@@ -48,11 +54,36 @@ CELL_OPTIONS = (1000, 2500, 5000, 10000, 20000)
 DEFAULT_CELL_COUNT = 2500
 DEFAULT_SEED = 42
 SUBSET_SEED = 20260820
-N_NEIGHBORS = 50
 N_EPOCHS = 200
-MIN_DIST = 0.0
 HDBSCAN_EPSILON = 0.1
 MAX_REQUEST_BYTES = 64 * 1024
+JOB_ID_PATTERN = re.compile(r"[0-9a-f]{12}")
+
+
+def case_study_min_cluster_size(cell_count: int) -> int:
+    """HDBSCAN min_cluster_size (= min_samples) rule of the case study."""
+    return max(int(cell_count * 0.00005), 10)
+
+
+# Tunable parameters. Defaults are the case-study values; the HDBSCAN default is
+# the case-study rule, which gives 10 for every offered subset size.
+PARAMETERS = {
+    "n_neighbors": {"default": 50, "min": 2, "max": 200, "step": 1, "type": "int"},
+    "min_dist": {"default": 0.0, "min": 0.0, "max": 0.99, "step": 0.01, "type": "float"},
+    "min_cluster_size": {
+        "default": case_study_min_cluster_size(DEFAULT_CELL_COUNT),
+        "min": 2,
+        "max": 500,
+        "step": 1,
+        "type": "int",
+    },
+}
+COMPARISON_METHOD = (
+    "Clusters of the two runs are matched one-to-one by maximum overlap on the shared cells "
+    "(Hungarian assignment; noise stays noise). The share counts cells whose matched cluster "
+    "differs, including changes to or from noise, as in 06_evaluate_repeatability.py. It "
+    "includes cluster splits and merges and is not a misclassification rate."
+)
 
 
 class BusyError(RuntimeError):
@@ -71,6 +102,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cells", type=int, choices=CELL_OPTIONS, default=1000)
     parser.add_argument("--deterministic", action="store_true")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--n-neighbors", type=int, default=PARAMETERS["n_neighbors"]["default"])
+    parser.add_argument("--min-dist", type=float, default=PARAMETERS["min_dist"]["default"])
+    parser.add_argument(
+        "--min-cluster-size", type=int, default=PARAMETERS["min_cluster_size"]["default"],
+        help="HDBSCAN min_cluster_size; min_samples is set to the same value",
+    )
+    parser.add_argument(
+        "--repeats", type=int, default=1,
+        help="smoke test only: run this many times, comparing each run with the previous one",
+    )
     return parser.parse_args()
 
 
@@ -115,14 +156,100 @@ def json_value(value: Any) -> Any:
 
 
 def quantize_coordinates(embedding: Any) -> list[int]:
+    """Quantize to uint16 with one scale for both axes, so the aspect ratio is kept."""
     import numpy as np
 
     array = np.asarray(embedding, dtype=np.float64)
     minimum = array.min(axis=0)
-    span = array.max(axis=0) - minimum
-    span[span <= np.finfo(np.float64).eps] = 1.0
+    span = float(np.max(array.max(axis=0) - minimum))
+    if span <= np.finfo(np.float64).eps:
+        span = 1.0
     normalized = np.clip((array - minimum) / span, 0.0, 1.0)
     return np.rint(normalized * 65535).astype(np.uint16).ravel().astype(int).tolist()
+
+
+def parse_parameter(request: dict[str, Any], name: str) -> int | float:
+    spec = PARAMETERS[name]
+    raw = request.get(name, spec["default"])
+    if isinstance(raw, bool):
+        raise ValueError(f"{name} must be a number")
+    try:
+        value: int | float = float(raw)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must be a number") from exc
+    if not math.isfinite(value):
+        raise ValueError(f"{name} must be finite")
+    if spec["type"] == "int":
+        if value != int(value):
+            raise ValueError(f"{name} must be an integer")
+        value = int(value)
+    if not spec["min"] <= value <= spec["max"]:
+        raise ValueError(f"{name} must be between {spec['min']} and {spec['max']}")
+    return value
+
+
+def compare_with_previous(
+    indices: Any,
+    labels: Any,
+    previous: dict[str, Any],
+) -> tuple[dict[str, Any], Any]:
+    """Compare labels with an earlier run on the cells both runs contain.
+
+    Returns the comparison record and display labels: this run's labels renamed to
+    the matched cluster IDs of the earlier run's display labels, so matched
+    clusters keep their colour. Clusters without a match get IDs that the earlier
+    run does not use. Renaming does not change the partition.
+    """
+    import numpy as np
+
+    _, current_pos, previous_pos = np.intersect1d(
+        indices, previous["indices"], assume_unique=True, return_indices=True
+    )
+    base = {
+        "available": True,
+        "previous_job_id": previous["job_id"],
+        "current_cell_count": int(len(indices)),
+        "previous_cell_count": int(len(previous["indices"])),
+        "shared_cell_count": int(len(current_pos)),
+        "method": COMPARISON_METHOD,
+    }
+    if len(current_pos) == 0:
+        return {**base, "available": False, "reason": "The two runs share no cells."}, labels.copy()
+
+    reference = np.asarray(previous["display_labels"])[previous_pos].astype(np.int64)
+    candidate = labels[current_pos].astype(np.int64)
+    metrics = label_metrics(reference, candidate)
+    _, mapping = match_labels(reference, candidate)
+
+    reference_ids = reference[reference >= 0]
+    reference_max = int(reference_ids.max()) if reference_ids.size else -1
+    next_id = max(int(np.max(previous["display_labels"])), reference_max) + 1
+    full_mapping = {-1: -1}
+    for label in np.unique(labels[labels >= 0]):
+        matched = mapping.get(int(label))
+        if matched is None or matched > reference_max:  # no match on the shared cells
+            full_mapping[int(label)] = next_id
+            next_id += 1
+        else:
+            full_mapping[int(label)] = matched
+    lookup = np.vectorize(full_mapping.__getitem__, otypes=[np.int64])
+    display_labels = lookup(labels) if len(labels) else labels.astype(np.int64)
+
+    changed = reference != display_labels[current_pos]
+    changed_positions = np.sort(current_pos[changed])
+    comparison = {
+        **base,
+        "assignment_disagreement": metrics["assignment_disagreement"],
+        "changed_count": int(changed.sum()),
+        "cluster_to_cluster_disagreement": metrics["cluster_to_cluster_disagreement"],
+        "noise_status_disagreement": metrics["noise_status_disagreement"],
+        "cluster_to_noise_count": metrics["cluster_to_noise_count"],
+        "noise_to_cluster_count": metrics["noise_to_cluster_count"],
+        "ari_including_noise": metrics["ari_including_noise"],
+        "ami_including_noise": metrics["ami_including_noise"],
+        "changed_indices": changed_positions.astype(int).tolist(),
+    }
+    return comparison, display_labels
 
 
 class LiveComputeService:
@@ -172,13 +299,16 @@ class LiveComputeService:
             "full_cell_count": self.input_shape[0],
             "feature_count": self.input_shape[1],
             "threads": self.threads,
+            "parameters": PARAMETERS,
             "model": {
-                "n_neighbors": N_NEIGHBORS,
                 "n_epochs": N_EPOCHS,
-                "min_dist": MIN_DIST,
                 "metric": "euclidean",
+                "init": "spectral",
+                "hdbscan_min_samples": "equal to min_cluster_size",
                 "hdbscan_cluster_selection_epsilon": HDBSCAN_EPSILON,
+                "hdbscan_cluster_selection_method": "eom",
             },
+            "comparison_method": COMPARISON_METHOD,
             "software": {
                 "umap_learn": package_version("umap-learn"),
                 "hdbscan": package_version("hdbscan"),
@@ -212,18 +342,29 @@ class LiveComputeService:
                 raise ValueError("seed must be an integer") from exc
             if not 0 <= seed <= 2**31 - 1:
                 raise ValueError("seed must be between 0 and 2147483647")
+        compare_to = request.get("compare_to")
+        if compare_to is not None and (
+            not isinstance(compare_to, str) or not JOB_ID_PATTERN.fullmatch(compare_to)
+        ):
+            raise ValueError("compare_to must be a job id")
         return {
             "algorithm": algorithm,
             "deterministic": deterministic,
             "seed": seed,
             "cell_count": cell_count,
+            "n_neighbors": parse_parameter(request, "n_neighbors"),
+            "min_dist": parse_parameter(request, "min_dist"),
+            "min_cluster_size": parse_parameter(request, "min_cluster_size"),
+            "compare_to": compare_to,
         }
 
     def run(
         self,
         raw_request: dict[str, Any],
         progress: Callable[[str], None] | None = None,
-    ) -> dict[str, Any]:
+        previous: dict[str, Any] | None = None,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Run one job; return the public result and the arrays kept for later comparisons."""
         import numpy as np
 
         request = self.validate_request(raw_request)
@@ -233,7 +374,8 @@ class LiveComputeService:
         indices = np.sort(self.permutation[: request["cell_count"]])
         matrix = np.asarray(self.matrix[indices], dtype=np.float32, order="C")
         cell_ids = self.cell_ids[indices].tolist()
-        n_neighbors = min(N_NEIGHBORS, len(matrix) - 1)
+        n_neighbors = min(request["n_neighbors"], len(matrix) - 1)
+        min_dist = request["min_dist"]
 
         report("embedding")
         if request["algorithm"] == "umap_learn":
@@ -244,7 +386,7 @@ class LiveComputeService:
                 n_neighbors=n_neighbors,
                 n_components=2,
                 n_epochs=N_EPOCHS,
-                min_dist=MIN_DIST,
+                min_dist=min_dist,
                 metric="euclidean",
                 init="spectral",
                 low_memory=True,
@@ -266,7 +408,7 @@ class LiveComputeService:
                 n_neighbors=n_neighbors,
                 n_components=2,
                 n_epochs=N_EPOCHS,
-                min_dist=MIN_DIST,
+                min_dist=min_dist,
                 metric="euclidean",
                 init="spectral",
                 low_memory=True,
@@ -287,7 +429,7 @@ class LiveComputeService:
         report("hdbscan")
         import hdbscan
 
-        min_cluster_size = max(int(len(embedding) * 0.00005), 10)
+        min_cluster_size = request["min_cluster_size"]
         clusterer = hdbscan.HDBSCAN(
             min_cluster_size=min_cluster_size,
             min_samples=min_cluster_size,
@@ -298,21 +440,37 @@ class LiveComputeService:
         hdbscan_started = time.perf_counter()
         labels = np.asarray(clusterer.fit_predict(embedding), dtype=np.int32)
         hdbscan_seconds = time.perf_counter() - hdbscan_started
+        result_fingerprint = hashlib.sha256(
+            embedding.tobytes(order="C") + labels.tobytes(order="C")
+        ).hexdigest()
+
+        comparison: dict[str, Any] | None = None
+        display_labels = labels.astype(np.int64)
+        if request["compare_to"] is not None:
+            report("comparing")
+            if previous is None:
+                comparison = {
+                    "available": False,
+                    "previous_job_id": request["compare_to"],
+                    "reason": "The previous run is no longer held by the server (for example after a restart).",
+                }
+            else:
+                comparison, display_labels = compare_with_previous(indices, labels, previous)
+
         unique, counts = np.unique(labels, return_counts=True)
+        display_unique, display_counts = np.unique(display_labels, return_counts=True)
         cluster_sizes = sorted(
             (
                 {"label": int(label), "count": int(count)}
-                for label, count in zip(unique, counts)
+                for label, count in zip(display_unique, display_counts)
             ),
             key=lambda item: item["count"],
             reverse=True,
         )
-        result_fingerprint = hashlib.sha256(
-            embedding.tobytes(order="C") + labels.tobytes(order="C")
-        ).hexdigest()
         total_seconds = time.perf_counter() - total_started
+        kept = {"indices": indices, "display_labels": display_labels}
         return {
-            "schema_version": 1,
+            "schema_version": 2,
             "created_at": now_utc(),
             "sample": self.sample,
             "request": request,
@@ -328,7 +486,7 @@ class LiveComputeService:
                 "n_jobs": n_jobs,
                 "n_neighbors": n_neighbors,
                 "n_epochs": N_EPOCHS,
-                "min_dist": MIN_DIST,
+                "min_dist": min_dist,
                 "hdbscan_min_cluster_size": min_cluster_size,
                 "hdbscan_min_samples": min_cluster_size,
                 "hdbscan_cluster_selection_epsilon": HDBSCAN_EPSILON,
@@ -345,17 +503,21 @@ class LiveComputeService:
                 "noise_fraction": float(np.mean(labels == -1)),
                 "result_fingerprint": result_fingerprint,
             },
+            "comparison": comparison,
             "cell_ids": cell_ids,
             "coordinates_uint16": quantize_coordinates(embedding),
             "labels": labels.astype(int).tolist(),
+            "display_labels": display_labels.astype(int).tolist(),
             "cluster_sizes": cluster_sizes,
-        }
+        }, kept
 
 
 class JobManager:
     def __init__(self, service: LiveComputeService) -> None:
         self.service = service
         self.jobs: dict[str, dict[str, Any]] = {}
+        # Labels and cell indices of completed jobs, kept server-side for comparisons.
+        self.kept: dict[str, dict[str, Any]] = {}
         self.lock = threading.Lock()
         self.execution_lock = threading.Lock()
 
@@ -374,9 +536,10 @@ class JobManager:
         with self.lock:
             self._prune()
             self.jobs[job_id] = job
+            previous = self.kept.get(validated["compare_to"]) if validated["compare_to"] else None
         thread = threading.Thread(
             target=self._execute,
-            args=(job_id, validated),
+            args=(job_id, validated, previous),
             name=f"braque-live-{job_id}",
             daemon=True,
         )
@@ -390,20 +553,29 @@ class JobManager:
         ]
         for key in completed[:-7]:
             self.jobs.pop(key, None)
+            self.kept.pop(key, None)
 
     def _update(self, job_id: str, **values: Any) -> None:
         with self.lock:
             self.jobs[job_id].update(values)
             self.jobs[job_id]["updated_at"] = now_utc()
 
-    def _execute(self, job_id: str, request: dict[str, Any]) -> None:
+    def _execute(
+        self,
+        job_id: str,
+        request: dict[str, Any],
+        previous: dict[str, Any] | None,
+    ) -> None:
         started = time.perf_counter()
         self._update(job_id, status="running", phase="preparing_input", started_at=now_utc())
         try:
-            result = self.service.run(
+            result, kept = self.service.run(
                 request,
                 progress=lambda phase: self._update(job_id, phase=phase),
+                previous=previous,
             )
+            with self.lock:
+                self.kept[job_id] = {"job_id": job_id, **kept}
             self._update(
                 job_id,
                 status="completed",
@@ -512,28 +684,48 @@ def main() -> int:
         print(json.dumps({"verification": "passed", **service.public_config()}, indent=2))
         return 0
     if args.smoke_test:
-        result = service.run(
-            {
-                "algorithm": args.algorithm,
-                "deterministic": args.deterministic,
-                "seed": args.seed,
-                "cell_count": args.cells,
-            }
-        )
-        print(
-            json.dumps(
+        if args.repeats < 1:
+            raise ValueError("--repeats must be positive")
+        previous = None
+        for repeat in range(args.repeats):
+            job_id = f"{repeat:012x}"
+            result, kept = service.run(
                 {
-                    "smoke_test": "passed",
-                    "request": result["request"],
-                    "timing_seconds": {
-                        key: result["timing_seconds"][key]
-                        for key in ("reduction", "hdbscan", "total")
-                    },
-                    "summary": result["summary"],
+                    "algorithm": args.algorithm,
+                    "deterministic": args.deterministic,
+                    "seed": args.seed,
+                    "cell_count": args.cells,
+                    "n_neighbors": args.n_neighbors,
+                    "min_dist": args.min_dist,
+                    "min_cluster_size": args.min_cluster_size,
+                    "compare_to": previous["job_id"] if previous else None,
                 },
-                indent=2,
+                previous=previous,
             )
-        )
+            previous = {"job_id": job_id, **kept}
+            comparison = result["comparison"]
+            if comparison is not None:
+                comparison = {
+                    key: value for key, value in comparison.items()
+                    if key not in {"changed_indices", "method"}
+                }
+            print(
+                json.dumps(
+                    {
+                        "smoke_test": "passed",
+                        "repeat": repeat,
+                        "request": result["request"],
+                        "timing_seconds": {
+                            key: result["timing_seconds"][key]
+                            for key in ("reduction", "hdbscan", "total")
+                        },
+                        "summary": result["summary"],
+                        "comparison_with_previous_repeat": comparison,
+                    },
+                    indent=2,
+                ),
+                flush=True,
+            )
         return 0
 
     manager = JobManager(service)
