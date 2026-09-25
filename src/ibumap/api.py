@@ -1479,6 +1479,16 @@ class IBUMAP:
         self._last_entrypoint: Optional[str] = None
         self._last_update_init_override = False
 
+        if self.config.runtime.random_state is not None and not self.config.cpu_umap.deterministic:
+            warnings.warn(
+                "random_state is set but deterministic=False: the seed fixes the "
+                "random draws, but parallel and non-deterministic kernels can still "
+                "make repeated runs differ. Pass deterministic=True for results that "
+                "repeat on the same device.",
+                UserWarning,
+                stacklevel=3,
+            )
+
     @property
     def runtime(self) -> EffectiveConfig:
         self._refresh_runtime_view()
@@ -1512,20 +1522,6 @@ class IBUMAP:
         candidate.umap.epsilon = float(value.numerics.epsilon)
         candidate.ibumap.experimental.noise = deepcopy(value.noise)
         _validate_effective_config(candidate)
-        if candidate.runtime.device == "cuda" and candidate.cpu_umap.deterministic:
-            warnings.warn(
-                "deterministic=True on CUDA seeds all random streams for "
-                "same-device repeatability, selects deterministic ibFFT P2M "
-                "accumulation, reuses workspace-owned charge FFT plans and "
-                "buffers outside minimal-workspace mode, uses fixed-order "
-                "CSR degree reductions, "
-                "canonicalizes connected-component labels, and uses "
-                "deterministic CSR Laplacian construction and SpMV for "
-                "spectral eigsh; this may use additional workspace or reduce "
-                "performance",
-                RuntimeWarning,
-                stacklevel=3,
-            )
         self.config = candidate
         self._refresh_runtime_view()
 
