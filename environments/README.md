@@ -225,6 +225,11 @@ conda deactivate && conda activate ibumap-torchdr
 `$ORIGIN` is expanded by the dynamic loader and should stay literal in the
 shell.
 
+System commands run inside the activated environment (`rm`, `ls`, ...) resolve
+`$ORIGIN` to their own directory and print a harmless warning:
+`ld.so: object '$ORIGIN/../lib/libstdc++.so.6' from LD_PRELOAD cannot be
+preloaded ... ignored`. Only the environment's own executables need the preload.
+
 ### CUDA environment loads base Anaconda or cannot find `librmm.so`
 
 ```bash
