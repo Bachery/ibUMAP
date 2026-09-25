@@ -42,6 +42,29 @@ python scripts/paper/make_all.py
 See [`paper/README.md`](paper/README.md) for the mapping from manuscript
 labels to builders and data files.
 
+## Rerunning the experiments
+
+The experiments behind the paper live under `experiments/`; each has a README
+with its protocol, commands and outputs. Environments are described in
+`environments/README.md`, datasets in `datasets/README.md`.
+
+| Directory | Paper | Result |
+| --- | --- | --- |
+| `experiments/mechanism/` | Section 4 and appendix | optimizer variants A–H on fixed inputs, 59 datasets |
+| `experiments/psweep/` | appendix `tab:mechanism-psweep` | interpolation order p = 1, 2, 3 on 30 datasets |
+| `experiments/e2e_benchmark/` | Section 5 and Appendix B | end-to-end runtime, quality and stability, 71 datasets |
+| `experiments/braque/` | Section 6 and appendix | BRAQUE rerun repeatability and seeded cost |
+
+Each experiment ends with an export step that writes its summaries in the layout
+of `paper/data/` to `paper/rerun/`; then
+
+```bash
+python scripts/paper/make_all.py --data-dir paper/rerun --build-dir paper/build_rerun
+```
+
+rebuilds the figures and tables from the new results. Shared helpers are in
+`scripts/common/` (see its README).
+
 ## Layout
 
 ```
