@@ -27,6 +27,7 @@ BUILDERS = [
     ("ch4_effect_figure.py", True),    # fig:mechanism-effects
     ("ch4_psweep_table.py", False),    # tab:mechanism-psweep
     ("ch4_calendar_table.py", False),  # tab:calendar-audit
+    ("ch4_safeguard_cases.py", True),  # tab:safeguard-cases, fig:safeguard-cases
     ("ch5_tables.py", False),          # tab:e2e-fidelity-common and Appendix C tables
     ("ch5_main_figure.py", True),      # fig:e2e-results
     ("ch5_profile_figures.py", True),  # fig:appendix-speedups, fig:appendix-runtime-profiles

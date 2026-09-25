@@ -1,0 +1,90 @@
+{
+  "protocol": "safeguard-failure-cases-v1",
+  "description": "Production ibUMAP (all safeguards) versus the same optimizer with the repulsion-norm clip or the attraction degree damping switched off, on the fixed graphs and spectral initializations of the mechanism study.",
+  "datasets": [
+    "cifar10",
+    "scdeed_cart"
+  ],
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "plot_seed": 42,
+  "params": {
+    "n_components": 2,
+    "n_neighbors": 15,
+    "min_dist": 0.1,
+    "spread": 1.0,
+    "learning_rate": 1.0,
+    "repulsion_strength": 1.0,
+    "negative_sample_rate": 5,
+    "metric": "euclidean",
+    "n_epochs": 200,
+    "verbose": false,
+    "deterministic": true,
+    "attraction_mode": "sampling",
+    "repulsion_mode": "true_loss",
+    "attraction_degree_damping": true,
+    "repulsion_clip_norm": 4.0,
+    "repulsion_clip_with_alpha": true,
+    "repulsion_clip_epoch_range": null,
+    "total_update_clip_norm": null
+  },
+  "variants": {
+    "full": {},
+    "no_repulsion_clip": {
+      "repulsion_clip_norm": null
+    },
+    "no_attraction_damping": {
+      "attraction_degree_damping": false
+    }
+  },
+  "metrics": {
+    "core_fraction": 0.99,
+    "far_radius_multiple": 2.0,
+    "bbox_area_ratio": "bounding-box area of all points / that of the core_fraction points nearest the coordinate-wise median",
+    "far": "distance to the median > far_radius_multiple x core radius (distance of the last core point)"
+  },
+  "fixed_input_digests": {
+    "cifar10": {
+      "optimizer_graph": "25652feb156d6026d36df194297ad3f75edd53950b43d102465f27d1bc8c0b90",
+      "init_embedding": "cc76d9d5aa7fd4223508a22050162b4583e0f9a23b488e9151fb09c539a52466",
+      "n": 60000,
+      "optimizer_graph_nnz": 1616948
+    },
+    "scdeed_cart": {
+      "optimizer_graph": "32ca63e7c1c7d80fb77886eb8201bcc7ee5c233104885803226d78c7cc4e3150",
+      "init_embedding": "6733d8e2dc3c1feb29bfb5ee1c506cd036fd4bfb59a1d07534330c46207a8a51",
+      "n": 62167,
+      "optimizer_graph_nnz": 1637466
+    }
+  },
+  "reference": {
+    "suites": [
+      "le10k",
+      "10k_50k",
+      "50k_100k"
+    ],
+    "algorithms": [
+      "ibumap_production",
+      "umap_learn"
+    ],
+    "excluded_datasets": [
+      "c_elegans_embryogenesis_global_qc_annotated"
+    ]
+  },
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "numba": "0.61.2",
+      "numpy": "1.26.4",
+      "pyfftw": "0.15.1",
+      "scikit-learn": "1.8.0",
+      "scipy": "1.16.3",
+      "umap-learn": "0.5.12"
+    },
+    "numba_threads": 2,
+    "fft_threads": 2
+  }
+}

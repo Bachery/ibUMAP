@@ -5,6 +5,7 @@
     "tables/ch4_effect_rows.tex": "beb570aa30e69997ae0fc3afd7fdadc2f7d471c0c410419eef148f91d10b2db3",
     "tables/ch4_family_rows.tex": "3add5f1b22140aea86f0b1833c4f70926596e0e0460b1e02bb6d3e8fdeb277cd",
     "tables/ch4_psweep_rows.tex": "bca4d78bcdf322e2643b3b3e5a59fdc52259d90aeb4ecaa8c93f400b2d5c4d2d",
+    "tables/ch4_safeguard_rows.tex": "dbb23215ac1b4f99f3c6ca1c22652d7e9213ed0726d91e050f32fc2195861867",
     "tables/ch4_dataset_means.csv": "c41f867a45a95adc1727bfd11347651f6069917efb7ccd13bfdb7eaf7bc3a329",
     "tables/ch4_quality_means.csv": "0172a4c582c160413046a043001d4b2cc6904c237c8c78c84eedcb9316564811",
     "tables/ch4_family_means.csv": "1002597b7653cbf73d3c43910d92b94a1544b319e7435209da9c8772ff88129e",
@@ -35,6 +36,7 @@
   },
   "figures": [
     "figure_ch4_mechanism_effects.pdf",
+    "figure_ch4_safeguard_cases.pdf",
     "figure_BE_runtime_stability_merged_h166.pdf",
     "figure_A_side_by_side.pdf",
     "figure_A_runtime_seeded_unseeded_side_by_side.pdf",
@@ -227,6 +229,243 @@
       "format": "{:.3f}",
       "expected": "1.014",
       "where": "App. calendar: H balance / reference"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "ibumap_production",
+        "median"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.01",
+      "where": "App. safeguards: H median bbox ratio, 59 datasets"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "ibumap_production",
+        "max"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.52",
+      "where": "App. safeguards: H maximum bbox ratio"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "umap_learn",
+        "max"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.93",
+      "where": "App. safeguards: UMAP maximum bbox ratio"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_repulsion_clip",
+        "max_step_first_update"
+      ],
+      "format": "{:.0f}",
+      "expected": "897",
+      "where": "App. safeguards: CIFAR-10 first-update step without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "max_step_first_update"
+      ],
+      "format": "{:.0f}",
+      "expected": "418",
+      "where": "App. safeguards: scDEED CART first-update step without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_repulsion_clip",
+        "far_count"
+      ],
+      "format": "{:d}",
+      "expected": "555",
+      "where": "App. safeguards: CIFAR-10 far points without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "far_count"
+      ],
+      "format": "{:d}",
+      "expected": "483",
+      "where": "App. safeguards: scDEED CART far points without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "final_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "93.9",
+      "where": "App. safeguards: scDEED CART final ratio without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "max_attraction_norm"
+      ],
+      "format": "{:.0f}",
+      "expected": "455",
+      "where": "App. safeguards: scDEED CART hub attraction without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "max_attraction_norm"
+      ],
+      "format": "{:.0f}",
+      "expected": "102",
+      "where": "App. safeguards: scDEED CART hub attraction with damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "updates_ratio_gt_10"
+      ],
+      "format": "{:d}",
+      "expected": "175",
+      "where": "App. safeguards: scDEED CART updates with ratio > 10 without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "peak_ratio"
+      ],
+      "format": "{:.0f}",
+      "expected": "296",
+      "where": "App. safeguards: scDEED CART peak ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "core_boxes_median"
+      ],
+      "format": "{:.1f}",
+      "expected": "28.5",
+      "where": "App. safeguards: mesh boxes across the core without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "core_boxes_median"
+      ],
+      "format": "{:.1f}",
+      "expected": "61.3",
+      "where": "App. safeguards: mesh boxes across the core with damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "weighted_degree_p99"
+      ],
+      "format": "{:.1f}",
+      "expected": "45.7",
+      "where": "App. safeguards: scDEED CART 99th-percentile weighted degree"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "final_ratio"
+      ],
+      "format": "{:.2f}",
+      "expected": "2.08",
+      "where": "App. safeguards: scDEED CART final ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_attraction_damping",
+        "updates_ratio_gt_10"
+      ],
+      "format": "{:d}",
+      "expected": "157",
+      "where": "App. safeguards: CIFAR-10 updates with ratio > 10 without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_attraction_damping",
+        "final_ratio"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.70",
+      "where": "App. safeguards: CIFAR-10 final ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "full",
+        "peak_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "11.8",
+      "where": "App. safeguards: CIFAR-10 transient peak with both safeguards"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "peak_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "18.6",
+      "where": "App. safeguards: scDEED CART transient peak with both safeguards"
     }
   ]
 }

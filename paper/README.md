@@ -36,6 +36,8 @@ raster difference per figure when poppler's `pdftoppm` is available.
 | App. table | `tab:mechanism-family` | `tables/ch4_family_rows.tex` | `ch4_tables.py` |
 | App. table | `tab:mechanism-psweep` | `tables/ch4_psweep_rows.tex` | `ch4_psweep_table.py` |
 | App. table | `tab:calendar-audit` | `tables/ch4_calendar_rows.tex` | `ch4_calendar_table.py` |
+| App. table | `tab:safeguard-cases` | `tables/ch4_safeguard_rows.tex` | `ch4_safeguard_cases.py` |
+| App. figure | `fig:safeguard-cases` | `figures/figure_ch4_safeguard_cases.pdf` | `ch4_safeguard_cases.py` |
 | Sec. 5 figure | `fig:e2e-results` | `figures/figure_BE_runtime_stability_merged_h166.pdf` | `ch5_main_figure.py` |
 | Sec. 5 table | `tab:e2e-fidelity-common` | `tables/ch5_quality_common_median_rows.tex` | `ch5_tables.py` |
 | App. table | `tab:benchmark-runtime` | `tables/ch5_runtime_rows.tex` | `ch5_tables.py` |
@@ -75,6 +77,11 @@ builders refuse to run on modified files.
 | `mechanism/` | `scores.csv.gz` | 1,593 runs: 59 datasets × 9 variants × optimizer seeds {42, 137, 2026}; five quality metrics |
 | | `workloads.json` | retained datasets, the one excluded dataset and why, metric configuration |
 | | `calendar_audit.json` | per-dataset replay of the umap-learn sampling calendar |
+| `safeguards/` | `runs.csv.gz`, `cases.csv.gz` | safeguard failure cases: production ibUMAP and the same optimizer without the repulsion-norm clip or without attraction damping, CIFAR-10 and scDEED CART × seeds {42, 137, 2026} (bitwise identical); final bounding-box statistics, per-case trace landmarks and graph degrees |
+| | `traces.csv.gz`, `embeddings.npz` | per-update forces, mesh size and bounding-box statistics, and the final embeddings, of the plotted seed 42 |
+| | `escaped_points.csv.gz` | far points of the plotted runs with their weighted degree |
+| | `reference.csv.gz` | the same statistics for the production ibUMAP and umap-learn embeddings of the mechanism study (59 datasets × 3 seeds) |
+| | `protocol.json` | datasets, seeds, parameters, variants, metric definitions, digests of the fixed inputs, run environment |
 | `psweep/` | `quality.csv.gz`, `runs.csv.gz` | interpolation-order and stage-schedule sweep, 30 datasets, CPU and CUDA |
 | `braque/` | `summary.csv.gz`, `pairwise_metrics.csv.gz`, `run_metrics.csv.gz`, `cost_ratios.csv.gz` | BRAQUE case study, four execution profiles × 5 runs |
 | | `plot_data.npz`, `panels.json` | coordinates and HDBSCAN labels of the two plotted runs; rendering parameters |

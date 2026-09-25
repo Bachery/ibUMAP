@@ -1,8 +1,8 @@
 """Write experiment summaries in the layout read by ``scripts/paper`` (``paper/data/<group>/``).
 
 Each experiment's export step writes one group directory (``e2e_benchmark``,
-``mechanism``, ``psweep``, ``braque``). A full rerun collects the four groups in
-one directory, by default ``paper/rerun/``, and then runs
+``mechanism``, ``psweep``, ``braque``, ``safeguards``). A full rerun collects the
+five groups in one directory, by default ``paper/rerun/``, and then runs
 
     python scripts/paper/make_all.py --data-dir paper/rerun
 
@@ -57,6 +57,32 @@ def write_csv_gz(path: str | Path, fieldnames: Sequence[str], rows: Iterable[Map
 
 def write_json(path: str | Path, payload: Any) -> str:
     data = (json.dumps(payload, indent=2, sort_keys=False) + "\n").encode("utf-8")
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
+    return hashlib.sha256(data).hexdigest()
+
+
+def write_npz(path: str | Path, arrays: Mapping[str, Any]) -> str:
+    """Write arrays as a deterministic ``.npz`` (sorted members, fixed timestamps); return its SHA-256.
+
+    ``numpy.savez`` stamps each member with the current time, so two exports of the
+    same arrays would differ. The file loads with ``numpy.load`` as usual.
+    """
+    import zipfile
+
+    import numpy as np
+
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for key in sorted(arrays):
+            member = io.BytesIO()
+            np.lib.format.write_array(member, np.ascontiguousarray(arrays[key]), allow_pickle=False)
+            info = zipfile.ZipInfo(f"{key}.npy", date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            archive.writestr(info, member.getvalue())
+    data = buffer.getvalue()
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(data)
