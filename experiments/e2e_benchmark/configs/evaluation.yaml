@@ -1,0 +1,38 @@
+# Quality metrics reported in the paper (see scripts/common/README.md).
+metrics:
+  - trustworthiness
+  - continuity
+  - neighborhood_preservation
+  - rta
+  - distance_spearman
+
+# Local metrics: k-nearest-neighbor based, k = 15. The kNN search runs on the
+# GPU when one is visible (as for the paper) and on the CPU otherwise.
+n_neighbors: 15
+source_metric: euclidean
+dtype: float32
+device: auto
+gpu_batch_size: 128
+rank_low_memory: true
+rank_low_memory_batch_size: 256
+
+# Global metrics: 10^6 sampled triplets / pairs, always computed on the CPU.
+rta_n_triplets: 1000000
+rta_random_state: 42
+rta_distance_batch_size: 65536
+distance_spearman_n_pairs: 1000000
+distance_spearman_random_state: 42
+distance_spearman_distance_batch_size: 65536
+
+# Datasets above one million rows are sampled without replacement; every
+# algorithm and repeat of a dataset is scored on the same rows.
+sample_seed: 42
+max_samples: 1000000
+
+cache:
+  enabled: true
+  root: ../results/02_evaluations/metric_cache
+  version: e2e_benchmark_v1
+  recompute: false
+  delete_embedding_after_score: true
+  delete_source_after_dataset: true

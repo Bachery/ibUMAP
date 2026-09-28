@@ -1,0 +1,396 @@
+{
+  "collection_api": "https://api.cellxgene.cziscience.com/curation/v1/collections/0cca8620-8dee-45d0-aef5-23f032a5cf09",
+  "collection_id": "0cca8620-8dee-45d0-aef5-23f032a5cf09",
+  "colorable_columns": [
+    "tissue_ontology_term_id",
+    "cell_type_ontology_term_id",
+    "subclass_transfer",
+    "major_brain_region",
+    "ccf_region_name",
+    "brain_section_label",
+    "cell_type",
+    "tissue"
+  ],
+  "dataset_id": "whole_mouse_brain_merfish_animal3_sagittal",
+  "default_color_by": "cell_type",
+  "display_name": "Whole mouse brain MERFISH animal3 sagittal",
+  "extra_arrays": {
+    "ccf_coordinates": {
+      "dtype": "float32",
+      "file": "ccf_coordinates.npy",
+      "role": "common_coordinate_framework_coordinates",
+      "shape": [
+        2081549,
+        3
+      ],
+      "source": "obsm/X_CCF"
+    },
+    "spatial_coordinates": {
+      "dtype": "float32",
+      "file": "spatial_coordinates.npy",
+      "role": "spatial_coordinates",
+      "shape": [
+        2081549,
+        2
+      ],
+      "source": "obsm/X_spatial_coords"
+    }
+  },
+  "family": "whole_mouse_brain_merfish",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    2081549,
+    50
+  ],
+  "feature_source": "X (H5AD CSR expression matrix) transformed by truncated SVD",
+  "filterable_columns": [
+    "tissue_ontology_term_id",
+    "cell_type_ontology_term_id",
+    "subclass_transfer",
+    "major_brain_region",
+    "ccf_region_name",
+    "brain_section_label",
+    "cell_type",
+    "tissue"
+  ],
+  "generated_at": "2026-07-09T21:46:01+00:00",
+  "generated_by": "scripts/datasets/whole_mouse_brain_merfish/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "single_cell",
+  "label_columns": [
+    "cell_type",
+    "subclass_transfer",
+    "cluster_id_transfer",
+    "major_brain_region"
+  ],
+  "metric": "euclidean",
+  "n_cells": 2081549,
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "assay": {
+      "description": "Observation column assay from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "batch_or_source"
+    },
+    "assay_ontology_term_id": {
+      "description": "Observation column assay_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "batch_or_source"
+    },
+    "brain_section_label": {
+      "description": "Observation column brain_section_label from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 23,
+      "role": "anatomical_or_spatial_annotation"
+    },
+    "ccf_region_name": {
+      "description": "Observation column ccf_region_name from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 636,
+      "role": "anatomical_or_spatial_annotation"
+    },
+    "cell_type": {
+      "description": "Observation column cell_type from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 25,
+      "role": "biological_label"
+    },
+    "cell_type_ontology_term_id": {
+      "description": "Observation column cell_type_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 25,
+      "role": "biological_label"
+    },
+    "cluster_confidence_score": {
+      "description": "Observation column cluster_confidence_score from the source H5AD obs table.",
+      "dtype": "float32",
+      "role": "continuous_metadata"
+    },
+    "cluster_id_transfer": {
+      "description": "Observation column cluster_id_transfer from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 5263,
+      "role": "biological_label"
+    },
+    "development_stage": {
+      "description": "Observation column development_stage from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "development_stage_ontology_term_id": {
+      "description": "Observation column development_stage_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "disease": {
+      "description": "Observation column disease from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "disease_ontology_term_id": {
+      "description": "Observation column disease_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "donor_id": {
+      "description": "Observation column donor_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "batch_or_source"
+    },
+    "high_quality_transfer": {
+      "description": "Observation column high_quality_transfer from the source H5AD obs table.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "is_primary_data": {
+      "description": "Observation column is_primary_data from the source H5AD obs table.",
+      "dtype": "bool",
+      "role": "metadata"
+    },
+    "major_brain_region": {
+      "description": "Observation column major_brain_region from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 15,
+      "role": "anatomical_or_spatial_annotation"
+    },
+    "observation_joinid": {
+      "description": "Observation column observation_joinid from the source H5AD obs table.",
+      "dtype": "string",
+      "role": "metadata"
+    },
+    "original_obs_index": {
+      "description": "Observation column feature_id from the source H5AD obs table.",
+      "dtype": "string",
+      "role": "original_identifier"
+    },
+    "sample_id": {
+      "description": "Stable row identifier matching features.npy.",
+      "dtype": "int64",
+      "role": "identifier"
+    },
+    "self_reported_ethnicity": {
+      "description": "Observation column self_reported_ethnicity from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "self_reported_ethnicity_ontology_term_id": {
+      "description": "Observation column self_reported_ethnicity_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "sex": {
+      "description": "Observation column sex from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "sex_ontology_term_id": {
+      "description": "Observation column sex_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "subclass_confidence_score": {
+      "description": "Observation column subclass_confidence_score from the source H5AD obs table.",
+      "dtype": "float32",
+      "role": "continuous_metadata"
+    },
+    "subclass_transfer": {
+      "description": "Observation column subclass_transfer from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 338,
+      "role": "biological_label"
+    },
+    "suspension_type": {
+      "description": "Observation column suspension_type from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    },
+    "tissue": {
+      "description": "Observation column tissue from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 13,
+      "role": "anatomical_or_spatial_annotation"
+    },
+    "tissue_ontology_term_id": {
+      "description": "Observation column tissue_ontology_term_id from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 13,
+      "role": "metadata"
+    },
+    "tissue_type": {
+      "description": "Observation column tissue_type from the source H5AD obs table.",
+      "dtype": "string",
+      "n_unique": 1,
+      "role": "metadata"
+    }
+  },
+  "original_index_column": "original_obs_index",
+  "preprocessing": "Read the already normalized log-expression H5AD X CSR matrix without densifying it, fitted truncated SVD with scipy.sparse.linalg.svds, and wrote row-batched float32 SVD projections. Exported obs and stored the source X_umap, X_spatial_coords, and X_CCF arrays as float32.",
+  "primary_array": "features.npy",
+  "raw_h5ad_keys_summary": {
+    "X": {
+      "data_dtype": "float32",
+      "encoding_type": "csr_matrix",
+      "nnz": 240796056,
+      "shape": [
+        2081549,
+        1120
+      ]
+    },
+    "obs_columns": [
+      "assay",
+      "assay_ontology_term_id",
+      "brain_section_label",
+      "ccf_region_name",
+      "cell_type",
+      "cell_type_ontology_term_id",
+      "cluster_confidence_score",
+      "cluster_id_transfer",
+      "development_stage",
+      "development_stage_ontology_term_id",
+      "disease",
+      "disease_ontology_term_id",
+      "donor_id",
+      "feature_id",
+      "high_quality_transfer",
+      "is_primary_data",
+      "major_brain_region",
+      "observation_joinid",
+      "self_reported_ethnicity",
+      "self_reported_ethnicity_ontology_term_id",
+      "sex",
+      "sex_ontology_term_id",
+      "subclass_confidence_score",
+      "subclass_transfer",
+      "suspension_type",
+      "tissue",
+      "tissue_ontology_term_id",
+      "tissue_type"
+    ],
+    "obsm": {
+      "X_CCF": {
+        "dtype": "float64",
+        "shape": [
+          2081549,
+          3
+        ]
+      },
+      "X_spatial_coords": {
+        "dtype": "float64",
+        "shape": [
+          2081549,
+          2
+        ]
+      },
+      "X_umap": {
+        "dtype": "float64",
+        "shape": [
+          2081549,
+          2
+        ]
+      }
+    },
+    "root_keys": [
+      "X",
+      "layers",
+      "obs",
+      "obsm",
+      "obsp",
+      "raw",
+      "uns",
+      "var",
+      "varm",
+      "varp"
+    ]
+  },
+  "raw_path": "datasets/raw/whole_mouse_brain_merfish/h5ad/WB_MERFISH_animal3_sagittal.h5ad",
+  "raw_role": "primary_source",
+  "reference_embedding_file": "reference_embedding.npy",
+  "reference_embedding_shape": [
+    2081549,
+    2
+  ],
+  "reference_embedding_source": "obsm/X_umap",
+  "reference_embeddings": {
+    "umap": {
+      "dtype": "float32",
+      "file": "reference_embedding.npy",
+      "role": "reference_embedding",
+      "shape": [
+        2081549,
+        2
+      ],
+      "source": "obsm/X_umap"
+    }
+  },
+  "searchable_columns": [
+    "original_obs_index",
+    "observation_joinid"
+  ],
+  "source_type": "cellxgene_collection",
+  "svd_components": 50,
+  "svd_singular_values": [
+    14898.14453125,
+    7436.38720703125,
+    6214.84521484375,
+    6123.05615234375,
+    5082.16748046875,
+    4984.97314453125,
+    3990.655517578125,
+    3465.856201171875,
+    3044.221435546875,
+    2983.03076171875,
+    2848.085205078125,
+    2787.951416015625,
+    2635.0048828125,
+    2402.768798828125,
+    2222.540283203125,
+    2162.962646484375,
+    2099.513427734375,
+    1999.532958984375,
+    1979.691162109375,
+    1908.3582763671875,
+    1813.5562744140625,
+    1799.27490234375,
+    1775.007080078125,
+    1749.0592041015625,
+    1670.164306640625,
+    1652.834716796875,
+    1622.4017333984375,
+    1600.595458984375,
+    1594.20556640625,
+    1578.7535400390625,
+    1567.60693359375,
+    1511.118408203125,
+    1497.0269775390625,
+    1476.3798828125,
+    1451.9906005859375,
+    1448.436279296875,
+    1436.97021484375,
+    1434.33837890625,
+    1422.6387939453125,
+    1411.7314453125,
+    1397.349853515625,
+    1382.75439453125,
+    1369.4261474609375,
+    1355.2132568359375,
+    1347.9605712890625,
+    1333.44970703125,
+    1328.5450439453125,
+    1319.1815185546875,
+    1315.1607666015625,
+    1309.1298828125
+  ],
+  "version": 1
+}

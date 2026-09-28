@@ -1,0 +1,26 @@
+# Local quality metrics reported in tab:mechanism-psweep (k = 15, all rows).
+metrics:
+  - trustworthiness
+  - continuity
+  - neighborhood_preservation
+
+n_neighbors: 15
+source_metric: euclidean
+dtype: float32
+device: cpu
+gpu_batch_size: 128
+rank_low_memory: true
+rank_low_memory_batch_size: 256
+
+# ``null`` disables row sampling: every variant and repeat of a dataset is scored
+# on the identical full source array.
+max_samples: null
+sample_seed: 42
+
+cache:
+  enabled: true
+  root: ../results/03_evaluations/metric_cache
+  version: psweep_v1
+  recompute: false
+  delete_embedding_after_score: true
+  delete_source_after_dataset: true

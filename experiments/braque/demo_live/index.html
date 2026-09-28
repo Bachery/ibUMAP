@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Live demo: embed a fixed BRAQUE cell subset with ibUMAP or umap-learn, cluster it with HDBSCAN, and compare cluster assignments with the previous run.">
+  <title>BRAQUE live demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <p class="eyebrow">ibUMAP · BRAQUE case study</p>
+        <h1>Live dimensionality reduction and HDBSCAN clustering</h1>
+      </div>
+      <div class="topbar-side">
+        <p id="input-scope" class="input-scope">Loading prepared BRAQUE data…</p>
+        <div class="service-state" id="service-state" aria-live="polite">
+          <span class="state-light"></span>
+          <div><strong>Connecting</strong><small>Local compute backend</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="stage">
+      <form id="run-form" class="panel controls" novalidate>
+        <div class="panel-head">
+          <h2>Parameters</h2>
+          <button type="button" id="reset-button" class="text-button" title="n_neighbors 50 · min_dist 0 · min_cluster_size 10">Case-study defaults</button>
+        </div>
+
+        <fieldset class="group">
+          <legend>Dimensionality reduction</legend>
+          <div class="segmented" id="algorithm-options" role="radiogroup" aria-label="Reduction algorithm"></div>
+          <label class="field">
+            <span>Cells in subset</span>
+            <select id="cell-count-select" name="cell_count" required></select>
+          </label>
+          <div class="param" data-param="n_neighbors">
+            <div class="param-head">
+              <label for="n_neighbors-number"><code>n_neighbors</code></label>
+              <input id="n_neighbors-number" type="number" inputmode="numeric">
+            </div>
+            <input id="n_neighbors-range" type="range" aria-label="n_neighbors">
+          </div>
+          <div class="param" data-param="min_dist">
+            <div class="param-head">
+              <label for="min_dist-number"><code>min_dist</code></label>
+              <input id="min_dist-number" type="number" inputmode="decimal">
+            </div>
+            <input id="min_dist-range" type="range" aria-label="min_dist">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>HDBSCAN</legend>
+          <div class="param" data-param="min_cluster_size">
+            <div class="param-head">
+              <label for="min_cluster_size-number"><code>min_cluster_size</code><small>min_samples is set to the same value</small></label>
+              <input id="min_cluster_size-number" type="number" inputmode="numeric">
+            </div>
+            <input id="min_cluster_size-range" type="range" aria-label="min_cluster_size">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Execution</legend>
+          <div class="exec-row">
+            <label class="switch-row">
+              <input id="deterministic-toggle" name="deterministic" type="checkbox">
+              <span class="switch" aria-hidden="true"></span>
+              <span class="switch-copy">Deterministic</span>
+            </label>
+            <label class="seed-field">
+              <span>Seed</span>
+              <input id="seed-input" name="seed" type="number" min="0" max="2147483647" step="1" value="42" disabled>
+            </label>
+          </div>
+          <p class="algorithm-note" id="algorithm-note"></p>
+        </fieldset>
+
+        <button id="run-button" class="run-button" type="submit" disabled>
+          <span>Run</span><span aria-hidden="true">→</span>
+        </button>
+
+        <div id="run-status" class="run-status idle" aria-live="polite">
+          <span class="status-spinner" aria-hidden="true"></span>
+          <div class="status-copy"><strong id="status-title">Ready</strong><small id="status-detail">Set the parameters and press Run.</small></div>
+          <strong class="live-clock" id="live-elapsed">0.0 s</strong>
+        </div>
+      </form>
+
+      <section class="panel plot-panel" aria-labelledby="plot-title">
+        <header class="plot-head">
+          <div>
+            <h2 id="plot-title">No run yet</h2>
+            <p id="plot-subtitle">The embedding appears here, coloured by HDBSCAN cluster.</p>
+          </div>
+          <label class="chip-toggle" title="Available from the second run">
+            <input id="changed-toggle" type="checkbox" disabled>
+            <span>Highlight changed cells</span>
+          </label>
+        </header>
+        <div class="canvas-wrap">
+          <canvas id="embedding-canvas" aria-label="Embedding coloured by HDBSCAN cluster"></canvas>
+          <p class="plot-empty" id="plot-empty">Choose parameters and press Run.</p>
+        </div>
+        <footer class="plot-legend">
+          <span><i class="cluster-dot"></i>HDBSCAN cluster</span>
+          <span><i class="noise-dot"></i>noise (−1)</span>
+          <span id="legend-changed" hidden><i class="changed-dot"></i>changed vs previous run</span>
+          <span id="legend-colour-note" class="legend-note" hidden>colours follow the matched clusters of the previous run</span>
+          <a class="history-link" href="#history-section">Run history ↓</a>
+        </footer>
+      </section>
+
+      <aside class="insights">
+        <article class="panel change-card" id="change-card" data-state="empty" aria-live="polite">
+          <p class="eyebrow">Change vs previous run</p>
+          <div class="change-value">
+            <strong id="change-percent">—</strong>
+            <span id="change-caption">of cells changed cluster</span>
+          </div>
+          <div class="change-meter" aria-hidden="true"><i id="change-meter-fill"></i></div>
+          <p id="change-detail" class="change-detail">Available from the second run.</p>
+          <p id="change-settings" class="change-settings"></p>
+        </article>
+
+        <article class="panel metrics" aria-label="Run metrics">
+          <div class="metric primary"><span>Reduction runtime</span><strong id="metric-reduction">—</strong><small id="metric-reduction-note">fit_transform only</small></div>
+          <div class="metric"><span>HDBSCAN runtime</span><strong id="metric-hdbscan">—</strong></div>
+          <div class="metric"><span>Clusters</span><strong id="metric-clusters">—</strong><small>excluding noise</small></div>
+          <div class="metric"><span>Noise</span><strong id="metric-noise">—</strong><small id="metric-noise-count">—</small></div>
+          <div class="metric"><span>Fingerprint</span><strong id="metric-fingerprint" class="mono">—</strong><small id="metric-fingerprint-note">embedding + labels</small></div>
+        </article>
+
+        <article class="panel clusters">
+          <div class="panel-head"><h2>Cluster sizes</h2><small id="cluster-count-note"></small></div>
+          <div id="cluster-bars" class="cluster-bars"><p class="empty-copy">No run yet.</p></div>
+        </article>
+      </aside>
+    </main>
+  </div>
+
+  <section class="below" id="history-section" aria-label="Run history and details">
+    <article class="panel history">
+      <div class="panel-head"><h2>Run history</h2><small>this browser session · newest first</small></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Algorithm</th><th>Mode</th><th class="num">Cells</th>
+              <th class="num"><code>n_neighbors</code></th><th class="num"><code>min_dist</code></th><th class="num"><code>min_cluster_size</code></th>
+              <th class="num">Reduction</th><th class="num">Clusters</th><th class="num">Noise</th><th class="num">Change vs previous</th><th>Fingerprint</th>
+            </tr>
+          </thead>
+          <tbody id="run-history"><tr><td colspan="12" class="empty-copy">No runs yet.</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    <article class="panel details">
+      <div class="panel-head"><h2>Last run: effective configuration</h2></div>
+      <dl id="effective-config"><div><dt>Algorithm</dt><dd>—</dd></div></dl>
+    </article>
+    <footer class="notes">
+      <p><strong>Change vs previous run.</strong> <span id="comparison-method">Clusters of two consecutive runs are matched one-to-one by maximum overlap (Hungarian assignment; noise stays noise). The share counts cells whose matched cluster differs, including changes to or from noise, as in the case-study repeatability evaluation. It includes splits and merges and is not a misclassification rate.</span> When the cell count changes, the comparison uses the cells both runs contain.</p>
+      <p><strong>Scope.</strong> This demo runs dimensionality reduction and HDBSCAN on a fixed subset of the BRAQUE proxy feature matrix. It is not part of the paper's results and does not reproduce expert phenotype annotation. An equal seed gives an equal result only when deterministic mode and all other settings are unchanged.</p>
+    </footer>
+  </section>
+
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+  <div id="load-error" class="load-error" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

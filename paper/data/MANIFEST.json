@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "groups": {
+    "braque": {
+      "description": "BRAQUE L2 repeatability case study: per-profile summaries, pairwise and per-run metrics, cost ratios, and the plotted run pair.",
+      "files": {
+        "braque/cost_ratios.csv.gz": "cbe4545aa5bf8a49430e4856126257dd942e111bc4b88601596d553ab9adf5df",
+        "braque/pairwise_metrics.csv.gz": "68ee7472e0a9d09822e19502169cf5110de301b275baaa084384cb91a316e911",
+        "braque/panels.json": "e4a2229f2fc9d35f15dbe650edb1ccd05bf4278c0326c49bad1435a9bf71cd1e",
+        "braque/plot_data.npz": "01f9c7a8a3489f3679009ec19fedbead47c0893fcd4f6943bbe3b8714220d60f",
+        "braque/run_metrics.csv.gz": "1c6e7d9930ba3a18e507a182faa73fa985e2f134383c9c50d02ff419b2d950a1",
+        "braque/summary.csv.gz": "0efea030b8be90f145bb698ce9d37602daf11d2f7d6a07975c879da85e84c28e"
+      }
+    },
+    "e2e_benchmark": {
+      "description": "End-to-end benchmark on 71 datasets: runs, quality (5 metrics), stability, datasets.",
+      "files": {
+        "e2e_benchmark/bundle.json": "8010f5db3d9643899b6c45f89da1b1c465a1794071306ac5e7a37e9f1f835b17",
+        "e2e_benchmark/datasets.csv.gz": "004a48f8442ff65b3623df15fb3a9cb179cf275836aad86175de5d3917a2c7ce",
+        "e2e_benchmark/quality.csv.gz": "d807b0b7771d21f580c43348af01b5fb16a447254a4a019162c7d7e2cf05eef4",
+        "e2e_benchmark/runs.csv.gz": "2531c62235cbba836ffaabb3c8a36184e272deb0cbf8ec6e9f0a7fbee1ee5264",
+        "e2e_benchmark/stability.csv.gz": "c528b4857c49b95db2d05be37aaac7e170b8983807670f90b167e3b64e333b40"
+      }
+    },
+    "mechanism": {
+      "description": "Mechanism experiment on 59 datasets: per-run quality scores, workload selection, sampling-calendar replay.",
+      "files": {
+        "mechanism/calendar_audit.json": "e3805911dbf9c1376640ad5c6679044fb3852c57d62be5fbf93328e455e10eb3",
+        "mechanism/scores.csv.gz": "11b5c4e21bee34871f35273d9d69219de413d5c5233d8227d80714ee1dae9269",
+        "mechanism/workloads.json": "2892608e5bf68beadbc8a217daf4ea160a1a1c3800332476f39166833ea05733"
+      }
+    },
+    "psweep": {
+      "description": "Interpolation-order (p) and stage-schedule sweep on 30 datasets, optimizer only, CPU and CUDA.",
+      "files": {
+        "psweep/quality.csv.gz": "f434ef0dc43f02904d21fdb3d136fc2486abd0ed9def4c5f9b8457da6d5662d8",
+        "psweep/runs.csv.gz": "227c66028507e17d27be90fedcbad837d724ea436c9a46e7443ab295d18e9192"
+      }
+    },
+    "safeguards": {
+      "description": "Safeguard failure cases (Appendix B): final bounding-box statistics, per-update traces and plotted embeddings on CIFAR-10 and scDEED CART, and the 59-dataset reference of the mechanism study.",
+      "files": {
+        "safeguards/cases.csv.gz": "7c522a100fabae1c68f0072eb67d19a0b0d252aa850a08f023551b56998b17c3",
+        "safeguards/embeddings.npz": "103db4c6d48df6130064173b2892aec2c9a2fc645d349b5a2bf24e0745e6c53b",
+        "safeguards/escaped_points.csv.gz": "ba983c51dd205ea5a7d153ea1886b5fde7426f8a4edc47c86bf74b7191383e58",
+        "safeguards/protocol.json": "37e2dc44681ebc865e49bd4d5f7fe37c47d545b5735adfca4c691ecb9d62cd47",
+        "safeguards/reference.csv.gz": "65b723bb4d1d6c9becd4ea34d36c25b5ac80dc1f3f25de2f2b18b440a90b366e",
+        "safeguards/runs.csv.gz": "d25263b2de33d9d3a22a23fc5f57e85910889c52a7584a1f8ed8be0c05b9baa9",
+        "safeguards/traces.csv.gz": "7e76bd77908009853367655c3f7180fc11d5ba00df897ead2c2c85a4cb4b34d1"
+      }
+    }
+  }
+}

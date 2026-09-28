@@ -1,0 +1,37 @@
+name: ibumap-metal
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  # Python
+  - python=3.11.15
+  - pip=26.1.2
+
+  # Scientific Python
+  - numpy=1.26.4
+  - scipy=1.16.3
+  - pandas=2.3.3
+  - scikit-learn=1.8.0
+  - numba=0.61.2
+
+  # UMAP
+  - umap-learn=0.5.12
+  - pynndescent=0.5.13
+
+  # IO
+  - h5py=3.16.0
+
+  # Utilities
+  - matplotlib=3.11.1
+  - psutil=7.2.2
+  - pyyaml=6.0.3
+  - pytest=9.1.1
+  - tqdm=4.69.0
+
+  # Pip wheels: pyFFTW, MLX and pyreadr (scripts/datasets/scdeed/ only)
+  - pip:
+      - pyfftw==0.15.1
+      - mlx==0.32.0
+      - pyreadr==0.5.6

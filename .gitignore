@@ -1,0 +1,38 @@
+# MacOS
+.DS_Store
+
+# Compiled
+__pycache__/
+
+# Datasets
+datasets/raw/**/*
+!datasets/raw/**/
+!datasets/raw/**/README.md
+
+datasets/raw_cache/**/*
+!datasets/raw_cache/**/
+!datasets/raw_cache/**/README.md
+
+# Prepared datasets only; the paper's reference records are in datasets/reference/.
+datasets/processed/*
+!datasets/processed/.gitkeep
+
+datasets/cache/**/*
+!datasets/cache/**/
+
+# Keep placeholder directories
+!datasets/**/.gitkeep
+
+
+# Build artifacts
+paper/build*/
+# Paper data exported by a full rerun of the experiments
+paper/rerun/
+# Cython output of _cuml_graph_ext.pyx; embeds absolute include paths
+src/ibumap/graph/_cuml_graph_ext.cpp
+build/
+dist/
+*.egg-info/
+*.so
+*.pyd
+*.o

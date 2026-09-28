@@ -1,0 +1,471 @@
+{
+  "description": "Content hashes of the manuscript's table rows and plot data (comment lines dropped, LF line endings), the manuscript's figure files, and numbers quoted in the text.",
+  "files": {
+    "tables/ch4_quality_rows.tex": "69f44c2d38265cbbfdd2cf2fce14726596f6117875b99483321a690fd315da51",
+    "tables/ch4_effect_rows.tex": "beb570aa30e69997ae0fc3afd7fdadc2f7d471c0c410419eef148f91d10b2db3",
+    "tables/ch4_family_rows.tex": "3add5f1b22140aea86f0b1833c4f70926596e0e0460b1e02bb6d3e8fdeb277cd",
+    "tables/ch4_psweep_rows.tex": "bca4d78bcdf322e2643b3b3e5a59fdc52259d90aeb4ecaa8c93f400b2d5c4d2d",
+    "tables/ch4_safeguard_rows.tex": "dbb23215ac1b4f99f3c6ca1c22652d7e9213ed0726d91e050f32fc2195861867",
+    "tables/ch4_dataset_means.csv": "c41f867a45a95adc1727bfd11347651f6069917efb7ccd13bfdb7eaf7bc3a329",
+    "tables/ch4_quality_means.csv": "0172a4c582c160413046a043001d4b2cc6904c237c8c78c84eedcb9316564811",
+    "tables/ch4_family_means.csv": "1002597b7653cbf73d3c43910d92b94a1544b319e7435209da9c8772ff88129e",
+    "tables/ch4_family_equal_means.csv": "8570c6bb7b87063748680c6d85a922501a436fc5c2e99b7f1a3523c5ac434fbe",
+    "tables/ch4_effect_statistics.csv": "0daf3dd4b267f23da964b63872826c90fd9776069791f97011c57c2fda9932d1",
+    "tables/ch4_workloads.csv": "51db6fe9b316537960251cc465c5f7d768616a04d810176756ea394c4e37441c",
+    "tables/ch4_effect_plot_data.csv": "8151d1e54c65381a1fd2b1f11ad46637127884261432e8965283be186a9f0ed3",
+    "tables/ch5_quality_common_median_rows.tex": "a76c0207676a1a515a8bdf7ae9679f243ef1400036179c5afb0ee5abb09275c7",
+    "tables/ch5_runtime_rows.tex": "e71f248e44915478b9ac84c1eff99d525907ba1314bdb9d42d891165dba4b214",
+    "tables/ch5_profile_rows.tex": "46afbd0c0d35439a90960863ddc16df0d3f16922476c2101f5e757a8b8ed2f6a",
+    "tables/ch5_quality_absolute_mean_rows.tex": "c5d2e5a1fec1a28469820efe242de1d6ef27a506a35aebabb7fca584f488fb7e",
+    "tables/ch5_quality_absolute_median_rows.tex": "b62d2e3691c9150385a6e4c7a01ff68d385b0b0270cac77c1bc2eb6faae4d6a0",
+    "tables/ch5_quality_rows.tex": "dacd7e7b8c1d8f34856678d76e1f105b5a245dcb0aef8d3c2634e0aabfe5a40d",
+    "tables/ch5_quality_paired_median_rows.tex": "79f1537a6d90db0c4809a713cb845b08107ef9fe9c8e6508f4542491d06c1ff5",
+    "tables/ch5_collection_rows.tex": "27dd198e6f2a2a25ef39d213a5be80d6e176f48cd2f729646f8b9ce2ba0bf0b8",
+    "tables/ch5_stability_rows.tex": "3c143713ecbe3d375d8eebece7ab7788c85b6e18f0513d2864ae163c73a7e946",
+    "tables/ch5_stability_pair_rows.tex": "b09edc4b0ac84d6b9be312b3778c20e62a974fa89a3cc6b5254fc4a016caa081",
+    "tables/ch5_dataset_rows.tex": "eb92fbd7d81d1f431a28150f22b42109dbe6a55474b633ad82f667b2b28cd1d4",
+    "tables/ch5_fidelity_plot_data.csv": "af220d5ca5be3f2ef067b7e2060692618f42bb41db67a4e52d75e65b8044494f",
+    "tables/ch5_stability_plot_data.csv": "e081654635e990f7eb8461047df05326b40e58d7d64cd8dd0e7e4588e4e5d941",
+    "figures/data/runtime_data.csv": "c57714b89fd7f0415a2ea3115bf759e38621e525b8d25586e1c6e1fd4405e9b3",
+    "figures/data/stability_data.csv": "439ecc1f596a5a73829cd40189f097c99f97ff53de47b37a3b49d8fdb5c9136d",
+    "figures/data/figure_A_data.csv": "83a79371d0b535e02c8e64897cc313bb3cf735ef5f80c90318a436e9f835eecd",
+    "figures/data/paper_figure_seed_cost_data.csv": "beccf94533f383ca24aed11f212add9cb55e195101536847eb30a597e85299f1",
+    "figures/data/stage_share_data.csv": "3a4a3fa4f36f7786c2908f2b46d9868fe1f712a672ea58576b616491f3288a42",
+    "tables/ch4_calendar_rows.tex": "6bf9ef84ec3cd2711561ccb560355300cfa9afbd895a01acec1796009a40c045",
+    "tables/ch6_reuse_rows.tex": "775ce83caa3b1aebb673c293a6c413e2f9249ede203c572f4d00ea489ca99872"
+  },
+  "figures": [
+    "figure_ch4_mechanism_effects.pdf",
+    "figure_ch4_safeguard_cases.pdf",
+    "figure_BE_runtime_stability_merged_h166.pdf",
+    "figure_A_side_by_side.pdf",
+    "figure_A_runtime_seeded_unseeded_side_by_side.pdf",
+    "figure_C_cpu_seeded_time_cost.pdf",
+    "figure_D_unseeded_fidelity.pdf",
+    "figure_F_ibumap_stage_share_cpu_unseeded.pdf",
+    "figure_F_ibumap_stage_share_cpu_seeded.pdf",
+    "figure_F_ibumap_stage_share_cuda_unseeded.pdf",
+    "figure_F_ibumap_stage_share_cuda_seeded.pdf",
+    "ch6_run1.pdf",
+    "ch6_run2.pdf",
+    "ch6_changes.pdf"
+  ],
+  "quoted_values": [
+    {
+      "file": "figures/data/figure_BE_summary.json",
+      "path": [
+        "medians",
+        "cpu_umap/unseeded"
+      ],
+      "format": "{:.3g}",
+      "expected": "3.29",
+      "where": "Sec. 5: CPU unseeded median speedup"
+    },
+    {
+      "file": "figures/data/figure_BE_summary.json",
+      "path": [
+        "medians",
+        "cpu_umap/seeded"
+      ],
+      "format": "{:.3g}",
+      "expected": "5.79",
+      "where": "Sec. 5: CPU seeded median speedup"
+    },
+    {
+      "file": "figures/data/figure_BE_summary.json",
+      "path": [
+        "medians",
+        "gpu_cuml/unseeded"
+      ],
+      "format": "{:.3g}",
+      "expected": "0.875",
+      "where": "Fig. e2e-results: GPU/cuML median speedup"
+    },
+    {
+      "file": "figures/data/figure_BE_summary.json",
+      "path": [
+        "medians",
+        "gpu_torchdr/unseeded"
+      ],
+      "format": "{:.3g}",
+      "expected": "1.53",
+      "where": "Fig. e2e-results: GPU/TorchDR median speedup"
+    },
+    {
+      "file": "figures/data/ch6_pair_metrics.json",
+      "path": [
+        "caption_percentages",
+        "cluster_to_cluster"
+      ],
+      "format": "{:.2f}",
+      "expected": "16.29",
+      "where": "App. BRAQUE: cluster-to-cluster changes (%)"
+    },
+    {
+      "file": "figures/data/ch6_pair_metrics.json",
+      "path": [
+        "caption_percentages",
+        "noise_status"
+      ],
+      "format": "{:.2f}",
+      "expected": "3.49",
+      "where": "App. BRAQUE: noise-status changes (%)"
+    },
+    {
+      "file": "figures/data/ch6_pair_metrics.json",
+      "path": [
+        "caption_percentages",
+        "total_changed"
+      ],
+      "format": "{:.2f}",
+      "expected": "19.78",
+      "where": "App. BRAQUE: total changed (%)"
+    },
+    {
+      "file": "figures/data/ch6_pair_metrics.json",
+      "path": [
+        "caption_percentages",
+        "ari_both_nonnoise"
+      ],
+      "format": "{:.3f}",
+      "expected": "0.656",
+      "where": "App. BRAQUE: ARI on clustered cells"
+    },
+    {
+      "file": "tables/ch6_reuse_summary.json",
+      "path": [
+        "seeded_fidelity",
+        "umap_seeded",
+        "trustworthiness"
+      ],
+      "format": "{:.6f}",
+      "expected": "0.970230",
+      "where": "App. BRAQUE: seeded UMAP TW"
+    },
+    {
+      "file": "tables/ch6_reuse_summary.json",
+      "path": [
+        "seeded_fidelity",
+        "ibumap_seeded",
+        "trustworthiness"
+      ],
+      "format": "{:.6f}",
+      "expected": "0.962791",
+      "where": "App. BRAQUE: seeded ibUMAP TW"
+    },
+    {
+      "file": "tables/ch6_reuse_summary.json",
+      "path": [
+        "seeded_fidelity",
+        "umap_seeded",
+        "high_dim_neighbor_overlap"
+      ],
+      "format": "{:.6f}",
+      "expected": "0.402051",
+      "where": "App. BRAQUE: seeded UMAP input-neighbor overlap"
+    },
+    {
+      "file": "tables/ch6_reuse_summary.json",
+      "path": [
+        "seeded_fidelity",
+        "ibumap_seeded",
+        "high_dim_neighbor_overlap"
+      ],
+      "format": "{:.6f}",
+      "expected": "0.370703",
+      "where": "App. BRAQUE: seeded ibUMAP input-neighbor overlap"
+    },
+    {
+      "file": "tables/ch4_calendar_summary.json",
+      "path": [
+        "epoch_total_over_mean",
+        "epoch1",
+        "median"
+      ],
+      "format": "{:.2f}",
+      "expected": "0.17",
+      "where": "App. calendar: total at t=1 / mean"
+    },
+    {
+      "file": "tables/ch4_calendar_summary.json",
+      "path": [
+        "epoch_total_over_mean",
+        "min_t_ge_10",
+        "min"
+      ],
+      "format": "{:.2f}",
+      "expected": "0.91",
+      "where": "App. calendar: lower band from t=10"
+    },
+    {
+      "file": "tables/ch4_calendar_summary.json",
+      "path": [
+        "epoch_total_over_mean",
+        "max_t_ge_10",
+        "max"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.10",
+      "where": "App. calendar: upper band from t=10"
+    },
+    {
+      "file": "tables/ch4_calendar_summary.json",
+      "path": [
+        "E_over_cbar",
+        "dataset_medians",
+        "median"
+      ],
+      "format": "{:.3f}",
+      "expected": "0.507",
+      "where": "App. calendar: D-G balance / reference"
+    },
+    {
+      "file": "tables/ch4_calendar_summary.json",
+      "path": [
+        "rho_H_over_ref",
+        "dataset_medians",
+        "median"
+      ],
+      "format": "{:.3f}",
+      "expected": "1.014",
+      "where": "App. calendar: H balance / reference"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "ibumap_production",
+        "median"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.01",
+      "where": "App. safeguards: H median bbox ratio, 59 datasets"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "ibumap_production",
+        "max"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.52",
+      "where": "App. safeguards: H maximum bbox ratio"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "reference",
+        "umap_learn",
+        "max"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.93",
+      "where": "App. safeguards: UMAP maximum bbox ratio"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_repulsion_clip",
+        "max_step_first_update"
+      ],
+      "format": "{:.0f}",
+      "expected": "897",
+      "where": "App. safeguards: CIFAR-10 first-update step without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "max_step_first_update"
+      ],
+      "format": "{:.0f}",
+      "expected": "418",
+      "where": "App. safeguards: scDEED CART first-update step without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_repulsion_clip",
+        "far_count"
+      ],
+      "format": "{:d}",
+      "expected": "555",
+      "where": "App. safeguards: CIFAR-10 far points without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "far_count"
+      ],
+      "format": "{:d}",
+      "expected": "483",
+      "where": "App. safeguards: scDEED CART far points without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_repulsion_clip",
+        "final_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "93.9",
+      "where": "App. safeguards: scDEED CART final ratio without the clip"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "max_attraction_norm"
+      ],
+      "format": "{:.0f}",
+      "expected": "455",
+      "where": "App. safeguards: scDEED CART hub attraction without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "max_attraction_norm"
+      ],
+      "format": "{:.0f}",
+      "expected": "102",
+      "where": "App. safeguards: scDEED CART hub attraction with damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "updates_ratio_gt_10"
+      ],
+      "format": "{:d}",
+      "expected": "175",
+      "where": "App. safeguards: scDEED CART updates with ratio > 10 without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "peak_ratio"
+      ],
+      "format": "{:.0f}",
+      "expected": "296",
+      "where": "App. safeguards: scDEED CART peak ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "core_boxes_median"
+      ],
+      "format": "{:.1f}",
+      "expected": "28.5",
+      "where": "App. safeguards: mesh boxes across the core without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "core_boxes_median"
+      ],
+      "format": "{:.1f}",
+      "expected": "61.3",
+      "where": "App. safeguards: mesh boxes across the core with damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "weighted_degree_p99"
+      ],
+      "format": "{:.1f}",
+      "expected": "45.7",
+      "where": "App. safeguards: scDEED CART 99th-percentile weighted degree"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "no_attraction_damping",
+        "final_ratio"
+      ],
+      "format": "{:.2f}",
+      "expected": "2.08",
+      "where": "App. safeguards: scDEED CART final ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_attraction_damping",
+        "updates_ratio_gt_10"
+      ],
+      "format": "{:d}",
+      "expected": "157",
+      "where": "App. safeguards: CIFAR-10 updates with ratio > 10 without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "no_attraction_damping",
+        "final_ratio"
+      ],
+      "format": "{:.2f}",
+      "expected": "1.70",
+      "where": "App. safeguards: CIFAR-10 final ratio without damping"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "cifar10",
+        "full",
+        "peak_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "11.8",
+      "where": "App. safeguards: CIFAR-10 transient peak with both safeguards"
+    },
+    {
+      "file": "tables/ch4_safeguard_summary.json",
+      "path": [
+        "cases",
+        "scdeed_cart",
+        "full",
+        "peak_ratio"
+      ],
+      "format": "{:.1f}",
+      "expected": "18.6",
+      "where": "App. safeguards: scDEED CART transient peak with both safeguards"
+    }
+  ]
+}

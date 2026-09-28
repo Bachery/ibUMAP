@@ -1,0 +1,53 @@
+name: ibumap-torchdr
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - nodefaults
+
+# The PyPI PyTorch wheel may otherwise load the older system libstdc++ before
+# conda extensions. For Python/pytest, $ORIGIN is the environment's bin dir.
+variables:
+  LD_PRELOAD: "$ORIGIN/../lib/libstdc++.so.6"
+
+dependencies:
+  # Python
+  - python=3.11.15
+  - pip=26.1.2
+
+  # C++ runtime required by current conda-forge extension modules
+  - libstdcxx-ng=15.2.0
+
+  # Scientific Python
+  - numpy=1.26.4
+  - scipy=1.16.3
+  - pandas=2.3.3
+  - scikit-learn=1.8.0
+  - numba=0.61.2
+
+  # FAISS k-NN backend. Pin the official CUDA 12.1 build: newer FAISS
+  # binaries reference __libc_single_threaded and fail on glibc < 2.32.
+  - cuda-version=12.6
+  - faiss-gpu=1.8.0=py3.11_h4c7d538_0_cuda12.1.1
+
+  # UMAP
+  - umap-learn=0.5.12
+  - pynndescent=0.5.13
+
+  # IO
+  - h5py=3.16.0
+
+  # Utilities
+  - matplotlib=3.11.1
+  - psutil=7.2.2
+  - pyyaml=6.0.3
+  - pytest=9.1.1
+  - tqdm=4.69.0
+
+  # Pip wheels: pyFFTW and TorchDR (CUDA 12.6 PyTorch)
+  - pip:
+      - "--extra-index-url=https://download.pytorch.org/whl/cu126"
+      - pyfftw==0.15.1
+      - torch==2.12.1+cu126
+      - torchdr==0.4

@@ -1,0 +1,91 @@
+{
+  "colorable_columns": [
+    "label",
+    "label_name"
+  ],
+  "dataset_id": "secom",
+  "default_color_by": "label_name",
+  "display_name": "SECOM",
+  "download_urls": [
+    "https://raw.githubusercontent.com/mespadoto/proj-quant-eval/9f14239f87bbacc6cac6ff52729284dd65956dd6/docs/data/secom/X.npy",
+    "https://mespadoto.github.io/proj-quant-eval/data/secom/X.npy",
+    "https://raw.githubusercontent.com/mespadoto/proj-quant-eval/9f14239f87bbacc6cac6ff52729284dd65956dd6/docs/data/secom/y.npy",
+    "https://mespadoto.github.io/proj-quant-eval/data/secom/y.npy"
+  ],
+  "family": "tabular_ml",
+  "feature_dtype": "float32",
+  "feature_shape": [
+    1567,
+    590
+  ],
+  "filterable_columns": [
+    "label",
+    "label_name"
+  ],
+  "generated_at": "2026-09-23T14:23:02+00:00",
+  "generated_by": "scripts/datasets/tabular_ml/prepare.py",
+  "identifier_column": "sample_id",
+  "kind": "tabular_ml",
+  "label_columns": [
+    "label",
+    "label_name"
+  ],
+  "label_encoding_strategy": "sorted_unique_label_name",
+  "label_mapping": [
+    {
+      "label": 0,
+      "label_name": "-1",
+      "original_value": "-1"
+    },
+    {
+      "label": 1,
+      "label_name": "1",
+      "original_value": "1"
+    }
+  ],
+  "metric": "euclidean",
+  "n_classes": 2,
+  "obs_file": "obs.csv.gz",
+  "obs_schema": {
+    "label": {
+      "description": "Stable int32 class label encoded from the source label values.",
+      "dtype": "int32",
+      "role": "class_label"
+    },
+    "label_name": {
+      "description": "Source label value as a string (see label_mapping in metadata.json).",
+      "dtype": "string",
+      "role": "class_name"
+    },
+    "sample_id": {
+      "description": "Stable row identifier matching the row index of features.npy.",
+      "dtype": "int64",
+      "role": "identifier"
+    }
+  },
+  "original_feature_dtype": "float32",
+  "original_label_dtype": "int64",
+  "preprocessing": "Upstream: Missing values replaced by 0; no subsampling; labels are -1/+1. Features are then MinMax-scaled to [0, 1] as float32 (see https://github.com/mespadoto/proj-quant-eval/blob/9f14239f87bbacc6cac6ff52729284dd65956dd6/code/01_data_collection/get_datasets.py). Here: features cast to float32, labels encoded by sorted unique label name to int32.",
+  "primary_array": "features.npy",
+  "raw_path": "datasets/raw_cache/tabular_ml/secom",
+  "raw_paths": [
+    "datasets/raw_cache/tabular_ml/secom/X.npy",
+    "datasets/raw_cache/tabular_ml/secom/y.npy"
+  ],
+  "raw_role": "raw_cache",
+  "raw_sha256": {
+    "X.npy": "1cebcd793296abcd444191b5474508427d67388361cf206ad36384e9ad80ba9a",
+    "y.npy": "57b8ef466725e3485074174478a9a10ff55436d82299bc28b912ef3f9ed5ac91"
+  },
+  "searchable_columns": [],
+  "source_name": "Espadoto et al. (2021) DR survey benchmark",
+  "source_publication": "M. Espadoto, R. M. Martins, A. Kerren, N. S. T. Hirata, A. C. Telea. Toward a Quantitative Survey of Dimension Reduction Techniques. IEEE Transactions on Visualization and Computer Graphics 27(3), 2021. doi:10.1109/TVCG.2019.2944182",
+  "source_type": "direct_download",
+  "source_url": "https://mespadoto.github.io/proj-quant-eval/post/datasets/",
+  "target_dtype": "int32",
+  "target_file": "target.npy",
+  "target_source_column": "label",
+  "task_type": "classification",
+  "upstream_source": "UCI SECOM (id 179), secom.data + secom_labels.data, 1,567 x 590",
+  "version": 1
+}
