@@ -273,6 +273,11 @@ tests/                unit tests
 
 ## License
 
-Not yet set. A license will be chosen after the provenance of third-party code
-has been audited. `src/ibumap/init/_eigsh_cupy.py` is adapted from CuPy (MIT
-license) and keeps its copyright notice.
+ibUMAP is released under the BSD 3-Clause License (see `LICENSE`). Parts of the
+code are adapted from t-FDP, FIt-SNE, umap-learn, CuPy and cuML;
+`THIRD_PARTY_NOTICES.md` lists the files, and the upstream license texts
+are in `LICENSES/`. The optional cuML graph extension
+`src/ibumap/graph/_cuml_graph_ext.pyx` remains under Apache-2.0.
+
+The CPU FFT path uses pyFFTW, which links against FFTW (GPL-2.0-or-later).
+FFTW is not distributed with ibUMAP.

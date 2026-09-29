@@ -1,3 +1,10 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright (c) 2026, the ibUMAP authors.
+#
+# Parts of this file are adapted from t-FDP (https://github.com/Ideas-Laboratory/t-fdp)
+# with the permission of its author, and from umap-learn (BSD-3-Clause,
+# Copyright (c) 2017, Leland McInnes). See THIRD_PARTY_NOTICES.md.
+
 import csv
 import ctypes
 import numba

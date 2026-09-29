@@ -1,3 +1,9 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright (c) 2026, the ibUMAP authors.
+#
+# Implements the t-FDP layout method (Zhong et al., IEEE TVCG 2024) for comparison;
+# the ibUMAP optimizer does not use it. See THIRD_PARTY_NOTICES.md.
+
 import platform
 from ..kernels.cpu.ibfft import *
 from ..fft_schedule import (

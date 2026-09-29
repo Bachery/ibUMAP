@@ -1,4 +1,12 @@
 # distutils: language = c++
+# SPDX-FileCopyrightText: Copyright (c) 2019-2026, NVIDIA CORPORATION.
+# SPDX-FileCopyrightText: Copyright (c) 2026, the ibUMAP authors.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Parts of this file are adapted from cuML v26.06.00
+# (python/cuml/cuml/manifold/umap/umap.pyx) and were modified by the ibUMAP
+# authors in 2026. Licensed under the Apache License, Version 2.0; see
+# LICENSES/cuML.txt and THIRD_PARTY_NOTICES.md.
 
 """Optional cuML graph-only wrappers for CUDA ibUMAP.
 
