@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Run and freeze BRAQUE Lognormal Shrinkage with per-marker checkpoints.
 
-The numerical steps follow the authors' legacy implementation.  BGM fitting is
-seeded, each completed marker is atomically cached, and the final raw LNS matrix
-and robust-standardized UMAP input are checksummed.  Dry run is the default.
+This script reimplements the numerical steps of BRAQUE's legacy Lognormal
+Shrinkage procedure.  BGM fitting is seeded, each completed marker is atomically
+cached, and the final raw LNS matrix and robust-standardized UMAP input are
+checksummed.  Dry run is the default.
 """
 
 from __future__ import annotations

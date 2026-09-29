@@ -12,7 +12,19 @@ experiment exports (frozen copy in `paper/data/braque/`).
   BRAQUE: Bayesian Reduction for Amplified Quantization in UMAP Embedding.
   *Entropy* 25(2):354, 2023. https://doi.org/10.3390/e25020354 (CC BY 4.0;
   `literature/braque.bib`)
-- Data: Mendeley Data, https://doi.org/10.17632/j8xbwb93x9.1, sample `L2`
+- Data: Dall'Olio et al. (2023), *BRAQUE: Bayesian Reduction for Amplified
+  Quantization in UMAP Embedding. Supplementary data.*, Mendeley Data, V1,
+  https://doi.org/10.17632/j8xbwb93x9.1, sample `L2`, licensed under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Software: [BRAQUE](https://github.com/LorenzoDallOlio/BRAQUE) (GPL-3.0).
+  Stage 04 reimplements its Lognormal Shrinkage procedure; see
+  [third-party notices](../../THIRD_PARTY_NOTICES.md).
+
+The dataset license was verified on 2026-09-29 from the Mendeley
+[V1 metadata](https://data.mendeley.com/public-api/datasets/j8xbwb93x9?version=1)
+(`data_licence.short_name`: `CC BY 4.0`). The transformations below produce
+derived results; frozen paper exports retain their source attribution in
+[`paper/data/braque/README.md`](../../paper/data/braque/README.md).
 
 ## Input (stages 01–04)
 

@@ -20,4 +20,6 @@ Not included:
 - scDEED (MIT): `evaluation/scdeed.py` is an independent implementation.
 - FFTW (GPL-2.0-or-later) is used through pyFFTW and is not distributed with
   ibUMAP.
-- Datasets are not redistributed; `paper/data` holds derived results only.
+- Raw datasets are not redistributed; `paper/data` holds derived results only.
+  BRAQUE source data are CC BY 4.0; see the attribution and transformation
+  notes in [`paper/data/braque/README.md`](paper/data/braque/README.md).
