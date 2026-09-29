@@ -2,6 +2,13 @@
 
 Reference implementation and reproduction package for the paper.
 
+**Bin Chen¹, Yumeng Xue¹, Patrick Paetzold¹, Yunhai Wang², Oliver Deussen¹**
+
+¹ University of Konstanz · ² Renmin University of China
+
+Manuscript under review at ICLR 2027. The arXiv link will be added after publication.
+See [Citation](#citation) and [Live demo and video](#live-demo-and-video).
+
 [![ibUMAP overview](paper/ch1_figure_1.png)](paper/ch1_figure_1.pdf)
 
 **From sampled in-place updates to coherent field evaluation.** (a) From
@@ -29,6 +36,33 @@ produces small average changes in final quality. End-to-end benchmarks show
 median speedups of 3.29× unseeded and 5.79× seeded over umap-learn on CPU, and
 1.44× over cuML on million-scale datasets under unseeded GPU execution. These
 gains accompany greater run-to-run stability and measurable fidelity trade-offs.
+
+## Live demo and video
+
+The [BRAQUE live demo](experiments/braque/demo_live/README.md) runs ibUMAP or
+umap-learn followed by HDBSCAN in a local browser interface, with controls for
+the seed and analysis parameters and a comparison of successive partitions.
+It requires the prepared BRAQUE input; follow the
+[case-study setup](experiments/braque/README.md) before starting the demo.
+
+The accompanying video (approximately 32 MB) is awaiting publication; its link
+will be added here before the arXiv v1 submission.
+
+## Citation
+
+If you use ibUMAP in your research, please cite the manuscript below.
+This provisional citation will be updated with the arXiv identifier once available.
+Machine-readable metadata are provided in [`CITATION.cff`](CITATION.cff).
+
+```bibtex
+@misc{chen2026ibumap,
+  title  = {{ibUMAP}: Coherent and Scalable Field Evaluation for {UMAP} Optimization},
+  author = {Chen, Bin and Xue, Yumeng and Paetzold, Patrick and Wang, Yunhai and Deussen, Oliver},
+  year   = {2026},
+  note   = {Manuscript under review at ICLR 2027},
+  url    = {https://github.com/Bachery/ibUMAP}
+}
+```
 
 ## Contents
 

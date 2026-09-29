@@ -185,7 +185,7 @@ python -m pip list --format=freeze --exclude-editable > environments/$env.pip.tx
 
 Use `pip list --format=freeze`, not `pip freeze`: the latter records conda
 packages as local `file://` build paths and editable installs as VCS URLs,
-which are neither portable nor anonymous. Review `git diff` before
+which are not portable and can expose local paths. Review `git diff` before
 committing.
 
 ## Troubleshooting

@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use ibUMAP, please cite the manuscript in preferred-citation. The arXiv identifier will be added after publication."
+type: software
+title: "ibUMAP: Coherent and Scalable Field Evaluation for UMAP Optimization"
+version: 0.1.0
+repository-code: "https://github.com/Bachery/ibUMAP"
+url: "https://github.com/Bachery/ibUMAP"
+authors:
+  - family-names: Chen
+    given-names: Bin
+    affiliation: University of Konstanz
+  - family-names: Xue
+    given-names: Yumeng
+    affiliation: University of Konstanz
+  - family-names: Paetzold
+    given-names: Patrick
+    affiliation: University of Konstanz
+  - family-names: Wang
+    given-names: Yunhai
+    affiliation: Renmin University of China
+  - family-names: Deussen
+    given-names: Oliver
+    affiliation: University of Konstanz
+preferred-citation:
+  type: generic
+  title: "ibUMAP: Coherent and Scalable Field Evaluation for UMAP Optimization"
+  authors:
+    - family-names: Chen
+      given-names: Bin
+    - family-names: Xue
+      given-names: Yumeng
+    - family-names: Paetzold
+      given-names: Patrick
+    - family-names: Wang
+      given-names: Yunhai
+    - family-names: Deussen
+      given-names: Oliver
+  year: 2026
+  notes: "Manuscript under review at ICLR 2027."
+  url: "https://github.com/Bachery/ibUMAP"

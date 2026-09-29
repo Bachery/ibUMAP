@@ -8,7 +8,13 @@ version = "0.1.0"
 description = "ibUMAP: coherent and scalable field evaluation for UMAP optimization (CPU/CUDA/Metal)"
 readme = "README.md"
 requires-python = ">=3.11"
-authors = [{ name = "Anonymous" }]
+authors = [
+  { name = "Bin Chen" },
+  { name = "Yumeng Xue" },
+  { name = "Patrick Paetzold" },
+  { name = "Yunhai Wang" },
+  { name = "Oliver Deussen" },
+]
 # Third-party code and its notices: THIRD_PARTY_NOTICES.md (see README, License).
 license = "BSD-3-Clause AND Apache-2.0"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "LICENSES/*"]
