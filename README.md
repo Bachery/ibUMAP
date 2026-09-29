@@ -45,8 +45,7 @@ the seed and analysis parameters and a comparison of successive partitions.
 It requires the prepared BRAQUE input; follow the
 [case-study setup](experiments/braque/README.md) before starting the demo.
 
-The accompanying video (approximately 32 MB) is awaiting publication; its link
-will be added here before the arXiv v1 submission.
+[Download the accompanying video (MP4, approximately 32 MB)](https://github.com/Bachery/ibUMAP/releases/download/v0.1.0/ibUMAP_accompanying_video.mp4).
 
 ## Citation
 
