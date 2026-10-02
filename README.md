@@ -6,7 +6,7 @@ Reference implementation and reproduction package for the paper.
 
 ¹ University of Konstanz · ² Renmin University of China
 
-Manuscript under review at ICLR 2027. The arXiv link will be added after publication.
+Preprint: [arXiv:2610.01445](https://arxiv.org/abs/2610.01445) (under review at ICLR 2027).
 See [Citation](#citation) and [Live demo and video](#live-demo-and-video).
 
 [![ibUMAP overview](paper/ch1_figure_1.png)](paper/ch1_figure_1.pdf)
@@ -49,17 +49,20 @@ It requires the prepared BRAQUE input; follow the
 
 ## Citation
 
-If you use ibUMAP in your research, please cite the manuscript below.
-This provisional citation will be updated with the arXiv identifier once available.
+If you use ibUMAP in your research, please cite the preprint below.
 Machine-readable metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ```bibtex
 @misc{chen2026ibumap,
-  title  = {{ibUMAP}: Coherent and Scalable Field Evaluation for {UMAP} Optimization},
-  author = {Chen, Bin and Xue, Yumeng and Paetzold, Patrick and Wang, Yunhai and Deussen, Oliver},
-  year   = {2026},
-  note   = {Manuscript under review at ICLR 2027},
-  url    = {https://github.com/Bachery/ibUMAP}
+  title         = {{ibUMAP}: Coherent and Scalable Field Evaluation for {UMAP} Optimization},
+  author        = {Chen, Bin and Xue, Yumeng and Paetzold, Patrick and Wang, Yunhai and Deussen, Oliver},
+  year          = {2026},
+  eprint        = {2610.01445},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2610.01445},
+  url           = {https://arxiv.org/abs/2610.01445},
+  note          = {Under review at ICLR 2027}
 }
 ```
 

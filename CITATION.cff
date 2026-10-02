@@ -1,8 +1,9 @@
 cff-version: 1.2.0
-message: "If you use ibUMAP, please cite the manuscript in preferred-citation. The arXiv identifier will be added after publication."
+message: "If you use ibUMAP, please cite the preprint in preferred-citation."
 type: software
 title: "ibUMAP: Coherent and Scalable Field Evaluation for UMAP Optimization"
 version: 0.1.0
+license: BSD-3-Clause
 repository-code: "https://github.com/Bachery/ibUMAP"
 url: "https://github.com/Bachery/ibUMAP"
 authors:
@@ -36,5 +37,7 @@ preferred-citation:
     - family-names: Deussen
       given-names: Oliver
   year: 2026
-  notes: "Manuscript under review at ICLR 2027."
-  url: "https://github.com/Bachery/ibUMAP"
+  doi: "10.48550/arXiv.2610.01445"
+  url: "https://arxiv.org/abs/2610.01445"
+  repository-code: "https://github.com/Bachery/ibUMAP"
+  notes: "arXiv:2610.01445. Under review at ICLR 2027."
