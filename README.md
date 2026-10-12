@@ -2,11 +2,7 @@
 
 Reference implementation and reproduction package for the paper.
 
-**Bin Chen¹, Yumeng Xue¹, Patrick Paetzold¹, Yunhai Wang², Oliver Deussen¹**
-
-¹ University of Konstanz · ² Renmin University of China
-
-Preprint: [arXiv:2610.01445](https://arxiv.org/abs/2610.01445) (under review at ICLR 2027).
+Preprint: [arXiv:2610.01445](https://arxiv.org/abs/2610.01445).
 See [Citation](#citation) and [Live demo and video](#live-demo-and-video).
 
 [![ibUMAP overview](paper/ch1_figure_1.png)](paper/ch1_figure_1.pdf)
